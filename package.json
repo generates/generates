@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "generates",
+  "description": "Easier file generation/scaffolding/bootstrapping",
+  "author": "Ian Walter <public@iankwalter.com> (https://iankwalter.com)",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "lerna": "^3.13.4"
+  }
+}
