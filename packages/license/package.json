@@ -19,6 +19,7 @@
     "url": "git+https://github.com/ianwalter/generates.git"
   },
   "scripts": {
+    "lint": "eslint index.js tests",
     "test": "bff"
   },
   "bugs": {
@@ -26,5 +27,11 @@
   },
   "dependencies": {
     "@generates/core": "0.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@ianwalter"
+    ]
   }
 }

@@ -18,7 +18,8 @@
     "url": "git+https://github.com/ianwalter/generates.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "lint": "eslint index.js",
+    "test": "bff"
   },
   "bugs": {
     "url": "https://github.com/ianwalter/generates/issues"
@@ -26,5 +27,14 @@
   "dependencies": {
     "@ianwalter/cli": "^1.1.1",
     "@ianwalter/fs": "^1.1.0"
+  },
+  "devDependencies": {
+    "@ianwalter/eslint-config": "^1.1.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@ianwalter"
+    ]
   }
 }
