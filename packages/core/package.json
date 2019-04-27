@@ -1,0 +1,31 @@
+{
+  "name": "@generates/core",
+  "version": "0.0.0",
+  "description": "The generates core generator application",
+  "keywords": [
+    "generates",
+    "core",
+    "generator"
+  ],
+  "author": "Ian Walter <public@iankwalter.com>",
+  "homepage": "https://github.com/ianwalter/generates#readme",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/generates.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/ianwalter/generates/issues"
+  },
+  "dependencies": {
+    "@ianwalter/merge": "^3.0.0",
+    "common-tags": "^1.8.0"
+  }
+}

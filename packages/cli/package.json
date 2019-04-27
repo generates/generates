@@ -1,0 +1,30 @@
+{
+  "name": "@generates/cli",
+  "version": "0.0.0",
+  "description": "The generates command-line interface application",
+  "keywords": [
+    "generates",
+    "cli"
+  ],
+  "author": "Ian Walter <public@iankwalter.com>",
+  "homepage": "https://github.com/ianwalter/generates#readme",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/generates.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/ianwalter/generates/issues"
+  },
+  "dependencies": {
+    "@ianwalter/cli": "^1.1.1",
+    "@ianwalter/fs": "^1.1.0"
+  }
+}

@@ -5,6 +5,7 @@
   "author": "Ian Walter <public@iankwalter.com> (https://iankwalter.com)",
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
+    "@ianwalter/bff": "^4.0.1",
     "lerna": "^3.13.4"
   }
 }

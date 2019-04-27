@@ -1,0 +1,30 @@
+{
+  "name": "@generates/license",
+  "version": "0.0.0",
+  "description": "Generate a LICENSE file using generates",
+  "keywords": [
+    "generates",
+    "generator",
+    "license"
+  ],
+  "author": "Ian Walter <public@iankwalter.com>",
+  "homepage": "https://github.com/ianwalter/generates#readme",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/generates.git"
+  },
+  "scripts": {
+    "test": "bff"
+  },
+  "bugs": {
+    "url": "https://github.com/ianwalter/generates/issues"
+  },
+  "dependencies": {
+    "@generates/core": "0.0.0"
+  }
+}
