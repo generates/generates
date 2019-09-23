@@ -4,8 +4,18 @@
   "description": "Easier file generation/scaffolding/bootstrapping",
   "author": "Ian Walter <public@iankwalter.com> (https://iankwalter.com)",
   "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "lint": "lerna run lint"
+  },
   "devDependencies": {
-    "@ianwalter/bff": "^4.0.1",
+    "@ianwalter/bff": "^6.5.1",
+    "@ianwalter/eslint-config": "^3.0.0",
+    "@ianwalter/renovate-config": "^1.2.0",
     "lerna": "^3.13.4"
+  },
+  "renovate": {
+    "extends": [
+      "@ianwalter"
+    ]
   }
 }

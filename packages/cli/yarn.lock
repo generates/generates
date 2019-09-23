@@ -56,12 +56,27 @@
   dependencies:
     "@ianwalter/subpub" "^2.0.0"
 
+"@ianwalter/log@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@ianwalter/log/-/log-3.0.0.tgz#c85f7343e28e98d0a4c872a42e6bdd6d8b302e8d"
+  integrity sha512-CAB1LaZUDUvQexuZYXmRhaFrpNqguIwA+ciB8+uvDm9dakNX3H+Yd7VIOisvx/y4GljH2hSrlTfCzhy14/0/YQ==
+
 "@ianwalter/merge@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@ianwalter/merge/-/merge-3.0.0.tgz#f2b88f73d7491e1d1f13a4cfd35a8dc452c0ad5e"
   integrity sha512-SrJt5zo4BjRHKQ6U0ErJlVgXQA2HLYRL1nGd8Vti84rbztwrsmwhxKUSsOHQWEY7/8MqlR2O22oDPJdLnIQ9RQ==
   dependencies:
     "@babel/runtime" "^7.3.1"
+
+"@ianwalter/print@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@ianwalter/print/-/print-2.3.0.tgz#12e2a11ca3e622e98069f1ca824c6edb3f4c47cb"
+  integrity sha512-JBysj0+79suEX/GT14xtuc+3MaaShPvo6U4LFuxsldGRvClYJYfG+c4VqZMJ18TwDYrd3ImVKQ4apKSyAOmVHQ==
+  dependencies:
+    "@ianwalter/log" "^3.0.0"
+    chalk "^2.4.2"
+    has-ansi "^3.0.0"
+    has-emoji "^1.0.0"
 
 "@ianwalter/subpub@^2.0.0":
   version "2.0.0"
@@ -319,6 +334,11 @@ emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
   integrity sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==
+
+emoji-regex@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
+  integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
 
 end-of-stream@^1.1.0:
   version "1.4.1"
@@ -677,6 +697,20 @@ graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
+
+has-ansi@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-3.0.0.tgz#36077ef1d15f333484aa7fa77a28606f1c655b37"
+  integrity sha1-Ngd+8dFfMzSEqn+neihgbxxlWzc=
+  dependencies:
+    ansi-regex "^3.0.0"
+
+has-emoji@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/has-emoji/-/has-emoji-1.1.0.tgz#8b9a13c1fedb92099fccc171628869a9dbab4091"
+  integrity sha512-5V4f0i0shdp6BzSE5WLBKh0EJky6wAo+b1pRS2Azm8cyJCekNxXhhAQJopYto3iMluh5rKD9n+vjQLZb7iR6+g==
+  dependencies:
+    emoji-regex "^8.0.0"
 
 has-flag@^3.0.0:
   version "3.0.0"

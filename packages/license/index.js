@@ -14,8 +14,8 @@ module.exports = class GeneratesLicense extends Generator {
           }
         },
         templates: {
-          'AGPLv3': require('./templates/AGPLv3'),
-          'ISC': require('./templates/ISC')
+          AGPLv3: require('./templates/AGPLv3'),
+          ISC: require('./templates/ISC')
         },
         answers: {
           year: new Date().getFullYear()
@@ -39,8 +39,8 @@ module.exports = class GeneratesLicense extends Generator {
                 delete context.files.license
               } else if (answer === 'SEE LICENSE IN LICENSE') {
                 context.addNextQuestions({
-                  licenseName: { text: 'What is the name of the license?', },
-                  licenseTemplate: { text: 'Add your license template:', }
+                  licenseName: { text: 'What is the name of the license?' },
+                  licenseTemplate: { text: 'Add your license template:' }
                 })
               } else {
                 context.answers.licenseName = answer
@@ -58,25 +58,25 @@ module.exports = class GeneratesLicense extends Generator {
             necessary (context) {
               return context.answers.license === 'AGPLv3'
             },
-            text: `What is this project's description?`
+            text: "What is this project's description?"
           },
           authorName: {
             necessary (context) {
               return context.answers.license !== 'UNLICENSED'
             },
-            text: `What is the name of this project's author?`
+            text: "What is the name of this project's author?"
           },
           authorEmail: {
             necessary (context) {
               return context.answers.license !== 'UNLICENSED'
             },
-            text: `What is this project's author's email address?`
+            text: "What is this project's author's email address?"
           },
           authorUrl: {
             necessary (context) {
               return context.answers.license !== 'UNLICENSED'
             },
-            text: `What is this project's author's website URL?`
+            text: "What is this project's author's website URL?"
           }
         }
       },

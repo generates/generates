@@ -32,6 +32,9 @@
     "root": true,
     "extends": [
       "@ianwalter"
-    ]
+    ],
+    "rules": {
+      "no-eval": 0
+    }
   }
 }

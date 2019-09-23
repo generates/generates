@@ -10,6 +10,9 @@
   "homepage": "https://github.com/ianwalter/generates#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
+  "bin": {
+    "generates": "index.js"
+  },
   "files": [
     "index.js"
   ],
@@ -26,7 +29,8 @@
   },
   "dependencies": {
     "@ianwalter/cli": "^1.1.1",
-    "@ianwalter/fs": "^1.1.0"
+    "@ianwalter/fs": "^1.1.0",
+    "@ianwalter/print": "^2.3.0"
   },
   "devDependencies": {
     "@ianwalter/eslint-config": "^1.1.2"
