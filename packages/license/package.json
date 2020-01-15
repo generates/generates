@@ -36,5 +36,8 @@
     "rules": {
       "no-eval": 0
     }
+  },
+  "devDependencies": {
+    "@ianwalter/bff": "^7.0.0"
   }
 }

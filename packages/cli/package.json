@@ -33,8 +33,9 @@
     "@ianwalter/print": "^2.3.0"
   },
   "devDependencies": {
-    "@ianwalter/eslint-config": "^1.1.2",
-    "@generates/license": "0.0.0"
+    "@generates/license": "0.0.0",
+    "@ianwalter/bff": "^7.0.0",
+    "@ianwalter/eslint-config": "^1.1.2"
   },
   "eslintConfig": {
     "root": true,

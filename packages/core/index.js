@@ -31,7 +31,7 @@ module.exports = class Generator {
     }
 
     return Object.values(context.files).reduce(
-      (acc, file) => (acc[file.filename] = file.template(context) && acc),
+      (acc, file) => (acc[file.filename] = file.template(context)) && acc,
       {}
     )
   }
