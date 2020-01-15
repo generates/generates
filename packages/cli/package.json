@@ -28,12 +28,13 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@ianwalter/cli": "^1.2.0",
+    "@ianwalter/cli": "^3.0.0",
     "@ianwalter/fs": "^1.1.0",
     "@ianwalter/print": "^2.3.0"
   },
   "devDependencies": {
-    "@ianwalter/eslint-config": "^1.1.2"
+    "@ianwalter/eslint-config": "^1.1.2",
+    "@generates/license": "0.0.0"
   },
   "eslintConfig": {
     "root": true,
