@@ -28,7 +28,7 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@ianwalter/cli": "^1.1.1",
+    "@ianwalter/cli": "^1.2.0",
     "@ianwalter/fs": "^1.1.0",
     "@ianwalter/print": "^2.3.0"
   },
