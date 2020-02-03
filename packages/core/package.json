@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@ianwalter/bff": "^8.1.0",
-    "@ianwalter/eslint-config": "^3.1.0"
+    "@ianwalter/eslint-config": "^4.0.0"
   },
   "eslintConfig": {
     "root": true,
