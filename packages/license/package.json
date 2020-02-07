@@ -38,6 +38,6 @@
     }
   },
   "devDependencies": {
-    "@ianwalter/bff": "^8.1.0"
+    "@ianwalter/bff": "^9.0.0"
   }
 }
