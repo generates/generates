@@ -30,7 +30,7 @@
     "common-tags": "^1.8.0"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^9.8.0",
+    "@ianwalter/bff": "^9.8.2",
     "@ianwalter/eslint-config": "^4.1.0"
   },
   "eslintConfig": {
