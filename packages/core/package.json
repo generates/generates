@@ -34,11 +34,5 @@
   },
   "devDependencies": {
     "@ianwalter/bff": "^9.9.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@ianwalter"
-    ]
   }
 }
