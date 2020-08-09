@@ -40,6 +40,13 @@ importers:
     specifiers:
       '@generates/core': 0.0.0
       '@ianwalter/bff': ^9.9.1
+  packages/prompt:
+    dependencies:
+      '@ianwalter/print': 8.1.0
+      sisteransi: 1.0.5
+    specifiers:
+      '@ianwalter/print': ^8.1.0
+      sisteransi: ^1.0.5
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.10.4:
@@ -61,7 +68,6 @@ packages:
     dependencies:
       core-js-pure: 3.6.5
       regenerator-runtime: 0.13.7
-    dev: true
     resolution:
       integrity: sha512-qh5IR+8VgFz83VBa6OkaET6uN/mJOhHONuy3m1sgF0CV6mXdPSEBdA7e1eUbVvyNtANjMbg22JUv71BaDXLY6A==
   /@babel/runtime/7.11.2:
@@ -150,7 +156,6 @@ packages:
       dot-prop: 5.2.0
       getopts: 2.2.5
       read-pkg-up: 7.0.1
-    dev: true
     resolution:
       integrity: sha512-GKOlUx9MGw1TDP+CvRwGp30G8mdlsqaNQz5sB8l19vL54QyOWhtwtM2qfcjx619SFnpSHr00UHJTjisgbgHs8g==
   /@ianwalter/clone/4.1.0:
@@ -161,15 +166,12 @@ packages:
     resolution:
       integrity: sha512-N0BlOwYog4ASu2OP+9q2xM3fvJDtFm4YhhZG2dmn0rmueJGhqC/OSJIHgixL6wORDP0w9+sRJdI97b0IoWBdYw==
   /@ianwalter/clone/6.0.1:
-    dev: true
     resolution:
       integrity: sha512-3dCmuxyyZKUPM7kFI2sf7WxQli7KL6FisH9uOtcGvjmvHOwKW+NHXVwCTD4xfrxEGhu4eAKwO0BN9f8V0YYAKQ==
   /@ianwalter/cloneable/2.0.0:
-    dev: true
     resolution:
       integrity: sha512-ZMKux34x/+EJIc6RCu01MmFXbW1rDSCCHvL9Bu81Hy/QGwvYu/lJACXWEbiCC/q7kDfVhA8LWNcLeMsp7G5a/A==
   /@ianwalter/dot/1.0.4:
-    dev: true
     resolution:
       integrity: sha512-bq6q4ZXWzQfBbE29i6trTwAtmmRzSWU0D/fSPhA/tDNbxhSlXDYUxfITtq1cctqi+s4BV4PgYIjxNkLeePK1mQ==
   /@ianwalter/eslint-config/5.3.0:
@@ -208,7 +210,6 @@ packages:
     resolution:
       integrity: sha512-PuJJiUQZSNRu6zrC6xrJx9/gX0NX9rilQ646+VBSj+X7RRBUWOogqxEUHojOJcwYTt2JzWVV9DIvvsZMkfZP5Q==
   /@ianwalter/merge/9.0.1:
-    dev: true
     resolution:
       integrity: sha512-Wu7eAZEsfuW0FJsVsdsNaWAtlY/6Viy74HQpZ8A81KutjhNO5cyPRkiBGletuX9kDUTOdSwWJokPnu/o4yE3KA==
   /@ianwalter/print/3.9.0:
@@ -253,7 +254,6 @@ packages:
       marked: 1.1.1
       marked-terminal: 4.1.0_marked@1.1.1
       strip-ansi: 6.0.0
-    dev: true
     hasBin: true
     resolution:
       integrity: sha512-1C3oH2YYpfPsRELDK2GDLEyzUNqBu4RMFrkbL+IFG5QrigAKX0wC64gjcmXkgGI9wGUEQ0R3vjnR/yMzC+Yymw==
@@ -663,7 +663,6 @@ packages:
     resolution:
       integrity: sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
   /camelcase/5.3.1:
-    dev: true
     engines:
       node: '>=6'
     resolution:
@@ -800,7 +799,6 @@ packages:
     resolution:
       integrity: sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
   /core-js-pure/3.6.5:
-    dev: true
     requiresBuild: true
     resolution:
       integrity: sha512-lacdXOimsiD0QyNf9BC/mxivNJ/ybBGJXQFKzRekp1WTHoVUWsUHEn+2T8GJAzzIhyOuXA+gOxCVN3l+5PLPUA==
@@ -856,7 +854,6 @@ packages:
   /decamelize/3.2.0:
     dependencies:
       xregexp: 4.3.0
-    dev: true
     engines:
       node: '>=6'
     resolution:
@@ -2263,7 +2260,6 @@ packages:
       marked: 1.1.1
       node-emoji: 1.10.0
       supports-hyperlinks: 2.1.0
-    dev: true
     peerDependencies:
       marked: '>=0.4.0 <2.0.0'
     resolution:
@@ -2282,7 +2278,6 @@ packages:
     resolution:
       integrity: sha512-EGwzEeCcLniFX51DhTpmTom+dSA/MG/OBUDjnWtHbEnjAH180VzUeAw+oE4+Zv+CoYBWyRlYOTR0N8SO9R1PVw==
   /marked/1.1.1:
-    dev: true
     engines:
       node: '>= 8.16.2'
     hasBin: true
@@ -3000,6 +2995,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
+  /sisteransi/1.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
   /slash/3.0.0:
     dev: true
     engines:
@@ -3420,6 +3419,5 @@ packages:
   /xregexp/4.3.0:
     dependencies:
       '@babel/runtime-corejs3': 7.11.2
-    dev: true
     resolution:
       integrity: sha512-7jXDIFXh5yJ/orPn4SXjuVrWWoi4Cr8jfV1eHv9CixKSbU+jY4mxfrBwAuDvupPNKpMUY+FeIqsVw/JLT9+B8g==

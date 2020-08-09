@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const { promises: fs } = require('fs')
 const cli = require('@ianwalter/cli')
 const { print } = require('@ianwalter/print')
 
@@ -22,8 +23,7 @@ async function run () {
       const files = await generator.generate()
 
       //
-      const { writeFile } = require('@ianwalter/fs')
-      const toWriteFile = async ([file, content]) => writeFile(file, content)
+      const toWriteFile = async ([file, content]) => fs.writeFile(file, content)
       await Promise.all(Object.entries(files).map(toWriteFile))
     } catch (err) {
       print.error(err) // TODO: add helpful error message.
