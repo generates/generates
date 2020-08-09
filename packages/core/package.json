@@ -7,7 +7,10 @@
     "core",
     "generator"
   ],
-  "author": "Ian Walter <public@iankwalter.com>",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
   "homepage": "https://github.com/ianwalter/generates#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
@@ -30,8 +33,7 @@
     "common-tags": "^1.8.0"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1",
-    "@ianwalter/eslint-config": "^5.3.0"
+    "@ianwalter/bff": "^9.9.1"
   },
   "eslintConfig": {
     "root": true,

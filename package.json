@@ -2,17 +2,18 @@
   "private": true,
   "name": "generates",
   "description": "Easier file generation/scaffolding/bootstrapping",
-  "author": "Ian Walter <public@iankwalter.com> (https://iankwalter.com)",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "lint": "lerna run lint",
-    "test": "lerna run test"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@ianwalter/bff": "^9.9.1",
     "@ianwalter/eslint-config": "^5.3.0",
-    "@ianwalter/renovate-config": "^1.4.0",
-    "lerna": "^3.22.1"
+    "@ianwalter/renovate-config": "^1.4.0"
   },
   "renovate": {
     "extends": [
