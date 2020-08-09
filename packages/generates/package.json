@@ -1,5 +1,5 @@
 {
-  "name": "@generates/cli",
+  "name": "generates",
   "version": "0.0.0",
   "description": "The generates command-line interface application",
   "keywords": [

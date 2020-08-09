@@ -1,10 +1,10 @@
-# @generates/cli
+# generates
 > The [generates][generatesUrl] command-line interfaction application
 
 ## Installation
 
 ```console
-yarn add @generates/cli --global
+pnpm add generates --global
 ```
 
 ## License
