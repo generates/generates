@@ -1,5 +1,5 @@
 # generates
-> Easier file generation/scaffolding/bootstrapping
+> Template-based generation framework
 
 ## License
 
