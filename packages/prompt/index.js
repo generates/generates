@@ -1,5 +1,5 @@
 const readline = require('readline')
-const { print, chalk } = require('@ianwalter/print')
+const { createPrint, chalk } = require('@ianwalter/print')
 const { cursor } = require('sisteransi')
 
 const yesNoOptions = [
@@ -7,13 +7,45 @@ const yesNoOptions = [
   { label: 'No', value: false }
 ]
 
-function printQuestion (prefix = '⌨️', question) {
+const print = createPrint({ level: 'info' })
+
+function printQuestion (prefix = '💬', question) {
   print.write()
   print.log(prefix, chalk.bold.white(question))
 }
 
-function renderSelect (question, options, settings) {
-  let { prefix, highlighted = 0, type } = settings
+function createReadline (keypressHandler, isText) {
+  //
+  if (isText) {
+    process.stdout.write(cursor.show)
+  } else {
+    process.stdout.write(cursor.hide)
+  }
+
+  // Create the readline instance.
+  const rl = readline.createInterface(process.stdin, isText && process.stdout)
+
+  // Activate the keypress event listener on stdin.
+  readline.emitKeypressEvents(process.stdin, rl)
+
+  // Something the Node.js docs said I had to do.
+  if (process.stdin.isTTY) process.stdin.setRawMode(true)
+
+  // Add the keypress handler to stdin.
+  process.stdin.on('keypress', keypressHandler)
+
+  // Add a close method to the keypressHanlder so that it can remove itself and
+  // close the readline instance.
+  keypressHandler.close = function close () {
+    process.stdin.removeListener('keypress', keypressHandler)
+    rl.close()
+  }
+
+  return rl
+}
+
+function renderSelect (question, settings) {
+  let { prefix, type, options, highlighted = 0 } = settings
   const isMultiselect = type === 'multiselect'
 
   // Print the question.
@@ -43,35 +75,20 @@ function renderSelect (question, options, settings) {
   // Display the options.
   render(options, options[highlighted])
 
-  // Create the readline instance.
-  const rl = readline.createInterface(process.stdin)
-
-  // Activate the keypress event listener on stdin.
-  readline.emitKeypressEvents(process.stdin, rl)
-
-  // Something the Node.js docs said I had to do.
-  if (process.stdin.isTTY) process.stdin.setRawMode(true)
-
   return new Promise((resolve, reject) => {
-    // Remove the keypress listener and close the readline instance.
-    function close () {
-      process.stdin.removeListener('keypress', keypressHandler)
-      rl.close()
-    }
-
     function rerender () {
       process.stdout.write(cursor.up(options.length))
       render(options, options[highlighted])
     }
 
     // Create a handler for the keypress event.
-    function keypressHandler (_, key) {
+    createReadline(function keypressHandler (_, key) {
       if (key.name === 'return') {
         // Close the readline instance and return the currently selected
         // option.
-        close()
+        keypressHandler.close()
 
-        let value = options[highlighted].value
+        let value = options[highlighted].value || options[highlighted].label
         if (isMultiselect) {
           // Collect all the selected option values into an array.
           value = options.filter(o => o.selected).map(o => o.value || o.label)
@@ -85,12 +102,13 @@ function renderSelect (question, options, settings) {
         highlighted = undefined
         rerender()
 
-        //
+        // Return the selected value(s).
         resolve(value)
       } else if (key.ctrl && key.name === 'c') {
         // Reject the promise when the user hits CTRL+c so that the caller
         // can handle it.
-        close()
+        print.ns('')
+        keypressHandler.close()
         reject(new Error('SIGINT'))
       } else if (key.name === 'up') {
         // Select the previous option and reprint the options with the new
@@ -110,36 +128,45 @@ function renderSelect (question, options, settings) {
         options[highlighted].selected = !options[highlighted].selected
         rerender(options, options[highlighted])
       }
-    }
-
-    // Add the keypress handler to stdin.
-    process.stdin.on('keypress', keypressHandler)
+    })
   })
 }
 
 module.exports = {
-  async input (question, settings = {}) {
+  async text (question, settings = {}) {
     const { prefix } = settings
 
     // Print the question.
     printQuestion(prefix, question)
-    process.stdout.write('    ')
 
-    // Create the readline instance.
-    const rl = readline.createInterface(process.stdin)
+    return new Promise((resolve, reject) => {
+      function keypressHandler (_, key) {
+        if (key.ctrl && key.name === 'c') {
+          // Reject the promise when the user hits CTRL+c so that the caller
+          // can handle it.
+          keypressHandler.close()
+          reject(new Error('SIGINT'))
+        }
+      }
 
-    // Execute the prompt and return the response.
-    return new Promise(resolve => {
-      rl.question('', answer => {
-        rl.close()
+      // Create the readline instance.
+      const rl = createReadline(keypressHandler, true)
+
+      // Ask the question.
+      rl.question('    ', answer => {
+        // Close the readline and remove the keypress listener now that the
+        // question has been answered.
+        keypressHandler.close()
+
+        // Return the answer.
         resolve(answer)
       })
     })
   },
-  async select (question, options = yesNoOptions, settings = {}) {
-    return renderSelect(question, options, settings)
+  async select (question, settings = { options: yesNoOptions }) {
+    return renderSelect(question, settings)
   },
-  async multiselect (question, options = [], settings = {}) {
-    return renderSelect(question, options, { ...settings, type: 'multiselect' })
+  async multiselect (question, settings = {}) {
+    return renderSelect(question, { type: 'multiselect', ...settings })
   }
 }

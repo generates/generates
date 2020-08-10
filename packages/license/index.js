@@ -1,86 +1,77 @@
-const Generator = require('@generates/core')
+const generates = require('@generates/core')
 
-module.exports = class GeneratesLicense extends Generator {
-  constructor (data) {
-    super(
-      {
-        files: {
-          license: {
-            filename: 'LICENSE',
-            template (context) {
-              const code = 'context => `' + context.answers.licenseBody + '\n`'
-              return eval(code)(context)
-            }
-          }
-        },
-        templates: {
-          AGPLv3: require('./templates/AGPLv3'),
-          ISC: require('./templates/ISC')
-        },
-        answers: {
-          year: new Date().getFullYear()
-        },
-        questions: {
-          license: {
-            type: 'select',
-            text: 'Which license will the project use?',
-            choices: [
-              'UNLICENSED',
-              'SEE LICENSE IN LICENSE',
-              'AGPLv3',
-              'ISC'
-            ],
-            default (context) {
-              return context.getTopAnswer('license') || 'UNLICENSED'
-            },
-            after (context) {
-              const answer = context.getAnswer('license')
-              if (answer === 'UNLICENSED') {
-                delete context.files.license
-              } else if (answer === 'SEE LICENSE IN LICENSE') {
-                context.addNextQuestions({
-                  licenseName: { text: 'What is the name of the license?' },
-                  licenseTemplate: { text: 'Add your license template:' }
-                })
-              } else {
-                context.answers.licenseName = answer
-                context.files.license.template = context.templates[answer]
-              }
-            }
-          },
-          projectName: {
-            necessary (context) {
-              return context.answers.license === 'AGPLv3'
-            },
-            text: 'What is the name of this project?'
-          },
-          projectDescription: {
-            necessary (context) {
-              return context.answers.license === 'AGPLv3'
-            },
-            text: "What is this project's description?"
-          },
-          authorName: {
-            necessary (context) {
-              return context.answers.license !== 'UNLICENSED'
-            },
-            text: "What is the name of this project's author?"
-          },
-          authorEmail: {
-            necessary (context) {
-              return context.answers.license !== 'UNLICENSED'
-            },
-            text: "What is this project's author's email address?"
-          },
-          authorUrl: {
-            necessary (context) {
-              return context.answers.license !== 'UNLICENSED'
-            },
-            text: "What is this project's author's website URL?"
-          }
+function noOp () {}
+
+const config = {
+  data: {
+    year: new Date().getFullYear(),
+    get license () {
+      console.log('config.data.licenseName', this.licenseName)
+      switch (config.data.licenseName) {
+        case 'AGPLv3': return require('./templates/AGPLv3')
+        case 'ISC': return require('./templates/ISC')
+        default: return noOp
+      }
+    }
+  },
+  questions: {
+    licenseName: {
+      type: 'select',
+      question: 'Which license will the project use?',
+      settings: {
+        options: [
+          'UNLICENSED',
+          'SEE LICENSE IN LICENSE',
+          'AGPLv3',
+          'ISC'
+        ],
+        get highlighted () {
+          // TODO:
+          // const name = generates.getTopAnswer('licenseName') || 'UNLICENSED'
+          const name = 'UNLICENSED'
+          return config.questions.licenseName.settings.options.indexOf(name)
         }
-      },
-      data
-    )
+      }
+    },
+    projectName: {
+      question: 'What is the name of this project?',
+      get required () {
+        return config.data.licenseName === 'AGPLv3'
+      }
+    },
+    projectDescription: {
+      question: "What is this project's description?",
+      get required () {
+        return config.data.licenseName === 'AGPLv3'
+      }
+    },
+    authorName: {
+      question: "What is the name of this project's author?",
+      get required () {
+        return config.data.licenseName !== 'UNLICENSED'
+      }
+    },
+    authorEmail: {
+      question: "What is this project's author's email address?",
+      get required () {
+        return config.data.licenseName !== 'UNLICENSED'
+      }
+    },
+    authorUrl: {
+      question: "What is this project's author's website URL?",
+      get required () {
+        return config.data.licenseName !== 'UNLICENSED'
+      }
+    }
+  },
+  files: {
+    license: {
+      filename: 'LICENSE',
+      get template () {
+        return config.data.license
+      }
+    }
   }
 }
+
+module.exports = generates.createGenerator(config)

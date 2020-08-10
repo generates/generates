@@ -29,6 +29,7 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
+    "@generates/prompt": "^0.0.0",
     "@ianwalter/merge": "^7.0.0",
     "common-tags": "^1.8.0"
   },

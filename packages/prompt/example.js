@@ -4,7 +4,7 @@ const prompt = require('.')
 const { print } = require('@ianwalter/print')
 
 async function run () {
-  let response = await prompt.input('What is your favorite dinosaur?')
+  let response = await prompt.text('What is your favorite dinosaur?')
   print.log('')
   print.success('Response:', response)
 
@@ -13,7 +13,7 @@ async function run () {
   print.success('Response:', `${response}`)
 
   const options = ['red', 'green', 'blue']
-  response = await prompt.multiselect('What colors do you like?', options)
+  response = await prompt.multiselect('What colors do you like?', { options })
   print.log('')
   print.success('Response:', response.join(', '))
 }
