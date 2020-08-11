@@ -8,6 +8,10 @@ async function run () {
   print.log('')
   print.success('Response:', response)
 
+  response = await prompt.text('What is your name?', { fallback: 'Ian' })
+  print.log('')
+  print.success('Response:', `${response}`)
+
   response = await prompt.select('Is it really cold?')
   print.log('')
   print.success('Response:', `${response}`)

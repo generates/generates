@@ -19,6 +19,7 @@ importers:
   packages/core:
     dependencies:
       '@generates/prompt': 'link:../prompt'
+      '@ianwalter/dot': 1.0.4
       '@ianwalter/merge': 7.0.0
       common-tags: 1.8.0
     devDependencies:
@@ -26,6 +27,7 @@ importers:
     specifiers:
       '@generates/prompt': ^0.0.0
       '@ianwalter/bff': ^9.9.1
+      '@ianwalter/dot': ^1.0.4
       '@ianwalter/merge': ^7.0.0
       common-tags: ^1.8.0
   packages/generates:
@@ -45,9 +47,11 @@ importers:
       '@generates/core': 'link:../core'
     devDependencies:
       '@ianwalter/bff': 9.10.0
+      '@ianwalter/print': 8.1.0
     specifiers:
       '@generates/core': 0.0.0
       '@ianwalter/bff': ^9.9.1
+      '@ianwalter/print': ^8.1.0
   packages/prompt:
     dependencies:
       '@ianwalter/print': 8.1.0
@@ -982,14 +986,12 @@ packages:
     dependencies:
       domelementtype: 2.0.1
       entities: 2.0.3
-    dev: true
     resolution:
       integrity: sha512-2/xPb3ORsQ42nHYiSunXkDjPLBaEj/xTwUO4B7XCZQTRk7EBtTOPaygh10YAAh2OI1Qrp6NWfpAhzswj0ydt9g==
   /domelementtype/1.3.1:
     resolution:
       integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==
   /domelementtype/2.0.1:
-    dev: true
     resolution:
       integrity: sha512-5HOHUDsYZWV8FGWN0Njbr/Rn7f/eWSQi1v7+HsUVwXgn8nWWlL64zKDkS0n8ZmQ3mlWOMuXOnR+7Nx/5tMO5AQ==
   /domhandler/2.4.2:
@@ -1007,13 +1009,13 @@ packages:
       integrity: sha512-eKLdI5v9m67kbXQbJSNn1zjh0SDzvzWVWtX+qEI3eMjZw8daH9k8rlj1FZY9memPwjiskQFbe7vHVVJIAqoEhw==
   /domutils/1.5.1:
     dependencies:
-      dom-serializer: 0.1.1
+      dom-serializer: 0.2.2
       domelementtype: 1.3.1
     resolution:
       integrity: sha1-3NhIiib1Y9YQeeSMn3t+Mjc2gs8=
   /domutils/1.7.0:
     dependencies:
-      dom-serializer: 0.1.1
+      dom-serializer: 0.2.2
       domelementtype: 1.3.1
     resolution:
       integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==
@@ -1056,7 +1058,6 @@ packages:
     resolution:
       integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
   /entities/2.0.3:
-    dev: true
     resolution:
       integrity: sha512-MyoZ0jgnLvB2X3Lg5HqpFmn1kybDiIfEQmKzTb5apr51Rb+T3KdmMiqa70T+bhGnyv7bQ6WMj2QMHpGMmlrUYQ==
   /error-ex/1.3.2:

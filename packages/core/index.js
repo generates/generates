@@ -1,86 +1,53 @@
+const { promises: fs } = require('fs')
 const merge = require('@ianwalter/merge')
 const { stripIndent } = require('common-tags')
 const prompt = require('@generates/prompt')
+const dot = require('@ianwalter/dot')
+
+async function toWriteFile ([key, file]) {
+  return fs.writeFile(file.filename || key, file.content)
+}
 
 function createGenerator (ctx) {
   return {
-    async generate (data = {}) {
-      //
-      ctx.data = merge({}, ctx.data, data)
+    async generate (config) {
+      // Merge the context provided by the generator with the config passed to
+      // this method (e.g. through CLI flags).
+      merge(ctx, config)
 
-      //
-      for (const [key, question] of Object.entries(ctx.questions)) {
-        if (ctx.data[key] === undefined && question.required !== false) {
-          //
-          const type = question.type || 'text'
+      // Ask all required questions specified by the generator.
+      for (const [key, q] of Object.entries(ctx.questions)) {
+        const isUndefined = dot.get(ctx.data, key) === undefined
+        if (isUndefined && q.required !== false) {
+          // Determine the prompt type and fallback to text.
+          const type = q.type || 'text'
 
-          //
-          ctx.data[key] = await prompt[type](
-            question.question,
-            question.settings
-          )
-          console.log(key, ctx.data[key])
+          // Prompt the user for an answer and add it to ctx.data.
+          dot.set(ctx.data, key, await prompt[type](q.question, q.settings))
         }
       }
 
-      //
+      // Add some common utilities to ctx to be used to render templates.
       ctx.stripIndent = stripIndent
-      ctx.makeLine = function makeLine (...items) {
-        return items.join('')
-      }
+      ctx.join = (...items) => items.join('')
 
-      //
-      console.log('config', ctx)
-      return Object.entries(ctx.files).reduce(
-        (acc, [key, file]) => {
-          try {
-            console.log('file', file.template(ctx))
-          } catch (err) {
-            console.error(err)
-          }
-          acc[file.filename || key] = file.template(ctx)
+      // Create a map of files and their content.
+      const files = Object.entries(ctx.files).reduce(
+        (acc, [key, { render, ...file }]) => {
+          acc[key] = { ...file, content: render(ctx) }
           return acc
         },
         {}
       )
+
+      // If dryRun was passed as a setting or flag, just return the file map
+      // instead of writing the files to disk below.
+      if (ctx.dryRun) return files
+
+      // Write the files to disk.
+      await Promise.all(Object.entries(files).map(toWriteFile))
     }
   }
 }
 
 module.exports = { createGenerator }
-
-// module.exports = class Generator {
-//   constructor (...data) {
-//     this.data = merge({ files: {}, questions: {}, answers: {} }, ...data)
-//   }
-
-//   async generate () {
-//     const questions = Object.values(this.data.questions)
-
-//     const context = {
-//       ...this.data,
-//       stripIndent,
-//       makeLine (...items) {
-//         return items.join('')
-//       },
-//       getAnswer (key, format) {
-//         const answer = this.answers[key]
-//         return format ? format(answer) : answer
-//       },
-//       addNextQuestions (nextQuestions) {
-
-//       }
-//     }
-
-//     for (const question of questions) {
-//       if (question.after) {
-//         question.after(context)
-//       }
-//     }
-
-//     return Object.values(context.files).reduce(
-//       (acc, file) => (acc[file.filename] = file.template(context)) && acc,
-//       {}
-//     )
-//   }
-// }

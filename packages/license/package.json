@@ -32,6 +32,7 @@
     "@generates/core": "0.0.0"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1"
+    "@ianwalter/bff": "^9.9.1",
+    "@ianwalter/print": "^8.1.0"
   }
 }

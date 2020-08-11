@@ -9,9 +9,11 @@ const yesNoOptions = [
 
 const print = createPrint({ level: 'info' })
 
-function printQuestion (prefix = '💬', question) {
+function printQuestion (prefix = '💬', question, fallback) {
+  const hasFallback = fallback !== undefined
   print.write()
   print.log(prefix, chalk.bold.white(question))
+  if (hasFallback) print.log(chalk.bold('Default:'), chalk.dim(fallback))
 }
 
 function createReadline (keypressHandler, isText) {
@@ -45,11 +47,11 @@ function createReadline (keypressHandler, isText) {
 }
 
 function renderSelect (question, settings) {
-  let { prefix, type, options, highlighted = 0 } = settings
+  let { prefix, type, options, highlighted = 0, fallback } = settings
   const isMultiselect = type === 'multiselect'
 
   // Print the question.
-  printQuestion(prefix, question)
+  printQuestion(prefix, question, fallback)
 
   // Convert options to objects if they are strings.
   options = options.map(o => typeof o === 'string' ? { label: o } : o)
@@ -134,10 +136,10 @@ function renderSelect (question, settings) {
 
 module.exports = {
   async text (question, settings = {}) {
-    const { prefix } = settings
+    const { prefix, fallback } = settings
 
     // Print the question.
-    printQuestion(prefix, question)
+    printQuestion(prefix, question, fallback)
 
     return new Promise((resolve, reject) => {
       function keypressHandler (_, key) {
@@ -159,7 +161,7 @@ module.exports = {
         keypressHandler.close()
 
         // Return the answer.
-        resolve(answer)
+        resolve(answer || fallback)
       })
     })
   },

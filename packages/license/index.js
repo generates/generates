@@ -2,76 +2,88 @@ const generates = require('@generates/core')
 
 function noOp () {}
 
-const config = {
+const licenses = {
+  Unlicensed: { spdx: 'UNLICENSED', file: false },
+  Custom: { spdx: 'SEE LICENSE IN LICENSE', file: false },
+  Hippocratic: { spdx: 'Hippocratic-2.1' },
+  AGPL: { spdx: 'AGPL-3.0' },
+  ISC: {},
+  MIT: {}
+}
+
+const ctx = {
   data: {
-    year: new Date().getFullYear(),
-    get license () {
-      console.log('config.data.licenseName', this.licenseName)
-      switch (config.data.licenseName) {
-        case 'AGPLv3': return require('./templates/AGPLv3')
-        case 'ISC': return require('./templates/ISC')
-        default: return noOp
+    currentYear: new Date().getFullYear(),
+    licensor: {
+      get description () {
+        return [
+          ctx.data.licensor.name && ` ${ctx.data.licensor.name}`,
+          ctx.data.licensor.email && ` <${ctx.data.licensor.email}>`,
+          ctx.data.licensor.url && ` (${ctx.data.licensor.url})`
+        ].join('')
+      }
+    },
+    license: {
+      get spdx () {
+        const { name } = ctx.data.license.name
+        return licenses[name]?.spdx || name
       }
     }
   },
   questions: {
-    licenseName: {
+    'license.name': {
       type: 'select',
       question: 'Which license will the project use?',
       settings: {
-        options: [
-          'UNLICENSED',
-          'SEE LICENSE IN LICENSE',
-          'AGPLv3',
-          'ISC'
-        ],
-        get highlighted () {
-          // TODO:
-          // const name = generates.getTopAnswer('licenseName') || 'UNLICENSED'
-          const name = 'UNLICENSED'
-          return config.questions.licenseName.settings.options.indexOf(name)
-        }
+        options: Object.keys(licenses),
+        // FIXME:
+        // get highlighted () {
+        //   return generates.getTopAnswer('license.name') || 'Unlicensed'
+        // }
       }
     },
-    projectName: {
+    'project.name': {
       question: 'What is the name of this project?',
       get required () {
-        return config.data.licenseName === 'AGPLv3'
+        const { name } = ctx.data.license
+        return name === 'AGPL' || name === 'Hippocratic'
       }
     },
-    projectDescription: {
+    'project.description': {
       question: "What is this project's description?",
       get required () {
-        return config.data.licenseName === 'AGPLv3'
+        return ctx.data.license.name === 'AGPL'
       }
     },
-    authorName: {
+    'licensor.name': {
       question: "What is the name of this project's author?",
       get required () {
-        return config.data.licenseName !== 'UNLICENSED'
+        return ctx.data.license.name !== 'Unlicensed'
       }
     },
-    authorEmail: {
+    'licensor.email': {
       question: "What is this project's author's email address?",
       get required () {
-        return config.data.licenseName !== 'UNLICENSED'
+        return ctx.data.license.name !== 'Unlicensed'
       }
     },
-    authorUrl: {
+    'licensor.url': {
       question: "What is this project's author's website URL?",
       get required () {
-        return config.data.licenseName !== 'UNLICENSED'
+        return ctx.data.license.name !== 'Unlicensed'
       }
     }
   },
   files: {
     license: {
       filename: 'LICENSE',
-      get template () {
-        return config.data.license
+      get render () {
+        const { name } = ctx.data.license
+        const hasFile = licenses[name]?.file !== false
+        return hasFile ? require(`./templates/${name}.js`) : noOp
       }
     }
   }
 }
 
-module.exports = generates.createGenerator(config)
+module.exports = generates.createGenerator(ctx)
