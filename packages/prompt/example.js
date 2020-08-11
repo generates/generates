@@ -20,6 +20,10 @@ async function run () {
   response = await prompt.multiselect('What colors do you like?', { options })
   print.log('')
   print.success('Response:', response.join(', '))
+
+  response = await prompt.editor('Write a story!', { pretext: '[Insert Here]' })
+  print.success('Response:')
+  print.log(response)
 }
 
 run()

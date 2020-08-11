@@ -170,5 +170,24 @@ module.exports = {
   },
   async multiselect (question, settings = {}) {
     return renderSelect(question, { type: 'multiselect', ...settings })
+  },
+  async editor (question, settings = {}) {
+    const { prefix, fallback } = settings
+
+    // Print the question.
+    printQuestion(prefix, question, fallback)
+
+    return new Promise((resolve, reject) => {
+      try {
+        const { edit } = require('external-editor')
+        const answer = edit(settings.pretext) || fallback
+
+        print.log(answer)
+
+        resolve(answer)
+      } catch (err) {
+        reject(err)
+      }
+    })
   }
 }
