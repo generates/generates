@@ -3,6 +3,7 @@ const merge = require('@ianwalter/merge')
 const { stripIndent } = require('common-tags')
 const prompt = require('@generates/prompt')
 const dot = require('@ianwalter/dot')
+const { createLogger } = require('@generates/logger')
 
 async function toWriteFile ([key, file]) {
   return fs.writeFile(file.filename || key, file.content)
@@ -20,6 +21,13 @@ function createGenerator (ctx) {
       // this method (e.g. through CLI flags).
       merge(ctx, config)
 
+      //
+      ctx.logger = createLogger(config.log)
+
+      // Add some common utilities to ctx to be used to render templates.
+      ctx.stripIndent = stripIndent
+      ctx.join = (...items) => items.join('')
+
       // Execute all required prompts specified by the generator.
       for (const [key, p] of Object.entries(ctx.prompts)) {
         const isUndefined = dot.get(ctx.data, key) === undefined
@@ -31,10 +39,6 @@ function createGenerator (ctx) {
           dot.set(ctx.data, key, await prompt[type](p.label, p.settings))
         }
       }
-
-      // Add some common utilities to ctx to be used to render templates.
-      ctx.stripIndent = stripIndent
-      ctx.join = (...items) => items.join('')
 
       // Generate each files "content" using it's render method.
       const files = Object.values(ctx.files || {})

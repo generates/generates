@@ -80,6 +80,8 @@ const ctx = {
       get render () {
         const { name } = ctx.data.license
         const hasFile = licenses[name]?.file !== false
+        const log = ctx.logger.ns('generates.license')
+        log.debug(`License file for ${name}:`, hasFile)
         return hasFile ? require(`./templates/${name}.js`) : noOp
       }
     }

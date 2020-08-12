@@ -22,14 +22,21 @@ const ctx = {
     async configureUser () {
       const { user } = ctx.data.commit
       const cfg = ['config', '--global']
+      const log = ctx.logger.ns('generates.commit')
 
       // Configure the git user name if not already configured.
-      const { stdout: name } = await execa('git', [...cfg, 'user.name'], opt)
-      if (!name) await execa('git', [...cfg, 'user.name', user.name], opt)
+      let result = await execa('git', [...cfg, 'user.name'], opt)
+      if (!result.stdout) {
+        log.debug('git config user.name result', result)
+        await execa('git', [...cfg, 'user.name', user.name], opt)
+      }
 
       // Configure the git user email if not already configured.
-      const { stdout: email } = await execa('git', [...cfg, 'user.email'], opt)
-      if (!email) await execa('git', [...cfg, 'user.email', user.email], opt)
+      result = await execa('git', [...cfg, 'user.email'], opt)
+      if (!result.stdout) {
+        log.debug('git config user.email result', result)
+        await execa('git', [...cfg, 'user.email', user.email], opt)
+      }
     },
     async stageFiles () {
       // Stage specified files.

@@ -1,32 +1,24 @@
 #!/usr/bin/env node
 
-const { promises: fs } = require('fs')
-const cli = require('@ianwalter/cli')
-const { print } = require('@ianwalter/print')
+const cli = require('@generates/cli')
+const { createLogger } = require('@generates/logger')
 
 async function run () {
-  const options = cli({ name: 'generates' })
-  const name = options._[0]
+  const { _: [name], ...config } = cli({ name: 'generates' })
+  const logger = createLogger(config.log)
+
   if (name) {
-    let Generator
     try {
       //
-      Generator = require(`@generates/${name}`)
+      const generator = require(`@generates/${name}`)
 
       //
-      delete options._
+      delete config._
 
       //
-      const generator = new Generator({ options })
-
-      //
-      const { files } = await generator.generate()
-
-      //
-      const toWriteFile = async ([file, content]) => fs.writeFile(file, content)
-      await Promise.all(Object.entries(files).map(toWriteFile))
+      await generator.generate()
     } catch (err) {
-      print.error(err) // TODO: add helpful error message.
+      logger.error(err) // TODO: add helpful error message.
     }
   } else {
     // TODO: add helpful error message.
