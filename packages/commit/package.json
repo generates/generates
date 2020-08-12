@@ -1,6 +1,6 @@
 {
-  "name": "commit",
-  "version": "1.0.0",
+  "name": "@generates/commit",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
+    "@generates/core": "0.0.0",
     "execa": "^4.0.3"
   },
   "devDependencies": {

@@ -20,7 +20,7 @@ async function run () {
       const generator = new Generator({ options })
 
       //
-      const files = await generator.generate()
+      const { files } = await generator.generate()
 
       //
       const toWriteFile = async ([file, content]) => fs.writeFile(file, content)

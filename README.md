@@ -1,5 +1,5 @@
 # generates
-> Template-based generation framework
+> Node.js generation framework
 
 ## License
 

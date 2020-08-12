@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Generating an ISC license 1`] = `
-Object {
-  "license": Object {
+Array [
+  Object {
     "content": "Copyright (c) 2020  Ian Walter <pub@ianwalter.dev> (https://ianwalter.dev)
 
 Permission to use, copy, modify, and/or distribute this software for
@@ -19,6 +19,7 @@ PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
 TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.",
     "filename": "LICENSE",
+    "render": [Function],
   },
-}
+]
 `;

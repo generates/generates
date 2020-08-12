@@ -30,10 +30,10 @@ const ctx = {
       }
     }
   },
-  questions: {
+  prompts: {
     'license.name': {
       type: 'select',
-      question: 'Which license will the project use?',
+      label: 'Which license will the project use?',
       settings: {
         options: Object.keys(licenses),
         // FIXME:
@@ -43,32 +43,32 @@ const ctx = {
       }
     },
     'project.name': {
-      question: 'What is the name of this project?',
+      label: 'What is the name of this project?',
       get required () {
         const { name } = ctx.data.license
         return name === 'AGPL' || name === 'Hippocratic'
       }
     },
     'project.description': {
-      question: "What is this project's description?",
+      label: "What is this project's description?",
       get required () {
         return ctx.data.license.name === 'AGPL'
       }
     },
     'licensor.name': {
-      question: "What is the name of this project's author?",
+      label: "What is the name of this project's author?",
       get required () {
         return ctx.data.license.name !== 'Unlicensed'
       }
     },
     'licensor.email': {
-      question: "What is this project's author's email address?",
+      label: "What is this project's author's email address?",
       get required () {
         return ctx.data.license.name !== 'Unlicensed'
       }
     },
     'licensor.url': {
-      question: "What is this project's author's website URL?",
+      label: "What is this project's author's website URL?",
       get required () {
         return ctx.data.license.name !== 'Unlicensed'
       }

@@ -8,22 +8,27 @@ async function toWriteFile ([key, file]) {
   return fs.writeFile(file.filename || key, file.content)
 }
 
+async function writeFiles (files) {
+  return Promise.all(Object.entries(files).map(toWriteFile))
+}
+
 function createGenerator (ctx) {
   return {
+    ctx,
     async generate (config) {
       // Merge the context provided by the generator with the config passed to
       // this method (e.g. through CLI flags).
       merge(ctx, config)
 
-      // Ask all required questions specified by the generator.
-      for (const [key, q] of Object.entries(ctx.questions)) {
+      // Execute all required prompts specified by the generator.
+      for (const [key, p] of Object.entries(ctx.prompts)) {
         const isUndefined = dot.get(ctx.data, key) === undefined
-        if (isUndefined && q.required !== false) {
+        if (isUndefined && p.required !== false) {
           // Determine the prompt type and fallback to text.
-          const type = q.type || 'text'
+          const type = p.type || 'text'
 
-          // Prompt the user for an answer and add it to ctx.data.
-          dot.set(ctx.data, key, await prompt[type](q.question, q.settings))
+          // Prompt the user for a response and add it to ctx.data.
+          dot.set(ctx.data, key, await prompt[type](p.label, p.settings))
         }
       }
 
@@ -31,23 +36,24 @@ function createGenerator (ctx) {
       ctx.stripIndent = stripIndent
       ctx.join = (...items) => items.join('')
 
-      // Create a map of files and their content.
-      const files = Object.entries(ctx.files).reduce(
-        (acc, [key, { render, ...file }]) => {
-          acc[key] = { ...file, content: render(ctx) }
-          return acc
-        },
-        {}
-      )
+      // Generate each files "content" using it's render method.
+      const files = Object.values(ctx.files || {})
+      for (const file of files) file.content = file.render(ctx)
+
+      // Execute any tasks specified by the generator.
+      const results = {}
+      for (const [key, task] of Object.entries(ctx.tasks || {})) {
+        results[key] = await task(ctx)
+      }
 
       // If dryRun was passed as a setting or flag, just return the file map
       // instead of writing the files to disk below.
-      if (ctx.dryRun) return files
+      if (ctx.dryRun) return { results, files }
 
-      // Write the files to disk.
-      await Promise.all(Object.entries(files).map(toWriteFile))
+      // Write files to disk.
+      if (ctx.files) writeFiles(ctx.files)
     }
   }
 }
 
-module.exports = { createGenerator }
+module.exports = { createGenerator, writeFiles }

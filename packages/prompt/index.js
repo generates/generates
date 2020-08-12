@@ -9,10 +9,10 @@ const yesNoOptions = [
 
 const print = createPrint({ level: 'info' })
 
-function printQuestion (prefix = '💬', question, fallback) {
+function printLabel (prefix = '💬', label, fallback) {
   const hasFallback = fallback !== undefined
   print.write()
-  print.log(prefix, chalk.bold.white(question))
+  print.log(prefix, chalk.bold.white(label))
   if (hasFallback) print.log(chalk.bold('Default:'), chalk.dim(fallback))
 }
 
@@ -46,12 +46,12 @@ function createReadline (keypressHandler, isText) {
   return rl
 }
 
-function renderSelect (question, settings) {
+function renderSelect (label, settings) {
   let { prefix, type, options, highlighted = 0, fallback } = settings
   const isMultiselect = type === 'multiselect'
 
-  // Print the question.
-  printQuestion(prefix, question, fallback)
+  // Print the label.
+  printLabel(prefix, label, fallback)
 
   // Convert options to objects if they are strings.
   options = options.map(o => typeof o === 'string' ? { label: o } : o)
@@ -135,11 +135,11 @@ function renderSelect (question, settings) {
 }
 
 module.exports = {
-  async text (question, settings = {}) {
+  async text (label, settings = {}) {
     const { prefix, fallback } = settings
 
-    // Print the question.
-    printQuestion(prefix, question, fallback)
+    // Print the label.
+    printLabel(prefix, label, fallback)
 
     return new Promise((resolve, reject) => {
       function keypressHandler (_, key) {
@@ -165,22 +165,22 @@ module.exports = {
       })
     })
   },
-  async select (question, settings = { options: yesNoOptions }) {
-    return renderSelect(question, settings)
+  async select (label, settings = { options: yesNoOptions }) {
+    return renderSelect(label, settings)
   },
-  async multiselect (question, settings = {}) {
-    return renderSelect(question, { type: 'multiselect', ...settings })
+  async multiselect (label, settings = {}) {
+    return renderSelect(label, { type: 'multiselect', ...settings })
   },
-  async editor (question, settings = {}) {
+  async editor (label, settings = {}) {
     const { prefix, fallback } = settings
 
-    // Print the question.
-    printQuestion(prefix, question, fallback)
+    // Print the label.
+    printLabel(prefix, label, fallback)
 
     return new Promise((resolve, reject) => {
       try {
         const { edit } = require('external-editor')
-        const answer = edit(settings.pretext) || fallback
+        const answer = edit(settings.prefill) || fallback
 
         print.log(answer)
 

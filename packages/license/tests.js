@@ -2,7 +2,7 @@ const { test } = require('@ianwalter/bff')
 const generatesLicense = require('.')
 
 test('Generating an ISC license', async t => {
-  const files = await generatesLicense.generate({
+  const { files } = await generatesLicense.generate({
     dryRun: true,
     data: {
       license: { name: 'ISC' },

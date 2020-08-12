@@ -10,10 +10,12 @@ importers:
       '@ianwalter/renovate-config': ^1.4.0
   packages/commit:
     dependencies:
+      '@generates/core': 'link:../core'
       execa: 4.0.3
     devDependencies:
       '@ianwalter/faygit': 2.1.0
     specifiers:
+      '@generates/core': 0.0.0
       '@ianwalter/faygit': ^2.1.0
       execa: ^4.0.3
   packages/core:

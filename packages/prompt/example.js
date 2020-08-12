@@ -21,7 +21,7 @@ async function run () {
   print.log('')
   print.success('Response:', response.join(', '))
 
-  response = await prompt.editor('Write a story!', { pretext: '[Insert Here]' })
+  response = await prompt.editor('Write a story!', { prefill: '[Insert Here]' })
   print.success('Response:')
   print.log(response)
 }
