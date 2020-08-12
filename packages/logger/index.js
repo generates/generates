@@ -57,10 +57,10 @@ function getClone (src) {
   }
 }
 
-function createPrint (config = {}) {
-  function addTypes (print) {
-    for (const type of print.options.types) {
-      print[type.type] = function (...items) {
+function createLogger (config = {}) {
+  function addTypes (logger) {
+    for (const type of logger.options.types) {
+      logger[type.type] = function (...items) {
         this.name = type.type
         return this.out(type, items)
       }
@@ -202,13 +202,13 @@ function createPrint (config = {}) {
   if (options.chalkLevel) chalk.level = options.chalkLevel
 
   // Determine the position of the type with the configured log level so that
-  // print can determine if future logs should be logged or not.
+  // logger can determine if future logs should be logged or not.
   const levelIndex = options.types.findIndex(t => t.type === options.level)
 
-  const print = {
+  const logger = {
     options,
     create (options) {
-      return createPrint(options)
+      return createLogger(options)
     },
     update (options) {
       // Clean up obsolete log types.
@@ -219,10 +219,10 @@ function createPrint (config = {}) {
       // Merge the passed options with the existing options.
       merge(this.options, options)
 
-      // Add the types to the print instance now that the options are updated.
+      // Add the types to the logger instance now that the options are updated.
       addTypes(this)
 
-      // Return the print instance.
+      // Return the logger instance.
       return this
     },
     ns (namespace) {
@@ -266,7 +266,7 @@ function createPrint (config = {}) {
         // Create the output string.
         const output = options.collectOutput(log).reduce(toOutputString, '')
 
-        // Print the output string using configured io.
+        // Output the  string using configured io.
         if (options.io) options.io[log.io || 'out'](output)
 
         // Return output to the caller.
@@ -275,11 +275,11 @@ function createPrint (config = {}) {
     }
   }
 
-  // Add the log types to the print object.
-  addTypes(print)
+  // Add the log types to the logger object.
+  addTypes(logger)
 
-  // Return the print object for use.
-  return print
+  // Return the logger object for use.
+  return logger
 }
 
-module.exports = { createPrint, print: createPrint(), chalk, md }
+module.exports = { createLogger, chalk, md }
