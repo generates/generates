@@ -8,6 +8,7 @@ console.log('Testing...')
 
 const err = new Error('User not found')
 err.userId = 123
+err.timestamp = new Date()
 logger.warn(err)
 
 logger.ns('example.ndjson').success('Very nice!')

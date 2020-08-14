@@ -83,7 +83,7 @@ function createLogger (config = {}) {
     }
 
     if (isObj(msg)) {
-      acc.data = merge(acc.data || {}, msg)
+      acc.data = { ...acc.data, ...msg }
     } else if (typeof msg === 'string') {
       acc.message = toOutputString(true)(acc.message, msg, idx, src).trim()
     }

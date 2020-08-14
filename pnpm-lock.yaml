@@ -22,7 +22,7 @@ importers:
       '@ianwalter/bff': 9.10.0
       execa: 4.0.3
     specifiers:
-      '@generates/logger': ^0.0.5
+      '@generates/logger': ^0.0.6
       '@ianwalter/bff': ^9.9.1
       '@ianwalter/dot': ^1.0.4
       '@ianwalter/merge': ^9.0.1
@@ -50,7 +50,7 @@ importers:
     devDependencies:
       '@ianwalter/bff': 9.10.0
     specifiers:
-      '@generates/logger': ^0.0.5
+      '@generates/logger': ^0.0.6
       '@generates/prompt': ^0.0.0
       '@ianwalter/bff': ^9.9.1
       '@ianwalter/dot': ^1.0.4
@@ -64,9 +64,9 @@ importers:
       '@generates/license': 'link:../license'
       '@ianwalter/bff': 9.10.0
     specifiers:
-      '@generates/cli': ^0.0.5
+      '@generates/cli': ^0.0.6
       '@generates/license': 0.0.0
-      '@generates/logger': ^0.0.5
+      '@generates/logger': ^0.0.6
       '@ianwalter/bff': ^9.9.1
   packages/license:
     dependencies:
@@ -97,7 +97,7 @@ importers:
       '@ianwalter/bff': 9.10.0
       common-tags: 1.8.0
     specifiers:
-      '@generates/cli': ^0.0.5
+      '@generates/cli': ^0.0.6
       '@ianwalter/base-error': ^6.1.0
       '@ianwalter/bff': ^9.10.0
       '@ianwalter/chromafi': ^1.0.1

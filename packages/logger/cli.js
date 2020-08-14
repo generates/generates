@@ -23,8 +23,8 @@ function prettify (line) {
     try {
       obj = JSON.parse(line)
     } catch (err) {
-      // If the line couldn't be parsed as JSON, return it without formatting.
-      return logger.write(line)
+      // If the line couldn't be parsed as JSON, log the raw line.
+      return logger.log(line)
     }
   }
 
@@ -54,7 +54,7 @@ function prettify (line) {
 
   // If the log type is 'log', format the message so that it's bold like the
   // other types.
-  if (type === 'log' && message) message = chalk.bold(message)
+  if (type === 'log' && message) message = chalk.bold.white(message)
 
   // Output the formatted log line.
   rest = Object.keys(rest).length ? [rest] : []
