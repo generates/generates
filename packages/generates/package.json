@@ -31,8 +31,8 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@generates/cli": "^0.0.2",
-    "@generates/logger": "^0.0.2"
+    "@generates/cli": "^0.0.4",
+    "@generates/logger": "^0.0.4"
   },
   "devDependencies": {
     "@generates/license": "0.0.0",

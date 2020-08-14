@@ -184,7 +184,9 @@ function createLogger (config = {}) {
     unrestricted: (process.env.DEBUG || '').split(','),
     chalkLevel: chalk.level || 2,
     ndjson: false,
-    chromafi: { tabsToSpaces: 2, lineNumberPad: 0 }
+    chromafi: { tabsToSpaces: 2, lineNumberPad: 0 },
+    extraJson: [],
+    extraItems: []
   }
 
   // Create the options Object by combinging defaults with the passed config.
@@ -227,20 +229,6 @@ function createLogger (config = {}) {
     ns (namespace) {
       return this.create(merge({}, this.options, { namespace }))
     },
-    collectOutput ({ items = [], ...log }) {
-      let namespace = this.options.namespace
-      if (this.options.ndjson) {
-        return [{
-          ...items,
-          message: items.message,
-          level: log.level,
-          type: log.type,
-          namespace
-        }]
-      }
-      namespace = log.type === 'plain' ? namespace : chalk.blue.bold(namespace)
-      return [log.prefix, this.unrestricted ? `${namespace} •` : '', ...items]
-    },
     out (type, items) {
       // Create the log object.
       const log = { ...type, items }
@@ -270,13 +258,34 @@ function createLogger (config = {}) {
         }
 
         // Create the output string.
-        const output = this.collectOutput(log).reduce(toOutputString, '')
+        let output
+        if (this.options.ndjson) {
+          output = [{
+            ...log.items,
+            ...this.options.extraJson,
+            message: log.items.message,
+            level: log.level,
+            type: log.type,
+            namespace: this.options.namespace
+          }]
+        } else {
+          const namespace = log.type === 'plain'
+            ? this.options.namespace
+            : chalk.blue.bold(this.options.namespace)
+          output = [
+            log.prefix,
+            ...this.options.extraItems,
+            this.unrestricted ? `${namespace} •` : '',
+            ...log.items
+          ]
+        }
+        const outputString = output.reduce(toOutputString, '')
 
-        // Output the  string using configured io.
-        if (options.io) options.io[log.io || 'out'](output)
+        // Output the string using configured io.
+        if (options.io) options.io[log.io || 'out'](outputString)
 
-        // Return output to the caller.
-        return output
+        // Return the output string to the caller.
+        return outputString
       }
     }
   }
