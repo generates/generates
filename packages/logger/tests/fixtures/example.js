@@ -1,34 +1,36 @@
 const { stripIndent } = require('common-tags')
 const BaseError = require('@ianwalter/base-error')
-const { print, chalk, md } = require('../..')
+const { createLogger, chalk, md } = require('../..')
 
 class ExampleError extends BaseError {}
 
-print.write('No formatting on this one.')
-print.error('Environment variables not set!')
-print.error(new Error('No assertions were executed on that test.'))
-print.error(new ExampleError(chalk.bold('Expected something else.')))
-print.error('Timeout reached:', new ExampleError('promise cancelled'))
-print.warn('File was overwritten:', '\n', '/tmp/fakeFile.json')
-print.info('Done in 0.91s.', '')
-print.debug('Flaky test started.\n', stripIndent`
+const logger = createLogger()
+
+logger.write('No formatting on this one.')
+logger.error('Environment variables not set!')
+logger.error(new Error('No assertions were executed on that test.'))
+logger.error(new ExampleError(chalk.bold('Expected something else.')))
+logger.error('Timeout reached:', new ExampleError('promise cancelled'))
+logger.warn('File was overwritten:', '\n', '/tmp/fakeFile.json')
+logger.info('Done in 0.91s.', '')
+logger.debug('Flaky test started.\n', stripIndent`
   Make sure you check it out.
   Could be trouble.
 `)
-print.log('Request made to server.')
-print.log('🔑', chalk.cyan('$2b$12$HMJFAblrhBCGxTWv5BnIFe'))
-print.log(`export default () => {
+logger.log('Request made to server.')
+logger.log('🔑', chalk.cyan('$2b$12$HMJFAblrhBCGxTWv5BnIFe'))
+logger.log(`export default () => {
   console.log('Hello World!')
 }
 `)
-print.log('⏱️', 'Timing you!')
-print.success('You did it!', 'Great job.')
-print.debug('Total tests run:', 1)
+logger.log('⏱️', 'Timing you!')
+logger.success('You did it!', 'Great job.')
+logger.debug('Total tests run:', 1)
 
 const err = new Error('No bueno!')
 err.blame = 'You'
-err.test = () => 'This should not be printed'
-print.error(err)
+err.test = () => 'This should not be logged'
+logger.error(err)
 
 const user = {
   id: 321,
@@ -55,20 +57,20 @@ const user = {
   }
 }
 user.boss = user
-print.warn(new Error('User not found'), user)
-print.debug('Calling...', { phoneNumbers: user.details.address.phoneNumbers })
-print.md(stripIndent`
+logger.warn(new Error('User not found'), user)
+logger.debug('Calling...', { phoneNumbers: user.details.address.phoneNumbers })
+logger.md(stripIndent`
   A new version is available **v1.1.0**!
   * Run \`pnpm add widget@latest\` to upgrade
   * Re-run widget
 `)
-print.success('Success!', md('**Donezo.**'))
-print.fatal('This computer is dead.')
-print.plain('No emojis, homies', { also: 'no ansi' })
-const infoPrint = print.create({ level: 'info' })
-infoPrint.ns('app.server').debug('Using random port')
-const jsonPrint = infoPrint.create({ ndjson: true })
-jsonPrint.info(
+logger.success('Success!', md('**Donezo.**'))
+logger.fatal('This computer is dead.')
+logger.plain('No emojis, homies', { also: 'no ansi' })
+const info = logger.create({ level: 'info' })
+info.ns('app.server').debug('Using random port')
+const json = info.create({ ndjson: true })
+json.info(
   'SWAPI Response',
   { statusCode: 200, body: 'Lando!' },
   { params: { q: 'one' } }

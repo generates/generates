@@ -10,8 +10,7 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "@generates/core": "0.0.0",
-    "execa": "^4.0.3"
+    "@generates/core": "0.0.0"
   },
   "devDependencies": {
     "@ianwalter/faygit": "^2.1.0"

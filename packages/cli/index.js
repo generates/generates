@@ -4,7 +4,7 @@ const getopts = require('getopts')
 const dot = require('@ianwalter/dot')
 const merge = require('@ianwalter/merge')
 const { oneLine } = require('common-tags')
-const { md } = require('@generates/print')
+const { md } = require('@generates/logger')
 const decamelize = require('decamelize')
 const camelcase = require('camelcase')
 

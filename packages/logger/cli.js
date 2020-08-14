@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const cli = require('@generates/cli')
-const { createLogger } = require('.')
+const { createLogger, chalk } = require('.')
 
 const config = cli({
   name: 'logger',
@@ -23,11 +23,27 @@ function prettify (line) {
     }
   }
 
-  let { message, ...rest } = obj
-  const type = config.ansi ? (obj.type || obj.level || 'log') : 'plain'
+  let { message, error, level, type, ...rest } = obj
+
+  //
+  type = type || level || 'log'
+
+  // If the ansi option is false, add the type back to the rest object so it's
+  // included in the output.
+  if (!config.ansi) rest.type = type
+
+  let err
+  if (error) {
+    err = new Error(message)
+    err.stack = error
+  } else {
+    //
+    message = message || type.toUpperCase()
+    if (type === 'log') message = chalk.bold(message)
+  }
+
   const hasRest = Object.keys(rest).length
-  message = message || `${type[0].toUpperCase()}${type.substring(1)}`
-  logger[type](...[message, ...hasRest ? [rest] : []])
+  logger[config.ansi ? type : 'plain'](err || message, ...hasRest ? [rest] : [])
 }
 
 function prettifier (lines) {

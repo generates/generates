@@ -1,4 +1,3 @@
-const execa = require('execa')
 const generates = require('@generates/core')
 
 const opt = { stdio: 'inherit' }
@@ -25,30 +24,31 @@ const ctx = {
       const log = ctx.logger.ns('generates.commit')
 
       // Configure the git user name if not already configured.
-      let result = await execa('git', [...cfg, 'user.name'], opt)
+      let result = await ctx.exec('git', [...cfg, 'user.name'], opt)
       if (!result.stdout) {
         log.debug('git config user.name result', result)
-        await execa('git', [...cfg, 'user.name', user.name], opt)
+        await ctx.exec('git', [...cfg, 'user.name', user.name], opt)
       }
 
       // Configure the git user email if not already configured.
-      result = await execa('git', [...cfg, 'user.email'], opt)
+      result = await ctx.exec('git', [...cfg, 'user.email'], opt)
       if (!result.stdout) {
         log.debug('git config user.email result', result)
-        await execa('git', [...cfg, 'user.email', user.email], opt)
+        await ctx.exec('git', [...cfg, 'user.email', user.email], opt)
       }
     },
     async stageFiles () {
       // Stage specified files.
-      return execa('git', ['add', ...ctx.data.commit.files], opt)
+      return ctx.exec('git', ['add', ...ctx.data.commit.files], opt)
     },
     async commit () {
       // Commit the staged files.
-      return execa('git', ['commit', '-m', ctx.data.commit.message], opt)
+      const { message } = ctx.data.commit
+      if (message) return ctx.exec('git', ['commit', '-m', message], opt)
     },
     async push () {
       // Conditionally push the commit to the remote.
-      if (ctx.data.commit.push) return execa('git', ['push'], opt)
+      if (ctx.data.commit.push) return ctx.exec('git', ['push'], opt)
     }
   }
 }

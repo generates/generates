@@ -75,6 +75,11 @@ function createLogger (config = {}) {
   }
 
   function toNdjson (acc, msg, idx, src) {
+    if (msg instanceof Error) {
+      if (!acc.message) acc.message = msg.message
+      acc.error = msg.stack
+    }
+
     if (isObj(msg)) {
       acc.data = merge(acc.data || {}, msg)
     } else if (typeof msg === 'string') {

@@ -27,6 +27,7 @@ function createGenerator (ctx) {
       // Add some common utilities to ctx to be used to render templates.
       ctx.stripIndent = stripIndent
       ctx.join = (...items) => items.join('')
+      ctx.exec = require('execa')
 
       // Execute all required prompts specified by the generator.
       for (const [key, p] of Object.entries(ctx.prompts)) {

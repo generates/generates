@@ -1,7 +1,7 @@
 {
   "name": "@generates/logger",
-  "description": "TODO",
-  "version": "0.0.0",
+  "description": "A readable Node.js logging utility",
+  "version": "0.0.1",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
@@ -15,7 +15,7 @@
   "scripts": {
     "example": "node tests/fixtures/example.js",
     "example:json": "node tests/fixtures/ndjson.js",
-    "example:cli": "node tests/fixtures/ndjson.js | ./cli.js",
+    "example:pretty": "node tests/fixtures/ndjson.js | ./cli.js",
     "test": "bff"
   },
   "files": [
@@ -24,7 +24,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/generates/generates.git"
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/logger"
   },
   "keywords": [
     "console",
@@ -37,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/generates/generates/issues"
   },
-  "homepage": "https://github.com/generates/generates#readme",
+  "homepage": "https://github.com/generates/generates/blob/master/packages/logger#readme",
   "dependencies": {
     "@ianwalter/chromafi": "^1.0.1",
     "@generates/cli": "^0.0.0",

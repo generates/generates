@@ -1,11 +1,13 @@
-const { createPrint } = require('../..')
+const { createLogger } = require('../..')
 
-const print = createPrint({ ndjson: true })
+const logger = createLogger({ ndjson: true })
 
-print.info('Request to /')
+logger.info('Request to /')
 
 console.log('Testing...')
 
-print.warn('User not found', { userId: 123 })
+const err = new Error('User not found')
+err.userId = 123
+logger.warn(err)
 
 console.log(JSON.stringify({ testing: 'No Message', response: { ok: true } }))

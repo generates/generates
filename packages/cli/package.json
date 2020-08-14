@@ -39,7 +39,7 @@
   "dependencies": {
     "@ianwalter/dot": "^1.0.4",
     "@ianwalter/merge": "^9.0.1",
-    "@ianwalter/print": "^7.0.0",
+    "@generates/logger": "^0.0.0",
     "camelcase": "^6.0.0",
     "common-tags": "^1.8.0",
     "decamelize": "^4.0.0",

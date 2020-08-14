@@ -1,9 +1,9 @@
 const { test } = require('@ianwalter/bff')
 const execa = require('execa')
 const stripAnsi = require('strip-ansi')
-const { createPrint } = require('..')
+const { createLogger } = require('..')
 
-test('print', async t => {
+test('logger', async t => {
   const env = { DEBUG: 'app.*', FORCE_COLOR: '2' }
   const { stdout } = await execa('pnpm', ['example', '-s'], { env })
   stdout.split('\n').forEach(line => {
@@ -15,6 +15,6 @@ test('print', async t => {
 })
 
 test('return', t => {
-  const print = createPrint({ io: false })
-  t.expect(print.info('Ello Guvna')).toMatchSnapshot()
+  const logger = createLogger({ io: false })
+  t.expect(logger.info('Ello Guvna')).toMatchSnapshot()
 })
