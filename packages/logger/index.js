@@ -67,11 +67,13 @@ function createLogger (config = {}) {
     }
   }
 
-  function toOutputString (acc = '', msg, idx, src) {
-    if (isObj(msg)) return `${JSON.stringify(msg)}\n`
-    const space = acc && !isANewLine(acc[acc.length - 1]) && !isANewLine(msg)
-    const newline = idx === src.length - 1
-    return acc + (msg ? (space ? ` ${msg}` : msg) : '') + (newline ? '\n' : '')
+  function toOutputString (addNewline) {
+    return (acc = '', msg, idx, src) => {
+      if (isObj(msg)) return `${JSON.stringify(msg)}\n`
+      const space = acc && !isANewLine(acc[acc.length - 1]) && !isANewLine(msg)
+      const newline = addNewline && (idx === src.length - 1) ? '\n' : ''
+      return acc + (msg ? (space ? ` ${msg}` : msg) : '') + newline
+    }
   }
 
   function toNdjson (acc, msg, idx, src) {
@@ -83,7 +85,7 @@ function createLogger (config = {}) {
     if (isObj(msg)) {
       acc.data = merge(acc.data || {}, msg)
     } else if (typeof msg === 'string') {
-      acc.message = toOutputString(acc.message, msg, idx, src).trim()
+      acc.message = toOutputString(true)(acc.message, msg, idx, src).trim()
     }
     // FIXME: Handle other types of data.
     return acc
@@ -257,7 +259,7 @@ function createLogger (config = {}) {
           log.format(log)
         }
 
-        // Create the output string.
+        // Create an array of output items.
         let output
         if (this.options.ndjson) {
           output = [{
@@ -279,7 +281,8 @@ function createLogger (config = {}) {
             ...log.items
           ]
         }
-        const outputString = output.reduce(toOutputString, '')
+        const isNotWrite = log.type !== 'write'
+        const outputString = output.reduce(toOutputString(isNotWrite), '')
 
         // Output the string using configured io.
         if (options.io) options.io[log.io || 'out'](outputString)

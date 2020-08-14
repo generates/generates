@@ -28,7 +28,7 @@ function prettify (line) {
     }
   }
 
-  let { namespace, message = '', error, level, type, ...rest } = obj
+  let { namespace, message = '•', error, level, type, ...rest } = obj
 
   // Create a namespaced logger if a namespace is specified.
   const namespacedLogger = namespace ? logger.ns(namespace) : logger

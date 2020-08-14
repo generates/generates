@@ -6,7 +6,7 @@ class ExampleError extends BaseError {}
 
 const logger = createLogger()
 
-logger.write('No formatting on this one.')
+logger.write('No formatting on this one.\n')
 logger.error('Environment variables not set!')
 logger.error(new Error('No assertions were executed on that test.'))
 logger.error(new ExampleError(chalk.bold('Expected something else.')))
