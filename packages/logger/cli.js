@@ -12,7 +12,12 @@ const config = cli({
 
 const logger = createLogger(config)
 
+function hasType (type) {
+  return logger.options.types.some(t => t.type === type)
+}
+
 function prettify (line) {
+  // Parse the log line into a Object.
   let obj
   if (typeof line === 'string') {
     try {
@@ -23,27 +28,37 @@ function prettify (line) {
     }
   }
 
-  let { message, error, level, type, ...rest } = obj
+  let { namespace, message = '', error, level, type, ...rest } = obj
 
-  //
+  // Create a namespaced logger if a namespace is specified.
+  const namespacedLogger = namespace ? logger.ns(namespace) : logger
+
+  // Determine what the log type should be.
   type = type || level || 'log'
 
-  // If the ansi option is false, add the type back to the rest object so it's
-  // included in the output.
-  if (!config.ansi) rest.type = type
+  if (!config.ansi || !hasType(type)) {
+    rest.type = type
+    type = config.ansi ? 'log' : 'plain'
+
+    // Add the namespace back to the log object if not formatted.
+    if (namespace && !namespacedLogger.unrestricted) rest.namespace = namespace
+  }
 
   let err
   if (error) {
+    // If the log message has an error attribute, try to "rehydrate" it so that
+    // it's formatted like an error.
     err = new Error(message)
     err.stack = error
-  } else {
-    //
-    message = message || type.toUpperCase()
-    if (type === 'log') message = chalk.bold(message)
   }
 
-  const hasRest = Object.keys(rest).length
-  logger[config.ansi ? type : 'plain'](err || message, ...hasRest ? [rest] : [])
+  // If the log type is 'log', format the message so that it's bold like the
+  // other types.
+  if (type === 'log' && message) message = chalk.bold(message)
+
+  // Output the formatted log line.
+  rest = Object.keys(rest).length ? [rest] : []
+  namespacedLogger[type](err || message, ...rest)
 }
 
 function prettifier (lines) {

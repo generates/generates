@@ -162,7 +162,9 @@ exports[`logger 80`] = `"    3 }"`;
 
 exports[`logger 81`] = `"🐛  [34m[1mapp.server[22m[39m • [35mUsing random port[39m"`;
 
-exports[`logger 82`] = `"{\\"message\\":\\"SWAPI Response\\",\\"data\\":{\\"statusCode\\":200,\\"body\\":\\"Lando!\\",\\"params\\":{\\"q\\":\\"one\\"}},\\"level\\":\\"info\\",\\"type\\":\\"info\\"}"`;
+exports[`logger 82`] = `"🆒  [34m[1mapp.server[22m[39m • Cool man"`;
+
+exports[`logger 83`] = `"{\\"message\\":\\"SWAPI Response\\",\\"data\\":{\\"statusCode\\":200,\\"body\\":\\"Lando!\\",\\"params\\":{\\"q\\":\\"one\\"}},\\"level\\":\\"info\\",\\"type\\":\\"info\\"}"`;
 
 exports[`return 1`] = `
 "💁  [36m[1mEllo Guvna[22m[39m

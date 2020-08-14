@@ -12,4 +12,4 @@ logger.warn(err)
 
 logger.ns('example.ndjson').success('Very nice!')
 
-console.log(JSON.stringify({ testing: 'No Message', response: { ok: true } }))
+console.log(JSON.stringify({ type: 'single', no: 'message', res: { ok: 1 } }))

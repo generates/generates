@@ -181,23 +181,10 @@ function createLogger (config = {}) {
       err: process.stdout.write.bind(process.stdout)
     },
     level: 'debug',
-    unrestricted: process.env.DEBUG,
+    unrestricted: (process.env.DEBUG || '').split(','),
     chalkLevel: chalk.level || 2,
     ndjson: false,
-    chromafi: { tabsToSpaces: 2, lineNumberPad: 0 },
-    collectOutput ({ items, ...log }) {
-      if (this.ndjson) {
-        return [{
-          ...items,
-          message: items.message,
-          level: log.level,
-          type: log.type,
-          namespace: this.namespace
-        }]
-      }
-      const ns = log.unrestricted ? `${chalk.blue.bold(this.namespace)} •` : ''
-      return [log.prefix, ns, ...(items || [])]
-    }
+    chromafi: { tabsToSpaces: 2, lineNumberPad: 0 }
   }
 
   // Create the options Object by combinging defaults with the passed config.
@@ -212,6 +199,13 @@ function createLogger (config = {}) {
 
   const logger = {
     options,
+    // Determine if log items should be logged because it's namespace matches a
+    // value in the "unrestricted" list.
+    get unrestricted () {
+      return this.options.namespace && this.options.unrestricted.some(ns => {
+        return match(ns.trim(), this.options.namespace)
+      })
+    },
     create (options) {
       return createLogger(options)
     },
@@ -233,6 +227,20 @@ function createLogger (config = {}) {
     ns (namespace) {
       return this.create(merge({}, this.options, { namespace }))
     },
+    collectOutput ({ items = [], ...log }) {
+      let namespace = this.options.namespace
+      if (this.options.ndjson) {
+        return [{
+          ...items,
+          message: items.message,
+          level: log.level,
+          type: log.type,
+          namespace
+        }]
+      }
+      namespace = log.type === 'plain' ? namespace : chalk.blue.bold(namespace)
+      return [log.prefix, this.unrestricted ? `${namespace} •` : '', ...items]
+    },
     out (type, items) {
       // Create the log object.
       const log = { ...type, items }
@@ -240,16 +248,9 @@ function createLogger (config = {}) {
       // Determine if the log item should be logged based on level.
       log.shouldLog = !type.level || options.types.indexOf(type) >= levelIndex
 
-      // Determine if the log item should be logged because it's namespace
-      // matches a value in the "unrestricted" list.
-      for (const ns of options.unrestricted?.split(',') || []) {
-        log.unrestricted = ns && match(ns.trim(), options.namespace)
-        if (log.unrestricted) break
-      }
-
       // Format and output the log if it has a high enough log level or has been
       // marked as unrestriected by the namespace functionality.
-      if (log.shouldLog || log.unrestricted) {
+      if (log.shouldLog || this.unrestricted) {
         // If prefix is a function, get the prefix by calling the function with
         // the log items.
         if (typeof log.prefix === 'function') merge(log, log.prefix(log))
@@ -269,7 +270,7 @@ function createLogger (config = {}) {
         }
 
         // Create the output string.
-        const output = options.collectOutput(log).reduce(toOutputString, '')
+        const output = this.collectOutput(log).reduce(toOutputString, '')
 
         // Output the  string using configured io.
         if (options.io) options.io[log.io || 'out'](output)
