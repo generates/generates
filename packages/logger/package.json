@@ -18,6 +18,9 @@
     "example:pretty": "node tests/fixtures/ndjson.js | ./cli.js",
     "test": "bff"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "index.js",
     "cli.js"
@@ -40,8 +43,8 @@
   },
   "homepage": "https://github.com/generates/generates/blob/master/packages/logger#readme",
   "dependencies": {
-    "@ianwalter/chromafi": "^1.0.1",
     "@generates/cli": "^0.0.0",
+    "@ianwalter/chromafi": "^1.0.1",
     "@ianwalter/clone": "^6.0.1",
     "@ianwalter/cloneable": "^2.0.0",
     "@ianwalter/dot": "^1.0.4",

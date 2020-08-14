@@ -1,7 +1,7 @@
 {
   "name": "@generates/cli",
-  "description": "A utility to help build command-line and package.json driven applications",
-  "version": "0.0.0",
+  "description": "A utility for creating Node.js command-line applications",
+  "version": "0.0.1",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
@@ -14,12 +14,16 @@
     "example": "./tests/fixtures/exampleCli.js",
     "test": "bff"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "index.js"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/generates/generates.git"
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/cli"
   },
   "keywords": [
     "cli",
@@ -33,9 +37,9 @@
     "configuration"
   ],
   "bugs": {
-    "url": "https://github.com/ianwalter/cli/issues"
+    "url": "https://github.com/generates/generates/issues"
   },
-  "homepage": "https://github.com/ianwalter/cli#readme",
+  "homepage": "https://github.com/generates/generates/blob/master/packages/cli#readme",
   "dependencies": {
     "@ianwalter/dot": "^1.0.4",
     "@ianwalter/merge": "^9.0.1",
