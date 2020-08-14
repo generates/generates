@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@generates/prompt": "^0.0.0",
-    "@generates/logger": "^0.0.2",
+    "@generates/logger": "^0.0.5",
     "@ianwalter/dot": "^1.0.4",
     "@ianwalter/merge": "^7.0.0",
     "common-tags": "^1.8.0"
