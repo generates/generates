@@ -67,8 +67,9 @@ logger.md(stripIndent`
 logger.success('Success!', md('**Donezo.**'))
 logger.fatal('This computer is dead.')
 logger.plain('No emojis, homies', { also: 'no ansi' })
-const info = logger.create({ level: 'info' })
-info.ns('app.server').debug('Using random port')
+const info = logger.create({ level: 'info' }).ns('app.server')
+info.debug('Using random port')
+info.log('🆒', 'Cool man')
 const json = info.create({ ndjson: true })
 json.info(
   'SWAPI Response',

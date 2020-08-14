@@ -10,4 +10,6 @@ const err = new Error('User not found')
 err.userId = 123
 logger.warn(err)
 
+logger.ns('example.ndjson').success('Very nice!')
+
 console.log(JSON.stringify({ testing: 'No Message', response: { ok: true } }))

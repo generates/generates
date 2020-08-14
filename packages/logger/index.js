@@ -195,7 +195,7 @@ function createLogger (config = {}) {
           namespace: this.namespace
         }]
       }
-      const ns = this.namespace ? `${chalk.blue.bold(this.namespace)} •` : ''
+      const ns = log.unrestricted ? `${chalk.blue.bold(this.namespace)} •` : ''
       return [log.prefix, ns, ...(items || [])]
     }
   }
