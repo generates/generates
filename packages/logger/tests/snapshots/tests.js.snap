@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logger 1`] = `"No formatting on this one."`;
+
+exports[`logger 2`] = `"🚫  [31m[1mEnvironment variables not set![22m[39m"`;
+
+exports[`logger 3`] = `"🚫  [31m[1mError: [22m[39m[31m[1mNo assertions were executed on that test.[22m[39m"`;
+
+exports[`logger 4`] = `"🚫  [31m[1mExampleError: [22m[39m[1mExpected something else.[22m"`;
+
+exports[`logger 5`] = `"    [37m[90m1[37m {[39m"`;
+
+exports[`logger 6`] = `"    [37m[90m2[37m   [33mname:[37m [33m'ExampleError'[37m[39m"`;
+
+exports[`logger 7`] = `"    [37m[90m3[37m }[39m"`;
+
+exports[`logger 8`] = `"🚫  [31m[1mTimeout reached:[22m[39m [31m[1mExampleError: [22m[39m[31m[1mpromise cancelled[22m[39m"`;
+
+exports[`logger 9`] = `"    [37m[90m1[37m {[39m"`;
+
+exports[`logger 10`] = `"    [37m[90m2[37m   [33mname:[37m [33m'ExampleError'[37m[39m"`;
+
+exports[`logger 11`] = `"    [37m[90m3[37m }[39m"`;
+
+exports[`logger 12`] = `"⚠️   [33m[1mFile was overwritten:[22m[39m"`;
+
+exports[`logger 13`] = `"    /tmp/fakeFile.json"`;
+
+exports[`logger 14`] = `"💁  [36m[1mDone in 0.91s.[22m[39m"`;
+
+exports[`logger 15`] = `"🐛  [35mFlaky test started.[39m"`;
+
+exports[`logger 16`] = `"    Make sure you check it out."`;
+
+exports[`logger 17`] = `"    Could be trouble."`;
+
+exports[`logger 18`] = `"    Request made to server."`;
+
+exports[`logger 19`] = `"🔑  [36m$2b$12$HMJFAblrhBCGxTWv5BnIFe[39m"`;
+
+exports[`logger 20`] = `"    export default () => {"`;
+
+exports[`logger 21`] = `"      console.log('Hello World!')"`;
+
+exports[`logger 22`] = `"    }"`;
+
+exports[`logger 23`] = `""`;
+
+exports[`logger 24`] = `"⏱️   Timing you!"`;
+
+exports[`logger 25`] = `"✅  [32m[1mYou did it![22m[39m Great job."`;
+
+exports[`logger 26`] = `"🐛  [35mTotal tests run:[39m 1"`;
+
+exports[`logger 27`] = `"🚫  [31m[1mError: [22m[39m[31m[1mNo bueno![22m[39m"`;
+
+exports[`logger 28`] = `"    [37m[90m1[37m {[39m"`;
+
+exports[`logger 29`] = `"    [37m[90m2[37m   [33mblame:[37m [33m'You'[37m[39m"`;
+
+exports[`logger 30`] = `"    [37m[90m3[37m }[39m"`;
+
+exports[`logger 31`] = `"⚠️   [33m[1mError: [22m[39m[33m[1mUser not found[22m[39m"`;
+
+exports[`logger 32`] = `"    [37m[90m 1[37m {[39m"`;
+
+exports[`logger 33`] = `"    [37m[90m 2[37m   [33mid:[37m [32m321[37m,[39m"`;
+
+exports[`logger 34`] = `"    [37m[90m 3[37m   [33menabled:[37m [35mtrue[37m,[39m"`;
+
+exports[`logger 35`] = `"    [37m[90m 4[37m   [33memail:[37m [33m'jack@river.com'[37m,[39m"`;
+
+exports[`logger 36`] = `"    [37m[90m 5[37m   [33mdetails:[37m {[39m"`;
+
+exports[`logger 37`] = `"    [37m[90m 6[37m     [33mfirstName:[37m [33m'Jack'[37m,[39m"`;
+
+exports[`logger 38`] = `"    [37m[90m 7[37m     [33mlastName:[37m [33m'River'[37m,[39m"`;
+
+exports[`logger 39`] = `"    [37m[90m 8[37m     [33mregistered:[37m [33m'2019-06-21T00:13:54.246Z'[37m,[39m"`;
+
+exports[`logger 40`] = `"    [37m[90m 9[37m     [33maddress:[37m {[39m"`;
+
+exports[`logger 41`] = `"    [37m[90m10[37m       [33maddress:[37m [33m'1 Test St'[37m,[39m"`;
+
+exports[`logger 42`] = `"    [37m[90m11[37m       [33mapt:[37m [33m'201a'[37m,[39m"`;
+
+exports[`logger 43`] = `"    [37m[90m12[37m       [33mcity:[37m [33m'Red Hook'[37m,[39m"`;
+
+exports[`logger 44`] = `"    [37m[90m13[37m       [33mstate:[37m [33m'VI'[37m,[39m"`;
+
+exports[`logger 45`] = `"    [37m[90m14[37m       [33mphoneNumbers:[37m [[39m"`;
+
+exports[`logger 46`] = `"    [37m[90m15[37m         [33m'617-555-5555'[37m,[39m"`;
+
+exports[`logger 47`] = `"    [37m[90m16[37m         [33m'860-555-5555'[37m[39m"`;
+
+exports[`logger 48`] = `"    [37m[90m17[37m       ][39m"`;
+
+exports[`logger 49`] = `"    [37m[90m18[37m     },[39m"`;
+
+exports[`logger 50`] = `"    [37m[90m19[37m     [33mresult:[37m {[39m"`;
+
+exports[`logger 51`] = `"    [37m[90m20[37m       [33mstack:[37m [33m'Error: No bueno![37m[39m"`;
+
+exports[`logger 52`] = `"    [37m[90m28[37m       [33mmessage:[37m [33m'No bueno!'[37m,[39m"`;
+
+exports[`logger 53`] = `"    [37m[90m29[37m       [33mblame:[37m [33m'You'[37m[39m"`;
+
+exports[`logger 54`] = `"    [37m[90m30[37m     }[39m"`;
+
+exports[`logger 55`] = `"    [37m[90m31[37m   },[39m"`;
+
+exports[`logger 56`] = `"    [37m[90m32[37m   [33mboss:[37m {[39m"`;
+
+exports[`logger 57`] = `"    [37m[90m33[37m     [33mid:[37m [32m321[37m,[39m"`;
+
+exports[`logger 58`] = `"    [37m[90m34[37m     [33menabled:[37m [35mtrue[37m,[39m"`;
+
+exports[`logger 59`] = `"    [37m[90m35[37m     [33memail:[37m [33m'jack@river.com'[37m,[39m"`;
+
+exports[`logger 60`] = `"    [37m[90m36[37m     [33mdetails:[37m [33m'details'[37m,[39m"`;
+
+exports[`logger 61`] = `"    [37m[90m37[37m     [33mboss:[37m [33m'boss'[37m[39m"`;
+
+exports[`logger 62`] = `"    [37m[90m38[37m   }[39m"`;
+
+exports[`logger 63`] = `"    [37m[90m39[37m }[39m"`;
+
+exports[`logger 64`] = `"🐛  [35mCalling...[39m"`;
+
+exports[`logger 65`] = `"    [37m[90m1[37m {[39m"`;
+
+exports[`logger 66`] = `"    [37m[90m2[37m   [33mphoneNumbers:[37m [[39m"`;
+
+exports[`logger 67`] = `"    [37m[90m3[37m     [33m'617-555-5555'[37m,[39m"`;
+
+exports[`logger 68`] = `"    [37m[90m4[37m     [33m'860-555-5555'[37m[39m"`;
+
+exports[`logger 69`] = `"    [37m[90m5[37m   ][39m"`;
+
+exports[`logger 70`] = `"    [37m[90m6[37m }[39m"`;
+
+exports[`logger 71`] = `"    [0mA new version is available [1mv1.1.0[22m![0m"`;
+
+exports[`logger 72`] = `"    "`;
+
+exports[`logger 73`] = `"      * [0mRun [33mpnpm add widget@latest[39m to upgrade[0m"`;
+
+exports[`logger 74`] = `"      * [0mRe-run widget[0m"`;
+
+exports[`logger 75`] = `"✅  [32m[1mSuccess![22m[39m [0m[1mDonezo.[22m[0m"`;
+
+exports[`logger 76`] = `"💀  [31m[1mThis computer is dead.[22m[39m"`;
+
+exports[`logger 77`] = `"    No emojis, homies"`;
+
+exports[`logger 78`] = `"    1 {"`;
+
+exports[`logger 79`] = `"    2   also: 'no ansi'"`;
+
+exports[`logger 80`] = `"    3 }"`;
+
+exports[`logger 81`] = `"🐛  [34m[1mapp.server[22m[39m • [35mUsing random port[39m"`;
+
+exports[`logger 82`] = `"🆒  [34m[1mapp.server[22m[39m • Cool man"`;
+
+exports[`logger 83`] = `"{\\"message\\":\\"SWAPI Response\\",\\"data\\":{\\"statusCode\\":200,\\"body\\":\\"Lando!\\",\\"params\\":{\\"q\\":\\"one\\"}},\\"level\\":\\"info\\",\\"type\\":\\"info\\"}"`;
+
+exports[`return 1`] = `
+"💁  [36m[1mEllo Guvna[22m[39m
+"
+`;

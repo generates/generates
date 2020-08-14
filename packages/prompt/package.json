@@ -1,0 +1,17 @@
+{
+  "name": "@generates/prompt",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@ianwalter/print": "^8.1.0",
+    "external-editor": "^3.1.0",
+    "sisteransi": "^1.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE"
+}

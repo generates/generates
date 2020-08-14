@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Generating an ISC license 1`] = `
-"Copyright (c) 2019 Ian Walter <public@iankwalter.com> (https://iankwalter.com)
+Array [
+  Object {
+    "content": "Copyright (c) 2020  Ian Walter <pub@ianwalter.dev> (https://ianwalter.dev)
 
 Permission to use, copy, modify, and/or distribute this software for
 any purpose with or without fee is hereby granted, provided that the
@@ -15,5 +17,9 @@ AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
 DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
 PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
 TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE."
+PERFORMANCE OF THIS SOFTWARE.",
+    "filename": "LICENSE",
+    "render": [Function],
+  },
+]
 `;

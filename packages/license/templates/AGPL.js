@@ -1,4 +1,4 @@
-module.exports = context => `
+module.exports = ctx => `
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
@@ -630,14 +630,11 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-    ${context.makeLine(
-      context.getAnswer('projectName'),
-      context.getAnswer('projectDescription', desc => ` - ${desc}`)
+    ${ctx.join(
+      ctx.data.project?.name,
+      ctx.data.project?.description && ` - ${ctx.data.project.description}`
     )}
-    Copyright (C) ${context.makeLine(
-      context.getAnswer('year', year => `${year} `),
-      context.getAnswer('authorName', name => `${name}`)
-    )}
+    Copyright (C) ${ctx.data.currentYear} ${ctx.data.licensor.description}
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by

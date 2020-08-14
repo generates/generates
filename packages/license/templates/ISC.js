@@ -1,10 +1,5 @@
-module.exports = context => context.stripIndent`
-  Copyright (c) ${context.makeLine(
-    context.getAnswer('year', year => `${year} `),
-    context.getAnswer('authorName', name => `${name} `),
-    context.getAnswer('authorEmail', email => `<${email}> `),
-    context.getAnswer('authorUrl', url => `(${url})`)
-  )}
+module.exports = ctx => ctx.stripIndent`
+  Copyright (c) ${ctx.data.currentYear} ${ctx.data.licensor.description}
 
   Permission to use, copy, modify, and/or distribute this software for
   any purpose with or without fee is hereby granted, provided that the

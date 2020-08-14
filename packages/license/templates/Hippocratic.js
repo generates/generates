@@ -1,4 +1,9 @@
-Copyright (C) 2020 Ian Walter <pub@ianwalter.dev> (https://ianwalter.dev) ("Licensor")
+module.exports = ctx => `
+${ctx.join(
+  ctx.data.project?.name && `${ctx.data.project.name} `,
+  `Copyright (C) ${ctx.data.currentYear} ${ctx.data.licensor.description}`,
+  '("Licensor")'
+)}
 
 Hippocratic License Version Number: 2.1.
 
@@ -129,3 +134,5 @@ This Hippocratic License is an Ethical Source license
 (https://ethicalsource.dev) and is offered for use by licensors and licensees
 at their own risk, on an "AS IS" basis, and with no warranties express or
 implied, to the maximum extent permitted by Laws.
+
+`

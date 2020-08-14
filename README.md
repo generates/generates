@@ -1,5 +1,5 @@
 # generates
-> Easier file generation/scaffolding/bootstrapping
+> Node.js generation framework
 
 ## License
 
