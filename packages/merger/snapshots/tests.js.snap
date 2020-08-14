@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`circulars 1`] = `
+Episode {
+  "episodeName": "Choo Choo",
+  "name": "Beanicles",
+}
+`;
+
+exports[`nested Objects get merged 1`] = `
+Object {
+  "headers": Object {
+    "content-length": "18",
+    "content-type": "application/json",
+    "user-agent": "@ianwalter/requester",
+  },
+  "logLevel": "info",
+  "shouldThrow": true,
+  "timeout": 60000,
+}
+`;
+
+exports[`nested Objects get merged 2`] = `
+Object {
+  "headers": Object {
+    "user-agent": "@ianwalter/requester",
+  },
+  "logLevel": "info",
+  "shouldThrow": true,
+  "timeout": 60000,
+}
+`;
+
+exports[`nested Objects get merged 3`] = `
+Object {
+  "headers": Object {
+    "content-length": "18",
+    "content-type": "application/json",
+  },
+}
+`;

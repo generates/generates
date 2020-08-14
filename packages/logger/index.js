@@ -8,7 +8,7 @@ const clone = require('@ianwalter/clone')
 const marked = require('marked')
 const TerminalRenderer = require('marked-terminal')
 const stripAnsi = require('strip-ansi')
-const merge = require('@ianwalter/merge')
+const { merge, isPlainObject } = require('@generates/merger')
 const cloneable = require('@ianwalter/cloneable')
 
 // Set up marked with the TerminalRenderer.
@@ -24,7 +24,6 @@ const at = chalk.gray('at')
 const byNotWhitespace = str => str && str.trim()
 const isANewLine = msg => typeof msg === 'string' && msg === '\n'
 const md = str => marked(str).trimEnd()
-const isObj = i => i && typeof i === 'object' && !Array.isArray(i)
 
 function extractLogPrefix ({ items: [first, ...rest] }) {
   let prefix = ' '
@@ -69,7 +68,7 @@ function createLogger (config = {}) {
 
   function toOutputString (addNewline) {
     return (acc = '', msg, idx, src) => {
-      if (isObj(msg)) return `${JSON.stringify(msg)}\n`
+      if (isPlainObject(msg)) return `${JSON.stringify(msg)}\n`
       const space = acc && !isANewLine(acc[acc.length - 1]) && !isANewLine(msg)
       const newline = addNewline && (idx === src.length - 1) ? '\n' : ''
       return acc + (msg ? (space ? ` ${msg}` : msg) : '') + newline
@@ -80,12 +79,13 @@ function createLogger (config = {}) {
     if (msg instanceof Error) {
       if (!acc.message) acc.message = msg.message
       acc.error = msg.stack
-    }
-
-    if (isObj(msg)) {
-      acc.data = { ...acc.data, ...msg }
+      acc.data = msg
+    } else if (isPlainObject(msg)) {
+      acc.data = merge(acc.data || {}, msg)
     } else if (typeof msg === 'string') {
       acc.message = toOutputString(true)(acc.message, msg, idx, src).trim()
+    } else if (typeof msg?.toString === 'function') {
+      acc.message = toOutputString(true)(acc.message, msg.toString(), idx, src).trim()
     }
     // FIXME: Handle other types of data.
     return acc
@@ -232,63 +232,70 @@ function createLogger (config = {}) {
       return this.create(merge({}, this.options, { namespace }))
     },
     out (type, items) {
-      // Create the log object.
-      const log = { ...type, items }
+      try {
+        // Create the log object.
+        const log = { ...type, items }
 
-      // Determine if the log item should be logged based on level.
-      log.shouldLog = !type.level || options.types.indexOf(type) >= levelIndex
+        // Determine if the log item should be logged based on level.
+        log.shouldLog = !type.level || options.types.indexOf(type) >= levelIndex
 
-      // Format and output the log if it has a high enough log level or has been
-      // marked as unrestriected by the namespace functionality.
-      if (log.shouldLog || this.unrestricted) {
-        // If prefix is a function, get the prefix by calling the function with
-        // the log items.
-        if (typeof log.prefix === 'function') merge(log, log.prefix(log))
+        // Format and output the log if it has a high enough log level or has
+        // been marked as unrestriected by the namespace functionality.
+        if (log.shouldLog || this.unrestricted) {
+          // If prefix is a function, get the prefix by calling the function
+          // with the log items.
+          if (typeof log.prefix === 'function') merge(log, log.prefix(log))
 
-        // Determine how many spaces should pad the prefix to separate it from
-        // the log item. This is tricky because of weird emoji lengths.
-        const pad = log.prefix?.length + [...log.prefix || []].length
-        log.prefix = log.prefix?.padEnd(pad + log.prefix.split(' ').length - 1)
+          // Determine how many spaces should pad the prefix to separate it from
+          // the log item. This is tricky because of weird emoji lengths.
+          const pad = log.prefix?.length + [...log.prefix || []].length
+          const spaceLength = log.prefix.split(' ').length
+          log.prefix = log.prefix?.padEnd(pad + spaceLength - 1)
 
-        // Format the log items.
-        if (options.ndjson) {
-          log.items = log.items.reduce(toNdjson, {})
-        } else if (log.format === undefined) {
-          format(log)
-        } else if (log.format) {
-          log.format(log)
+          // Format the log items.
+          if (options.ndjson) {
+            log.items = log.items.reduce(toNdjson, {})
+          } else if (log.format === undefined) {
+            format(log)
+          } else if (log.format) {
+            log.format(log)
+          }
+
+          // Create an array of output items.
+          let output
+          if (this.options.ndjson) {
+            output = [{
+              ...log.items,
+              ...this.options.extraJson,
+              message: log.items.message,
+              level: log.level,
+              type: log.type,
+              namespace: this.options.namespace
+            }]
+          } else {
+            const namespace = log.type === 'plain'
+              ? this.options.namespace
+              : chalk.blue.bold(this.options.namespace)
+            output = [
+              log.prefix,
+              ...this.options.extraItems,
+              this.unrestricted ? `${namespace} •` : '',
+              ...log.items
+            ]
+          }
+          const isNotWrite = log.type !== 'write'
+          const outputString = output.reduce(toOutputString(isNotWrite), '')
+
+          // Output the string using configured io.
+          if (options.io) options.io[log.io || 'out'](outputString)
+
+          // Return the output string to the caller.
+          return outputString
         }
-
-        // Create an array of output items.
-        let output
-        if (this.options.ndjson) {
-          output = [{
-            ...log.items,
-            ...this.options.extraJson,
-            message: log.items.message,
-            level: log.level,
-            type: log.type,
-            namespace: this.options.namespace
-          }]
-        } else {
-          const namespace = log.type === 'plain'
-            ? this.options.namespace
-            : chalk.blue.bold(this.options.namespace)
-          output = [
-            log.prefix,
-            ...this.options.extraItems,
-            this.unrestricted ? `${namespace} •` : '',
-            ...log.items
-          ]
-        }
-        const isNotWrite = log.type !== 'write'
-        const outputString = output.reduce(toOutputString(isNotWrite), '')
-
-        // Output the string using configured io.
-        if (options.io) options.io[log.io || 'out'](outputString)
-
-        // Return the output string to the caller.
-        return outputString
+      } catch (err) {
+        // Fallback to console.error if an error thrown when trying to output
+        // the log.
+        console.error(err)
       }
     }
   }

@@ -1,0 +1,43 @@
+{
+  "name": "@generates/merger",
+  "description": "A utility for recursively merging JavaScript Objects",
+  "version": "0.0.1",
+  "author": {
+    "name": "Ian Walter",
+    "email": "pub@ianwalter.dev",
+    "url": "https://ianwalter.dev"
+  },
+  "license": "Hippocratic-2.1",
+  "main": "dist/merge.js",
+  "module": "dist/merge.m.js",
+  "scripts": {
+    "pretest": "dist",
+    "test": "bff"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/merger"
+  },
+  "keywords": [
+    "merge",
+    "object",
+    "assign",
+    "deep",
+    "recursive"
+  ],
+  "bugs": {
+    "url": "https://github.com/generates/generates/issues"
+  },
+  "homepage": "https://github.com/generates/generates/blob/master/packages/merger#readme",
+  "devDependencies": {
+    "@ianwalter/bff": "^9.9.1",
+    "@ianwalter/dist": "^6.0.0"
+  }
+}

@@ -14,3 +14,5 @@ logger.warn(err)
 logger.ns('example.ndjson').success('Very nice!')
 
 console.log(JSON.stringify({ type: 'single', no: 'message', res: { ok: 1 } }))
+
+logger.error('Something went wrong at', new URL('https://ianwalter.dev'), null)
