@@ -1,7 +1,7 @@
 {
   "name": "@generates/cli",
   "description": "A utility for creating Node.js command-line applications",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
@@ -41,9 +41,9 @@
   },
   "homepage": "https://github.com/generates/generates/blob/master/packages/cli#readme",
   "dependencies": {
-    "@generates/logger": "^0.0.6",
+    "@generates/logger": "^0.0.7",
+    "@generates/merger": "^0.0.1",
     "@ianwalter/dot": "^1.0.4",
-    "@ianwalter/merge": "^9.0.1",
     "camelcase": "^6.0.0",
     "common-tags": "^1.8.0",
     "decamelize": "^4.0.0",

@@ -11,8 +11,8 @@ importers:
   packages/cli:
     dependencies:
       '@generates/logger': 'link:../logger'
+      '@generates/merger': 'link:../merger'
       '@ianwalter/dot': 1.0.4
-      '@ianwalter/merge': 9.0.1
       camelcase: 6.0.0
       common-tags: 1.8.0
       decamelize: 4.0.0
@@ -22,10 +22,10 @@ importers:
       '@ianwalter/bff': 9.10.0
       execa: 4.0.3
     specifiers:
-      '@generates/logger': ^0.0.6
+      '@generates/logger': ^0.0.7
+      '@generates/merger': ^0.0.1
       '@ianwalter/bff': ^9.9.1
       '@ianwalter/dot': ^1.0.4
-      '@ianwalter/merge': ^9.0.1
       camelcase: ^6.0.0
       common-tags: ^1.8.0
       decamelize: ^4.0.0
@@ -43,18 +43,18 @@ importers:
   packages/core:
     dependencies:
       '@generates/logger': 'link:../logger'
+      '@generates/merger': 'link:../merger'
       '@generates/prompt': 'link:../prompt'
       '@ianwalter/dot': 1.0.4
-      '@ianwalter/merge': 7.0.0
       common-tags: 1.8.0
     devDependencies:
       '@ianwalter/bff': 9.10.0
     specifiers:
-      '@generates/logger': ^0.0.6
+      '@generates/logger': ^0.0.7
+      '@generates/merger': ^0.0.1
       '@generates/prompt': ^0.0.0
       '@ianwalter/bff': ^9.9.1
       '@ianwalter/dot': ^1.0.4
-      '@ianwalter/merge': ^7.0.0
       common-tags: ^1.8.0
   packages/generates:
     dependencies:
@@ -64,9 +64,9 @@ importers:
       '@generates/license': 'link:../license'
       '@ianwalter/bff': 9.10.0
     specifiers:
-      '@generates/cli': ^0.0.6
+      '@generates/cli': ^0.0.7
       '@generates/license': 0.0.0
-      '@generates/logger': ^0.0.6
+      '@generates/logger': ^0.0.7
       '@ianwalter/bff': ^9.9.1
   packages/license:
     dependencies:
@@ -80,7 +80,7 @@ importers:
       '@ianwalter/print': ^8.1.0
   packages/logger:
     dependencies:
-      '@generates/cli': 'link:../cli'
+      '@generates/cli': 0.0.6
       '@generates/merger': 'link:../merger'
       '@ianwalter/chromafi': 1.0.1
       '@ianwalter/clone': 6.0.1
@@ -309,6 +309,37 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==
+  /@generates/cli/0.0.6:
+    dependencies:
+      '@generates/logger': 0.0.6
+      '@ianwalter/dot': 1.0.4
+      '@ianwalter/merge': 9.0.1
+      camelcase: 6.0.0
+      common-tags: 1.8.0
+      decamelize: 4.0.0
+      getopts: 2.2.5
+      read-pkg-up: 7.0.1
+    dev: false
+    resolution:
+      integrity: sha512-ssLGSmHxqa1eXi0CRUbQc6enpYv5JqSUod+Fr2zE/zU7ZPvf6UKYA++Ea5XLeKeqMPftZT4DZsLCPpERCLbPuQ==
+  /@generates/logger/0.0.6:
+    dependencies:
+      '@generates/cli': 0.0.6
+      '@ianwalter/chromafi': 1.0.1
+      '@ianwalter/clone': 6.0.1
+      '@ianwalter/cloneable': 2.0.0
+      '@ianwalter/dot': 1.0.4
+      '@ianwalter/merge': 9.0.1
+      chalk: 4.1.0
+      has-ansi: 4.0.0
+      has-emoji: 1.1.0
+      marked: 1.1.1
+      marked-terminal: 4.1.0_marked@1.1.1
+      strip-ansi: 6.0.0
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-muP0P5gRkx9YKje3ZLsA46pHoguR7UfJb5/YcfL0Y6lqlltPpJcg8nBbzZy5KNJ7x6kGITMRaxs79dpYk7Bh2g==
   /@ianwalter/base-error/6.1.0:
     dev: true
     resolution:
@@ -469,10 +500,6 @@ packages:
   /@ianwalter/merge/6.0.0:
     resolution:
       integrity: sha512-Ohskh/vqQFgW2Abaxd3kPYz/uNqoUmCSjU8kB8SoRieQqIOyXit1pFKYW4HmcoRcDFbktpWmS1QpIBoF74DGBg==
-  /@ianwalter/merge/7.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-PuJJiUQZSNRu6zrC6xrJx9/gX0NX9rilQ646+VBSj+X7RRBUWOogqxEUHojOJcwYTt2JzWVV9DIvvsZMkfZP5Q==
   /@ianwalter/merge/9.0.1:
     resolution:
       integrity: sha512-Wu7eAZEsfuW0FJsVsdsNaWAtlY/6Viy74HQpZ8A81KutjhNO5cyPRkiBGletuX9kDUTOdSwWJokPnu/o4yE3KA==

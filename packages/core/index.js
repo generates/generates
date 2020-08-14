@@ -1,5 +1,5 @@
 const { promises: fs } = require('fs')
-const merge = require('@ianwalter/merge')
+const { merge } = require('@generates/merger')
 const { stripIndent } = require('common-tags')
 const prompt = require('@generates/prompt')
 const dot = require('@ianwalter/dot')
