@@ -28,5 +28,8 @@
     "rules": {
       "no-eval": 0
     }
-  }
+  },
+  "eslintIgnore": [
+    "dist"
+  ]
 }

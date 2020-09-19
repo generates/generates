@@ -85,7 +85,8 @@ function createLogger (config = {}) {
     } else if (typeof msg === 'string') {
       acc.message = toOutputString(true)(acc.message, msg, idx, src).trim()
     } else if (typeof msg?.toString === 'function') {
-      acc.message = toOutputString(true)(acc.message, msg.toString(), idx, src).trim()
+      acc.message = toOutputString(true)(acc.message, msg.toString(), idx, src)
+        .trim()
     }
     // FIXME: Handle other types of data.
     return acc

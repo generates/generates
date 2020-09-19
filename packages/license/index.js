@@ -35,7 +35,7 @@ const ctx = {
       type: 'select',
       label: 'Which license will the project use?',
       settings: {
-        options: Object.keys(licenses),
+        options: Object.keys(licenses)
         // FIXME:
         // get highlighted () {
         //   return generates.getTopAnswer('license.name') || 'Unlicensed'
