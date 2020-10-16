@@ -250,7 +250,7 @@ function createLogger (config = {}) {
           // Determine how many spaces should pad the prefix to separate it from
           // the log item. This is tricky because of weird emoji lengths.
           const pad = log.prefix?.length + [...log.prefix || []].length
-          const spaceLength = log.prefix.split(' ').length
+          const spaceLength = log.prefix?.split(' ').length || 0
           log.prefix = log.prefix?.padEnd(pad + spaceLength - 1)
 
           // Format the log items.
