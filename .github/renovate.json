@@ -5,7 +5,6 @@
   "onboarding": false,
   "repositories": [
     "generates/generates",
-    "ianwalter/bff",
     "ianwalter/nrg"
   ]
 }
