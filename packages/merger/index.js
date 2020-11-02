@@ -12,6 +12,8 @@ export function merge (...items) {
       circulars.push(item)
       const props = Object.entries(Object.getOwnPropertyDescriptors(item))
       for (const [key, descriptor] of props) {
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype') 
+        return;
         const srcVal = item[key]
         const destVal = destination[key] || {}
         if (circulars.includes(srcVal)) {
