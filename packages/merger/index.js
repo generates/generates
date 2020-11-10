@@ -13,7 +13,7 @@ export function merge (...items) {
       const props = Object.entries(Object.getOwnPropertyDescriptors(item))
       for (const [key, descriptor] of props) {
         if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
-          continue;
+          continue
         }
         const srcVal = item[key]
         const destVal = destination[key] || {}
