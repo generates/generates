@@ -22,7 +22,7 @@ importers:
       read-pkg-up: 7.0.1
     devDependencies:
       '@ianwalter/bff': 9.10.0
-      execa: 4.0.3
+      execa: 5.0.0
     specifiers:
       '@generates/logger': ^0.0.8
       '@generates/merger': ^0.0.1
@@ -31,7 +31,7 @@ importers:
       camelcase: ^6.0.0
       common-tags: ^1.8.0
       decamelize: ^4.0.0
-      execa: ^4.0.3
+      execa: ^5.0.0
       getopts: ^2.2.5
       read-pkg-up: ^7.0.1
   packages/commit:
@@ -2157,11 +2157,11 @@ packages:
       node: ^8.12.0 || >=9.7.0
     resolution:
       integrity: sha512-r9vdGQk4bmCuK1yKQu1KTwcT2zwfWdbdaXfCtAh+5nU/4fSX+JAb7vZGvI5naJrQlvONrEB20jeruESI69530g==
-  /execa/4.0.3:
+  /execa/5.0.0:
     dependencies:
       cross-spawn: 7.0.3
-      get-stream: 5.2.0
-      human-signals: 1.1.1
+      get-stream: 6.0.0
+      human-signals: 2.1.0
       is-stream: 2.0.0
       merge-stream: 2.0.0
       npm-run-path: 4.0.1
@@ -2172,7 +2172,7 @@ packages:
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-WFDXGHckXPWZX19t1kCsXzOpqX9LWYNqn4C+HqZlk/V0imTkzJZqf87ZBhvpHaftERYknpk0fjSylnXVlVgI0A==
+      integrity: sha512-ov6w/2LCiuyO4RLYGdpFGjkcs0wMTgGE8PrkTHikeUy5iJekXyPIKUjifk5CsE0pt7sMCrMZ3YNqoCj6idQOnQ==
   /expand-brackets/2.1.4:
     dependencies:
       debug: 2.6.9
@@ -2444,6 +2444,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==
+  /get-stream/6.0.0:
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-A1B3Bh1UmL0bidM/YX2NsCOTnGJePL9rO/M+Mw3m9f2gUpfokS0hi5Eah0WSUEWZdZhIZtMjkIYS7mDfOqNHbg==
   /get-value/2.0.6:
     dev: true
     engines:
@@ -2654,6 +2660,12 @@ packages:
       node: '>=8.12.0'
     resolution:
       integrity: sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
+  /human-signals/2.1.0:
+    dev: true
+    engines:
+      node: '>=10.17.0'
+    resolution:
+      integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
   /iconv-lite/0.4.24:
     dependencies:
       safer-buffer: 2.1.2
