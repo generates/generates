@@ -60,13 +60,13 @@ importers:
       common-tags: ^1.8.0
   packages/generates:
     dependencies:
-      '@generates/cli': 'link:../cli'
+      '@generates/cli': 0.0.7
       '@generates/logger': 'link:../logger'
     devDependencies:
       '@generates/license': 'link:../license'
       '@ianwalter/bff': 9.10.0
     specifiers:
-      '@generates/cli': ^0.0.9
+      '@generates/cli': ^0.0.7
       '@generates/license': 0.0.2
       '@generates/logger': ^0.0.9
       '@ianwalter/bff': ^9.9.1
@@ -82,7 +82,7 @@ importers:
       '@ianwalter/print': ^8.1.0
   packages/logger:
     dependencies:
-      '@generates/cli': 'link:../cli'
+      '@generates/cli': 0.0.7
       '@generates/merger': 'link:../merger'
       '@ianwalter/chromafi': 1.0.1
       '@ianwalter/clone': 6.0.1
@@ -99,7 +99,7 @@ importers:
       '@ianwalter/bff': 9.10.0
       common-tags: 1.8.0
     specifiers:
-      '@generates/cli': ^0.0.9
+      '@generates/cli': ^0.0.7
       '@generates/merger': ^0.1.0
       '@ianwalter/base-error': ^6.1.0
       '@ianwalter/bff': ^9.10.0
@@ -503,6 +503,72 @@ packages:
       node: ^10.12.0 || >=12.0.0
     resolution:
       integrity: sha512-XRUeBZ5zBWLYgSANMpThFddrZZkEbGHgUdt5UJjZfnlN9BGCiUBrf+nvbRupSjMvqzwnQN0qwCmOxITt1cfywA==
+  /@generates/cli/0.0.6:
+    dependencies:
+      '@generates/logger': 0.0.6
+      '@ianwalter/dot': 1.0.4
+      '@ianwalter/merge': 9.0.1
+      camelcase: 6.0.0
+      common-tags: 1.8.0
+      decamelize: 4.0.0
+      getopts: 2.2.5
+      read-pkg-up: 7.0.1
+    dev: false
+    resolution:
+      integrity: sha512-ssLGSmHxqa1eXi0CRUbQc6enpYv5JqSUod+Fr2zE/zU7ZPvf6UKYA++Ea5XLeKeqMPftZT4DZsLCPpERCLbPuQ==
+  /@generates/cli/0.0.7:
+    dependencies:
+      '@generates/logger': 0.0.7
+      '@generates/merger': 0.0.1
+      '@ianwalter/dot': 1.0.4
+      camelcase: 6.0.0
+      common-tags: 1.8.0
+      decamelize: 4.0.0
+      getopts: 2.2.5
+      read-pkg-up: 7.0.1
+    dev: false
+    resolution:
+      integrity: sha512-tL4jZ6n+x+/17gzj9zIgK3WHhQBkwRAMKx8zF5HOohYASaJ0TizjWp+KLd5Ep29NoNQzEFWrbZqcW8OAX6FQHw==
+  /@generates/logger/0.0.6:
+    dependencies:
+      '@generates/cli': 0.0.6
+      '@ianwalter/chromafi': 1.0.1
+      '@ianwalter/clone': 6.0.1
+      '@ianwalter/cloneable': 2.0.0
+      '@ianwalter/dot': 1.0.4
+      '@ianwalter/merge': 9.0.1
+      chalk: 4.1.0
+      has-ansi: 4.0.0
+      has-emoji: 1.1.0
+      marked: 1.1.1
+      marked-terminal: 4.1.0_marked@1.1.1
+      strip-ansi: 6.0.0
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-muP0P5gRkx9YKje3ZLsA46pHoguR7UfJb5/YcfL0Y6lqlltPpJcg8nBbzZy5KNJ7x6kGITMRaxs79dpYk7Bh2g==
+  /@generates/logger/0.0.7:
+    dependencies:
+      '@generates/cli': 0.0.6
+      '@generates/merger': 0.0.1
+      '@ianwalter/chromafi': 1.0.1
+      '@ianwalter/clone': 6.0.1
+      '@ianwalter/cloneable': 2.0.0
+      '@ianwalter/dot': 1.0.4
+      chalk: 4.1.0
+      has-ansi: 4.0.0
+      has-emoji: 1.1.0
+      marked: 1.1.1
+      marked-terminal: 4.1.0_marked@1.1.1
+      strip-ansi: 6.0.0
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-uUOtIQx3AL4J3j2I9dgIj/pDJutYv5edIrC8mZ6/1cWWbP7vOVb+0m5E+9maGu0qHttgfbwtYLakmhb+5PaEGA==
+  /@generates/merger/0.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-A0zgTrlKJcroOOxx7GOY+OmVvGYVusG0UlhJLC/q8OvpQzF5xHE/jwW7mfPt5anJwHaRgWcWwjfQAFtk3HtYRA==
   /@ianwalter/base-error/6.1.0:
     dev: true
     resolution:
