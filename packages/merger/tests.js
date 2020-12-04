@@ -4,15 +4,15 @@ const merger = require('.')
 // Just to make sure it works when destructured as well.
 const { merge } = merger
 
-test('shallow Objects get merged', ({ expect }) => {
+test('shallow Objects get merged', t => {
   const obj1 = { count: 1, color: 'green' }
   const obj2 = { count: 1, shape: 'triangle' }
   const obj3 = { count: 1, size: 'large' }
   const shallow = { ...obj1, ...obj2, ...obj3 }
-  expect(merger.merge(obj1, obj2, obj3)).toStrictEqual(shallow)
+  t.expect(merger.merge(obj1, obj2, obj3)).toStrictEqual(shallow)
 })
 
-test('nested Objects get merged', async ({ expect }) => {
+test('nested Objects get merged', async t => {
   const obj1 = {
     shouldThrow: true,
     logLevel: 'info',
@@ -28,22 +28,35 @@ test('nested Objects get merged', async ({ expect }) => {
     }
   }
   const merged = merge({}, obj1, obj2)
-  expect(merged).toMatchSnapshot()
-  expect(obj1).toMatchSnapshot()
-  expect(obj2).toMatchSnapshot()
+  t.expect(merged).toMatchSnapshot()
+  t.expect(obj1).toMatchSnapshot()
+  t.expect(obj2).toMatchSnapshot()
 })
 
-test('nested Arrays get replaced', ({ expect }) => {
+test('nested Arrays get replaced', t => {
   const obj1 = { count: 1, items: [1] }
-  const obj2 = { count: 1, items: [2] }
-  const obj3 = { count: 1, items: [3] }
-  expect(merge(obj1, obj2, obj3)).toStrictEqual(obj3)
+  const obj2 = { count: 2, items: [2] }
+  const obj3 = { count: 3, items: [3] }
+  t.expect(merge(obj1, obj2, obj3)).toStrictEqual(obj3)
 })
 
-test('null values are not treated as objects', ({ expect }) => {
+test('null values are not treated as objects', t => {
   const obj1 = { id: 'a', tools: { auto: { safety: ['Welding Gloves'] } } }
   const obj2 = { id: 'b', tools: { auto: null } }
-  expect(merge(obj1, obj2)).toStrictEqual(obj2)
+  t.expect(merge(obj1, obj2)).toStrictEqual(obj2)
+})
+
+test('circulars', t => {
+  function Podcast () {
+    this.name = 'Beanicles'
+    this.circular = this
+  }
+  function Episode () {
+    this.episodeName = 'Choo Choo'
+    this.episode = this
+  }
+  const merged = merge({}, new Podcast(), new Episode())
+  t.expect(merged).toMatchSnapshot()
 })
 
 test('Object with getters', t => {
@@ -72,9 +85,23 @@ test('Object with getters', t => {
   t.expect(one.time).toBe(60)
 })
 
-test('Object with a date', t => {
+test('Object with a Date', t => {
   const date = new Date()
   const merged = merger.merge({ user: 123 }, { date })
   const json = JSON.stringify(merged)
   t.expect(JSON.parse(json)).toEqual({ user: 123, date: date.toISOString() })
+})
+
+test('Object with a URL', t => {
+  const url = new URL('https://ianwalter.dev/')
+  const one = { name: 'Lowly' }
+  const three = merge(one, { url })
+  t.expect(three.name).toBe(one.name)
+  t.expect(three.url).toBe(url)
+})
+
+test('URL', t => {
+  const one = { name: 'Lowly' }
+  const three = merge({}, one, new URL('https://ianwalter.dev/'))
+  t.expect(three).toStrictEqual(one)
 })
