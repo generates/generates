@@ -1,14 +1,14 @@
-name: Release
+name: Version
 on:
   push:
     branches:
-      - main
+      - changeset-release/main
 jobs:
   release:
     runs-on: ubuntu-latest
     container:
       image: ianwalter/pnpm:v1.4.0
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -18,10 +18,8 @@ jobs:
           fetch-depth: 0
       - name: Install
         run: pnpm i -r --frozen-lockfile=false
-      - name: Changesets
-        uses: changesets/action@bfeb9e077e6cf393e4c4ef17e2bbc75b308b4364
+      - name: Commit changes
+        uses: generates/commit-action@v1.0.1
         with:
-          publish: pnpx changeset publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
+          message: Updated lock file
