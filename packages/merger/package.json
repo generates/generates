@@ -11,7 +11,8 @@
   "main": "dist/merge.js",
   "module": "dist/merge.m.js",
   "scripts": {
-    "pretest": "dist",
+    "build": "dist",
+    "pretest": "pnpm build",
     "test": "bff"
   },
   "publishConfig": {
