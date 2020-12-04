@@ -130,7 +130,7 @@ importers:
       '@ianwalter/print': ^8.1.0
       external-editor: ^3.1.0
       sisteransi: ^1.0.5
-lockfileVersion: 5.1
+lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.10.4:
     dependencies:
@@ -2897,7 +2897,7 @@ packages:
       integrity: sha512-xIavRYqr4/otGOiLxLZGj3ieMmjcNE73Ui+LdSW/Y790j5acqCsAdDiLIbzHCZMpN07JOENRWX5DcU+OQ+TjTA==
   /jest-pnp-resolver/1.2.2_jest-resolve@26.3.0:
     dependencies:
-      jest-resolve: 26.3.0_jest-resolve@26.3.0
+      jest-resolve: 26.3.0
     dev: true
     engines:
       node: '>=6'
@@ -2914,7 +2914,7 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-Gv3ZIs/nA48/Zvjrl34bf+oD76JHiGDUxNOVgUjh3j890sblXryjY4rss71fPtD/njchl6PSE2hIhvyWa1eT0A==
-  /jest-resolve/26.3.0_jest-resolve@26.3.0:
+  /jest-resolve/26.3.0:
     dependencies:
       '@jest/types': 26.3.0
       chalk: 4.1.0
@@ -2927,8 +2927,6 @@ packages:
     dev: true
     engines:
       node: '>= 10.14.2'
-    peerDependencies:
-      jest-resolve: '*'
     resolution:
       integrity: sha512-+oKVWDkXjdZ4Xciuxv+M5e5v/Z3RLjrKIzen9tq3IO6HpzsLf9Mk3rET5du1uU8iVUCvz4/1PmjzNF50Uc7l2A==
   /jest-serializer/26.3.0:
@@ -2953,7 +2951,7 @@ packages:
       jest-haste-map: 26.3.0
       jest-matcher-utils: 26.3.0
       jest-message-util: 26.3.0
-      jest-resolve: 26.3.0_jest-resolve@26.3.0
+      jest-resolve: 26.3.0
       natural-compare: 1.4.0
       pretty-format: 26.3.0
       semver: 7.3.2
