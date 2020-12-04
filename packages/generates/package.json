@@ -34,7 +34,7 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@generates/cli": "^0.0.8",
+    "@generates/cli": "^0.0.7",
     "@generates/logger": "^0.0.8"
   },
   "devDependencies": {

@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/generates/generates/issues"
   },
-  "homepage": "https://github.com/generates/generates/blob/master/packages/merger#readme",
+  "homepage": "https://github.com/generates/generates/blob/main/packages/merger#readme",
   "devDependencies": {
     "@ianwalter/bff": "^9.9.1",
     "@ianwalter/dist": "^6.0.0"

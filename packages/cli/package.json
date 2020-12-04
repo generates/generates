@@ -39,7 +39,7 @@
   "bugs": {
     "url": "https://github.com/generates/generates/issues"
   },
-  "homepage": "https://github.com/generates/generates/blob/master/packages/cli#readme",
+  "homepage": "https://github.com/generates/generates/blob/main/packages/cli#readme",
   "dependencies": {
     "@generates/logger": "^0.0.8",
     "@generates/merger": "^0.0.1",
