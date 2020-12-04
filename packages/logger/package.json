@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/generates/generates/issues"
   },
-  "homepage": "https://github.com/generates/generates/blob/master/packages/logger#readme",
+  "homepage": "https://github.com/generates/generates/blob/main/packages/logger#readme",
   "dependencies": {
     "@ianwalter/chromafi": "^1.0.1",
     "@ianwalter/clone": "^6.0.1",

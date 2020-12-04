@@ -9,4 +9,4 @@ Apache 2.0 with Commons Clause - See [LICENSE][licenseUrl]
 
 Created by [Ian Walter](https://iankwalter.com)
 
-[licenseUrl]: https://github.com/ianwalter/generates/blob/master/LICENSE
+[licenseUrl]: https://github.com/generates/generates/blob/main/LICENSE
