@@ -34,7 +34,7 @@
   "dependencies": {
     "@generates/prompt": "^0.0.0",
     "@generates/logger": "^0.0.9",
-    "@generates/merger": "^0.1.0",
+    "@generates/merger": "^0.0.1",
     "@ianwalter/dot": "^1.0.4",
     "common-tags": "^1.8.0"
   },
