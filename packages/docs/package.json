@@ -1,0 +1,29 @@
+{
+  "name": "@generates/docs",
+  "description": "TODO",
+  "version": "0.0.1",
+  "author": {
+    "name": "Ian Walter",
+    "email": "pub@ianwalter.dev",
+    "url": "https://ianwalter.dev"
+  },
+  "license": "Hippocratic-2.1",
+  "scripts": {
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/docs"
+  },
+  "keywords": [
+  ],
+  "bugs": {
+    "url": "https://github.com/generates/generates/issues"
+  },
+  "homepage": "https://github.com/generates/generates/blob/main/packages/docs#readme",
+  "devDependencies": {
+  }
+}
