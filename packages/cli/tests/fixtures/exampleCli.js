@@ -34,7 +34,7 @@ config.packageJson = { name: config.packageJson && config.packageJson.name }
 if (module.parent) {
   module.exports = config
 } else if (config.help) {
-  logger.log(config.helpText)
+  logger.plain(config.helpText)
 } else {
-  logger.log(config)
+  logger.plain(config)
 }

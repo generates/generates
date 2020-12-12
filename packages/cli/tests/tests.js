@@ -2,17 +2,17 @@ const { test } = require('@ianwalter/bff')
 const execa = require('execa')
 const exampleCli = require('./fixtures/exampleCli')
 
-test('cli', async ({ expect }) => {
+test('cli', async t => {
   const { stdout } = await execa('./tests/fixtures/exampleCli.js', ['-c', '4'])
-  expect(stdout).toMatchSnapshot()
+  t.expect(stdout).toMatchSnapshot()
 })
 
-test('dot format', async ({ expect }) => {
+test('dot format', async t => {
   const args = ['--some.other.thing', 'b']
   const { stdout } = await execa('./tests/fixtures/exampleCli.js', args)
-  expect(stdout).toMatchSnapshot()
+  t.expect(stdout).toMatchSnapshot()
 })
 
-test('default', async ({ expect }) => {
-  expect(exampleCli.path).toBe('/some/path')
+test('default', async t => {
+  t.expect(exampleCli.path).toBe('/some/path')
 })
