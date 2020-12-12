@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@ianwalter/bff": "^9.10.0",
-    "common-tags": "^1.8.0"
+    "common-tags": "^1.8.0",
+    "execa": "^5.0.0"
   }
 }

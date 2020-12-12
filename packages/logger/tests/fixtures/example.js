@@ -1,8 +1,7 @@
 const { stripIndent } = require('common-tags')
-const BaseError = require('@ianwalter/base-error')
 const { createLogger, chalk, md } = require('../..')
 
-class ExampleError extends BaseError {}
+class ExampleError extends Error {}
 
 const logger = createLogger()
 
