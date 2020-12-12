@@ -8,10 +8,9 @@
     "url": "https://ianwalter.dev"
   },
   "license": "Hippocratic-2.1",
-  "main": "dist/merger.js",
-  "module": "dist/merger.m.js",
+  "type": "module",
+  "module": "index.js",
   "scripts": {
-    "pretest": "pack",
     "test": "bff"
   },
   "publishConfig": {
@@ -35,7 +34,6 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/merger#readme",
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1",
-    "@generates/packager": "^6.0.0"
+    "@ianwalter/bff": "^9.9.1"
   }
 }
