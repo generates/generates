@@ -19,5 +19,7 @@ jobs:
         run: npm run lint
       - name: Debug
         run: mkdir -p packages/merger/dist
+      - name: Build
+        run: npm run build && cat packages/merge/dist/merger.js
       - name: Test
         run: npm test
