@@ -5,7 +5,7 @@ const { createLogger } = require('..')
 
 test('logger', async t => {
   const env = { DEBUG: 'app.*', FORCE_COLOR: '2' }
-  const { stdout } = await execa('pnpm', ['example', '-s'], { env })
+  const { stdout } = await execa('npm', ['run', 'example', '-s'], { env })
   stdout.split('\n').forEach(line => {
     // Don't assert stacktrace lines.
     if (!stripAnsi(line).match(/ {4}at /)) {

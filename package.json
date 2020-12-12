@@ -9,7 +9,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "lint": "eslint .",
-    "build": "npm --prefix packages/merger run build",
+    "build": "npm --prefix packages/merger run pretest",
     "test": "ultra --raw -r --filter 'generators/*' --filter 'packages/*' test"
   },
   "workspaces": [
