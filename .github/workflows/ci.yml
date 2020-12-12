@@ -20,6 +20,6 @@ jobs:
       - name: Debug
         run: mkdir -p packages/merger/dist
       - name: Build
-        run: npm run build && cat packages/merger/dist/merger.js
+        run: npm run build; ls -al packages/merger/dist; cat packages/merger/dist/merger.js
       - name: Test
         run: npm test
