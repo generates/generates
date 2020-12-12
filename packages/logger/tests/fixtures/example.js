@@ -1,7 +1,12 @@
 const { stripIndent } = require('common-tags')
 const { createLogger, chalk, md } = require('../..')
 
-class ExampleError extends Error {}
+class ExampleError extends Error {
+  constructor (err) {
+    super(err)
+    this.name = this.constructor.name
+  }
+}
 
 const logger = createLogger()
 
