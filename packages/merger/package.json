@@ -11,7 +11,7 @@
   "main": "dist/merger.js",
   "module": "dist/merger.m.js",
   "scripts": {
-    "pretest": "dist",
+    "pretest": "pack",
     "test": "bff"
   },
   "publishConfig": {
@@ -36,6 +36,6 @@
   "homepage": "https://github.com/generates/generates/blob/main/packages/merger#readme",
   "devDependencies": {
     "@ianwalter/bff": "^9.9.1",
-    "@ianwalter/dist": "^6.0.0"
+    "@generates/packager": "^6.0.0"
   }
 }
