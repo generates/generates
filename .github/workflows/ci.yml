@@ -18,6 +18,6 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Debug
-        run: ls -al packages/merger && whoami
+        run: mkdir -p packages/merger/dist
       - name: Test
         run: npm test
