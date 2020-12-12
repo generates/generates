@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "npm --prefix packages/merger run pretest",
-    "test": "ultra --raw -r --filter 'generators/*' --filter 'packages/*' test"
+    "test": "ultra --no-pretty -r --filter 'generators/*' --filter 'packages/*' test"
   },
   "workspaces": [
     "generators/*",
