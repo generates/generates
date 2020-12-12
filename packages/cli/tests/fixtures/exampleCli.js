@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-const { print } = require('@ianwalter/print')
+const { createLogger } = require('@generates/logger')
 const cli = require('../..')
+
+const logger = createLogger()
 
 const config = cli({
   name: 'exampleCli',
@@ -32,7 +34,7 @@ config.packageJson = { name: config.packageJson && config.packageJson.name }
 if (module.parent) {
   module.exports = config
 } else if (config.help) {
-  print.log(config.helpText)
+  logger.log(config.helpText)
 } else {
-  print.log(config)
+  logger.log(config)
 }
