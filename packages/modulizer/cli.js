@@ -5,13 +5,13 @@ import path from 'path'
 import cli from '@generates/cli'
 import pSettle from 'p-settle'
 import { createLogger, chalk } from '@generates/logger'
-import pack from './index.js'
+import modulize from './index.js'
 
-const logger = createLogger({ level: 'info', namespace: 'packager' })
+const logger = createLogger({ level: 'info', namespace: 'modulizeager' })
 
 async function run () {
   const config = cli({
-    name: 'pack',
+    name: 'modulize',
     opts: {
       alias: {
         name: 'n',
@@ -34,7 +34,7 @@ async function run () {
   try {
     // Perform distribution file generation and get back a map of files to be
     // written to the filesystme.
-    const files = Object.entries(await pack(config))
+    const files = Object.entries(await modulize(config))
     if (files.length) {
       const writes = []
       files.forEach(([moduleType, [filename, code]]) => {

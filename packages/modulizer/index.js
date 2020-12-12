@@ -11,7 +11,7 @@ import builtinModules from 'builtin-modules/static.js'
 import hashbang from '@ianwalter/rollup-plugin-hashbang'
 import { terser } from 'rollup-plugin-terser'
 
-export default async function pack (options) {
+export default async function modulize (options) {
   // Read modules package.json.
   const { package: pkg, path: projectPath } = await readPkgUp()
 
