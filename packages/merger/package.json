@@ -8,8 +8,8 @@
     "url": "https://ianwalter.dev"
   },
   "license": "Hippocratic-2.1",
-  "main": "dist/merge.js",
-  "module": "dist/merge.m.js",
+  "main": "dist/merger.js",
+  "module": "dist/merger.m.js",
   "scripts": {
     "pretest": "dist",
     "test": "bff"
