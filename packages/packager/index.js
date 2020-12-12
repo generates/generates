@@ -7,11 +7,11 @@ import jsonPlugin from '@rollup/plugin-json'
 import npmShortName from '@ianwalter/npm-short-name'
 import babelPlugin from 'rollup-plugin-babel'
 import requireFromString from 'require-from-string'
-import builtinModules from 'builtin-modules/static'
+import builtinModules from 'builtin-modules/static.js'
 import hashbang from '@ianwalter/rollup-plugin-hashbang'
 import { terser } from 'rollup-plugin-terser'
 
-export default async function dist (options) {
+export default async function pack (options) {
   // Read modules package.json.
   const { package: pkg, path: projectPath } = await readPkgUp()
 
@@ -95,15 +95,11 @@ export default async function dist (options) {
 
   // Generate the CommonJS bundle.
   let cjsBundle
-  if (cjs) {
-    cjsBundle = await bundler.generate({ format: 'cjs' })
-  }
+  if (cjs) cjsBundle = await bundler.generate({ format: 'cjs' })
 
   // Generate the EcmaScript Module bundle.
   let esmBundle
-  if (esm || browser) {
-    esmBundle = await bundler.generate({ format: 'esm' })
-  }
+  if (esm || browser) esmBundle = await bundler.generate({ format: 'esm' })
 
   const cjsCode = cjs ? cjsBundle.output[0].code : undefined
   const esmCode = (esm || browser) ? esmBundle.output[0].code : undefined
@@ -123,8 +119,8 @@ export default async function dist (options) {
   // Return an object with the properties that use the file path as the key and
   // the source code as the value.
   return {
-    ...(cjs ? { cjs: [cjsPath, cjsCode] } : {}),
-    ...(esm ? { esm: [esmPath, esmCode] } : {}),
-    ...(browser ? { browser: [browserPath, esmCode] } : {})
+    ...cjs ? { cjs: [cjsPath, cjsCode] } : {},
+    ...esm ? { esm: [esmPath, esmCode] } : {},
+    ...browser ? { browser: [browserPath, esmCode] } : {}
   }
 }
