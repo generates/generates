@@ -10,6 +10,11 @@
   "scripts": {
     "lint": "eslint ."
   },
+  "workspaces": [
+    "generators/*",
+    "utilities/*",
+    "infrastructure/*"
+  ],
   "devDependencies": {
     "@changesets/cli": "^2.11.1",
     "@ianwalter/bff": "^9.9.1",

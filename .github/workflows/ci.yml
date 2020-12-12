@@ -5,17 +5,17 @@ on:
       - main
   pull_request:
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     container:
-      image: ianwalter/pnpm:v1.4.0
-    timeout-minutes: 3
+      image: node:15.4-buster
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install
-        run: pnpm i -r
+        run: npm ci
       - name: Lint
-        run: pnpm lint
+        run: npm run lint
       - name: Test
-        run: pnpm t -r
+        run: npm test

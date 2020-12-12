@@ -1,11 +1,10 @@
 {
-  "name": "@generates/license",
+  "name": "generates",
   "version": "0.0.2",
-  "description": "Generate a LICENSE file using generates",
+  "description": "The generates command-line interface application",
   "keywords": [
     "generates",
-    "generator",
-    "license"
+    "cli"
   ],
   "author": {
     "name": "Ian Walter",
@@ -14,6 +13,9 @@
   "homepage": "https://github.com/ianwalter/generates#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
+  "bin": {
+    "generates": "index.js"
+  },
   "files": [
     "index.js"
   ],
@@ -25,17 +27,17 @@
     "url": "git+https://github.com/ianwalter/generates.git"
   },
   "scripts": {
-    "lint": "eslint index.js tests",
+    "lint": "eslint index.js",
     "test": "bff"
   },
   "bugs": {
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@generates/core": "0.0.2"
+    "@generates/cli": "^0.0.9",
+    "@generates/logger": "^0.0.9"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1",
-    "@ianwalter/print": "^8.1.0"
+    "@ianwalter/bff": "^9.9.1"
   }
 }

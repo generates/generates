@@ -57,7 +57,6 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@ianwalter/base-error": "^6.1.0",
     "@ianwalter/bff": "^9.10.0",
     "common-tags": "^1.8.0"
   }
