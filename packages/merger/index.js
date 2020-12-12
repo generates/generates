@@ -33,5 +33,3 @@ export function merge (...items) {
   }
   return destination
 }
-
-export default { isObject, isPlainObject, merge }
