@@ -9,12 +9,11 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "lint": "eslint .",
-    "build": "npm --prefix utilities/merger run build"
+    "build": "npm --prefix packages/merger run build"
   },
   "workspaces": [
     "generators/*",
-    "utilities/*",
-    "infrastructure/*"
+    "packages/*"
   ],
   "dependencies": {
     "@changesets/cli": "^2.11.1",
