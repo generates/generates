@@ -38,6 +38,7 @@
     }
   },
   "eslintIgnore": [
-    "dist"
+    "dist",
+    "tmp"
   ]
 }
