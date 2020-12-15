@@ -8,7 +8,8 @@
     "url": "https://ianwalter.dev"
   },
   "license": "Hippocratic-2.1",
-  "main": "index.js",
+  "type": "module",
+  "module": "index.js",
   "bin": {
     "prettify": "cli.js"
   },
@@ -57,7 +58,7 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^9.10.0",
+    "@ianwalter/bff": "^10.0.0",
     "common-tags": "^1.8.0",
     "execa": "^5.0.0"
   }

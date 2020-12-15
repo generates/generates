@@ -1,5 +1,5 @@
-const { stripIndent } = require('common-tags')
-const { createLogger, chalk, md } = require('../..')
+import { stripIndent } from 'common-tags'
+import { createLogger, chalk, md } from '../../index.js'
 
 class ExampleError extends Error {
   constructor (err) {

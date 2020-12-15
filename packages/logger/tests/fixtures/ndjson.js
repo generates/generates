@@ -1,4 +1,4 @@
-const { createLogger } = require('../..')
+import { createLogger } from '../../index.js'
 
 const logger = createLogger({ ndjson: true })
 

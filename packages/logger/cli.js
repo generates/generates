@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const cli = require('@generates/cli')
-const { createLogger, chalk } = require('.')
+import cli from '@generates/cli'
+import { createLogger, chalk } from './index.js'
 
 const config = cli({
   name: 'logger',

@@ -1,15 +1,15 @@
-const util = require('util')
-const chromafi = require('@ianwalter/chromafi')
-const { match, get } = require('@ianwalter/dot')
-const chalk = require('chalk')
-const hasAnsi = require('has-ansi')
-const hasEmoji = require('has-emoji')
-const clone = require('@ianwalter/clone')
-const marked = require('marked')
-const TerminalRenderer = require('marked-terminal')
-const stripAnsi = require('strip-ansi')
-const { merge, isPlainObject } = require('@generates/merger')
-const cloneable = require('@ianwalter/cloneable')
+import util from 'util'
+import chromafi from '@ianwalter/chromafi'
+import { match, get } from '@ianwalter/dot'
+import chalk from 'chalk'
+import hasAnsi from 'has-ansi'
+import hasEmoji from 'has-emoji'
+import clone from '@ianwalter/clone'
+import marked from 'marked'
+import TerminalRenderer from 'marked-terminal'
+import stripAnsi from 'strip-ansi'
+import { merge, isPlainObject } from '@generates/merger'
+import cloneable from '@ianwalter/cloneable'
 
 // Set up marked with the TerminalRenderer.
 marked.setOptions({ renderer: new TerminalRenderer({ tab: 2 }) })
@@ -308,4 +308,4 @@ function createLogger (config = {}) {
   return logger
 }
 
-module.exports = { createLogger, chalk, md }
+export { chalk, md, createLogger }
