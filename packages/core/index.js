@@ -1,9 +1,9 @@
-const { promises: fs } = require('fs')
-const { merge } = require('@generates/merger')
-const { stripIndent } = require('common-tags')
-const prompt = require('@generates/prompt')
-const dot = require('@ianwalter/dot')
-const { createLogger } = require('@generates/logger')
+import { promises as fs } from 'fs'
+import { merge } from '@generates/merger'
+import { stripIndent } from 'common-tags'
+import prompt from '@generates/prompt'
+import dot from '@ianwalter/dot'
+import { createLogger } from '@generates/logger'
 
 async function toWriteFile ([key, file]) {
   return fs.writeFile(file.filename || key, file.content)

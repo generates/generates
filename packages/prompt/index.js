@@ -1,6 +1,7 @@
-const readline = require('readline')
-const { createLogger, chalk } = require('@generates/logger')
-const { cursor } = require('sisteransi')
+import readline from 'readline'
+import { createLogger, chalk } from '@generates/logger'
+import { cursor } from 'sisteransi'
+import { edit } from 'external-editor'
 
 const yesNoOptions = [
   { label: 'Yes', value: true },
@@ -179,7 +180,6 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       try {
-        const { edit } = require('external-editor')
         const answer = edit(settings.prefill) || fallback
 
         logger.log(answer)

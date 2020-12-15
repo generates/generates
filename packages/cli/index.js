@@ -1,12 +1,12 @@
-const util = require('util')
-const readPkgUp = require('read-pkg-up')
-const getopts = require('getopts')
-const dot = require('@ianwalter/dot')
-const { merge } = require('@generates/merger')
-const { oneLine } = require('common-tags')
-const { md } = require('@generates/logger')
-const decamelize = require('decamelize')
-const camelcase = require('camelcase')
+import util from 'util'
+import readPkgUp from 'read-pkg-up'
+import getopts from 'getopts'
+import dot from '@ianwalter/dot'
+import { merge } from '@generates/merger'
+import { oneLine } from 'common-tags'
+import { md } from '@generates/logger'
+import decamelize from 'decamelize'
+import camelcase from 'camelcase'
 
 module.exports = function cli ({ name, description, usage, options, help }) {
   // Extract the curren't package's package.json so that it can be included in

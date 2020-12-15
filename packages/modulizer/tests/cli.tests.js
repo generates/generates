@@ -1,6 +1,6 @@
-const { readFileSync } = require('fs')
-const { test } = require('@ianwalter/bff')
-const execa = require('execa')
+import { readFileSync } from 'fs'
+import { test } from '@ianwalter/bff'
+import execa from 'execa'
 
 test('cjs file not generated when --esm specified', async ({ expect }) => {
   const input = 'tests/fixtures/exportDefaultFunction.js'

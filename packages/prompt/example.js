@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const prompt = require('.')
-const { createLogger } = require('@generates/logger')
+import prompt from './index.js'
+import { createLogger } from '@generates/logger'
 
 const logger = createLogger()
 

@@ -1,5 +1,5 @@
-const { test } = require('@ianwalter/bff')
-const generatesLicense = require('.')
+import { test } from '@ianwalter/bff'
+import generatesLicense from './index.js'
 
 test('Generating an ISC license', async t => {
   const { files } = await generatesLicense.generate({

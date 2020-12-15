@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const { promises: fs } = require('fs')
-const execa = require('execa')
-const generatesCommit = require('.')
+import { promises as fs } from 'fs'
+import execa from 'execa'
+import generatesCommit from './index.js'
 
 const options = { stdio: 'inherit' }
 

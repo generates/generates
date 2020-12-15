@@ -1,4 +1,4 @@
-const generates = require('@generates/core')
+import generates from '@generates/core'
 
 function noOp () {}
 

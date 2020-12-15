@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const generatesLicense = require('.')
-const { createLogger } = require('@generates/logger')
+import generatesLicense from './index.js'
+import { createLogger } from '@generates/logger'
 
 const logger = createLogger()
 

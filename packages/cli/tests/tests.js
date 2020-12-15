@@ -1,6 +1,6 @@
-const { test } = require('@ianwalter/bff')
-const execa = require('execa')
-const exampleCli = require('./fixtures/exampleCli')
+import { test } from '@ianwalter/bff'
+import execa from 'execa'
+import exampleCli from './fixtures/exampleCli'
 
 test('cli', async t => {
   const { stdout } = await execa('./tests/fixtures/exampleCli.js', ['-c', '4'])

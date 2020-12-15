@@ -35,6 +35,6 @@
     "@generates/core": "0.0.2"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1"
+    "@ianwalter/bff": "^10.0.0"
   }
 }

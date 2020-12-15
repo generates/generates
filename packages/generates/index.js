@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const cli = require('@generates/cli')
-const { createLogger } = require('@generates/logger')
+import cli from '@generates/cli'
+import { createLogger } from '@generates/logger'
 
 async function run () {
   const { _: [name], ...config } = cli({ name: 'generates' })
@@ -10,7 +10,7 @@ async function run () {
   if (name) {
     try {
       //
-      const generator = require(`@generates/${name}`)
+      const { default: generator } = await import(`@generates/${name}`)
 
       //
       delete config._
