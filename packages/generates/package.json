@@ -12,7 +12,8 @@
   },
   "homepage": "https://github.com/ianwalter/generates#readme",
   "license": "SEE LICENSE IN LICENSE",
-  "main": "index.js",
+  "type": "module",
+  "module": "index.js",
   "bin": {
     "generates": "index.js"
   },

@@ -8,7 +8,8 @@
     "url": "https://ianwalter.dev"
   },
   "license": "Hippocratic-2.1",
-  "main": "index.js",
+  "type": "module",
+  "module": "index.js",
   "scripts": {
     "lint": "eslint index.js tests",
     "example": "./tests/fixtures/exampleCli.js",

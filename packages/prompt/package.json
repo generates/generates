@@ -2,7 +2,8 @@
   "name": "@generates/prompt",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "module": "index.js",
   "dependencies": {
     "@generates/logger": "^0.0.9",
     "external-editor": "^3.1.0",
