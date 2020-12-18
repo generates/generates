@@ -8,9 +8,9 @@ cleanup() {
 }
 
 ./config.sh \
-  --url "https://github.com/${OWNER}/${REPO}" \
+  # --url "https://github.com/${OWNER}/${REPO}" \
   --token "${TOKEN}" \
-  --name "${NAME}" \
+  # --name "${NAME}" \
   --unattended \
   --work _work
 

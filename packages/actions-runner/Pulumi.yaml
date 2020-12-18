@@ -1,0 +1,4 @@
+name: actions-runner
+runtime: nodejs
+description: GitHub Actions Runner deployment
+main: example.js

@@ -1,4 +1,9 @@
 {
   "name": "@generates/actions-runner",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "@pulumi/kubernetes": "^2.7.5",
+    "@pulumi/pulumi": "^2.15.6"
+  }
 }
