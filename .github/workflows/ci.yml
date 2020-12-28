@@ -20,4 +20,4 @@ jobs:
       - name: Lint
         run: yarn lint
       - name: Test
-        run: pnpm t -r
+        run: yarn test:ci
