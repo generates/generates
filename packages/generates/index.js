@@ -1,28 +1,30 @@
 #!/usr/bin/env node
 
-const cli = require('@generates/cli')
-const { createLogger } = require('@generates/logger')
+import cli from '@generates/cli'
+import { createLogger } from '@generates/logger'
+
+const logger = createLogger({ level: 'info', namespace: 'generates' })
 
 async function run () {
   const { _: [name], ...config } = cli({ name: 'generates' })
-  const logger = createLogger(config.log)
 
   if (name) {
-    try {
-      //
-      const generator = require(`@generates/${name}`)
+    const { generator } = await import(`@generates/${name}`)
+    //
 
-      //
-      delete config._
+    //
+    delete config._
 
-      //
-      await generator.generate()
-    } catch (err) {
-      logger.error(err) // TODO: add helpful error message.
-    }
+    //
+    await generator.generate()
   } else {
     // TODO: add helpful error message.
+    throw new Error('Generator not found')
   }
 }
 
-run()
+run().catch(err => {
+  logger.write('\n')
+  logger.fatal(err)
+  process.exit(1)
+})

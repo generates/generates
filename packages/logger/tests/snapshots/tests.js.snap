@@ -144,7 +144,7 @@ exports[`logger 71`] = `"    [0mA new version is available [1mv1.1.0[22m![0m
 
 exports[`logger 72`] = `"    "`;
 
-exports[`logger 73`] = `"      * [0mRun [33mpnpm add widget@latest[39m to upgrade[0m"`;
+exports[`logger 73`] = `"      * [0mRun [33myarn add widget@latest[39m to upgrade[0m"`;
 
 exports[`logger 74`] = `"      * [0mRe-run widget[0m"`;
 

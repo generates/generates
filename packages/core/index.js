@@ -1,19 +1,19 @@
-const { promises: fs } = require('fs')
-const { merge } = require('@generates/merger')
-const { stripIndent } = require('common-tags')
-const prompt = require('@generates/prompt')
-const dot = require('@ianwalter/dot')
-const { createLogger } = require('@generates/logger')
+import { promises as fs } from 'fs'
+import { merge } from '@generates/merger'
+import { stripIndent } from 'common-tags'
+import prompt from '@generates/prompt'
+import dot from '@ianwalter/dot'
+import { createLogger } from '@generates/logger'
 
-async function toWriteFile ([key, file]) {
+export async function toWriteFile ([key, file]) {
   return fs.writeFile(file.filename || key, file.content)
 }
 
-async function writeFiles (files) {
+export async function writeFiles (files) {
   return Promise.all(Object.entries(files).map(toWriteFile))
 }
 
-function createGenerator (ctx) {
+export function createGenerator (ctx) {
   return {
     ctx,
     async generate (config) {
@@ -27,7 +27,6 @@ function createGenerator (ctx) {
       // Add some common utilities to ctx to be used to render templates.
       ctx.stripIndent = stripIndent
       ctx.join = (...items) => items.join('')
-      ctx.exec = require('execa')
 
       // Execute all required prompts specified by the generator.
       for (const [key, p] of Object.entries(ctx.prompts)) {
@@ -43,7 +42,7 @@ function createGenerator (ctx) {
 
       // Generate each files "content" using it's render method.
       const files = Object.values(ctx.files || {})
-      for (const file of files) file.content = file.render(ctx)
+      for (const file of files) file.content = await file.render(ctx)
 
       // Execute any tasks specified by the generator.
       const results = {}
@@ -60,5 +59,3 @@ function createGenerator (ctx) {
     }
   }
 }
-
-module.exports = { createGenerator, writeFiles }

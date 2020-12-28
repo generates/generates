@@ -1,4 +1,4 @@
-module.exports = ctx => `
+export default ctx => `
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 

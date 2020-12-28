@@ -4,15 +4,14 @@
   "version": "0.1.1",
   "author": {
     "name": "Ian Walter",
-    "email": "pub@ianwalter.dev",
     "url": "https://ianwalter.dev"
   },
   "license": "Hippocratic-2.1",
-  "main": "dist/merge.js",
-  "module": "dist/merge.m.js",
+  "main": "dist/merger.js",
+  "module": "dist/merger.mjs",
   "scripts": {
-    "build": "dist",
-    "pretest": "pnpm build",
+    "build": "modulize",
+    "pretest": "modulize",
     "test": "bff"
   },
   "publishConfig": {
@@ -36,7 +35,6 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/merger#readme",
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1",
-    "@ianwalter/dist": "^6.0.0"
+    "@ianwalter/bff": "^9.9.1"
   }
 }

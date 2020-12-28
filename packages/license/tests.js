@@ -1,8 +1,8 @@
-const { test } = require('@ianwalter/bff')
-const generatesLicense = require('.')
+import { test } from '@ianwalter/bff'
+import { generator } from './index.js'
 
 test('Generating an ISC license', async t => {
-  const { files } = await generatesLicense.generate({
+  const { files } = await generator.generate({
     dryRun: true,
     data: {
       license: { name: 'ISC' },

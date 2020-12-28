@@ -1,4 +1,4 @@
-module.exports = ctx => ctx.stripIndent`
+export default ctx => ctx.stripIndent`
   Copyright (c) ${ctx.data.currentYear} ${ctx.data.licensor.description}
 
   Permission to use, copy, modify, and/or distribute this software for

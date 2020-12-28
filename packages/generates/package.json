@@ -12,7 +12,8 @@
   },
   "homepage": "https://github.com/ianwalter/generates#readme",
   "license": "SEE LICENSE IN LICENSE",
-  "main": "index.js",
+  "type": "module",
+  "module": "index.js",
   "bin": {
     "generates": "index.js"
   },
@@ -28,7 +29,7 @@
   },
   "scripts": {
     "lint": "eslint index.js",
-    "test": "bff"
+    "todo": "bff"
   },
   "bugs": {
     "url": "https://github.com/ianwalter/generates/issues"

@@ -8,13 +8,21 @@
   },
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "lint": "eslint ."
+    "build": "npm --prefix packages/merger run build",
+    "lint": "eslit",
+    "test": "ultra -r test",
+    "test:ci": "ultra --raw -r test"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@changesets/cli": "^2.11.1",
     "@ianwalter/bff": "^9.9.1",
     "@ianwalter/eslint-config": "^6.0.0",
-    "@ianwalter/renovate-config": "^1.4.0"
+    "@ianwalter/eslit": "^1.0.1",
+    "@ianwalter/renovate-config": "^1.4.0",
+    "ultra-runner": "^3.8.0"
   },
   "renovate": {
     "extends": [
@@ -31,6 +39,7 @@
     }
   },
   "eslintIgnore": [
-    "dist"
+    "dist",
+    "tmp"
   ]
 }
