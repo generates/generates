@@ -4,7 +4,7 @@
 ## Installation
 
 ```console
-pnpm add generates --global
+yarn add generates --global
 ```
 
 ## License

@@ -11,7 +11,7 @@
   "module": "dist/merger.mjs",
   "scripts": {
     "build": "modulize",
-    "pretest": "pnpm build",
+    "pretest": "modulize",
     "test": "bff"
   },
   "publishConfig": {

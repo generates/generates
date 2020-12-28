@@ -61,7 +61,7 @@ logger.warn(new Error('User not found'), user)
 logger.debug('Calling...', { phoneNumbers: user.details.address.phoneNumbers })
 logger.md(stripIndent`
   A new version is available **v1.1.0**!
-  * Run \`pnpm add widget@latest\` to upgrade
+  * Run \`yarn add widget@latest\` to upgrade
   * Re-run widget
 `)
 logger.success('Success!', md('**Donezo.**'))
