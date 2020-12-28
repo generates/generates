@@ -865,7 +865,7 @@ module.exports = exportDefaultLiteral;
 exports[`export default new expression converted to module.exports 1`] = `
 Object {
   "cjs": Array [
-    "/fakePath/packager.js",
+    "/fakePath/modulizer.js",
     "'use strict';
 
 class SomeClass {}
