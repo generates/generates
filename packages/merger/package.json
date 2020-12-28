@@ -35,6 +35,6 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/merger#readme",
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1"
+    "@ianwalter/bff": "^10.0.0"
   }
 }

@@ -40,6 +40,6 @@
     "common-tags": "^1.8.0"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^9.9.1"
+    "@ianwalter/bff": "^10.0.0"
   }
 }
