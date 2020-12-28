@@ -27,7 +27,6 @@ export function createGenerator (ctx) {
       // Add some common utilities to ctx to be used to render templates.
       ctx.stripIndent = stripIndent
       ctx.join = (...items) => items.join('')
-      ctx.exec = require('execa')
 
       // Execute all required prompts specified by the generator.
       for (const [key, p] of Object.entries(ctx.prompts)) {
@@ -43,7 +42,7 @@ export function createGenerator (ctx) {
 
       // Generate each files "content" using it's render method.
       const files = Object.values(ctx.files || {})
-      for (const file of files) file.content = file.render(ctx)
+      for (const file of files) file.content = await file.render(ctx)
 
       // Execute any tasks specified by the generator.
       const results = {}

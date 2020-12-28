@@ -1,4 +1,4 @@
-import generates from '@generates/core'
+import { createGenerator } from '@generates/core'
 
 function noOp () {}
 
@@ -77,15 +77,18 @@ const ctx = {
   files: {
     license: {
       filename: 'LICENSE',
-      get render () {
+      async render (ctx) {
         const { name } = ctx.data.license
         const hasFile = licenses[name]?.file !== false
-        const log = ctx.logger.ns('generates.license')
-        log.debug(`License file for ${name}:`, hasFile)
-        return hasFile ? require(`./templates/${name}.js`) : noOp
+        const logger = ctx.logger.ns('generates.license')
+        logger.debug(`License file for ${name}:`, hasFile)
+        const { default: render } = hasFile
+          ? await import(`./templates/${name}.js`)
+          : noOp
+        return render(ctx)
       }
     }
   }
 }
 
-export const generator = generates.createGenerator(ctx)
+export const generator = createGenerator(ctx)
