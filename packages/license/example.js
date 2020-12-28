@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 
-const generatesLicense = require('.')
-const { print } = require('@ianwalter/print')
+import generatesLicense from './index.js'
+import { createLogger } from '@generates/logger'
+
+const logger = createLogger()
 
 async function run () {
-  const { license } = await generatesLicense.generate({ dryrun: true })
-  print.log('')
-  print.success('License:')
-  print.log('')
-  print.log(license.content)
+  const { license } = await generatesLicense.generate({ dryRun: true })
+  logger.log('')
+  logger.success('License:')
+  logger.log('')
+  logger.log(license.content)
 }
 
 run()

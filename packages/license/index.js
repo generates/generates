@@ -1,4 +1,4 @@
-const generates = require('@generates/core')
+import generates from '@generates/core'
 
 function noOp () {}
 
@@ -88,4 +88,4 @@ const ctx = {
   }
 }
 
-module.exports = generates.createGenerator(ctx)
+export const generator = generates.createGenerator(ctx)

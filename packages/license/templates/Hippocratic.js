@@ -1,4 +1,4 @@
-module.exports = ctx => `
+export default ctx => `
 ${ctx.join(
   ctx.data.project?.name && `${ctx.data.project.name} `,
   `Copyright (C) ${ctx.data.currentYear} ${ctx.data.licensor.description}`,
