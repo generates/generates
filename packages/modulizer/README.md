@@ -1,11 +1,11 @@
-# @ianwalter/dist
+# @ianwalter/modulizer
 > Simplify the generation of distribution files for your JavaScript library
 
 [![npm page][npmImage]][npmUrl]
 
 ## About
 
-`dist` is basically a wrapper around [Rollup][rollupUrl], inspired by
+This is basically a wrapper around [Rollup][rollupUrl], inspired by
 [microbundle][microbundleUrl], but is specific to the use-cases described below.
 
 ## Features
@@ -41,7 +41,7 @@ Apache 2.0 with Commons Clause - See [LICENSE][licenseUrl]
 
 &nbsp;
 
-Created by [Ian Walter](https://iankwalter.com)
+Created by [Ian Walter](https://ianwalter.dev)
 
 [npmImage]: https://img.shields.io/npm/v/@ianwalter/dist.svg
 [npmUrl]: https://www.npmjs.com/package/@ianwalter/dist
