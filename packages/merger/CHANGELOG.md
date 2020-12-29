@@ -1,5 +1,11 @@
 # @generates/merger
 
+## 0.1.2
+
+### Patch Changes
+
+- dcb8012: Fixing prototype pollution bug
+
 ## 0.1.1
 
 ### Patch Changes
