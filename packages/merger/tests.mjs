@@ -102,3 +102,9 @@ test('URL', t => {
   const three = merge({}, one, new URL('https://ianwalter.dev/'))
   t.expect(three).toStrictEqual(one)
 })
+
+test('Prototype polution', t => {
+  const obj = {}
+  merge(obj, JSON.parse('{"__proto__":{"polluted":"Yes! Its Polluted"}}'))
+  t.expect({}.polluted).toBe(undefined)
+})
