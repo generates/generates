@@ -104,7 +104,7 @@ test('URL', t => {
 })
 
 test('Prototype polution', t => {
-  const obj = {}
-  merge(obj, JSON.parse('{"__proto__":{"polluted":"Yes! Its Polluted"}}'))
+  const obj = Object.create()
+  merge(obj, JSON.parse('{"__proto__":{"polluted":"Yes! It\'s polluted"}}'))
   t.expect({}.polluted).toBe(undefined)
 })
