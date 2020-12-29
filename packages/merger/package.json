@@ -1,7 +1,7 @@
 {
   "name": "@generates/merger",
   "description": "A utility for recursively merging JavaScript Objects",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Ian Walter",
     "url": "https://ianwalter.dev"
@@ -17,7 +17,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/generates/generates.git",
