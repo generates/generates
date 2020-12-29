@@ -1,15 +1,12 @@
-const { test } = require('@ianwalter/bff')
-const merger = require('.')
-
-// Just to make sure it works when destructured as well.
-const { merge } = merger
+import { test } from '@ianwalter/bff'
+import { merge } from './index.mjs'
 
 test('shallow Objects get merged', t => {
   const obj1 = { count: 1, color: 'green' }
   const obj2 = { count: 1, shape: 'triangle' }
   const obj3 = { count: 1, size: 'large' }
   const shallow = { ...obj1, ...obj2, ...obj3 }
-  t.expect(merger.merge(obj1, obj2, obj3)).toStrictEqual(shallow)
+  t.expect(merge(obj1, obj2, obj3)).toStrictEqual(shallow)
 })
 
 test('nested Objects get merged', async t => {
@@ -87,7 +84,7 @@ test('Object with getters', t => {
 
 test('Object with a Date', t => {
   const date = new Date()
-  const merged = merger.merge({ user: 123 }, { date })
+  const merged = merge({ user: 123 }, { date })
   const json = JSON.stringify(merged)
   t.expect(JSON.parse(json)).toEqual({ user: 123, date: date.toISOString() })
 })

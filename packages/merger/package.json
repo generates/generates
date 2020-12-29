@@ -10,8 +10,8 @@
   "main": "dist/merger.js",
   "module": "dist/merger.mjs",
   "scripts": {
-    "build": "modulize",
-    "pretest": "modulize",
+    "build": "modulize index.mjs",
+    "pretest": "yarn build",
     "test": "bff"
   },
   "publishConfig": {
