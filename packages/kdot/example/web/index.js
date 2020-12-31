@@ -1,7 +1,10 @@
 import nrg from '@ianwalter/nrg'
 
-const app = nrg.createApp()
+const app = nrg.createApp({ log: { ndjson: false } })
 
-app.use(ctx => {
-  ctx.body = { environment: app.env }
+app.get('/', ctx => {
+  const { name, env } = ctx.cfg
+  ctx.body = { name, env, msg: process.env.APP_MSG }
 })
+
+app.serve()
