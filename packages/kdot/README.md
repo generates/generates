@@ -1,4 +1,4 @@
 # @generates/kdot
-> A tool for managing services on Kubernetes
+> A tool for managing apps on Kubernetes
 
 

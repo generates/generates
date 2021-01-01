@@ -28,38 +28,74 @@ export default async function consolidateConfig (input) {
       kind: 'Namespace',
       metadata: { name: cfg.namespace, labels }
     }
-    cfg.resources.push(namespace)
     namespaces.push(namespace)
   }
 
-  // Break services down into individual Kubernetes resources.
-  for (const [name, service] of Object.entries(cfg.services)) {
-    if (!service.disabled) {
-      // If a namespace isn't specified for the service, assign the top-level
+  // Break apps down into individual Kubernetes resources.
+  const deployments = []
+  // const services = []
+  for (const [name, app] of Object.entries(cfg.apps)) {
+    if (!app.disabled) {
+      // If a namespace isn't specified for the app, assign the top-level
       // namespace to it.
-      if (!service.namespace) service.namespace = cfg.namespace
+      if (!app.namespace) app.namespace = cfg.namespace
 
-      // If there is a service-level namespace that is different from the
+      // If there is a app-level namespace that is different from the
       // top-level namespace, add it to the resources array.
-      if (service.namespace !== cfg.namespace) {
+      if (app.namespace !== cfg.namespace) {
         const namespace = {
           kind: 'Namespace',
-          metadata: { name: service.namespace, labels }
+          metadata: { name: app.namespace, labels }
         }
-        cfg.resources.push(namespace)
         namespaces.push(namespace)
       }
+
+      const appLabel = { app: name }
+      const deployment = {
+        kind: 'Deployment',
+        metadata: {
+          name,
+          namespace: app.namespace,
+          labels: { ...labels, ...appLabel }
+        },
+        spec: {
+          replicas: app.replicas || 1,
+          selector: { matchLabels: appLabel },
+          template: {
+            metadata: { labels: { ...labels, ...appLabel } },
+            spec: {
+              containers: [
+                {
+                  name,
+                  image: app.image,
+                  ports: app.ports?.map(p => ({ containerPort: p.port }))
+                }
+              ]
+            }
+          }
+        }
+      }
+      deployments.push(deployment)
     }
   }
 
-  // Mark namespaces that already exist in the cluster.
   if (namespaces.length) {
     const { body: { items } } = await k8sApi.listNamespace()
     for (const namespace of namespaces) {
       const { name } = namespace.metadata
       const existing = items.find(n => n.metadata.name === name)
-      const clearLabels = { metadata: { labels: null } }
-      if (existing) merge(namespace, clearLabels, existing)
+      cfg.resources.push(existing || namespace)
+    }
+  }
+
+  if (deployments.length) {
+    const { body: { items } } = await k8sApi.listDeploymentForAllNamespaces()
+    for (const deployment of deployments) {
+      const { name, namespace } = deployment.metadata
+      const existing = items.find(d => {
+        return d.metadata.name === name && d.metadata.namespace === namespace
+      })
+      cfg.resources.push(existing || deployment)
     }
   }
 

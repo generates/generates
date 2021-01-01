@@ -1,6 +1,6 @@
 export default {
   namespace: 'example',
-  services: {
+  apps: {
     web: {
       image: 'ianwalter/example-web',
       ports: [

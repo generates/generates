@@ -4,7 +4,7 @@ import k8sApi from './lib/k8sApi.js'
 const logger = createLogger({ namespace: 'kdot', level: 'info' })
 
 /**
- * Add configured services to the cluster.
+ * Add configured apps to the cluster.
  */
 export async function apply (cfg) {
   for (const resource of cfg.resources) {
@@ -26,7 +26,7 @@ export async function apply (cfg) {
 }
 
 /**
- * Setup port forwarding between configured services in the cluster and the
+ * Setup port forwarding between configured apps in the cluster and the
  * local host.
  */
 export async function forward (cfg) {
@@ -34,7 +34,7 @@ export async function forward (cfg) {
 }
 
 /**
- * Add configured services to the cluster and port forward them to the local
+ * Add configured apps to the cluster and port forward them to the local
  * host.
  */
 export async function up (cfg) {
@@ -43,19 +43,19 @@ export async function up (cfg) {
 }
 
 /**
- * Stop port forwarding services in the cluster to the local host.
+ * Stop port forwarding apps in the cluster to the local host.
  */
 export async function unforward (cfg) {
 }
 
 /**
- * Remove ephemeral services from the cluster.
+ * Remove ephemeral apps from the cluster.
  */
 export async function remove (cfg) {
 }
 
 /**
- * Stop port forwarding and delete ephemeral services from the cluster.
+ * Stop port forwarding and delete ephemeral apps from the cluster.
  */
 export async function down (cfg) {
   await unforward(cfg)

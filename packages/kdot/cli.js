@@ -7,7 +7,7 @@ import consolidateConfig from './lib/consolidateConfig.js'
 
 const { _: [command], ...input } = cli({
   name: 'kdot',
-  description: 'A tool for managing services on Kubernetes',
+  description: 'A tool for managing apps on Kubernetes',
   usage: 'kdot [command] [options]',
   // FIXME: get this to work.
   commands: {
@@ -35,7 +35,7 @@ const { _: [command], ...input } = cli({
     },
     prompt: {
       alias: 'p',
-      description: 'Whether to show a prompt before applying services',
+      description: 'Whether to show a prompt before applying resources',
       default: true
     },
     failFast: {
