@@ -9,14 +9,14 @@ const logger = createLogger({ namespace: 'kdot', level: 'info' })
 export async function apply (cfg) {
   for (const resource of cfg.resources) {
     if (resource.kind === 'Namespace') {
-      if (!resource.exists) {
+      if (!resource.metadata.uid) {
         resource.metadata.createdBy = 'kdot'
         try {
           await k8sApi.createNamespace(resource)
-          logger.info('Created namespace:', resource.metadata.name)
+          logger.info('Created Namespace:', resource.metadata.name)
         } catch (err) {
           const level = cfg.input.failFast ? 'fatal' : 'error'
-          logger[level]('Failed to create namespace', resource.metadata.name)
+          logger[level]('Failed to create Namespace:', resource.metadata.name)
           logger.error(err.response?.body?.message)
           if (level === 'fatal') process.exit(1)
         }

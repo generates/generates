@@ -3,6 +3,7 @@ import { createLogger } from '@generates/logger'
 import k8sApi from './k8sApi.js'
 
 const logger = createLogger({ namespace: 'kdot', level: 'info' })
+const labels = { managedBy: 'kdot' }
 
 export default async function consolidateConfig (input) {
   const { default: base } = await import(input.base)
@@ -21,8 +22,14 @@ export default async function consolidateConfig (input) {
   cfg.resources = []
 
   // If there is a top-level namespace, add it to the resources array.
+  const namespaces = []
   if (cfg.namespace !== 'default') {
-    cfg.resources.push({ kind: 'Namespace', metadata: { name: cfg.namespace } })
+    const namespace = {
+      kind: 'Namespace',
+      metadata: { name: cfg.namespace, labels }
+    }
+    cfg.resources.push(namespace)
+    namespaces.push(namespace)
   }
 
   // Break services down into individual Kubernetes resources.
@@ -35,22 +42,24 @@ export default async function consolidateConfig (input) {
       // If there is a service-level namespace that is different from the
       // top-level namespace, add it to the resources array.
       if (service.namespace !== cfg.namespace) {
-        cfg.resources.push({
+        const namespace = {
           kind: 'Namespace',
-          metadata: { name: service.namespace }
-        })
+          metadata: { name: service.namespace, labels }
+        }
+        cfg.resources.push(namespace)
+        namespaces.push(namespace)
       }
     }
   }
 
   // Mark namespaces that already exist in the cluster.
-  const namespaces = cfg.resources.filter(r => r.kind === 'namespace')
   if (namespaces.length) {
     const { body: { items } } = await k8sApi.listNamespace()
     for (const namespace of namespaces) {
       const { name } = namespace.metadata
       const existing = items.find(n => n.metadata.name === name)
-      if (existing) merge(namespace, existing, { exists: true })
+      const clearLabels = { metadata: { labels: null } }
+      if (existing) merge(namespace, clearLabels, existing)
     }
   }
 
