@@ -16,6 +16,7 @@ export async function apply (cfg) {
 
   for (const service of cfg.services) {
     //
+    if (service.enabled) {}
   }
 }
 
