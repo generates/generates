@@ -1,13 +1,13 @@
 import { merge } from '@generates/merger'
 
-export default function consolidateConfig (cfg) {
-  // Load customization config.
-  const custom = {}
+export default async function consolidateConfig (input) {
+  const { default: base } = await import(input.base)
 
-  for (const base of cfg.services) {
-    // Consolidate the service configuration.
-    const service = merge(base, custom.service[base.name])
+  let custom
+  try {
+    const mod = await import(input.custom)
+    custom = mod.default
+  } catch (_) {}
 
-    //
-  }
+  return merge({}, base, custom, input.ext)
 }

@@ -1,22 +1,18 @@
 import k8s from '@kubernetes/client-node'
-import consolidateConfig from './lib/consolidateConfig.js'
 
 /**
  * Add configured services to the cluster.
  */
 export async function apply (cfg) {
-  // Make sure the config has been consolidated into the a single set of values.
-  consolidateConfig(cfg)
-
   if (cfg.namespace) {
     // Check if the namespace exists.
 
     // Create namespace if it doesn't exist.
   }
 
-  for (const service of cfg.services) {
+  for (const [name, resource] of Object.entries(cfg.resources)) {
     //
-    if (service.enabled) {}
+    for
   }
 }
 
@@ -25,8 +21,7 @@ export async function apply (cfg) {
  * local host.
  */
 export async function forward (cfg) {
-  // Make sure the config has been consolidated into the a single set of values.
-  consolidateConfig(cfg)
+
 }
 
 /**
@@ -42,16 +37,12 @@ export async function up (cfg) {
  * Stop port forwarding services in the cluster to the local host.
  */
 export async function unforward (cfg) {
-  // Make sure the config has been consolidated into the a single set of values.
-  consolidateConfig(cfg)
 }
 
 /**
  * Remove ephemeral services from the cluster.
  */
-export async function unapply (cfg) {
-  // Make sure the config has been consolidated into the a single set of values.
-  consolidateConfig(cfg)
+export async function remove (cfg) {
 }
 
 /**
@@ -59,5 +50,5 @@ export async function unapply (cfg) {
  */
 export async function down (cfg) {
   await unforward(cfg)
-  await unapply(cfg)
+  await remove(cfg)
 }
