@@ -1,18 +1,27 @@
-import k8s from '@kubernetes/client-node'
+import { createLogger } from '@generates/logger'
+import k8sApi from './lib/k8sApi.js'
+
+const logger = createLogger({ namespace: 'kdot', level: 'info' })
 
 /**
  * Add configured services to the cluster.
  */
 export async function apply (cfg) {
-  if (cfg.namespace) {
-    // Check if the namespace exists.
-
-    // Create namespace if it doesn't exist.
-  }
-
-  for (const [name, resource] of Object.entries(cfg.resources)) {
-    //
-    for
+  for (const resource of cfg.resources) {
+    if (resource.kind === 'Namespace') {
+      if (!resource.exists) {
+        resource.metadata.createdBy = 'kdot'
+        try {
+          await k8sApi.createNamespace(resource)
+          logger.info('Created namespace:', resource.metadata.name)
+        } catch (err) {
+          const level = cfg.input.failFast ? 'fatal' : 'error'
+          logger[level]('Failed to create namespace', resource.metadata.name)
+          logger.error(err.response?.body?.message)
+          if (level === 'fatal') process.exit(1)
+        }
+      }
+    }
   }
 }
 

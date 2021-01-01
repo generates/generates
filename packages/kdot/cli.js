@@ -1,5 +1,8 @@
+#!/usr/bin/env node
+
+import path from 'path'
 import cli from '@generates/cli'
-import { up, forward, unforward, down } from './index.js'
+import * as kdot from './index.js'
 import consolidateConfig from './lib/consolidateConfig.js'
 
 const { _: [command], ...input } = cli({
@@ -34,19 +37,33 @@ const { _: [command], ...input } = cli({
       alias: 'p',
       description: 'Whether to show a prompt before applying services',
       default: true
+    },
+    failFast: {
+      alias: 'f',
+      description: 'Specifies whether to exit on the first failure',
+      default: false
     }
   }
 })
+
+// Resolve the file paths for the base and custom configuration files relatives
+// to the current working directory so they can be imported as modules.
+input.base = path.resolve(input.base)
+input.custom = path.resolve(input.custom)
 
 // Make sure the config has been consolidated into the a single set of values.
 const cfg = await consolidateConfig(input)
 
 if (command === 'up') {
-  up(cfg)
+  kdot.up(cfg)
+} else if (command === 'apply') {
+  kdot.apply(cfg)
 } else if (command === 'fwd') {
-  forward(cfg)
+  kdot.forward(cfg)
 } else if (command === 'unfwd') {
-  unforward(cfg)
+  kdot.unforward(cfg)
+} else if (command === 'remove') {
+  kdot.remove(cfg)
 } else if (command === 'down') {
-  down(cfg)
+  kdot.down(cfg)
 }
