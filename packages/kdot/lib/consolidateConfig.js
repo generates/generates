@@ -33,7 +33,7 @@ export default async function consolidateConfig (input) {
 
   // Break apps down into individual Kubernetes resources.
   const deployments = []
-  // const services = []
+  const services = []
   for (const [name, app] of Object.entries(cfg.apps)) {
     if (!app.disabled) {
       // If a namespace isn't specified for the app, assign the top-level
@@ -83,6 +83,21 @@ export default async function consolidateConfig (input) {
         }
       }
       deployments.push(deployment)
+
+      if (app.ports?.length) {
+        const service = {
+          kind: 'Service',
+          metadata: {
+            name,
+            namespace: app.namespace,
+            labels
+          },
+          spec: {
+            selector: appLabel
+          }
+        }
+        services.push(service)
+      }
     }
   }
 
@@ -99,10 +114,21 @@ export default async function consolidateConfig (input) {
     const { body: { items } } = await apps.listDeploymentForAllNamespaces()
     for (const deployment of deployments) {
       const { name, namespace } = deployment.metadata
-      const existing = items.find(d => {
-        return d.metadata.name === name && d.metadata.namespace === namespace
+      const existing = items.find(i => {
+        return i.metadata.name === name && i.metadata.namespace === namespace
       })
       cfg.resources.push(merge(existing, deployment))
+    }
+  }
+
+  if (services.length) {
+    const { body: { items } } = await apps.listServiceForAllNamespaces()
+    for (const service of services) {
+      const { name, namespace } = service.metadata
+      const existing = items.find(i => {
+        return i.metadata.name === name && i.metadata.namespace === namespace
+      })
+      cfg.resources.push(merge(existing, service))
     }
   }
 

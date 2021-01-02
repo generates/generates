@@ -47,7 +47,9 @@ export async function apply (cfg) {
  * local host.
  */
 export async function forward (cfg) {
+  // for (const resource of cfg.resources.filter(r => r.kind === 'Service')) {
 
+  // }
 }
 
 /**
