@@ -1,5 +1,5 @@
 import { createLogger } from '@generates/logger'
-import { core, apps } from './lib/k8sApi.js'
+import { core, apps, fwd } from './lib/k8sApi.js'
 
 const logger = createLogger({ namespace: 'kdot', level: 'info' })
 
@@ -32,6 +32,23 @@ export async function apply (cfg) {
           await apps.createNamespacedDeployment(namespace, resource)
           logger.info('Created Deployment:', name)
         }
+      } else if (resource.kind === 'Service') {
+        if (uid) {
+          await core.patchNamespacedService(
+            name,
+            namespace,
+            resource,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            { headers: { 'Content-Type': 'application/merge-patch+json' } }
+          )
+          logger.info('Updated Service:', name)
+        } else {
+          await core.createNamespacedService(namespace, resource)
+          logger.info('Created Service:', name)
+        }
       }
     } catch (err) {
       const level = cfg.input.failFast ? 'fatal' : 'error'
@@ -47,9 +64,18 @@ export async function apply (cfg) {
  * local host.
  */
 export async function forward (cfg) {
-  // for (const resource of cfg.resources.filter(r => r.kind === 'Service')) {
+  try {
+    for (const resource of cfg.resources.filter(r => r.kind === 'Service')) {
+      const { name, namespace } = resource.metadata
+      const ports = resource.spec.ports.map(p => p.port)
 
-  // }
+      // TODO: Find a pod from the service and port forward to it.
+
+      await fwd.portForward(namespace, name, ports)
+    }
+  } catch (err) {
+    logger.error(err)
+  }
 }
 
 /**

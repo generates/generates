@@ -93,7 +93,8 @@ export default async function consolidateConfig (input) {
             labels
           },
           spec: {
-            selector: appLabel
+            selector: appLabel,
+            ports: app.ports.map(p => ({ ...p, targetPort: p.containerPort }))
           }
         }
         services.push(service)
@@ -117,18 +118,18 @@ export default async function consolidateConfig (input) {
       const existing = items.find(i => {
         return i.metadata.name === name && i.metadata.namespace === namespace
       })
-      cfg.resources.push(merge(existing, deployment))
+      cfg.resources.push(merge({}, existing, deployment))
     }
   }
 
   if (services.length) {
-    const { body: { items } } = await apps.listServiceForAllNamespaces()
+    const { body: { items } } = await core.listServiceForAllNamespaces()
     for (const service of services) {
       const { name, namespace } = service.metadata
       const existing = items.find(i => {
         return i.metadata.name === name && i.metadata.namespace === namespace
       })
-      cfg.resources.push(merge(existing, service))
+      cfg.resources.push(merge({}, existing, service))
     }
   }
 
