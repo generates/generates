@@ -1,6 +1,6 @@
 import { merge } from '@generates/merger'
 import { createLogger } from '@generates/logger'
-import k8sApi from './k8sApi.js'
+import { core, apps } from './k8sApi.js'
 
 const logger = createLogger({ namespace: 'kdot', level: 'info' })
 const labels = { managedBy: 'kdot' }
@@ -51,6 +51,12 @@ export default async function consolidateConfig (input) {
       }
 
       const appLabel = { app: name }
+
+      let env
+      if (app.env) {
+        env = Object.entries(app.env).map(([name, value]) => ({ name, value }))
+      }
+
       const deployment = {
         kind: 'Deployment',
         metadata: {
@@ -68,7 +74,8 @@ export default async function consolidateConfig (input) {
                 {
                   name,
                   image: app.image,
-                  ports: app.ports?.map(p => ({ containerPort: p.port }))
+                  ports: app.ports?.map(p => ({ containerPort: p.port })),
+                  env
                 }
               ]
             }
@@ -80,7 +87,7 @@ export default async function consolidateConfig (input) {
   }
 
   if (namespaces.length) {
-    const { body: { items } } = await k8sApi.listNamespace()
+    const { body: { items } } = await core.listNamespace()
     for (const namespace of namespaces) {
       const { name } = namespace.metadata
       const existing = items.find(n => n.metadata.name === name)
@@ -89,13 +96,13 @@ export default async function consolidateConfig (input) {
   }
 
   if (deployments.length) {
-    const { body: { items } } = await k8sApi.listDeploymentForAllNamespaces()
+    const { body: { items } } = await apps.listDeploymentForAllNamespaces()
     for (const deployment of deployments) {
       const { name, namespace } = deployment.metadata
       const existing = items.find(d => {
         return d.metadata.name === name && d.metadata.namespace === namespace
       })
-      cfg.resources.push(existing || deployment)
+      cfg.resources.push(merge(existing, deployment))
     }
   }
 
