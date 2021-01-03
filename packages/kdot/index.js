@@ -2,7 +2,7 @@ import net from 'net'
 import { createLogger } from '@generates/logger'
 import killable from 'killable'
 import { oneLine } from 'common-tags'
-import { core, apps, fwd } from './lib/k8sApi.js'
+import { core, apps, pfwd } from './lib/k8sApi.js'
 
 const logger = createLogger({ namespace: 'kdot', level: 'info' })
 
@@ -30,7 +30,7 @@ export async function apply (cfg) {
             undefined,
             { headers: { 'Content-Type': 'application/merge-patch+json' } }
           )
-          logger.info('Updated Deployment:', name)
+          logger.success('Updated Deployment:', name)
         } else {
           await apps.createNamespacedDeployment(namespace, resource)
           logger.info('Created Deployment:', name)
@@ -66,7 +66,7 @@ export async function apply (cfg) {
  * Setup port forwarding between configured apps in the cluster and the
  * local host.
  */
-export async function forward (cfg) {
+export async function fwd (cfg) {
   try {
     for (const resource of cfg.resources.filter(r => r.kind === 'Service')) {
       const { name, namespace } = resource.metadata
@@ -85,7 +85,7 @@ export async function forward (cfg) {
       for (const p of resource.spec.ports) {
         await new Promise((resolve, reject) => {
           const server = net.createServer(socket => {
-            fwd.portForward(
+            pfwd.portForward(
               namespace,
               pod.metadata.name,
               [p.targetPort],
@@ -123,25 +123,54 @@ export async function forward (cfg) {
  */
 export async function up (cfg) {
   await apply(cfg)
-  await forward(cfg)
-}
-
-/**
- * Stop port forwarding apps in the cluster to the local host.
- */
-export async function unforward (cfg) {
+  await fwd(cfg)
 }
 
 /**
  * Remove ephemeral apps from the cluster.
  */
-export async function remove (cfg) {
-}
+export async function del (cfg) {
+  if (cfg.namespace !== 'default') {
+    await core.deleteNamespace(
+      cfg.namespace,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      'Foreground'
+    )
+    logger.success('Deleted resources in namespace:', cfg.namespace)
+  }
 
-/**
- * Stop port forwarding and delete ephemeral apps from the cluster.
- */
-export async function down (cfg) {
-  await unforward(cfg)
-  await remove(cfg)
+  // await Promise.allSettled(cfg.resources.map(async resource => {
+  //   const { name, namespace } = resource.metadata
+  //   try {
+  //     if (resource.kind === 'Deplyoment') {
+  //       await apps.deleteNamespacedDeployment(
+  //         name,
+  //         namespace,
+  //         undefined,
+  //         undefined,
+  //         undefined,
+  //         undefined,
+  //         undefined,
+  //         'Foreground'
+  //       )
+  //       logger.success('Removed Deployment:', name)
+  //     } else if (resource.kind === 'Service') {
+  //       await core.deleteNamespacedService(name, namespace)
+  //       logger.success('Removed Service:', name)
+  //     }
+  //   } catch (err) {
+  //     logger.error(err)
+  //   }
+  // }))
+
+  // await Promise.allSettled(cfg.namespaces.map(async ns => {
+  //   try {
+  //     await core.deleteNamespace(ns.metadata.name)
+  //   } catch (err) {
+  //     logger.error(err)
+  //   }
+  // }))
 }

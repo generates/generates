@@ -15,10 +15,9 @@ const { _: [command], ...input } = cli({
     fwd: {
       aliases: ['forward']
     },
-    unfwd: {
-      aliases: ['unforward']
-    },
-    down: {}
+    del: {
+      aliases: ['delete']
+    }
   },
   options: {
     base: {
@@ -59,11 +58,7 @@ if (command === 'up') {
 } else if (command === 'apply') {
   kdot.apply(cfg)
 } else if (command === 'fwd') {
-  kdot.forward(cfg)
-} else if (command === 'unfwd') {
-  kdot.unforward(cfg)
-} else if (command === 'remove') {
-  kdot.remove(cfg)
-} else if (command === 'down') {
-  kdot.down(cfg)
+  kdot.fwd(cfg)
+} else if (command === 'del') {
+  kdot.del(cfg)
 }

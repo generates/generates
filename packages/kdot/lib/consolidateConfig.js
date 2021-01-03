@@ -23,13 +23,13 @@ export default async function consolidateConfig (input) {
   cfg.resources = []
 
   // If there is a top-level namespace, add it to the resources array.
-  const namespaces = []
+  cfg.namespaces = []
   if (cfg.namespace !== 'default') {
     const namespace = {
       kind: 'Namespace',
       metadata: { name: cfg.namespace, labels }
     }
-    namespaces.push(namespace)
+    cfg.namespaces.push(namespace)
   }
 
   // Break apps down into individual Kubernetes resources.
@@ -48,7 +48,7 @@ export default async function consolidateConfig (input) {
           kind: 'Namespace',
           metadata: { name: app.namespace, labels }
         }
-        namespaces.push(namespace)
+        cfg.namespaces.push(namespace)
       }
 
       const appLabel = { app: name }
@@ -103,9 +103,9 @@ export default async function consolidateConfig (input) {
     }
   }
 
-  if (namespaces.length) {
+  if (cfg.namespaces.length) {
     const { body: { items } } = await core.listNamespace()
-    for (const namespace of namespaces) {
+    for (const namespace of cfg.namespaces) {
       const { name } = namespace.metadata
       const existing = items.find(n => n.metadata.name === name)
       cfg.resources.push(existing || namespace)
