@@ -4,6 +4,7 @@ import { core, apps } from './k8sApi.js'
 
 const logger = createLogger({ namespace: 'kdot', level: 'info' })
 const labels = { managedBy: 'kdot' }
+const toServicePort = p => ({ port: p.localPort, targetPort: p.port })
 
 export default async function consolidateConfig (input) {
   const { default: base } = await import(input.base)
@@ -94,7 +95,7 @@ export default async function consolidateConfig (input) {
           },
           spec: {
             selector: appLabel,
-            ports: app.ports.map(p => ({ ...p, targetPort: p.containerPort }))
+            ports: app.ports.map(toServicePort)
           }
         }
         services.push(service)

@@ -1,4 +1,7 @@
+import net from 'net'
 import { createLogger } from '@generates/logger'
+import killable from 'killable'
+import { oneLine } from 'common-tags'
 import { core, apps, fwd } from './lib/k8sApi.js'
 
 const logger = createLogger({ namespace: 'kdot', level: 'info' })
@@ -67,11 +70,47 @@ export async function forward (cfg) {
   try {
     for (const resource of cfg.resources.filter(r => r.kind === 'Service')) {
       const { name, namespace } = resource.metadata
-      const ports = resource.spec.ports.map(p => p.port)
 
       // TODO: Find a pod from the service and port forward to it.
 
-      await fwd.portForward(namespace, name, ports)
+      const { body: { items: [pod] } } = await core.listNamespacedPod(
+        namespace,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        `app=${name}`
+      )
+
+      for (const p of resource.spec.ports) {
+        await new Promise((resolve, reject) => {
+          const server = net.createServer(socket => {
+            fwd.portForward(
+              namespace,
+              pod.metadata.name,
+              [p.targetPort],
+              socket,
+              undefined,
+              socket
+            )
+          })
+
+          killable(server)
+
+          server.on('error', err => {
+            server.kill()
+            reject(err)
+          })
+
+          server.listen(p.port, 'localhost', () => {
+            logger.success(oneLine`
+              Forwarding http://localhost:${p.port} to
+              ${pod.metadata.name}:${p.targetPort}
+            `)
+            resolve()
+          })
+        })
+      }
     }
   } catch (err) {
     logger.error(err)
