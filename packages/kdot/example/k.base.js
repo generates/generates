@@ -2,7 +2,7 @@ export default {
   namespace: 'example',
   apps: {
     web: {
-      image: 'registry.digitalocean.com/anchormap/test',
+      image: 'ianwalter/example',
       ports: [
         { port: 8000, localPort: 9000 }
       ],

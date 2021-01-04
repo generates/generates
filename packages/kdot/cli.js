@@ -15,6 +15,9 @@ const { _: [command], ...input } = cli({
     fwd: {
       aliases: ['forward']
     },
+    log: {
+      aliases: ['logs']
+    },
     del: {
       aliases: ['delete']
     }
@@ -53,12 +56,24 @@ input.custom = path.resolve(input.custom)
 // Make sure the config has been consolidated into the a single set of values.
 const cfg = await consolidateConfig(input)
 
-if (command === 'up') {
-  kdot.up(cfg)
+if (command === 'set') {
+  kdot.set(cfg)
+} else if (command === 'build') {
+  kdot.build(cfg)
 } else if (command === 'apply') {
   kdot.apply(cfg)
 } else if (command === 'fwd') {
   kdot.fwd(cfg)
+} else if (command === 'log') {
+  kdot.log(cfg)
+} else if (command === 'start') {
+  kdot.start(cfg)
+} else if (command === 'stop') {
+  kdot.stop(cfg)
+} else if (command === 'up') {
+  kdot.up(cfg)
+} else if (command === 'down') {
+  kdot.down(cfg)
 } else if (command === 'del') {
   kdot.del(cfg)
 }

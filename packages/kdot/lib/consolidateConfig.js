@@ -33,8 +33,8 @@ export default async function consolidateConfig (input) {
   }
 
   // Break apps down into individual Kubernetes resources.
-  const deployments = []
-  const services = []
+  cfg.deployments = []
+  cfg.services = []
   for (const [name, app] of Object.entries(cfg.apps)) {
     if (!app.disabled) {
       // If a namespace isn't specified for the app, assign the top-level
@@ -83,7 +83,7 @@ export default async function consolidateConfig (input) {
           }
         }
       }
-      deployments.push(deployment)
+      cfg.deployments.push(deployment)
 
       if (app.ports?.length) {
         const service = {
@@ -98,7 +98,7 @@ export default async function consolidateConfig (input) {
             ports: app.ports.map(toServicePort)
           }
         }
-        services.push(service)
+        cfg.services.push(service)
       }
     }
   }
@@ -112,9 +112,9 @@ export default async function consolidateConfig (input) {
     }
   }
 
-  if (deployments.length) {
+  if (cfg.deployments.length) {
     const { body: { items } } = await apps.listDeploymentForAllNamespaces()
-    for (const deployment of deployments) {
+    for (const deployment of cfg.deployments) {
       const { name, namespace } = deployment.metadata
       const existing = items.find(i => {
         return i.metadata.name === name && i.metadata.namespace === namespace
@@ -123,9 +123,9 @@ export default async function consolidateConfig (input) {
     }
   }
 
-  if (services.length) {
+  if (cfg.services.length) {
     const { body: { items } } = await core.listServiceForAllNamespaces()
-    for (const service of services) {
+    for (const service of cfg.services) {
       const { name, namespace } = service.metadata
       const existing = items.find(i => {
         return i.metadata.name === name && i.metadata.namespace === namespace
