@@ -1,0 +1,51 @@
+{
+  "name": "@generates/package-updater",
+  "description": "Conveniently update a project's package.json file",
+  "version": "0.0.2",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "module": "index.js",
+  "scripts": {
+    "test": "bff -c 1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/update-package.git"
+  },
+  "keywords": [
+    "update",
+    "merge",
+    "package.json"
+  ],
+  "bugs": {
+    "url": "https://github.com/ianwalter/update-package/issues"
+  },
+  "homepage": "https://github.com/ianwalter/update-package#readme",
+  "dependencies": {
+    "@generates/merger": "^6.0.0",
+    "read-pkg-up": "^6.0.0",
+    "write-pkg": "^4.0.0"
+  },
+  "devDependencies": {
+    "@ianwalter/bff": "^10.0.1",
+    "@ianwalter/renovate-config": "^1.4.2",
+    "execa": "^5.0.0"
+  },
+  "bff": {
+    "plugins": [
+      "tests/config"
+    ]
+  },
+  "renovate": {
+    "extends": [
+      "@ianwalter"
+    ]
+  }
+}

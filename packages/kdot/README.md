@@ -13,16 +13,17 @@
    - `down` Scale down pods to 0 replicas
    - `del` Delete all namespaced resources
 2. A staging environment:
-   - `set --cfg.apps.[app name].image [tag]` Update an app’s Docker image tag
+   - `set apps.[app name].image.tag [tag]` Update an app’s Docker image tag
    - `build` Setup buildkit if necessary, build app Docker images, and push to a registry if configured
    - `apply` Create/update resources
+   - Commit changes to the package.json file made with the set command
 3. A CI (ephemeral) environment:
-   - `set --cfg.namespace [namespace]` Set a unique namespace for the run
-   - `start --detach` Build images, create resources, forward ports in the background, and write logs to files
+   - `set namespace [namespace]` Set a unique namespace for the run
+   - `start --detach` Build images, create resources, forward ports in the background, and write logs to files in a unique, run-specific namespace
    - `stop` Stop forwarding ports and writing logs
    - `del` Delete all namespaced resources
 4. A preview (ephemeral) environment:
-   - `set --cfg.namespace [namespace]` Set a unique namespace for the env
+   - `set namespace [namespace]` Set a unique namespace for the env
    - `build --no-push`  Setup buildkit if necessary and build app Docker images
    - `apply` Create/update resources
    - `del` Delete all namespaced resources

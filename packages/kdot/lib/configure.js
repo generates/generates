@@ -6,16 +6,18 @@ const logger = createLogger({ namespace: 'kdot', level: 'info' })
 const labels = { managedBy: 'kdot' }
 const toServicePort = p => ({ port: p.localPort, targetPort: p.port })
 
-export default async function consolidateConfig (input) {
-  const { default: base } = await import(input.base)
-
+export default async function configure (input) {
   let custom
   try {
+    // TODO: handle array.
     const mod = await import(input.custom)
     custom = mod.default
-  } catch (_) {}
+  } catch (err) {
+    logger.error('Error importing custom configuration', err)
+  }
 
-  const cfg = merge({ namespace: 'default', input }, base, custom, input.ext)
+  const { base, ext, namespace = 'default' } = input
+  const cfg = merge({ namespace, input, base, custom }, base, custom, ext)
 
   logger.debug('Initial configuration', cfg)
 

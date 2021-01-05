@@ -3,12 +3,12 @@
 import path from 'path'
 import cli from '@generates/cli'
 import * as kdot from './index.js'
-import consolidateConfig from './lib/consolidateConfig.js'
+import configure from './lib/configure.js'
 
-const { _: [command], ...input } = cli({
+const { _: [command, ...args], packageJson, ...input } = cli({
   name: 'kdot',
   description: 'A tool for managing apps on Kubernetes',
-  usage: 'kdot [command] [options]',
+  usage: 'kdot [command] [apps] [options]',
   // FIXME: get this to work.
   commands: {
     up: {},
@@ -23,10 +23,6 @@ const { _: [command], ...input } = cli({
     }
   },
   options: {
-    base: {
-      alias: 'b',
-      default: 'k.base.js'
-    },
     custom: {
       alias: 'c',
       default: 'k.custom.js'
@@ -48,13 +44,21 @@ const { _: [command], ...input } = cli({
   }
 })
 
-// Resolve the file paths for the base and custom configuration files relatives
-// to the current working directory so they can be imported as modules.
-input.base = path.resolve(input.base)
-input.custom = path.resolve(input.custom)
+//
+input.args = args
 
-// Make sure the config has been consolidated into the a single set of values.
-const cfg = await consolidateConfig(input)
+// Use the "kdot" property in the project's package.json as the base
+// configuration.
+input.base = packageJson.kdot
+
+// Resolve the file paths for the custom configuration files relative to the
+// current working directory so they can be imported as modules.
+input.custom = Array.isArray(input.custom)
+  ? input.custom.map(f => path.resolve(f))
+  : path.resolve(input.custom)
+
+// Consolidate the configuration into a single set of values.
+const cfg = await configure(input)
 
 if (command === 'set') {
   kdot.set(cfg)

@@ -1,0 +1,9 @@
+{
+  "name": "@ianwalter/example",
+  "release": {
+    "registries": [
+      "npm",
+      "github"
+    ]
+  }
+}
