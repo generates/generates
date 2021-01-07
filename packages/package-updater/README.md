@@ -4,7 +4,7 @@
 ## Installation
 
 ```console
-yarn add @ianwalter/update-package
+yarn add @generates/package-updater
 ```
 
 ## License
