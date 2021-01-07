@@ -1,4 +1,4 @@
-# @ianwalter/dot
+# @generates/dotter
 > Work with nested JavaScript Objects and dot path strings
 
 [![npm page][npmImage]][npmUrl]

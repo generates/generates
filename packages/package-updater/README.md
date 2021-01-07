@@ -9,11 +9,11 @@ yarn add @ianwalter/update-package
 
 ## License
 
-Apache 2.0 with Commons Clause - See [LICENSE][licenseUrl]
+Hippocratic License - See [LICENSE][licenseUrl]
 
 &nbsp;
 
-Created by [Ian Walter](https://iankwalter.com)
+Created by [Ian Walter](https://ianwalter.dev)
 
 [npmImage]: https://img.shields.io/npm/v/@ianwalter/update-package.svg
 [npmUrl]: https://www.npmjs.com/package/@ianwalter/update-package
