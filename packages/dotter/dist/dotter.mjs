@@ -85,7 +85,4 @@ function match (a = '', b = '') {
   return true
 }
 
-var index = { get, set, del, has, match };
-
-export default index;
 export { del, get, has, match, set };

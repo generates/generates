@@ -17,7 +17,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ianwalter/update-package.git"
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/package-updater"
   },
   "keywords": [
     "update",
@@ -25,9 +26,13 @@
     "package.json"
   ],
   "bugs": {
-    "url": "https://github.com/ianwalter/update-package/issues"
+    "url": "https://github.com/generates/generates/issues"
   },
-  "homepage": "https://github.com/ianwalter/update-package#readme",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ianwalter"
+  },
+  "homepage": "https://github.com/generates/generates/blob/main/packages/package-updater#readme",
   "dependencies": {
     "@generates/merger": "^0.1.2",
     "read-pkg-up": "^6.0.0",
@@ -35,17 +40,18 @@
   },
   "devDependencies": {
     "@ianwalter/bff": "^10.0.1",
-    "@ianwalter/renovate-config": "^1.4.2",
     "execa": "^5.0.0"
   },
   "bff": {
     "plugins": [
-      "tests/config"
+      "tests/config.js"
     ]
   },
-  "renovate": {
-    "extends": [
-      "@ianwalter"
+  "release": {
+    "logLevel": "debug",
+    "registries": [
+      "foo",
+      "bar"
     ]
   }
 }

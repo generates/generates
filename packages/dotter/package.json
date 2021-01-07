@@ -7,9 +7,10 @@
     "name": "Ian Walter",
     "url": "https://ianwalter.dev"
   },
-  "main": "dist/dot.js",
-  "module": "dist/dot.m.js",
+  "main": "dist/dotter.js",
+  "module": "dist/dotter.mjs",
   "scripts": {
+    "build": "modulize",
     "pretest": "modulize",
     "test": "bff"
   },

@@ -89,9 +89,6 @@ function match (a = '', b = '') {
   return true
 }
 
-var index = { get, set, del, has, match };
-
-exports.default = index;
 exports.del = del;
 exports.get = get;
 exports.has = has;
