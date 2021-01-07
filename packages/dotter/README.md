@@ -12,7 +12,7 @@ Sorhus. The difference being that this offers a ESM entrypoint as well.
 ## Installation
 
 ```console
-yarn add @ianwalter/dot
+yarn add @generates/dotter
 ```
 
 ## License
