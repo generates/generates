@@ -53,15 +53,19 @@ input.base = packageJson.kdot
 
 // Resolve the file paths for the custom configuration files relative to the
 // current working directory so they can be imported as modules.
-input.custom = Array.isArray(input.custom)
-  ? input.custom.map(f => path.resolve(f))
-  : path.resolve(input.custom)
+if (input.custom) {
+  input.custom = Array.isArray(input.custom)
+    ? input.custom.map(f => path.resolve(f))
+    : path.resolve(input.custom)
+}
 
 // Consolidate the configuration into a single set of values.
 const cfg = await configure(input)
 
 if (command === 'set') {
   kdot.set(cfg)
+} else if (command === 'get') {
+  kdot.get(cfg)
 } else if (command === 'build') {
   kdot.build(cfg)
 } else if (command === 'apply') {

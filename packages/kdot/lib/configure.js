@@ -8,12 +8,14 @@ const toServicePort = p => ({ port: p.localPort, targetPort: p.port })
 
 export default async function configure (input) {
   let custom
-  try {
-    // TODO: handle array.
-    const mod = await import(input.custom)
-    custom = mod.default
-  } catch (err) {
-    logger.error('Error importing custom configuration', err)
+  if (input.custom) {
+    try {
+      // TODO: handle array.
+      const mod = await import(input.custom)
+      custom = mod.default
+    } catch (err) {
+      logger.error('Error importing custom configuration', err)
+    }
   }
 
   const { base, ext, namespace = 'default' } = input

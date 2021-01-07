@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/ianwalter/update-package#readme",
   "dependencies": {
-    "@generates/merger": "^6.0.0",
+    "@generates/merger": "^0.1.2",
     "read-pkg-up": "^6.0.0",
     "write-pkg": "^4.0.0"
   },

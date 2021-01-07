@@ -8,7 +8,10 @@
           "name": "ianwalter/example"
         },
         "ports": [
-          { "port": 8000, "localPort": 9000 }
+          {
+            "port": 8000,
+            "localPort": 9000
+          }
         ],
         "env": {
           "PORT": "8000",
