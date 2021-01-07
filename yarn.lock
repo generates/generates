@@ -429,6 +429,31 @@
     tiny-glob "^0.2.8"
     workerpool "^6.0.3"
 
+"@ianwalter/bff@^10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@ianwalter/bff/-/bff-10.0.1.tgz#d631e3e2f182ef1e9b94d18221a7d1a48574d7db"
+  integrity sha512-XYwJSBgaFyIzqx9o7gf1s/LcEL/iUhIWwwPqAAjFbPrBf/N86c6kFksZWE6KlTxGrxNgWpu4bJPD7x0lztx8oQ==
+  dependencies:
+    "@generates/logger" "^0.0.9"
+    "@generates/merger" "^0.1.2"
+    "@ianwalter/cli" "^4.1.0"
+    "@ianwalter/clone" "^6.0.1"
+    "@ianwalter/cloneable" "^2.0.0"
+    "@ianwalter/sleep" "^0.0.1"
+    "@ianwalter/subpub" "^3.0.0"
+    "@ianwalter/timer" "^2.0.2"
+    array-shuffle "^2.0.0"
+    callsites "^3.1.0"
+    camaro "^6.0.2"
+    common-tags "^1.8.0"
+    esm-to-cjs "^1.2.0"
+    expect "^26.6.2"
+    jest-snapshot "^26.6.2"
+    junit-report-builder "^2.0.0"
+    p-series "^2.1.0"
+    tiny-glob "^0.2.8"
+    workerpool "^6.0.3"
+
 "@ianwalter/chromafi@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@ianwalter/chromafi/-/chromafi-1.0.1.tgz#6df9f38719cbfea689e820e04c5d292da38f15ca"
@@ -617,7 +642,7 @@
     marked-terminal "^4.1.0"
     strip-ansi "^6.0.0"
 
-"@ianwalter/renovate-config@^1.4.0":
+"@ianwalter/renovate-config@^1.4.0", "@ianwalter/renovate-config@^1.4.2":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@ianwalter/renovate-config/-/renovate-config-1.4.2.tgz#f8044e1ee89adcaa193aff45618f86ff6f38c977"
   integrity sha512-zsqqCE28FwCvBbXmDQgCwnGa5R1HEiNaMZD4QUwdVuycMT1xtv1TDAj4YiP878M4jgiU83iY1BdUXtjkpxu/Tw==
@@ -2627,7 +2652,7 @@ globrex@^0.1.2:
   resolved "https://registry.yarnpkg.com/globrex/-/globrex-0.1.2.tgz#dd5d9ec826232730cd6793a5e33a9302985e6098"
   integrity sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.5, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
+graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.5, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
@@ -3015,7 +3040,7 @@ is-obj@^2.0.0:
   resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-2.0.0.tgz#473fb05d973705e3fd9620545018ca8e22ef4982"
   integrity sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==
 
-is-plain-obj@^1.1.0:
+is-plain-obj@^1.0.0, is-plain-obj@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
   integrity sha1-caUMhCnfync8kqOQpKA7OfzVHT4=
@@ -4869,6 +4894,13 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
+sort-keys@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-2.0.0.tgz#658535584861ec97d730d6cf41822e1f56684128"
+  integrity sha1-ZYU1WEhh7JfXMNbPQYIuH1ZoQSg=
+  dependencies:
+    is-plain-obj "^1.0.0"
+
 source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.3.tgz#190866bece7553e1f8f267a2ee82c606b5509a1a"
@@ -5302,6 +5334,11 @@ type-fest@^0.20.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
+type-fest@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.4.1.tgz#8bdf77743385d8a4f13ba95f610f5ccd68c728f8"
+  integrity sha512-IwzA/LSfD2vC1/YDYMv/zHP4rDF1usCwllsDpbolT3D4fUepIO7f9K70jjmUewU/LmGUKJcwcVtDCpnKk4BPMw==
+
 type-fest@^0.5.0:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.5.2.tgz#d6ef42a0356c6cd45f49485c3b6281fc148e48a2"
@@ -5538,6 +5575,36 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
+
+write-file-atomic@^2.4.2:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/write-file-atomic/-/write-file-atomic-2.4.3.tgz#1fd2e9ae1df3e75b8d8c367443c692d4ca81f481"
+  integrity sha512-GaETH5wwsX+GcnzhPgKcKjJ6M2Cq3/iZp1WyY/X1CSqrW+jVNM9Y7D8EC2sM4ZG/V8wZlSniJnCKWPmBYAucRQ==
+  dependencies:
+    graceful-fs "^4.1.11"
+    imurmurhash "^0.1.4"
+    signal-exit "^3.0.2"
+
+write-json-file@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/write-json-file/-/write-json-file-3.2.0.tgz#65bbdc9ecd8a1458e15952770ccbadfcff5fe62a"
+  integrity sha512-3xZqT7Byc2uORAatYiP3DHUUAVEkNOswEWNs9H5KXiicRTvzYzYqKjYc4G7p+8pltvAw641lVByKVtMpf+4sYQ==
+  dependencies:
+    detect-indent "^5.0.0"
+    graceful-fs "^4.1.15"
+    make-dir "^2.1.0"
+    pify "^4.0.1"
+    sort-keys "^2.0.0"
+    write-file-atomic "^2.4.2"
+
+write-pkg@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/write-pkg/-/write-pkg-4.0.0.tgz#675cc04ef6c11faacbbc7771b24c0abbf2a20039"
+  integrity sha512-v2UQ+50TNf2rNHJ8NyWttfm/EJUBWMJcx6ZTYZr6Qp52uuegWw/lBkCtCbnYZEmPRNL61m+u67dAmGxo+HTULA==
+  dependencies:
+    sort-keys "^2.0.0"
+    type-fest "^0.4.1"
+    write-json-file "^3.2.0"
 
 xmlbuilder@^10.0.0:
   version "10.1.1"

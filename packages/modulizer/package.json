@@ -20,13 +20,18 @@
     "distribution",
     "rollup"
   ],
-  "homepage": "https://github.com/ianwalter/dist#readme",
+  "homepage": "https://github.com/generates/generates/blob/main/packages/modulizer#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ianwalter/dist.git"
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/modulizer"
   },
   "bugs": {
-    "url": "https://github.com/ianwalter/dist/issues"
+    "url": "https://github.com/generates/generates/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ianwalter"
   },
   "bin": {
     "modulize": "cli.js"

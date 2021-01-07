@@ -1,0 +1,57 @@
+{
+  "name": "@generates/package-updater",
+  "description": "Conveniently update a project's package.json file",
+  "version": "0.0.2",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "module": "index.js",
+  "scripts": {
+    "test": "bff -c 1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/package-updater"
+  },
+  "keywords": [
+    "update",
+    "merge",
+    "package.json"
+  ],
+  "bugs": {
+    "url": "https://github.com/generates/generates/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ianwalter"
+  },
+  "homepage": "https://github.com/generates/generates/blob/main/packages/package-updater#readme",
+  "dependencies": {
+    "@generates/merger": "^0.1.2",
+    "read-pkg-up": "^6.0.0",
+    "write-pkg": "^4.0.0"
+  },
+  "devDependencies": {
+    "@ianwalter/bff": "^10.0.1",
+    "execa": "^5.0.0"
+  },
+  "bff": {
+    "plugins": [
+      "tests/config.js"
+    ]
+  },
+  "release": {
+    "logLevel": "debug",
+    "registries": [
+      "foo",
+      "bar"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@generates/dotter",
+  "description": "Work with nested JavaScript Objects and dot path strings",
+  "version": "1.0.5",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
+  "main": "dist/dotter.js",
+  "module": "dist/dotter.mjs",
+  "scripts": {
+    "build": "modulize",
+    "pretest": "modulize",
+    "test": "bff"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "dot",
+    "path",
+    "dot-prop",
+    "prop",
+    "object",
+    "nested",
+    "string"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/dot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ianwalter/dot/issues"
+  },
+  "homepage": "https://github.com/ianwalter/dot#readme",
+  "devDependencies": {
+    "@ianwalter/bff": "^10.0.1",
+    "@generates/modulizer": "^6.0.0"
+  }
+}

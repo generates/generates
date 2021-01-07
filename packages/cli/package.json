@@ -39,6 +39,10 @@
   "bugs": {
     "url": "https://github.com/generates/generates/issues"
   },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ianwalter"
+  },
   "homepage": "https://github.com/generates/generates/blob/main/packages/cli#readme",
   "dependencies": {
     "@generates/logger": "^0.0.9",
