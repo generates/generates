@@ -1,0 +1,49 @@
+{
+  "name": "@generates/extractor",
+  "description": "Extract a subset of a JavaScript Object by including or excluding properties",
+  "version": "1.0.3",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
+  "main": "dist/extractor.js",
+  "module": "dist/extractor.mjs",
+  "scripts": {
+    "pretest": "modulize",
+    "build": "modulize",
+    "test": "bff"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "object",
+    "properties",
+    "extract",
+    "subset",
+    "with",
+    "without",
+    "remove",
+    "removed",
+    "clone"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/extract.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ianwalter/extract/issues"
+  },
+  "homepage": "https://github.com/ianwalter/extract#readme",
+  "dependencies": {
+    "@generates/dotter": "^1.0.5"
+  },
+  "devDependencies": {
+    "@ianwalter/bff": "^10.0.1",
+    "@generates/modulizer": "^6.0.0"
+  }
+}
