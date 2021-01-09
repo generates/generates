@@ -36,7 +36,7 @@
     "@generates/prompt": "^0.0.0",
     "@generates/logger": "^0.0.9",
     "@generates/merger": "^0.1.0",
-    "@ianwalter/dot": "^1.0.4",
+    "@generates/dotter": "^1.0.5",
     "common-tags": "^1.8.0"
   },
   "devDependencies": {

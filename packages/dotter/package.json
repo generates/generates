@@ -12,6 +12,7 @@
   "scripts": {
     "build": "modulize",
     "pretest": "modulize",
+    "build": "modulize",
     "test": "bff"
   },
   "files": [

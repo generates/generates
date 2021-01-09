@@ -1,6 +1,6 @@
 const util = require('util')
 const chromafi = require('@ianwalter/chromafi')
-const { match, get } = require('@ianwalter/dot')
+const { match, get } = require('@generates/dotter')
 const chalk = require('chalk')
 const hasAnsi = require('has-ansi')
 const hasEmoji = require('has-emoji')

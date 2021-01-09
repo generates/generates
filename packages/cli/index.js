@@ -1,7 +1,7 @@
 const util = require('util')
 const readPkgUp = require('read-pkg-up')
 const getopts = require('getopts')
-const dot = require('@ianwalter/dot')
+const dotter = require('@generates/dotter')
 const { merge } = require('@generates/merger')
 const { oneLine } = require('common-tags')
 const { md } = require('@generates/logger')
@@ -29,7 +29,7 @@ module.exports = function cli ({ name, description, usage, options, help }) {
       }
 
       // Default to package.json config or option config.
-      opts.default[key] = dot.get(config, key) || option.default
+      opts.default[key] = dotter.get(config, key) || option.default
 
       // Specify the option type.
       option.type = option.type || typeof opts.default[key]
@@ -52,7 +52,7 @@ module.exports = function cli ({ name, description, usage, options, help }) {
       key = key.split('.').map(k => camelcase(k)).join('.')
 
       if (key.includes('.')) {
-        dot.set(acc, key, val)
+        dotter.set(acc, key, val)
         delete acc[key]
       } else if (flag !== key) {
         acc[key] = val
