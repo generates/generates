@@ -4,7 +4,7 @@
 ## Installation
 
 ```console
-yarn add generates --global
+yarn add @generates/generates --global
 ```
 
 ## License
@@ -13,7 +13,7 @@ Apache 2.0 with Commons Clause - See [LICENSE][licenseUrl]
 
 &nbsp;
 
-Created by [Ian Walter](https://iankwalter.com)
+Created by [Ian Walter](https://ianwalter.dev)
 
-[generatesUrl]: https://github.com/ianwalter/generates
-[licenseUrl]: https://github.com/ianwalter/generates/blob/main/packages/cli/LICENSE
+[generatesUrl]: https://github.com/generates/generates
+[licenseUrl]: https://github.com/generates/generates/blob/main/packages/cli/LICENSE

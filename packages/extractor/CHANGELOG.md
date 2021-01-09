@@ -1,4 +1,4 @@
-# @ianwalter/extract
+# @generates/extractor
 
 ## 1.0.3
 

@@ -1,4 +1,4 @@
-# @ianwalter/extract
+# @generates/extractor
 > Extract a subset of a JavaScript Object by including or excluding properties
 
 [![npm page][npmImage]][npmUrl]
@@ -7,7 +7,7 @@
 ## Installation
 
 ```console
-yarn add @ianwalter/extract
+yarn add @generates/extractor
 ```
 
 ## License
@@ -18,8 +18,8 @@ Hippocratic License - See [LICENSE][licenseUrl]
 
 Created by [Ian Walter](https://ianwalter.dev)
 
-[npmImage]: https://img.shields.io/npm/v/@ianwalter/extract.svg
-[npmUrl]: https://www.npmjs.com/package/@ianwalter/extract
-[ciImage]: https://github.com/ianwalter/extract/workflows/CI/badge.svg
-[ciUrl]: https://github.com/ianwalter/extract/actions
-[licenseUrl]: https://github.com/ianwalter/extract/blob/master/LICENSE
+[npmImage]: https://img.shields.io/npm/v/@generates/extractor.svg
+[npmUrl]: https://www.npmjs.com/package/@generates/extractor
+[ciImage]: https://github.com/generates/generates/workflows/CI/badge.svg
+[ciUrl]: https://github.com/generates/generates/actions
+[licenseUrl]: https://github.com/generates/generates/blob/main/packages/extractor/LICENSE
