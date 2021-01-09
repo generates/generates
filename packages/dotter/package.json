@@ -10,6 +10,7 @@
   "main": "dist/dotter.js",
   "module": "dist/dotter.mjs",
   "scripts": {
+    "build": "modulize",
     "pretest": "modulize",
     "build": "modulize",
     "test": "bff"

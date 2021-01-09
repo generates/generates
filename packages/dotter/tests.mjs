@@ -34,7 +34,7 @@ test('simple has', t => {
   t.expect(dotter.has({ say: { a: 'prayer' } }, 'say.b')).toBe(false)
 })
 
-test.only('match', t => {
+test('match', t => {
   t.expect(dotter.match('1.2', '1.2')).toBe(true)
   t.expect(dotter.match('1.2', '1.3')).toBe(false)
   t.expect(dotter.match('1.2', '1.*')).toBe(true)
