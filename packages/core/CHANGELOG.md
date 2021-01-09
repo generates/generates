@@ -1,5 +1,14 @@
 # @generates/core
 
+## 0.0.3
+
+### Patch Changes
+
+- c6d4ed5: Fix #87
+- Updated dependencies [c6d4ed5]
+  - @generates/dotter@2.0.0
+  - @generates/logger@0.1.0
+
 ## 0.0.2
 
 ### Patch Changes
