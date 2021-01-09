@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@generates/commit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "@generates/core": "0.0.2"
+    "@generates/core": "0.0.3"
   },
   "devDependencies": {
     "@ianwalter/faygit": "^2.1.0"

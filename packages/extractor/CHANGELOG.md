@@ -1,5 +1,12 @@
 # @generates/extractor
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [c6d4ed5]
+  - @generates/dotter@2.0.0
+
 ## 1.0.3
 
 ### Patch Changes
