@@ -13,7 +13,7 @@ Apache 2.0 with Commons Clause - See [LICENSE][licenseUrl]
 
 &nbsp;
 
-Created by [Ian Walter](https://iankwalter.com)
+Created by [Ian Walter](https://ianwalter.dev)
 
 [generatesUrl]: https://github.com/ianwalter/generates
-[licenseUrl]: https://github.com/ianwalter/generates/blob/main/packages/core/LICENSE
+[licenseUrl]: https://github.com/generates/generates/blob/main/packages/core/LICENSE

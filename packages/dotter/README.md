@@ -23,9 +23,9 @@ Hippocratic License - See [LICENSE][licenseUrl]
 
 Created by [Ian Walter](https://ianwalter.dev)
 
-[npmImage]: https://img.shields.io/npm/v/@ianwalter/dot.svg
-[npmUrl]: https://www.npmjs.com/package/@ianwalter/dot
+[npmImage]: https://img.shields.io/npm/v/@generates/dotter.svg
+[npmUrl]: https://www.npmjs.com/package/@generates/dotter
 [dotPropUrl]: https://github.com/sindresorhus/dot-prop
-[ciImage]: https://github.com/ianwalter/dot/workflows/CI/badge.svg
-[ciUrl]: https://github.com/ianwalter/dot/actions
-[licenseUrl]: https://github.com/ianwalter/dot/blob/master/LICENSE
+[ciImage]: https://github.com/generates/generates/workflows/CI/badge.svg
+[ciUrl]: https://github.com/generates/generates/actions
+[licenseUrl]: https://github.com/generates/generates/blob/main/packages/dotter/LICENSE

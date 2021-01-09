@@ -15,6 +15,6 @@ Hippocratic License - See [LICENSE][licenseUrl]
 
 Created by [Ian Walter](https://ianwalter.dev)
 
-[npmImage]: https://img.shields.io/npm/v/@ianwalter/update-package.svg
-[npmUrl]: https://www.npmjs.com/package/@ianwalter/update-package
-[licenseUrl]: https://github.com/ianwalter/update-package/blob/master/LICENSE
+[npmImage]: https://img.shields.io/npm/v/@generates/package-updater.svg
+[npmUrl]: https://www.npmjs.com/package/@generates/package-updater
+[licenseUrl]: https://github.com/generates/package-updater/blob/master/LICENSE
