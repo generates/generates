@@ -1,7 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
 const isObj = i => typeof i === 'object' && i && !Array.isArray(i);
 
 function get (src, path, defaultValue) {
@@ -28,7 +24,6 @@ function set (src, path = '', value) {
       current[pathKeys[i]] = value;
     } else {
       if (!isObj(current[pathKeys[i]])) current[pathKeys[i]] = {};
-
       current = current[pathKeys[i]];
     }
   }
@@ -47,7 +42,6 @@ function del (src, path = '') {
       delete current[pathKeys[i]];
     } else {
       if (!isObj(current[pathKeys[i]])) return
-
       current = current[pathKeys[i]];
     }
   }
@@ -65,7 +59,6 @@ function has (src, path = '') {
       return pathKeys[i] in current
     } else {
       if (!isObj(current[pathKeys[i]])) return false
-
       current = current[pathKeys[i]];
     }
   }
@@ -74,26 +67,18 @@ function has (src, path = '') {
 function match (a = '', b = '') {
   const aKeys = a.split('.');
   const bKeys = b.split('.');
-  const last = Math.min(aKeys.length, bKeys.length) - 1;
+  const last = aKeys.length - 1;
   let aStar = false;
   let bStar = false;
+  console.log({a, b, aKeys, bKeys, last});
   for (let i = 0; i < aKeys.length; i++) {
+    if (i === last && aKeys[i] === bKeys[i]) return true
     aStar = aKeys[i] === '*' || (aStar && !aKeys[i]);
     bStar = bKeys[i] === '*' || (bStar && !bKeys[i]);
-    const aStarMatch = aStar && (bKeys[i] || i >= last);
-    const bStarMatch = bStar && (aKeys[i] || i >= last);
-    const lengthMismatch = aKeys.length !== bKeys.length;
-    if (aKeys[i] !== bKeys[i] && !aStarMatch && !bStarMatch) return false
-    if (i === last && lengthMismatch && !aStar && !bStar) return false
+    const starMatch = (aStar && bKeys[i]) || (bStar && aKeys[i]);
+    if (aKeys[i] !== bKeys[i] && !starMatch) return false
   }
   return true
 }
 
-var index = { get, set, del, has, match };
-
-exports.default = index;
-exports.del = del;
-exports.get = get;
-exports.has = has;
-exports.match = match;
-exports.set = set;
+export { del, get, has, match, set };

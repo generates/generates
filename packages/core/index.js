@@ -2,7 +2,7 @@ import { promises as fs } from 'fs'
 import { merge } from '@generates/merger'
 import { stripIndent } from 'common-tags'
 import prompt from '@generates/prompt'
-import dot from '@ianwalter/dot'
+import * as dotter from '@generates/dotter'
 import { createLogger } from '@generates/logger'
 
 export async function toWriteFile ([key, file]) {
@@ -30,13 +30,13 @@ export function createGenerator (ctx) {
 
       // Execute all required prompts specified by the generator.
       for (const [key, p] of Object.entries(ctx.prompts)) {
-        const isUndefined = dot.get(ctx.data, key) === undefined
+        const isUndefined = dotter.get(ctx.data, key) === undefined
         if (isUndefined && p.required !== false) {
           // Determine the prompt type and fallback to text.
           const type = p.type || 'text'
 
           // Prompt the user for a response and add it to ctx.data.
-          dot.set(ctx.data, key, await prompt[type](p.label, p.settings))
+          dotter.set(ctx.data, key, await prompt[type](p.label, p.settings))
         }
       }
 
