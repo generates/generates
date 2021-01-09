@@ -15,7 +15,7 @@ test('map and remap', t => {
     shippingStreet2: 'Suite 104A',
     shippingCity: 'Red Hook',
     shippingState: 'VI',
-    shippingZip: 03045,
+    shippingZip: '03045',
     shippingCountry: 'US'
   }
   const remapped = {
@@ -23,11 +23,13 @@ test('map and remap', t => {
     address_line2: 'Suite 104A',
     city_locality: 'Red Hook',
     state_province: 'VI',
-    postal_code: 03045,
+    postal_code: '03045',
     country_code: 'US'
   }
   let output = extractor.map(remapped, map)
   t.expect(output).toEqual(mapped)
+  t.expect(output).not.toBe(mapped)
   output = extractor.remap(output, map)
   t.expect(output).toEqual(remapped)
+  t.expect(output).not.toBe(remapped)
 })

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var clone = require('@ianwalter/clone');
-var dotter = require('@generatres/dotter');
+var dotter = require('@generates/dotter');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 

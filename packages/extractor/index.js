@@ -1,5 +1,5 @@
 import clone from '@ianwalter/clone'
-import { del, set, get } from '@generatres/dotter'
+import { del, set, get } from '@generates/dotter'
 
 export function excluding (src, ...props) {
   const dest = clone(src)
