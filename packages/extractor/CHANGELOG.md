@@ -1,5 +1,11 @@
 # @generates/extractor
 
+## 1.1.2
+
+### Patch Changes
+
+- d11bcb4: Fix extractor map extra prop issue
+
 ## 1.1.1
 
 ### Patch Changes
