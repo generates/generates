@@ -74,7 +74,6 @@ function match (a = '', b = '') {
   const last = aKeys.length - 1;
   let aStar = false;
   let bStar = false;
-  console.log({a, b, aKeys, bKeys, last});
   for (let i = 0; i < aKeys.length; i++) {
     if (i === last && aKeys[i] === bKeys[i]) return true
     aStar = aKeys[i] === '*' || (aStar && !aKeys[i]);

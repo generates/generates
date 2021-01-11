@@ -26,10 +26,20 @@ test('map and remap', t => {
     postal_code: '03045',
     country_code: 'US'
   }
+
   let output = extractor.map(remapped, map)
   t.expect(output).toEqual(mapped)
   t.expect(output).not.toBe(mapped)
+
   output = extractor.remap(output, map)
   t.expect(output).toEqual(remapped)
   t.expect(output).not.toBe(remapped)
+
+  output.phone = '55555555555'
+  output = extractor.map(extractor.excluding(output, 'country_code'), map)
+  t.expect(output).toEqual(extractor.excluding(mapped, 'shippingCountry'))
+
+  output.phone = '55555555555'
+  output = extractor.remap(output, map)
+  t.expect(output).toEqual(extractor.excluding(remapped, 'country_code'))
 })

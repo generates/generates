@@ -17,15 +17,17 @@ function map (src, map) {
   const dest = {};
   const entries = Object.entries(map);
   for (const [key, val] of Object.entries(src)) {
-    const [toKey] = entries.find(e => e[1] === key);
-    dest[toKey] = val;
+    const [toKey] = entries.find(e => e[1] === key) || [];
+    if (toKey) dest[toKey] = val;
   }
   return dest
 }
 
 function remap (src, map) {
   const dest = {};
-  for (const [key, val] of Object.entries(src)) dest[map[key]] = val;
+  for (const [key, val] of Object.entries(src)) {
+    if (key in map) dest[map[key]] = val;
+  }
   return dest
 }
 
