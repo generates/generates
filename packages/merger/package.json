@@ -6,7 +6,7 @@
     "name": "Ian Walter",
     "url": "https://ianwalter.dev"
   },
-  "license": "Hippocratic-2.1",
+  "license": "SEE LICENSE IN LICENSE",
   "main": "dist/merger.js",
   "module": "dist/merger.mjs",
   "scripts": {

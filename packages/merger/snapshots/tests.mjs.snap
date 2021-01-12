@@ -2,6 +2,14 @@
 
 exports[`circulars 1`] = `
 Object {
+  "circular": Podcast {
+    "circular": [Circular],
+    "name": "Beanicles",
+  },
+  "episode": Episode {
+    "episode": [Circular],
+    "episodeName": "Choo Choo",
+  },
   "episodeName": "Choo Choo",
   "name": "Beanicles",
 }
@@ -9,6 +17,11 @@ Object {
 
 exports[`nested Objects get merged 1`] = `
 Object {
+  "body": Object {
+    "personal": Object {
+      "name": "Pita",
+    },
+  },
   "headers": Object {
     "content-length": "18",
     "content-type": "application/json",
@@ -33,6 +46,11 @@ Object {
 
 exports[`nested Objects get merged 3`] = `
 Object {
+  "body": Object {
+    "personal": Object {
+      "name": "Pita",
+    },
+  },
   "headers": Object {
     "content-length": "18",
     "content-type": "application/json",

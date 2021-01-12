@@ -22,6 +22,9 @@ test('nested Objects get merged', async t => {
     headers: {
       'content-type': 'application/json',
       'content-length': '18'
+    },
+    body: {
+      personal: { name: 'Pita' }
     }
   }
   const merged = merge({}, obj1, obj2)
