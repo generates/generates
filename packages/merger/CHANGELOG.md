@@ -1,5 +1,11 @@
 # @generates/merger
 
+## 0.1.3
+
+### Patch Changes
+
+- f6da952: Fix handling of circulars
+
 ## 0.1.2
 
 ### Patch Changes
