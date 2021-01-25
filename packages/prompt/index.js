@@ -1,5 +1,5 @@
 const readline = require('readline')
-const { createPrint, chalk } = require('@ianwalter/print')
+const { createLogger, chalk } = require('@generates/logger')
 const { cursor } = require('sisteransi')
 
 const yesNoOptions = [
@@ -7,13 +7,13 @@ const yesNoOptions = [
   { label: 'No', value: false }
 ]
 
-const print = createPrint({ level: 'info' })
+const logger = createLogger({ level: 'info', namespace: 'prompt' })
 
 function printLabel (prefix = '💬', label, fallback) {
   const hasFallback = fallback !== undefined
-  print.write()
-  print.log(prefix, chalk.bold.white(label))
-  if (hasFallback) print.log(chalk.bold('Default:'), chalk.dim(fallback))
+  logger.write('\n')
+  logger.log(prefix, chalk.bold.white(label))
+  if (hasFallback) logger.log(chalk.bold('Default:'), chalk.dim(fallback))
 }
 
 function createReadline (keypressHandler, isText) {
@@ -70,7 +70,7 @@ function renderSelect (label, settings) {
         label = chalk.yellow(label)
       }
 
-      print.log(prefix, label)
+      logger.log(prefix, label)
     }
   }
 
@@ -109,7 +109,6 @@ function renderSelect (label, settings) {
       } else if (key.ctrl && key.name === 'c') {
         // Reject the promise when the user hits CTRL+c so that the caller
         // can handle it.
-        print.ns('')
         keypressHandler.close()
         reject(new Error('SIGINT'))
       } else if (key.name === 'up') {
@@ -182,7 +181,7 @@ module.exports = {
         const { edit } = require('external-editor')
         const answer = edit(settings.prefill) || fallback
 
-        print.log(answer)
+        logger.log(answer)
 
         resolve(answer)
       } catch (err) {
