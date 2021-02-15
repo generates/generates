@@ -1,21 +1,27 @@
 import path from 'path'
 import readPkgUp from 'read-pkg-up'
 import { rollup } from 'rollup'
-import cjsPlugin from 'rollup-plugin-commonjs'
-import nodeResolvePlugin from 'rollup-plugin-node-resolve'
+import cjsPlugin from '@rollup/plugin-commonjs'
+import nodeResolvePlugin from '@rollup/plugin-node-resolve'
 import jsonPlugin from '@rollup/plugin-json'
 import npmShortName from '@ianwalter/npm-short-name'
-import babelPlugin from 'rollup-plugin-babel'
+import { babel } from '@rollup/plugin-babel'
 import requireFromString from 'require-from-string'
 import builtinModules from 'builtin-modules/static.js'
 import hashbang from '@ianwalter/rollup-plugin-hashbang'
 import { terser } from 'rollup-plugin-terser'
+import { createLogger } from '@generates/logger'
 
-export default async function modulize (options) {
+const logger = createLogger({ level: 'info', namespace: 'modulizer' })
+const onwarn = warning => logger.debug(warning.message)
+// FIXME: This fixes warning but breaks functionality:
+// const cjsOut = { exports: 'auto' }
+
+export default async function modulize ({ cwd, ...options }) {
   // Read modules package.json.
-  const { package: pkg, path: projectPath } = await readPkgUp()
+  const { package: pkg, path: projectPath } = await readPkgUp({ cwd })
 
-  // TODO: comment
+  // FIXME: comment
   const hasFormat = options.cjs || options.esm || options.browser
   const getFormat = (format, fallback) => hasFormat ? format : fallback
 
@@ -63,11 +69,11 @@ export default async function modulize (options) {
     externalDeps.includes(id) ||
     externalModules.some(external => id.includes(external + path.sep))
   )
+  logger.debug('External dependencies', externalDeps)
 
   // Set the default babel config.
   const babelConfig = {
-    runtimeHelpers: true,
-    externalHelpers: true,
+    babelHelpers: 'bundled', // FIXME: use runtime instead?
     babelrc: false,
     ...pkg.babel
   }
@@ -83,7 +89,7 @@ export default async function modulize (options) {
     // Allows JSON to be imported:
     jsonPlugin(),
     // Allows source to be transpiled with babel:
-    ...options.babel ? [babelPlugin(babelConfig)] : [],
+    ...options.babel ? [babel(babelConfig)] : [],
     // Allow users to pass in their own rollup plugins:
     ...plugins,
     //
@@ -91,7 +97,13 @@ export default async function modulize (options) {
   ]
 
   // Create the Rollup bundler instance(s).
-  const bundler = await rollup({ input, external, plugins: rollupPlugins })
+  const bundler = await rollup({
+    input,
+    external,
+    plugins: rollupPlugins,
+    preserveSymlinks: true,
+    onwarn
+  })
 
   // Generate the CommonJS bundle.
   let cjsBundle
