@@ -1,15 +1,17 @@
 import path from 'path'
 import readPkgUp from 'read-pkg-up'
 import { rollup } from 'rollup'
-import cjsPlugin from 'rollup-plugin-commonjs'
-import nodeResolvePlugin from 'rollup-plugin-node-resolve'
+import cjsPlugin from '@rollup/plugin-commonjs'
+import nodeResolvePlugin from '@rollup/plugin-node-resolve'
 import jsonPlugin from '@rollup/plugin-json'
 import npmShortName from '@ianwalter/npm-short-name'
-import babelPlugin from 'rollup-plugin-babel'
+import { babel } from '@rollup/plugin-babel'
 import requireFromString from 'require-from-string'
 import builtinModules from 'builtin-modules/static.js'
 import hashbang from '@ianwalter/rollup-plugin-hashbang'
 import { terser } from 'rollup-plugin-terser'
+
+// const cjsOut = { exports: 'auto' }
 
 export default async function modulize (options) {
   // Read modules package.json.
@@ -66,8 +68,7 @@ export default async function modulize (options) {
 
   // Set the default babel config.
   const babelConfig = {
-    runtimeHelpers: true,
-    externalHelpers: true,
+    babelHelpers: 'bundled', // TODO: use runtime instead?
     babelrc: false,
     ...pkg.babel
   }
@@ -83,7 +84,7 @@ export default async function modulize (options) {
     // Allows JSON to be imported:
     jsonPlugin(),
     // Allows source to be transpiled with babel:
-    ...options.babel ? [babelPlugin(babelConfig)] : [],
+    ...options.babel ? [babel(babelConfig)] : [],
     // Allow users to pass in their own rollup plugins:
     ...plugins,
     //
