@@ -58,7 +58,7 @@
     "p-settle": "^4.0.0",
     "read-pkg-up": "^6.0.0",
     "require-from-string": "^2.0.2",
-    "rollup": "^2.0.0",
+    "rollup": "^2.39.0",
     "rollup-plugin-terser": "^7.0.0"
   },
   "devDependencies": {
