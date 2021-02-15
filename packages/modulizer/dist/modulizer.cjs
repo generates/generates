@@ -30,9 +30,9 @@ const logger = logger$1.createLogger({ level: 'info', namespace: 'modulizer' });
 const onwarn = warning => logger.debug(warning.message);
 // const cjsOut = { exports: 'auto' }
 
-async function modulize (options) {
+async function modulize ({ cwd, ...options }) {
   // Read modules package.json.
-  const { package: pkg, path: projectPath } = await readPkgUp__default['default']();
+  const { package: pkg, path: projectPath } = await readPkgUp__default['default']({ cwd });
 
   // FIXME: comment
   const hasFormat = options.cjs || options.esm || options.browser;

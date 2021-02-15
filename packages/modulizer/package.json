@@ -43,8 +43,9 @@
     "dist"
   ],
   "scripts": {
-    "test": "bff",
-    "dist": "./cli.js"
+    "dist": "./cli.js",
+    "pretest": "yarn dist",
+    "test": "bff"
   },
   "dependencies": {
     "@babel/core": "^7.8.6",

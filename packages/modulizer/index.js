@@ -16,9 +16,9 @@ const logger = createLogger({ level: 'info', namespace: 'modulizer' })
 const onwarn = warning => logger.debug(warning.message)
 // const cjsOut = { exports: 'auto' }
 
-export default async function modulize (options) {
+export default async function modulize ({ cwd, ...options }) {
   // Read modules package.json.
-  const { package: pkg, path: projectPath } = await readPkgUp()
+  const { package: pkg, path: projectPath } = await readPkgUp({ cwd })
 
   // FIXME: comment
   const hasFormat = options.cjs || options.esm || options.browser
