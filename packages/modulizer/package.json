@@ -3,7 +3,8 @@
   "version": "6.0.1",
   "description": "Simplify the generation of distribution files for your JavaScript library",
   "type": "module",
-  "module": "index.js",
+  "module": "dist/modulizer.js",
+  "main": "dist/modulizer.cjs",
   "author": {
     "name": "Ian Walter",
     "url": "https://ianwalter.dev"
@@ -42,7 +43,8 @@
     "dist"
   ],
   "scripts": {
-    "test": "bff"
+    "test": "bff",
+    "dist": "./cli.js"
   },
   "dependencies": {
     "@babel/core": "^7.8.6",
