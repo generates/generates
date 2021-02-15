@@ -36,6 +36,6 @@
   "homepage": "https://github.com/ianwalter/dot#readme",
   "devDependencies": {
     "@ianwalter/bff": "^10.0.1",
-    "@generates/modulizer": "^6.0.1"
+    "@generates/modulizer": "^7.0.0"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@generates/logger",
   "description": "A readable Node.js logging utility",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
