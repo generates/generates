@@ -4,11 +4,12 @@ const getopts = require('getopts')
 const dotter = require('@generates/dotter')
 const { merge } = require('@generates/merger')
 const { oneLine } = require('common-tags')
-const { md } = require('@generates/logger')
+const { md, chalk } = require('@generates/logger')
 const decamelize = require('decamelize')
 const camelcase = require('camelcase')
 
 const args = process.argv.slice(2)
+const delimiter = chalk.dim('–')
 
 module.exports = function cli (config, input) {
   if (!input) {
@@ -95,17 +96,29 @@ module.exports = function cli (config, input) {
 
     if (config.usage) input.helpText += `## Usage\n${config.usage}\n\n`
 
+    if (config.commands) {
+      input.helpText += '## Commands\n'
+      input.helpText += Object.entries(config.commands).reduce(
+        (acc, [key, command]) => {
+          const info = command.description ? oneLine(command.description) : ''
+          return acc + `* \`${key}\` ${delimiter} ${info}\n`
+        },
+        ''
+      )
+      input.helpText += '\n'
+    }
+
     if (config.options) {
       input.helpText += '## Options\n'
-      input.helpText += Object.entries(config.options).reduce(
-        (acc, [key, option]) => {
+      input.helpText += Object.values(config.options).reduce(
+        (acc, option) => {
           const alias = option.alias ? `, -${option.alias}` : ''
           const info = option.description ? oneLine(option.description) : ''
           const def = option.default !== undefined
             ? `${info ? ' ' : ''}(default: \`${util.inspect(option.default)}\`)`
             : ''
           acc += `* \`--${option.type === 'boolean' ? '(no-)' : ''}`
-          return acc + `${option.flag}${alias}\`  ${info}${def}\n`
+          return acc + `${option.flag}${alias}\` ${delimiter} ${info}${def}\n`
         },
         ''
       )
