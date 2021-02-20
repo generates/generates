@@ -84,11 +84,13 @@ module.exports = function cli (config, input) {
     commandConfig = config.commands[command]
   }
 
-  if (command) {
+  if (commandConfig) {
     input.commands = input.commands || []
     input.commands.push(command)
     return cli(commandConfig, input)
-  } else if (config.help || input.help) {
+  } else if (config.execute) {
+    return config.execute(input)
+  } else {
     // Generate help text from the given config.
     input.helpText = `# ${config.name}\n`
 
@@ -126,8 +128,6 @@ module.exports = function cli (config, input) {
 
     // Format the help markdown text with marked.
     input.helpText = md(input.helpText) + '\n'
-  } else if (config.execute) {
-    return config.execute(input)
   }
 
   // Return the populated input object.
