@@ -5,7 +5,7 @@ const cli = require('../..')
 
 const logger = createLogger()
 
-const config = cli({
+const input = cli({
   name: 'exampleCli',
   description: 'Just an example CLI',
   usage: 'example [options]',
@@ -30,13 +30,13 @@ const config = cli({
   }
 })
 
-config.packageJson = { name: config.packageJson && config.packageJson.name }
+input.packageJson = { name: input.packageJson.name }
 
 if (require.main !== module) {
-  module.exports = config
-} else if (config.help) {
+  module.exports = input
+} else if (input.help) {
   process.stdout.write('\n')
-  logger.plain(config.helpText)
+  logger.plain(input.helpText)
 } else {
-  logger.plain(config)
+  logger.plain(input)
 }

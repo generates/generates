@@ -10,7 +10,7 @@ const camelcase = require('camelcase')
 
 const args = process.argv.slice(2)
 
-module.exports = async function cli (config, input) {
+module.exports = function cli (config, input) {
   if (!input) {
     input = {}
 
@@ -88,7 +88,7 @@ module.exports = async function cli (config, input) {
   if (command) {
     input.commands = input.commands || []
     input.commands.push(command)
-    cli(commandConfig, input)
+    return cli(commandConfig, input)
   } else if (config.help || input.help) {
     // Generate help text from the given config.
     input.helpText = `# ${config.name}\n`
@@ -116,7 +116,7 @@ module.exports = async function cli (config, input) {
     // Format the help markdown text with marked.
     input.helpText = md(input.helpText) + '\n'
   } else if (config.execute) {
-    await config.execute(input)
+    return config.execute(input)
   }
 
   // Return the populated input object.
