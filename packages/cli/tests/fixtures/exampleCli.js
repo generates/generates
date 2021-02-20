@@ -9,6 +9,7 @@ const config = cli({
   name: 'exampleCli',
   description: 'Just an example CLI',
   usage: 'example [options]',
+  packageJson: true,
   options: {
     processorConcurrency: {
       alias: 'c',
@@ -34,6 +35,7 @@ config.packageJson = { name: config.packageJson && config.packageJson.name }
 if (require.main !== module) {
   module.exports = config
 } else if (config.help) {
+  process.stdout.write('\n')
   logger.plain(config.helpText)
 } else {
   logger.plain(config)

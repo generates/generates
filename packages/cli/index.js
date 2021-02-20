@@ -8,28 +8,33 @@ const { md } = require('@generates/logger')
 const decamelize = require('decamelize')
 const camelcase = require('camelcase')
 
-module.exports = function cli ({ name, description, usage, options, help }) {
-  // Extract the curren't package's package.json so that it can be included in
-  // the returned config object.
-  const { packageJson } = readPkgUp.sync() || {}
+const args = process.argv.slice(2)
 
-  // Create the configuration object that will be returned to the CLI.
-  const config = { packageJson, ...(packageJson && packageJson[name]) }
+module.exports = async function cli (config, input) {
+  if (!input) {
+    input = {}
+
+    // Extract the curren't package's package.json so that it can be included in
+    // the returned config object.
+    const { packageJson } = readPkgUp.sync() || {}
+    if (packageJson) merge(input, packageJson[config.name])
+
+    //
+    if (config.packageJson) input.packageJson = packageJson
+  }
 
   // Convert cli config to getopts config.
   const opts = { alias: {}, default: {} }
-  if (options) {
-    for (let [key, option] of Object.entries(options)) {
+  if (config.options) {
+    for (let [key, option] of Object.entries(config.options)) {
       // Convert camelCased option names to kebab-case.
       option.flag = key = decamelize(key, '-')
 
       // Add option alias to getopts alias configuration.
-      if (option.alias) {
-        opts.alias[key] = option.alias
-      }
+      if (option.alias) opts.alias[key] = option.alias
 
       // Default to package.json config or option config.
-      opts.default[key] = dotter.get(config, key) || option.default
+      opts.default[key] = dotter.get(input, key) || option.default
 
       // Specify the option type.
       option.type = option.type || typeof opts.default[key]
@@ -42,7 +47,7 @@ module.exports = function cli ({ name, description, usage, options, help }) {
   }
 
   // Collect any command-line arguments passed to the process.
-  let cliOpts = getopts(process.argv.slice(2), opts)
+  let cliOpts = getopts(args, opts)
 
   // Reduce any command-line arguments containing dots into a nested structure.
   cliOpts = Object.entries(cliOpts).reduce(
@@ -65,22 +70,36 @@ module.exports = function cli ({ name, description, usage, options, help }) {
 
   // Add/overwrite configuration data with options passed through command-line
   // flags.
-  merge(config, cliOpts)
+  merge(input, cliOpts)
 
-  if (help || config.help) {
-    config.helpText = `# ${name}\n`
+  //
+  if (input._) {
+    input.args = input._
+    delete input._
+  }
 
-    if (description) {
-      config.helpText += `${description}\n\n`
-    }
+  let command
+  let commandConfig
+  if (config.commands) {
+    command =input.args.shift()
+    commandConfig = config.commands[command]
+  }
 
-    if (usage) {
-      config.helpText += `## Usage\n${usage}\n\n`
-    }
+  if (command) {
+    input.commands = input.commands || []
+    input.commands.push(command)
+    cli(commandConfig, input)
+  } else if (config.help || input.help) {
+    // Generate help text from the given config.
+    input.helpText = `# ${config.name}\n`
 
-    if (options) {
-      config.helpText += '## Options\n'
-      config.helpText += Object.entries(options).reduce(
+    if (config.description) input.helpText += `${config.description}\n\n`
+
+    if (config.usage) input.helpText += `## Usage\n${config.usage}\n\n`
+
+    if (config.options) {
+      input.helpText += '## Options\n'
+      input.helpText += Object.entries(config.options).reduce(
         (acc, [key, option]) => {
           const alias = option.alias ? `, -${option.alias}` : ''
           const info = option.description ? oneLine(option.description) : ''
@@ -95,9 +114,11 @@ module.exports = function cli ({ name, description, usage, options, help }) {
     }
 
     // Format the help markdown text with marked.
-    config.helpText = md(config.helpText) + '\n'
+    input.helpText = md(input.helpText) + '\n'
+  } else if (config.execute) {
+    await config.execute(input)
   }
 
-  // Return the populated configuration object.
-  return config
+  // Return the populated input object.
+  return input
 }

@@ -2,42 +2,42 @@
 
 exports[`cli 1`] = `
 "     1 {
-     2   packageJson: {
-     3     name: '@generates/cli'
-     4   },
-     5   level: 'debug',
-     6   processorConcurrency: 4,
-     7   some: {
-     8     thing: true,
-     9     other: {
-    10       thing: 'a'
-    11     }
+     2   level: 'debug',
+     3   processorConcurrency: 4,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'a'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
     12   },
-    13   _: [],
-    14   c: 4,
-    15   path: '/some/path',
-    16   debug: false,
-    17   d: false
+    13   c: 4,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
     18 }"
 `;
 
 exports[`dot format 1`] = `
 "     1 {
-     2   packageJson: {
-     3     name: '@generates/cli'
-     4   },
-     5   level: 'debug',
-     6   processorConcurrency: 1,
-     7   some: {
-     8     thing: true,
-     9     other: {
-    10       thing: 'b'
-    11     }
+     2   level: 'debug',
+     3   processorConcurrency: 1,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'b'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
     12   },
-    13   _: [],
-    14   c: 1,
-    15   path: '/some/path',
-    16   debug: false,
-    17   d: false
+    13   c: 1,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
     18 }"
 `;
