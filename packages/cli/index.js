@@ -73,15 +73,13 @@ module.exports = function cli (config, input) {
   merge(input, cliOpts)
 
   //
-  if (input._) {
-    input.args = input._
-    delete input._
-  }
+  if (!input.args) input.args = input._
+  delete input._
 
   let command
   let commandConfig
   if (config.commands) {
-    command =input.args.shift()
+    command = input.args.shift()
     commandConfig = config.commands[command]
   }
 
