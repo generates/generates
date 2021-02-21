@@ -28,7 +28,7 @@ export default async function modulize ({ cwd, ...options }) {
   // Deconstruct options and set defaults if necessary.
   let {
     name = options.name || npmShortName(pkg.name),
-    input = options.input ||
+    input = options.input || options.args[0] ||
             path.resolve(path.join(path.dirname(projectPath), 'index.js')),
     output = options.output || path.join(path.dirname(projectPath), 'dist'),
     cjs = getFormat(options.cjs, pkg.main),

@@ -14,6 +14,7 @@ import { createLogger } from '@generates/logger';
 
 const logger = createLogger({ level: 'info', namespace: 'modulizer' });
 const onwarn = warning => logger.debug(warning.message);
+// FIXME: This fixes warning but breaks functionality:
 // const cjsOut = { exports: 'auto' }
 
 async function modulize ({ cwd, ...options }) {
@@ -27,7 +28,7 @@ async function modulize ({ cwd, ...options }) {
   // Deconstruct options and set defaults if necessary.
   let {
     name = options.name || npmShortName(pkg.name),
-    input = options.input ||
+    input = options.input || options.args[0] ||
             path.resolve(path.join(path.dirname(projectPath), 'index.js')),
     output = options.output || path.join(path.dirname(projectPath), 'dist'),
     cjs = getFormat(options.cjs, pkg.main),
@@ -72,7 +73,7 @@ async function modulize ({ cwd, ...options }) {
 
   // Set the default babel config.
   const babelConfig = {
-    babelHelpers: 'bundled', // TODO: use runtime instead?
+    babelHelpers: 'bundled', // FIXME: use runtime instead?
     babelrc: false,
     ...pkg.babel
   };
