@@ -1,5 +1,14 @@
 # @generates/modulizer
 
+## 7.0.1
+
+### Patch Changes
+
+- 0c2b4e9: Updating @generates/cli
+- Updated dependencies [dea4d7c]
+  - @generates/cli@1.0.0
+  - @generates/logger@0.1.2
+
 ## 7.0.0
 
 ### Major Changes

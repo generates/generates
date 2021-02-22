@@ -1,5 +1,13 @@
 # generates
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies [dea4d7c]
+  - @generates/cli@1.0.0
+  - @generates/logger@0.1.2
+
 ## 0.0.3
 
 ### Patch Changes
