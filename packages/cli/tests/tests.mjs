@@ -18,7 +18,32 @@ test('default', async t => {
 })
 
 test('command', async t => {
-  const args = ['dock', '--port', 'Havensight']
-  const { stdout } = await execa('./tests/fixtures/battleshipCli.js', ['dock'])
-  t.expect(stdout).toContain('Docked at Havensight!')
+  let args = ['save', '--path', './test.mp3']
+  let result = await execa('./tests/fixtures/musicCli.js', args)
+  t.expect(result.stdout).toContain('Music saved to:', args[2])
+
+  result = await execa('./tests/fixtures/musicCli.js', ['start', 'drum'])
+  t.expect(result.stdout).toContain('No tempo specified')
+
+  args = ['start', 'drum', '120']
+  result = await execa('./tests/fixtures/musicCli.js', args)
+  t.expect(result.stdout).toContain('Playing the drum at', args[2])
+
+  result = await execa('./tests/fixtures/musicCli.js', ['start', 'guitar'])
+  t.expect(result.stdout).toContain('Playing guitar!')
+})
+
+test('command help', async t => {
+  let result = await execa('./tests/fixtures/musicCli.js', ['--help'])
+  t.expect(result.stdout).toMatchSnapshot()
+
+  result = await execa('./tests/fixtures/musicCli.js', ['start', '--help'])
+  t.expect(result.stdout).toMatchSnapshot()
+
+  const args = ['start', 'drum', '--help']
+  result = await execa('./tests/fixtures/musicCli.js', args)
+  t.expect(result.stdout).toMatchSnapshot()
+
+  result = await execa('./tests/fixtures/musicCli.js', ['play', 'drum'])
+  t.expect(result.stdout).toMatchSnapshot()
 })

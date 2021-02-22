@@ -12,6 +12,7 @@
   "scripts": {
     "lint": "eslint index.js tests",
     "example": "./tests/fixtures/exampleCli.js",
+    "example:music": "./tests/fixtures/musicCli.js",
     "test": "bff"
   },
   "publishConfig": {

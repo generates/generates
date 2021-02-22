@@ -73,23 +73,30 @@ module.exports = function cli (config, input) {
   // flags.
   merge(input, cliOpts)
 
-  //
+  // Convert the getopts underscore array to "args" so it's easier to use.
   if (!input.args) input.args = input._
   delete input._
 
+  // Match args to commands.
   let command
   let commandConfig
   if (config.commands) {
-    command = input.args.shift()
+    [command] = input.args || []
     commandConfig = config.commands[command]
   }
 
   if (commandConfig) {
+    // Collect the commands in an array on the input object and remove it from
+    // the args array.
     input.commands = input.commands || []
     input.commands.push(command)
+    input.args.shift()
+
+    // Set a name for the command config so that it's not undefined in help
+    // text.
+    commandConfig.name = commandConfig.name || (config.name += ` ❯ ${command}`)
+
     return cli(commandConfig, input)
-  } else if (config.run) {
-    return config.run(input)
   } else if (input.help || (config.commands && !input.commands)) {
     // Generate help text from the given config.
     input.helpText = `# ${config.name}\n`
@@ -128,6 +135,8 @@ module.exports = function cli (config, input) {
 
     // Format the help markdown text with marked.
     input.helpText = md(input.helpText) + '\n'
+  } else if (config.run) {
+    return config.run(input)
   }
 
   // Return the populated input object.
