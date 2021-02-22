@@ -1,4 +1,4 @@
-const { createLogger } from '@generates/logger'
+const { createLogger } = require('@generates/logger')
 const cli = require('../..')
 
 const logger = createLogger()
