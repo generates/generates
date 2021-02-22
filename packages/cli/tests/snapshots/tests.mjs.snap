@@ -33,7 +33,7 @@ exports[`command help 1`] = `
 
     ## Commands
 
-      * start – Start playing instruments
+      * start, play – Start playing instruments
       * save – Save the music to a file
 "
 `;
@@ -81,7 +81,7 @@ exports[`command help 4`] = `
 
     ## Commands
 
-      * start – Start playing instruments
+      * start, play – Start playing instruments
       * save – Save the music to a file
 "
 `;
