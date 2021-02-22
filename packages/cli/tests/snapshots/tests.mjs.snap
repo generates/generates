@@ -69,7 +69,7 @@ exports[`command help 3`] = `
 
 exports[`command help 4`] = `
 "
-⚠️   [33m[1mCommand \\"play\\" not found[22m[39m
+⚠️   [33m[1mCommand \\"begin\\" not found[22m[39m
 
 💁  [36m[1m# music[22m[39m
 

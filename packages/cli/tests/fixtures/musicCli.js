@@ -11,6 +11,7 @@ const input = cli({
   description: 'Compose music from the command line!',
   commands: {
     start: {
+      aliases: ['play'],
       usage: 'music start [instrument] [args]',
       description: 'Start playing instruments',
       commands: {
@@ -46,7 +47,7 @@ const input = cli({
       description: 'Save the music to a file',
       options: {
         path: {
-          alias: 'p',
+          aliases: ['p'],
           description: 'The path of the saved music file',
           default: './music.mp3'
         }

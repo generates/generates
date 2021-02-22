@@ -32,7 +32,7 @@ module.exports = function cli (config, input) {
       option.flag = key = decamelize(key, '-')
 
       // Add option alias to getopts alias configuration.
-      if (option.alias) opts.alias[key] = option.alias
+      if (option.aliases) opts.alias[key] = option.aliases
 
       // Default to package.json config or option config.
       opts.default[key] = dotter.get(input, key) || option.default
@@ -83,6 +83,10 @@ module.exports = function cli (config, input) {
   if (config.commands) {
     [command] = input.args || []
     commandConfig = config.commands[command]
+    if (!commandConfig) {
+      const byAlias = c => c.aliases?.includes(command)
+      commandConfig = Object.values(config.commands).find(byAlias)
+    }
   }
 
   if (commandConfig) {

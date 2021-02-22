@@ -12,7 +12,7 @@ const input = cli({
   packageJson: true,
   options: {
     processorConcurrency: {
-      alias: 'c',
+      aliases: ['c'],
       description: `
         The number of CPU cores to use when executing the application. The value
         must be an integer between 1 and 4
@@ -23,7 +23,7 @@ const input = cli({
       default: '/some/path'
     },
     debug: {
-      alias: 'd',
+      aliases: ['d'],
       description: 'Print debug statements',
       default: false
     }
