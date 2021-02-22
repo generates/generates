@@ -10,7 +10,7 @@ const camelcase = require('camelcase')
 
 const args = process.argv.slice(2)
 const separator = chalk.dim('–')
-const toAlias = (acc, alias) => (acc += `, -${alias}`)
+const toAliasFlag = (acc, alias) => (acc += `, -${alias}`)
 
 module.exports = function cli (config, input) {
   if (!input) {
@@ -131,7 +131,7 @@ module.exports = function cli (config, input) {
       input.helpText += '## Options\n'
       input.helpText += Object.values(config.options).reduce(
         (acc, option) => {
-          const alias = option.aliases?.reduce(toAlias, '') || ''
+          const alias = option.aliases?.join(toAliasFlag, '') || ''
           const info = option.description
             ? `${separator} ${oneLine(option.description)}`
             : ''
