@@ -1,5 +1,15 @@
 # @generates/cli
 
+## 1.0.0
+
+### Major Changes
+
+- dea4d7c: Adding support for commands
+
+### Patch Changes
+
+- @generates/logger@0.1.2
+
 ## 0.0.10
 
 ### Patch Changes
