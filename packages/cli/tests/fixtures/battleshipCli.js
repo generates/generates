@@ -15,7 +15,7 @@ const input = cli({
     },
     dock: {
       options: {
-        port: { 
+        port: {
           aliases: ['p'],
           default: 'port'
         }
