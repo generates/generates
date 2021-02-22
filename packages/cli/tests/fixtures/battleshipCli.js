@@ -1,6 +1,9 @@
+const { createLogger } from '@generates/logger'
 const cli = require('../..')
 
-const input = await cli({
+const logger = createLogger()
+
+const input = cli({
   commands: {
     fire: {
       cannon: {
@@ -11,7 +14,15 @@ const input = await cli({
       }
     },
     dock: {
-
+      options: {
+        port: { 
+          aliases: ['p'],
+          default: 'port'
+        }
+      },
+      run: input => logger.info(`Docked at ${input.port}!`)
     }
   }
 })
+
+if (input.helpText) logger.info(input.helpText)
