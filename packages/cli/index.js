@@ -9,7 +9,8 @@ const decamelize = require('decamelize')
 const camelcase = require('camelcase')
 
 const args = process.argv.slice(2)
-const delimiter = chalk.dim('–')
+const separator = chalk.dim('–')
+const toAlias = (acc, alias) => (acc += `, -${alias}`)
 
 module.exports = function cli (config, input) {
   if (!input) {
@@ -105,16 +106,21 @@ module.exports = function cli (config, input) {
     // Generate help text from the given config.
     input.helpText = `# ${config.name}\n`
 
-    if (config.description) input.helpText += `${config.description}\n\n`
+    if (config.description) {
+      input.helpText += `${oneLine(config.description)}\n\n`
+    }
 
-    if (config.usage) input.helpText += `## Usage\n${config.usage}\n\n`
+    if (config.usage) input.helpText += `## Usage\n${oneLine(config.usage)}\n\n`
 
     if (config.commands) {
       input.helpText += '## Commands\n'
       input.helpText += Object.entries(config.commands).reduce(
         (acc, [key, command]) => {
-          const info = command.description ? oneLine(command.description) : ''
-          return acc + `* \`${key}\` ${delimiter} ${info}\n`
+          const alias = command.aliases ? ', ' + command.aliases.join(', ') : ''
+          const info = command.description
+            ? `${separator} ${oneLine(command.description)}`
+            : ''
+          return acc + `* \`${key}${alias}\` ${info}\n`
         },
         ''
       )
@@ -125,13 +131,15 @@ module.exports = function cli (config, input) {
       input.helpText += '## Options\n'
       input.helpText += Object.values(config.options).reduce(
         (acc, option) => {
-          const alias = option.alias ? `, -${option.alias}` : ''
-          const info = option.description ? oneLine(option.description) : ''
+          const alias = option.aliases?.reduce(toAlias, '') || ''
+          const info = option.description
+            ? `${separator} ${oneLine(option.description)}`
+            : ''
           const def = option.default !== undefined
             ? `${info ? ' ' : ''}(default: \`${util.inspect(option.default)}\`)`
             : ''
           acc += `* \`--${option.type === 'boolean' ? '(no-)' : ''}`
-          return acc + `${option.flag}${alias}\` ${delimiter} ${info}${def}\n`
+          return acc + `${option.flag}${alias}\` ${info}${def}\n`
         },
         ''
       )
