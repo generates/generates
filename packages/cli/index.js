@@ -20,7 +20,7 @@ module.exports = function cli (config, input) {
     const { packageJson } = readPkgUp.sync() || {}
     if (packageJson) merge(input, packageJson[config.name])
 
-    //
+    // Add the whole package.json to input if desired.
     if (config.packageJson) input.packageJson = packageJson
   }
 
