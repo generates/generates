@@ -2,42 +2,107 @@
 
 exports[`cli 1`] = `
 "     1 {
-     2   packageJson: {
-     3     name: '@generates/cli'
-     4   },
-     5   level: 'debug',
-     6   processorConcurrency: 4,
-     7   some: {
-     8     thing: true,
-     9     other: {
-    10       thing: 'a'
-    11     }
+     2   level: 'debug',
+     3   processorConcurrency: 4,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'a'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
     12   },
-    13   _: [],
-    14   c: 4,
-    15   path: '/some/path',
-    16   debug: false,
-    17   d: false
+    13   c: 4,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
     18 }"
+`;
+
+exports[`command help 1`] = `
+"
+💁  [36m[1m# music[22m[39m
+
+    Compose music from the command line!
+
+    ## Usage
+
+    music [commands] [args] [options]
+
+    ## Commands
+
+      * start – Start playing instruments
+      * save – Save the music to a file
+"
+`;
+
+exports[`command help 2`] = `
+"
+💁  [36m[1m# music ❯ start[22m[39m
+
+    Start playing instruments
+
+    ## Usage
+
+    music start [instrument] [args]
+
+    ## Commands
+
+      * drum – Start playing the drum at a certain tempo
+      * guitar – Start playing the guitar
+"
+`;
+
+exports[`command help 3`] = `
+"
+💁  [36m[1m# music ❯ start ❯ drum[22m[39m
+
+    Start playing the drum at a certain tempo
+
+    ## Usage
+
+    music start drum [tempo]
+"
+`;
+
+exports[`command help 4`] = `
+"
+⚠️   [33m[1mCommand \\"play\\" not found[22m[39m
+
+💁  [36m[1m# music[22m[39m
+
+    Compose music from the command line!
+
+    ## Usage
+
+    music [commands] [args] [options]
+
+    ## Commands
+
+      * start – Start playing instruments
+      * save – Save the music to a file
+"
 `;
 
 exports[`dot format 1`] = `
 "     1 {
-     2   packageJson: {
-     3     name: '@generates/cli'
-     4   },
-     5   level: 'debug',
-     6   processorConcurrency: 1,
-     7   some: {
-     8     thing: true,
-     9     other: {
-    10       thing: 'b'
-    11     }
+     2   level: 'debug',
+     3   processorConcurrency: 1,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'b'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
     12   },
-    13   _: [],
-    14   c: 1,
-    15   path: '/some/path',
-    16   debug: false,
-    17   d: false
+    13   c: 1,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
     18 }"
 `;

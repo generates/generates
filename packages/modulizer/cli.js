@@ -10,7 +10,7 @@ import modulize from './index.js'
 const logger = createLogger({ level: 'info', namespace: 'modulizeager' })
 
 async function run () {
-  const config = cli({
+  const input = cli({
     name: 'modulize',
     opts: {
       alias: {
@@ -27,14 +27,10 @@ async function run () {
     }
   })
 
-  // TODO: comment
-  config.input = config._.length ? config._[0] : config.input
-  delete config._
-
   try {
     // Perform distribution file generation and get back a map of files to be
     // written to the filesystme.
-    const files = Object.entries(await modulize(config))
+    const files = Object.entries(await modulize(input))
     if (files.length) {
       const writes = []
       files.forEach(([moduleType, [filename, code]]) => {

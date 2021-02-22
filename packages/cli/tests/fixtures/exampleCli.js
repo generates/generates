@@ -5,10 +5,11 @@ const cli = require('../..')
 
 const logger = createLogger()
 
-const config = cli({
+const input = cli({
   name: 'exampleCli',
   description: 'Just an example CLI',
   usage: 'example [options]',
+  packageJson: true,
   options: {
     processorConcurrency: {
       alias: 'c',
@@ -29,12 +30,14 @@ const config = cli({
   }
 })
 
-config.packageJson = { name: config.packageJson && config.packageJson.name }
+input.packageJson = { name: input.packageJson.name }
 
 if (require.main !== module) {
-  module.exports = config
-} else if (config.help) {
-  logger.plain(config.helpText)
+  module.exports = input
+} else if (input.help) {
+  process.stdout.write('\n')
+  logger.plain(input.helpText)
+  process.stdout.write('\n')
 } else {
-  logger.plain(config)
+  logger.plain(input)
 }
