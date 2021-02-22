@@ -16,3 +16,9 @@ test('dot format', async t => {
 test('default', async t => {
   t.expect(exampleCli.path).toBe('/some/path')
 })
+
+test('command', async t => {
+  const args = ['dock', '--port', 'Havensight']
+  const { stdout } = await execa('./tests/fixtures/battleshipCli.js', ['dock'])
+  t.expect(stdout).toContain('Docked at Havensight!')
+})
