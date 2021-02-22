@@ -57,6 +57,8 @@ const input = cli({
 })
 
 if (input?.helpText) {
+  process.stdout.write('\n')
+
   const [command] = input.args || []
   if (command) {
     logger.warn(`Command "${command}" not found`)
@@ -64,4 +66,5 @@ if (input?.helpText) {
   }
 
   logger.info(input.helpText)
+  process.stdout.write('\n')
 }

@@ -37,6 +37,7 @@ if (require.main !== module) {
 } else if (input.help) {
   process.stdout.write('\n')
   logger.plain(input.helpText)
+  process.stdout.write('\n')
 } else {
   logger.plain(input)
 }

@@ -134,7 +134,7 @@ module.exports = function cli (config, input) {
     }
 
     // Format the help markdown text with marked.
-    input.helpText = md(input.helpText) + '\n'
+    input.helpText = md(input.helpText)
   } else if (config.run) {
     return config.run(input)
   }
