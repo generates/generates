@@ -3,14 +3,24 @@ const cli = require('../..')
 
 const logger = createLogger()
 
-const input = cli({
+const input = await cli({
   commands: {
     fire: {
       cannon: {
-
+        options: {
+          
+        }
       },
       torpedo: {
-
+        run (input) {
+          return new Promise(resolve => setTimeout(
+            () => {
+              logger.log('Fired torpedo!')
+              resolve()
+            },
+            500
+          )})
+        }
       }
     },
     dock: {
