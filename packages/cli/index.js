@@ -88,8 +88,8 @@ module.exports = function cli (config, input) {
     input.commands = input.commands || []
     input.commands.push(command)
     return cli(commandConfig, input)
-  } else if (config.execute) {
-    return config.execute(input)
+  } else if (config.run) {
+    return config.run(input)
   } else if (input.help || (config.commands && !input.commands)) {
     // Generate help text from the given config.
     input.helpText = `# ${config.name}\n`
