@@ -18,7 +18,7 @@ test('default', async t => {
 })
 
 test('command', async t => {
-  let args = ['save', '--path', './test.mp3']
+  let args = ['save', '-p', './test.mp3']
   let result = await execa('./tests/fixtures/musicCli.js', args)
   t.expect(result.stdout).toContain('Music saved to:', args[2])
 
@@ -29,7 +29,7 @@ test('command', async t => {
   result = await execa('./tests/fixtures/musicCli.js', args)
   t.expect(result.stdout).toContain('Playing the drum at', args[2])
 
-  result = await execa('./tests/fixtures/musicCli.js', ['start', 'guitar'])
+  result = await execa('./tests/fixtures/musicCli.js', ['play', 'guitar'])
   t.expect(result.stdout).toContain('Playing guitar!')
 })
 
@@ -44,6 +44,6 @@ test('command help', async t => {
   result = await execa('./tests/fixtures/musicCli.js', args)
   t.expect(result.stdout).toMatchSnapshot()
 
-  result = await execa('./tests/fixtures/musicCli.js', ['play', 'drum'])
+  result = await execa('./tests/fixtures/musicCli.js', ['begin', 'drum'])
   t.expect(result.stdout).toMatchSnapshot()
 })
