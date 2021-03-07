@@ -1,5 +1,11 @@
 # @generates/cli
 
+## 1.0.2
+
+### Patch Changes
+
+- 376f3da: Fix #108: Merge parent options with command options in cli
+
 ## 1.0.1
 
 ### Patch Changes
