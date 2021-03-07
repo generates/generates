@@ -54,6 +54,13 @@ const input = cli({
       },
       run: input => logger.success('Music saved to:', input.path)
     }
+  },
+  options: {
+    style: {
+      aliases: ['s'],
+      description: 'The style of music to use as a base',
+      default: 'pop'
+    }
   }
 })
 

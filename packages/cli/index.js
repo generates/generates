@@ -101,6 +101,11 @@ module.exports = function cli (config, input) {
     // text.
     commandConfig.name = commandConfig.name || (config.name += ` ❯ ${command}`)
 
+    // Combine the command's options with the parent's options.
+    if (commandConfig.options || config.options) {
+      commandConfig.options = merge({}, config.options, commandConfig.options)
+    }
+
     return cli(commandConfig, input)
   } else if (input.help || (config.commands && !input.commands)) {
     // Generate help text from the given config.
@@ -131,7 +136,7 @@ module.exports = function cli (config, input) {
       input.helpText += '## Options\n'
       input.helpText += Object.values(config.options).reduce(
         (acc, option) => {
-          const alias = option.aliases?.join(toAliasFlag, '') || ''
+          const alias = option.aliases?.reduce(toAliasFlag, '') || ''
           const info = option.description
             ? `${separator} ${oneLine(option.description)}`
             : ''

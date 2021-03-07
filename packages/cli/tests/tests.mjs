@@ -40,6 +40,9 @@ test('command help', async t => {
   result = await execa('./tests/fixtures/musicCli.js', ['start', '--help'])
   t.expect(result.stdout).toMatchSnapshot()
 
+  result = await execa('./tests/fixtures/musicCli.js', ['save', '--help'])
+  t.expect(result.stdout).toMatchSnapshot()
+
   const args = ['start', 'drum', '--help']
   result = await execa('./tests/fixtures/musicCli.js', args)
   t.expect(result.stdout).toMatchSnapshot()
