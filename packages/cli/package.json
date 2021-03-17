@@ -1,17 +1,18 @@
 {
   "name": "@generates/cli",
   "description": "A utility for creating Node.js command-line applications",
-  "version": "0.0.10",
+  "version": "1.0.2",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
     "url": "https://ianwalter.dev"
   },
-  "license": "Hippocratic-2.1",
+  "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js tests",
     "example": "./tests/fixtures/exampleCli.js",
+    "example:music": "./tests/fixtures/musicCli.js",
     "test": "bff"
   },
   "publishConfig": {
@@ -45,8 +46,8 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/cli#readme",
   "dependencies": {
-    "@generates/logger": "^0.1.0",
-    "@generates/merger": "^0.1.0",
+    "@generates/logger": "^0.1.2",
+    "@generates/merger": "^0.1.3",
     "@generates/dotter": "^2.0.0",
     "camelcase": "^6.0.0",
     "common-tags": "^1.8.0",

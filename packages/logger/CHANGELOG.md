@@ -1,5 +1,18 @@
 # @generates/logger
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [dea4d7c]
+  - @generates/cli@1.0.0
+
+## 0.1.1
+
+### Patch Changes
+
+- 7f814b7: Update dependency marked to v2 [SECURITY]
+
 ## 0.1.0
 
 ### Minor Changes

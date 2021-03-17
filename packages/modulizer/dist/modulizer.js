@@ -1,29 +1,29 @@
-import path from 'path'
-import readPkgUp from 'read-pkg-up'
-import { rollup } from 'rollup'
-import cjsPlugin from '@rollup/plugin-commonjs'
-import nodeResolvePlugin from '@rollup/plugin-node-resolve'
-import jsonPlugin from '@rollup/plugin-json'
-import npmShortName from '@ianwalter/npm-short-name'
-import { babel } from '@rollup/plugin-babel'
-import requireFromString from 'require-from-string'
-import builtinModules from 'builtin-modules/static.js'
-import hashbang from '@ianwalter/rollup-plugin-hashbang'
-import { terser } from 'rollup-plugin-terser'
-import { createLogger } from '@generates/logger'
+import path from 'path';
+import readPkgUp from 'read-pkg-up';
+import { rollup } from 'rollup';
+import cjsPlugin from '@rollup/plugin-commonjs';
+import nodeResolvePlugin from '@rollup/plugin-node-resolve';
+import jsonPlugin from '@rollup/plugin-json';
+import npmShortName from '@ianwalter/npm-short-name';
+import { babel } from '@rollup/plugin-babel';
+import requireFromString from 'require-from-string';
+import builtinModules from 'builtin-modules/static.js';
+import hashbang from '@ianwalter/rollup-plugin-hashbang';
+import { terser } from 'rollup-plugin-terser';
+import { createLogger } from '@generates/logger';
 
-const logger = createLogger({ level: 'info', namespace: 'modulizer' })
-const onwarn = warning => logger.debug(warning.message)
+const logger = createLogger({ level: 'info', namespace: 'modulizer' });
+const onwarn = warning => logger.debug(warning.message);
 // FIXME: This fixes warning but breaks functionality:
 // const cjsOut = { exports: 'auto' }
 
-export default async function modulize ({ cwd, ...options }) {
+async function modulize ({ cwd, ...options }) {
   // Read modules package.json.
-  const { package: pkg, path: projectPath } = await readPkgUp({ cwd })
+  const { package: pkg, path: projectPath } = await readPkgUp({ cwd });
 
   // FIXME: comment
-  const hasFormat = options.cjs || options.esm || options.browser
-  const getFormat = (format, fallback) => hasFormat ? format : fallback
+  const hasFormat = options.cjs || options.esm || options.browser;
+  const getFormat = (format, fallback) => hasFormat ? format : fallback;
 
   // Deconstruct options and set defaults if necessary.
   let {
@@ -34,49 +34,49 @@ export default async function modulize ({ cwd, ...options }) {
     cjs = getFormat(options.cjs, pkg.main),
     esm = getFormat(options.esm, pkg.module),
     browser = getFormat(options.browser, pkg.browser)
-  } = options
-  const inline = options.inline || options.inline === ''
+  } = options;
+  const inline = options.inline || options.inline === '';
 
-  cjs = cjs || cjs === ''
-  esm = esm || esm === ''
-  browser = browser || browser === ''
+  cjs = cjs || cjs === '';
+  esm = esm || esm === '';
+  browser = browser || browser === '';
 
   // Import plugins file if specified.
-  let plugins = []
+  let plugins = [];
   if (typeof options.plugins === 'string') {
-    const input = path.resolve(options.plugins)
-    const external = Object.keys(pkg.devDependencies || {})
-    const { generate } = await rollup({ input, external })
-    const { output: [{ code }] } = await generate({ format: 'cjs' })
-    plugins = requireFromString(code)
+    const input = path.resolve(options.plugins);
+    const external = Object.keys(pkg.devDependencies || {});
+    const { generate } = await rollup({ input, external });
+    const { output: [{ code }] } = await generate({ format: 'cjs' });
+    plugins = requireFromString(code);
   }
 
   // Determine which dependencies should be external (Node.js core modules
   // should always be external).
-  const deps = Object.keys(pkg.dependencies || {})
-  let inlineDeps = []
-  let nodeResolve
+  const deps = Object.keys(pkg.dependencies || {});
+  let inlineDeps = [];
+  let nodeResolve;
   if (inline === true) {
-    inlineDeps = deps
-    nodeResolve = nodeResolvePlugin()
+    inlineDeps = deps;
+    nodeResolve = nodeResolvePlugin();
   } else if (inline) {
-    inlineDeps = inline.split(',')
-    nodeResolve = nodeResolvePlugin({ only: inlineDeps })
+    inlineDeps = inline.split(',');
+    nodeResolve = nodeResolvePlugin({ only: inlineDeps });
   }
-  const externalModules = deps.filter(dep => inlineDeps.indexOf(dep) === -1)
-  const externalDeps = [...builtinModules, ...externalModules]
+  const externalModules = deps.filter(dep => inlineDeps.indexOf(dep) === -1);
+  const externalDeps = [...builtinModules, ...externalModules];
   const external = id => (
     externalDeps.includes(id) ||
     externalModules.some(external => id.includes(external + path.sep))
-  )
-  logger.debug('External dependencies', externalDeps)
+  );
+  logger.debug('External dependencies', externalDeps);
 
   // Set the default babel config.
   const babelConfig = {
     babelHelpers: 'bundled', // FIXME: use runtime instead?
     babelrc: false,
     ...pkg.babel
-  }
+  };
 
   // Determine which Rollup plugins should be used.
   const rollupPlugins = [
@@ -94,7 +94,7 @@ export default async function modulize ({ cwd, ...options }) {
     ...plugins,
     //
     ...options.minify ? [terser(options.minify)] : []
-  ]
+  ];
 
   // Create the Rollup bundler instance(s).
   const bundler = await rollup({
@@ -103,30 +103,30 @@ export default async function modulize ({ cwd, ...options }) {
     plugins: rollupPlugins,
     preserveSymlinks: true,
     onwarn
-  })
+  });
 
   // Generate the CommonJS bundle.
-  let cjsBundle
-  if (cjs) cjsBundle = await bundler.generate({ format: 'cjs' })
+  let cjsBundle;
+  if (cjs) cjsBundle = await bundler.generate({ format: 'cjs' });
 
   // Generate the EcmaScript Module bundle.
-  let esmBundle
-  if (esm || browser) esmBundle = await bundler.generate({ format: 'esm' })
+  let esmBundle;
+  if (esm || browser) esmBundle = await bundler.generate({ format: 'esm' });
 
-  const cjsCode = cjs ? cjsBundle.output[0].code : undefined
-  const esmCode = (esm || browser) ? esmBundle.output[0].code : undefined
+  const cjsCode = cjs ? cjsBundle.output[0].code : undefined;
+  const esmCode = (esm || browser) ? esmBundle.output[0].code : undefined;
 
   // Determine the output file paths.
-  const dir = path.extname(output) ? path.dirname(output) : output
+  const dir = path.extname(output) ? path.dirname(output) : output;
   const cjsPath = typeof cjs === 'string' && path.extname(cjs)
     ? path.resolve(cjs)
-    : path.join(dir, `${name}.js`)
+    : path.join(dir, `${name}.js`);
   const esmPath = typeof esm === 'string' && path.extname(esm)
     ? path.resolve(esm)
-    : path.join(dir, `${name}.m.js`)
+    : path.join(dir, `${name}.m.js`);
   const browserPath = typeof browser === 'string' && path.extname(browser)
     ? path.resolve(browser)
-    : path.join(dir, `${name}.browser.js`)
+    : path.join(dir, `${name}.browser.js`);
 
   // Return an object with the properties that use the file path as the key and
   // the source code as the value.
@@ -136,3 +136,5 @@ export default async function modulize ({ cwd, ...options }) {
     ...browser ? { browser: [browserPath, esmCode] } : {}
   }
 }
+
+export default modulize;
