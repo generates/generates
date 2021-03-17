@@ -39,7 +39,7 @@
     "@generates/logger": "^0.1.2"
   },
   "devDependencies": {
-    "@generates/license": "0.0.3",
+    "@generates/license": "0.0.4",
     "@ianwalter/bff": "^10.0.0"
   }
 }
