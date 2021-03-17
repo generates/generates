@@ -1,19 +1,19 @@
 const readline = require('readline')
-const { createLogger, chalk } = require('@generates/logger')
+const { createPrint, chalk } = require('@ianwalter/print')
 const { cursor } = require('sisteransi')
 
 const yesNoOptions = [
-  { label: 'Yes', value: true },f
+  { label: 'Yes', value: true },
   { label: 'No', value: false }
 ]
 
-const logger = createLogger({ level: 'info', namespace: 'prompt' })
+const print = createPrint({ level: 'info' })
 
 function printLabel (prefix = '💬', label, fallback) {
   const hasFallback = fallback !== undefined
-  process.stdout.write('\n')
-  logger.log(prefix, chalk.bold.white(label))
-  if (hasFallback) logger.log(chalk.bold('Default:'), chalk.dim(fallback))
+  print.write()
+  print.log(prefix, chalk.bold.white(label))
+  if (hasFallback) print.log(chalk.bold('Default:'), chalk.dim(fallback))
 }
 
 function createReadline (keypressHandler, isText) {
@@ -34,18 +34,13 @@ function createReadline (keypressHandler, isText) {
   if (process.stdin.isTTY) process.stdin.setRawMode(true)
 
   // Add the keypress handler to stdin.
-  process.stdin.addListener('keypress', keypressHandler)
+  process.stdin.on('keypress', keypressHandler)
 
   // Add a close method to the keypressHanlder so that it can remove itself and
   // close the readline instance.
   keypressHandler.close = function close () {
     process.stdin.removeListener('keypress', keypressHandler)
     rl.close()
-
-    // NOTE: Not resetting raw mode will break SIGINT.
-    if (process.stdin.isTTY) process.stdin.setRawMode(false)
-
-    logger.debug('Closed keypress handler and readline')
   }
 
   return rl
@@ -75,7 +70,7 @@ function renderSelect (label, settings) {
         label = chalk.yellow(label)
       }
 
-      logger.log(prefix, label)
+      print.log(prefix, label)
     }
   }
 
@@ -114,6 +109,7 @@ function renderSelect (label, settings) {
       } else if (key.ctrl && key.name === 'c') {
         // Reject the promise when the user hits CTRL+c so that the caller
         // can handle it.
+        print.ns('')
         keypressHandler.close()
         reject(new Error('SIGINT'))
       } else if (key.name === 'up') {
@@ -186,7 +182,7 @@ module.exports = {
         const { edit } = require('external-editor')
         const answer = edit(settings.prefill) || fallback
 
-        logger.log(answer)
+        print.log(answer)
 
         resolve(answer)
       } catch (err) {
