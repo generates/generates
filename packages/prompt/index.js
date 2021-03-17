@@ -34,13 +34,18 @@ function createReadline (keypressHandler, isText) {
   if (process.stdin.isTTY) process.stdin.setRawMode(true)
 
   // Add the keypress handler to stdin.
-  process.stdin.on('keypress', keypressHandler)
+  process.stdin.addListener('keypress', keypressHandler)
 
   // Add a close method to the keypressHanlder so that it can remove itself and
   // close the readline instance.
   keypressHandler.close = function close () {
     process.stdin.removeListener('keypress', keypressHandler)
     rl.close()
+
+    // NOTE: Not resetting raw mode will break SIGINT.
+    if (process.stdin.isTTY) process.stdin.setRawMode(false)
+
+    logger.debug('Closed keypress handler and readline')
   }
 
   return rl
