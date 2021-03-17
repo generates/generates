@@ -1,5 +1,12 @@
 # @generates/core
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [360d9e5]
+  - @generates/prompt@0.0.2
+
 ## 0.0.4
 
 ### Patch Changes

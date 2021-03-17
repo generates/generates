@@ -1,6 +1,6 @@
 {
   "name": "@generates/license",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Generate a LICENSE file using generates",
   "keywords": [
     "generates",
@@ -33,7 +33,7 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@generates/core": "0.0.4"
+    "@generates/core": "0.0.5"
   },
   "devDependencies": {
     "@ianwalter/bff": "^10.0.0"
