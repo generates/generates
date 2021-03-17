@@ -3,7 +3,7 @@ const { createLogger, chalk } = require('@generates/logger')
 const { cursor } = require('sisteransi')
 
 const yesNoOptions = [
-  { label: 'Yes', value: true },
+  { label: 'Yes', value: true },f
   { label: 'No', value: false }
 ]
 
@@ -11,7 +11,7 @@ const logger = createLogger({ level: 'info', namespace: 'prompt' })
 
 function printLabel (prefix = '💬', label, fallback) {
   const hasFallback = fallback !== undefined
-  logger.write('\n')
+  process.stdout.write('\n')
   logger.log(prefix, chalk.bold.white(label))
   if (hasFallback) logger.log(chalk.bold('Default:'), chalk.dim(fallback))
 }
