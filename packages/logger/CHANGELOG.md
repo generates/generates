@@ -1,5 +1,15 @@
 # @generates/logger
 
+## 1.0.0
+
+### Major Changes
+
+- 1bdbc59: Add #116: Make logger async and use process.stdout.write callback
+
+### Patch Changes
+
+- @generates/cli@1.0.3
+
 ## 0.1.2
 
 ### Patch Changes

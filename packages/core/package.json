@@ -1,6 +1,6 @@
 {
   "name": "@generates/core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "The generates core generator application",
   "keywords": [
     "generates",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@generates/prompt": "^0.0.2",
-    "@generates/logger": "^0.1.0",
+    "@generates/logger": "^1.0.0",
     "@generates/merger": "^0.1.0",
     "@generates/dotter": "^2.0.0",
     "common-tags": "^1.8.0"

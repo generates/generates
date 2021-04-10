@@ -1,5 +1,14 @@
 # @generates/modulizer
 
+## 7.0.2
+
+### Patch Changes
+
+- 8b8315e: Update dependency @rollup/plugin-commonjs to v18
+- Updated dependencies [1bdbc59]
+  - @generates/logger@1.0.0
+  - @generates/cli@1.0.3
+
 ## 7.0.1
 
 ### Patch Changes

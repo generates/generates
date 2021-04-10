@@ -1,7 +1,7 @@
 {
   "name": "@generates/logger",
   "description": "A readable Node.js logging utility",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
@@ -46,7 +46,7 @@
     "@ianwalter/chromafi": "^1.0.1",
     "@ianwalter/clone": "^6.0.1",
     "@ianwalter/cloneable": "^2.0.0",
-    "@generates/cli": "^1.0.0",
+    "@generates/cli": "^1.0.3",
     "@generates/dotter": "^2.0.0",
     "@generates/merger": "^0.1.0",
     "chalk": "^4.1.0",
