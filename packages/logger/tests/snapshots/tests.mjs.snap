@@ -1,5 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`async 1`] = `
+"⚠️   [33m[1mI heard a sound[22m[39m
+"
+`;
+
 exports[`logger 1`] = `"No formatting on this one."`;
 
 exports[`logger 2`] = `"🚫  [31m[1mEnvironment variables not set![22m[39m"`;

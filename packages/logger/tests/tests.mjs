@@ -20,3 +20,8 @@ test('return', t => {
   const logger = createLogger({ io: false })
   t.expect(logger.info('Ello Guvna')).toMatchSnapshot()
 })
+
+test('async', async t => {
+  const logger = createLogger()
+  t.expect(await logger.warn('I heard a sound')).toMatchSnapshot()
+})

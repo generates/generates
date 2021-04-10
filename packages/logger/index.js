@@ -288,7 +288,12 @@ function createLogger (config = {}) {
           const outputString = output.reduce(toOutputString(isNotWrite), '')
 
           // Output the string using configured io.
-          if (options.io) options.io[log.io || 'out'](outputString)
+          if (options.io) {
+            return new Promise(resolve => options.io[log.io || 'out'](
+              outputString,
+              () => resolve(outputString)
+            ))
+          }
 
           // Return the output string to the caller.
           return outputString
