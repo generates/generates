@@ -1,8 +1,15 @@
 {
   "name": "@generates/plug",
   "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "bff"
+  },
   "dependencies": {
     "@generates/logger": "^1.0.0",
     "koa-compose": "^4.1.0"
+  },
+  "devDependencies": {
+    "@ianwalter/bff": "^10.2.0"
   }
 }
