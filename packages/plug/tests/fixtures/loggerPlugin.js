@@ -1,6 +1,7 @@
 export default function loggerPlugin (plug) {
-  plug.in('app', app => {
+  plug.in('app', (app, next) => {
     app.logger = app.context.logger = console.log
+    return next()
   })
 
   plug.after('error', 'middleware', async function logger (ctx, next) {
