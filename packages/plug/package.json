@@ -1,4 +1,8 @@
 {
   "name": "@generates/plug",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "dependencies": {
+    "@generates/logger": "^1.0.0",
+    "koa-compose": "^4.1.0"
+  }
 }

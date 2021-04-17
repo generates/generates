@@ -1,5 +1,5 @@
 export default function loggerPlugin (plug) {
-  plug.in('app', (app, next) => {
+  plug.in('plugin', (app, next) => {
     app.logger = app.context.logger = console.log
     return next()
   })
