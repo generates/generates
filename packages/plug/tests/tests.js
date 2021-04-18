@@ -8,7 +8,7 @@ const files = [
 ]
 
 test('plug', async t => {
-  const execute = await plug({ files })
+  const execute = await plug({ files, phases: ['plugin', 'middleware'] })
   const app = { context: {} }
   await execute('plugin', app)
   t.expect(app.logger).toBeDefined()

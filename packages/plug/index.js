@@ -6,27 +6,58 @@ const noOp = () => {}
 
 export default async function plug (config = {}) {
   const phases = {}
+
+  function register (phase, fn, index = phases[phase]?.items.length) {
+    if (!config.phases?.includes(phase)) {
+      throw new Error(`Unknown plugin phase: ${phase}`)
+    }
+
+    if (!fn.name) throw new Error('Plugin function must have a name')
+
+    logger.debug('Registering plugin:', { phase, name: fn.name })
+
+    if (phases[phase]) {
+      //
+      phases[phase].items.splice(index, 0, fn)
+
+      //
+      if (phases[phase].after && phases[phase].after[fn.name]) {
+        phases[phase].items.push(...phases[phase].after[fn.name])
+      }
+
+      //
+      phases[phase].entry = compose(phases[phase].items)
+    } else {
+      phases[phase] = { items: [fn], entry: compose([fn]) }
+    }
+  }
+
   const context = {
     ...config,
     logger,
     in (phase, fn) {
-      if (config.phases?.includes(phase)) {
-        throw new Error(`Unknown plugin phase: ${phase}`)
-      }
-
-      if (!fn.name) throw new Error('Plugin function must have a name')
-
-      logger.debug('Registering plugin:', { phase, name: fn.name })
-
-      if (phases[phase]) {
-        phases[phase].items.push(fn)
-        phases[phase].entry = compose(phases[phase].items)
-      } else {
-        phases[phase] = { items: [fn], entry: compose([fn]) }
-      }
+      register(phase, fn)
     },
-    before (plugin, name, fn) {},
-    after (plugin, name, fn) {}
+    before (name, phase, fn) {
+      const child = phases[phase]?.items?.findIndex(i => i.name === name)
+      register(phase, fn, child !== undefined ? Math.max(child - 1, 0) : child)
+    },
+    after (name, phase, fn) {
+      const parent = phases[phase]?.items?.findIndex(i => i.name === name)
+      if (parent) {
+        register(phase, fn, parent + 1)
+      } else if (phases[phase]?.after) {
+        if (phase[phase].after[name]) {
+          phase[phase].after[name].push(fn)
+        } else {
+          phase[phase].after[name] = [fn]
+        }
+      } else if (phases[phase]) {
+        phases[phase].after = { [name]: [fn] }
+      } else {
+        phases[phase] = { after: { [name]: [fn] } }
+      }
+    }
   }
 
   // Initialize the array of plugins with any plugins passed in config.
