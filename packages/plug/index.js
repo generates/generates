@@ -11,7 +11,7 @@ export default async function plug (config = {}) {
     logger,
     in (phase, fn) {
       if (config.phases?.includes(phase)) {
-        throw new Error(`Uknown plugin phase: ${phase}`)
+        throw new Error(`Unknown plugin phase: ${phase}`)
       }
 
       if (!fn.name) throw new Error('Plugin function must have a name')
@@ -29,11 +29,19 @@ export default async function plug (config = {}) {
     after (plugin, name, fn) {}
   }
 
-  // Load and register plugins from JS files.
+  // Initialize the array of plugins with any plugins passed in config.
+  let plugins = config.plugins || []
+
+  // Load any plugins specified from JS files.
   if (config.files) {
-    const plugins = await Promise.all(config.files.map(file => import(file)))
-    for (const plugin of plugins) plugin.default(context)
+    plugins = plugins.concat(await Promise.all(config.files.map(async file => {
+      const plugin = await import(file)
+      return plugin.default
+    })))
   }
+
+  // Allow plugins to register themselves.
+  await Promise.all(plugins.map(plugin => plugin(context)))
 
   // Return a function to execute a phase.
   return function execute (phase, ctx, next = noOp) {
