@@ -7,7 +7,7 @@ const noOp = () => {}
 export default async function plug (config = {}) {
   const phases = {}
 
-  function register (phase, fn, index = phases[phase]?.items.length) {
+  function register (phase, fn, index = phases[phase]?.items?.length) {
     if (!config.phases?.includes(phase)) {
       throw new Error(`Unknown plugin phase: ${phase}`)
     }
@@ -18,7 +18,11 @@ export default async function plug (config = {}) {
 
     if (phases[phase]) {
       //
-      phases[phase].items.splice(index, 0, fn)
+      if (phases[phase].items) {
+        phases[phase].items.splice(index, 0, fn)
+      } else {
+        phases[phase].items = [fn]
+      }
 
       //
       if (phases[phase].after && phases[phase].after[fn.name]) {
