@@ -17,7 +17,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@changesets/cli": "^2.11.1",
+    "@changesets/cli": "^2.12.0",
     "@ianwalter/bff": "^10.0.0",
     "@ianwalter/eslint-config": "^6.0.0",
     "@ianwalter/eslit": "^1.0.1",
