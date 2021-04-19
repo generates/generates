@@ -17,19 +17,19 @@ export default async function plug (config = {}) {
     logger.debug('Registering plugin:', { phase, name: fn.name })
 
     if (phases[phase]) {
-      //
+      // Add plugin function to list of plugins for the phase.
       if (phases[phase].items) {
         phases[phase].items.splice(index, 0, fn)
       } else {
         phases[phase].items = [fn]
       }
 
-      //
+      // Add any plugins that were registered to come after the current plugin.
       if (phases[phase].after && phases[phase].after[fn.name]) {
         phases[phase].items.push(...phases[phase].after[fn.name])
       }
 
-      //
+      // Compose the plugin functions into a middleware entry function.
       phases[phase].entry = compose(phases[phase].items)
     } else {
       phases[phase] = { items: [fn], entry: compose([fn]) }
