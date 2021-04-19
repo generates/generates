@@ -65,7 +65,7 @@
     "rollup-plugin-terser": "^7.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.12.1",
+    "@babel/runtime": "^7.12.5",
     "@ianwalter/bff": "^10.0.0",
     "execa": "^4.0.3",
     "ky": "^0.10.0",
