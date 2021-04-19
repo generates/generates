@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/ianwalter/dot#readme",
   "devDependencies": {
-    "@ianwalter/bff": "^10.0.1",
+    "@ianwalter/bff": "^10.2.0",
     "@generates/modulizer": "^7.0.0"
   }
 }
