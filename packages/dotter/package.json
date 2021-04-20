@@ -28,12 +28,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ianwalter/dot.git"
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/dotter"
   },
   "bugs": {
-    "url": "https://github.com/ianwalter/dot/issues"
+    "url": "https://github.com/generates/generates/issues"
   },
-  "homepage": "https://github.com/ianwalter/dot#readme",
+  "homepage": "https://github.com/generates/generates/blob/main/packages/dotter#readme",
   "devDependencies": {
     "@ianwalter/bff": "^10.0.1",
     "@generates/modulizer": "^7.0.0"
