@@ -8,15 +8,14 @@
     "url": "https://ianwalter.dev"
   },
   "type": "module",
-  "main": "dist/plug.js",
-  "module": "dist/plug.mjs",
   "scripts": {
-    "build": "modulize",
-    "pretest": "modulize",
+    "build": "modulize --cjs index.cjs",
+    "pretest": "modulize --cjs index.cjs",
     "test": "bff"
   },
   "files": [
-    "dist"
+    "index.js",
+    "index.cjs"
   ],
   "keywords": [
     "plugin",

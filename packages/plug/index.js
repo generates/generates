@@ -1,3 +1,4 @@
+import path from 'path'
 import { createLogger } from '@generates/logger'
 import compose from 'koa-compose'
 
@@ -8,31 +9,32 @@ export default async function plug (config = {}) {
   const phases = {}
 
   function register (phase, fn, index = phases[phase]?.items?.length) {
-    if (!config.phases?.includes(phase)) {
-      throw new Error(`Unknown plugin phase: ${phase}`)
-    }
+    if (config.phases?.includes(phase)) {
+      if (!fn.name) throw new Error('Plugin function must have a name')
 
-    if (!fn.name) throw new Error('Plugin function must have a name')
+      logger.debug('Registering plugin:', { phase, name: fn.name })
 
-    logger.debug('Registering plugin:', { phase, name: fn.name })
+      if (phases[phase]) {
+        // Add plugin function to list of plugins for the phase.
+        if (phases[phase].items) {
+          phases[phase].items.splice(index, 0, fn)
+        } else {
+          phases[phase].items = [fn]
+        }
 
-    if (phases[phase]) {
-      // Add plugin function to list of plugins for the phase.
-      if (phases[phase].items) {
-        phases[phase].items.splice(index, 0, fn)
+        // Add any plugins that are supposed to come after the current plugin.
+        if (phases[phase].after && phases[phase].after[fn.name]) {
+          phases[phase].items.push(...phases[phase].after[fn.name])
+        }
+
+        // Compose the plugin functions into a middleware entry function.
+        phases[phase].entry = compose(phases[phase].items)
       } else {
-        phases[phase].items = [fn]
+        phases[phase] = { items: [fn], entry: compose([fn]) }
       }
-
-      // Add any plugins that were registered to come after the current plugin.
-      if (phases[phase].after && phases[phase].after[fn.name]) {
-        phases[phase].items.push(...phases[phase].after[fn.name])
-      }
-
-      // Compose the plugin functions into a middleware entry function.
-      phases[phase].entry = compose(phases[phase].items)
     } else {
-      phases[phase] = { items: [fn], entry: compose([fn]) }
+      const msg = 'Ignoring registration' + (fn.name ? ` of ${fn.name}` : '')
+      logger.debug(msg, 'for unconfigured phase:', phase)
     }
   }
 
@@ -81,8 +83,20 @@ export default async function plug (config = {}) {
   // Load any plugins specified from JS files.
   if (config.files) {
     plugins = plugins.concat(await Promise.all(config.files.map(async file => {
-      const plugin = await import(file)
-      return plugin.default
+      let plugin
+      try {
+        const fn = await import(file)
+        plugin = fn.default
+      } catch (err) {
+        // Don't need to handle this error.
+      }
+
+      if (!plugin) {
+        const fn = await import(path.resolve(file))
+        plugin = fn.default
+      }
+
+      return plugin
     })))
   }
 
