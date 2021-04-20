@@ -12,6 +12,9 @@
     "test": "echo \"Error: no test specified\""
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
   "license": "SEE LICENSE IN LICENSE"
 }
