@@ -434,20 +434,6 @@
     getopts "^2.2.5"
     read-pkg-up "^7.0.1"
 
-"@generates/cli@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@generates/cli/-/cli-1.0.3.tgz#21785859b35a126fc50ea7ea6a098987edd5308c"
-  integrity sha512-J6IRNKDMmq04RH7wz/OVV+MPWWiiFZXhgyzaHfmTmox5PggAiWFSdIoqJewiQgMiRH9qtWSxGKUjcubkWeUPhg==
-  dependencies:
-    "@generates/dotter" "^2.0.0"
-    "@generates/logger" "^1.0.0"
-    "@generates/merger" "^0.1.3"
-    camelcase "^6.0.0"
-    common-tags "^1.8.0"
-    decamelize "^4.0.0"
-    getopts "^2.2.5"
-    read-pkg-up "^7.0.1"
-
 "@generates/logger@^0.0.9":
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/@generates/logger/-/logger-0.0.9.tgz#cab6713557bb576ced56c8668b26e92624c82812"
@@ -465,45 +451,6 @@
     marked "^1.1.1"
     marked-terminal "^4.1.0"
     strip-ansi "^6.0.0"
-
-"@generates/logger@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@generates/logger/-/logger-1.0.0.tgz#b02a6351e4128fac8bcda829be3c2caf67729d09"
-  integrity sha512-cjyRTDp1FnBnPjHYxgM+SgCPAwbbk9rogQXzLSZsD+4NsKmhxb9UnRokDlinXMBBXE0p8ResNEmhWfn+/cJyBw==
-  dependencies:
-    "@generates/cli" "^1.0.3"
-    "@generates/dotter" "^2.0.0"
-    "@generates/merger" "^0.1.0"
-    "@ianwalter/chromafi" "^1.0.1"
-    "@ianwalter/clone" "^6.0.1"
-    "@ianwalter/cloneable" "^2.0.0"
-    chalk "^4.1.0"
-    has-ansi "^4.0.0"
-    has-emoji "^1.1.0"
-    marked "^2.0.0"
-    marked-terminal "^4.1.0"
-    strip-ansi "^6.0.0"
-
-"@generates/modulizer@^7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@generates/modulizer/-/modulizer-7.0.2.tgz#d78b864eb117289b637cc4303fec78125ed11e46"
-  integrity sha512-LUt8yaBq/1qQvcvc4KG9K4n8hmN/yifrNjk/r9Mnw8gJV58Y3Oq5ZhqVqur69PM6Jb/Xs6og9hDSEPWGk3XeWg==
-  dependencies:
-    "@babel/core" "^7.8.6"
-    "@generates/cli" "^1.0.3"
-    "@generates/logger" "^1.0.0"
-    "@ianwalter/npm-short-name" "^1.0.0"
-    "@ianwalter/rollup-plugin-hashbang" "^1.3.0"
-    "@rollup/plugin-babel" "^5.3.0"
-    "@rollup/plugin-commonjs" "^18.0.0"
-    "@rollup/plugin-json" "^4.1.0"
-    "@rollup/plugin-node-resolve" "^11.2.0"
-    builtin-modules "^3.1.0"
-    p-settle "^4.0.0"
-    read-pkg-up "^6.0.0"
-    require-from-string "^2.0.2"
-    rollup "^2.39.0"
-    rollup-plugin-terser "^7.0.0"
 
 "@ianwalter/base-error@^6.1.0":
   version "6.1.0"
@@ -883,10 +830,10 @@
   dependencies:
     "@rollup/pluginutils" "^3.0.8"
 
-"@rollup/plugin-node-resolve@^11.2.0":
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-11.2.0.tgz#a5ab88c35bb7622d115f44984dee305112b6f714"
-  integrity sha512-qHjNIKYt5pCcn+5RUBQxK8krhRvf1HnyVgUCcFFcweDS7fhkOLZeYh0mhHK6Ery8/bb9tvN/ubPzmfF0qjDCTA==
+"@rollup/plugin-node-resolve@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.0.0.tgz#352f07e430ff377809ec8ec8a6fd636547162dc4"
+  integrity sha512-41X411HJ3oikIDivT5OKe9EZ6ud6DXudtfNrGbC4nniaxx2esiWjkLOzgnZsWq1IM8YIeL2rzRGLZLBjlhnZtQ==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     "@types/resolve" "1.17.1"
