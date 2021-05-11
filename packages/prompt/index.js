@@ -36,11 +36,12 @@ function createReadline (keypressHandler, isText) {
   // Add the keypress handler to stdin.
   process.stdin.on('keypress', keypressHandler)
 
-  // Add a close method to the keypressHanlder so that it can remove itself and
+  // Add a close method to the keypressHandler so that it can remove itself and
   // close the readline instance.
   keypressHandler.close = function close () {
     process.stdin.removeListener('keypress', keypressHandler)
     rl.close()
+    if (process.stdin.isTTY) process.stdin.setRawMode(false)
   }
 
   return rl
