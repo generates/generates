@@ -313,15 +313,8 @@ function createLogger (config = {}) {
 
   logger.wait = function wait (...items) {
     const instance = {
-      rl: readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-      }),
       update: (...newItems) => (items = newItems),
-      end: () => {
-        clearInterval(interval)
-        instance.rl.close()
-      }
+      end: () => clearInterval(interval)
     }
     process.stdout.write('\n')
 
