@@ -434,20 +434,6 @@
     getopts "^2.2.5"
     read-pkg-up "^7.0.1"
 
-"@generates/cli@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@generates/cli/-/cli-1.0.3.tgz#21785859b35a126fc50ea7ea6a098987edd5308c"
-  integrity sha512-J6IRNKDMmq04RH7wz/OVV+MPWWiiFZXhgyzaHfmTmox5PggAiWFSdIoqJewiQgMiRH9qtWSxGKUjcubkWeUPhg==
-  dependencies:
-    "@generates/dotter" "^2.0.0"
-    "@generates/logger" "^1.0.0"
-    "@generates/merger" "^0.1.3"
-    camelcase "^6.0.0"
-    common-tags "^1.8.0"
-    decamelize "^4.0.0"
-    getopts "^2.2.5"
-    read-pkg-up "^7.0.1"
-
 "@generates/logger@^0.0.9":
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/@generates/logger/-/logger-0.0.9.tgz#cab6713557bb576ced56c8668b26e92624c82812"
@@ -465,45 +451,6 @@
     marked "^1.1.1"
     marked-terminal "^4.1.0"
     strip-ansi "^6.0.0"
-
-"@generates/logger@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@generates/logger/-/logger-1.0.0.tgz#b02a6351e4128fac8bcda829be3c2caf67729d09"
-  integrity sha512-cjyRTDp1FnBnPjHYxgM+SgCPAwbbk9rogQXzLSZsD+4NsKmhxb9UnRokDlinXMBBXE0p8ResNEmhWfn+/cJyBw==
-  dependencies:
-    "@generates/cli" "^1.0.3"
-    "@generates/dotter" "^2.0.0"
-    "@generates/merger" "^0.1.0"
-    "@ianwalter/chromafi" "^1.0.1"
-    "@ianwalter/clone" "^6.0.1"
-    "@ianwalter/cloneable" "^2.0.0"
-    chalk "^4.1.0"
-    has-ansi "^4.0.0"
-    has-emoji "^1.1.0"
-    marked "^2.0.0"
-    marked-terminal "^4.1.0"
-    strip-ansi "^6.0.0"
-
-"@generates/modulizer@^7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@generates/modulizer/-/modulizer-7.0.2.tgz#d78b864eb117289b637cc4303fec78125ed11e46"
-  integrity sha512-LUt8yaBq/1qQvcvc4KG9K4n8hmN/yifrNjk/r9Mnw8gJV58Y3Oq5ZhqVqur69PM6Jb/Xs6og9hDSEPWGk3XeWg==
-  dependencies:
-    "@babel/core" "^7.8.6"
-    "@generates/cli" "^1.0.3"
-    "@generates/logger" "^1.0.0"
-    "@ianwalter/npm-short-name" "^1.0.0"
-    "@ianwalter/rollup-plugin-hashbang" "^1.3.0"
-    "@rollup/plugin-babel" "^5.3.0"
-    "@rollup/plugin-commonjs" "^18.0.0"
-    "@rollup/plugin-json" "^4.1.0"
-    "@rollup/plugin-node-resolve" "^11.2.0"
-    builtin-modules "^3.1.0"
-    p-settle "^4.0.0"
-    read-pkg-up "^6.0.0"
-    require-from-string "^2.0.2"
-    rollup "^2.39.0"
-    rollup-plugin-terser "^7.0.0"
 
 "@ianwalter/base-error@^6.1.0":
   version "6.1.0"
@@ -1719,10 +1666,10 @@ color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-colorette@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.1.tgz#4d0b921325c14faf92633086a536db6e89564b1b"
-  integrity sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
+colorette@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
+  integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
 
 commander@^2.20.0:
   version "2.20.3"
@@ -3960,10 +3907,10 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-nanoid@^3.1.20:
-  version "3.1.20"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.20.tgz#badc263c6b1dcf14b71efaa85f6ab4c1d6cfc788"
-  integrity sha512-a1cQNyczgKbLX9jwbS/+d7W8fX/RfgYR7lVWwWOGIPNgK2m0MWvrGF6/m4kk6U3QcFMnZf3RIhL0v2Jgh/0Uxw==
+nanoid@^3.1.22:
+  version "3.1.23"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
+  integrity sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -4491,13 +4438,13 @@ postcss@^7.0.14:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.1.2:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.2.1.tgz#eabc5557c4558059b9d9e5b15bce7ffa9089c2a8"
-  integrity sha512-RhsqOOAQzTgh1UB/IZdca7F9WDb7SUCR2Vnv1x7DbvuuggQIpoDwjK+q0rzoPffhYvWNKX5JSwS4so4K3UC6vA==
+postcss@^8.2.10:
+  version "8.2.10"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.2.10.tgz#ca7a042aa8aff494b334d0ff3e9e77079f6f702b"
+  integrity sha512-b/h7CPV7QEdrqIxtAf2j31U5ef05uBDuvoXv6L51Q4rcS1jdlXAVKJv+atCFdUXYl9dyTHGyoMzIepwowRJjFw==
   dependencies:
-    colorette "^1.2.1"
-    nanoid "^3.1.20"
+    colorette "^1.2.2"
+    nanoid "^3.1.22"
     source-map "^0.6.1"
 
 preferred-pm@^3.0.0:
