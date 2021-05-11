@@ -323,7 +323,7 @@ function createLogger (config = {}) {
       () => {
         readline.moveCursor(process.stdout, 0, -1)
         readline.clearLine(process.stdout)
-        logger.log(clocks[index % 7], ...items)
+        logger.log(clocks[index % 8], ...items)
         index++
       },
       200

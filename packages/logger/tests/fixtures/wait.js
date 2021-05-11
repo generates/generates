@@ -6,4 +6,4 @@ const waitLogger = logger.wait('Initializing...')
 
 setTimeout(() => waitLogger.update('Computing...'), 2000)
 
-setTimeout(waitLogger.end, 4000)
+setTimeout(waitLogger.end, 9000)
