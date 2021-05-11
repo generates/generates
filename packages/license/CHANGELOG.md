@@ -1,5 +1,11 @@
 # @generates/license
 
+## 0.0.7
+
+### Patch Changes
+
+- @generates/core@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes
