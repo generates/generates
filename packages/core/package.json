@@ -1,6 +1,6 @@
 {
   "name": "@generates/core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The generates core generator application",
   "keywords": [
     "generates",
@@ -33,7 +33,7 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@generates/prompt": "^0.0.2",
+    "@generates/prompt": "^0.0.3",
     "@generates/logger": "^1.0.0",
     "@generates/merger": "^0.1.0",
     "@generates/dotter": "^2.0.0",

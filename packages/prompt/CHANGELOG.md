@@ -1,5 +1,11 @@
 # @generates/prompt
 
+## 0.0.3
+
+### Patch Changes
+
+- d0d211e: Fixing prompt raw mode
+
 ## 0.0.2
 
 ### Patch Changes
