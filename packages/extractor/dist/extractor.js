@@ -17,7 +17,9 @@ function excluding (src, ...props) {
 
 function including (src, ...props) {
   const dest = {};
-  for (const prop of props) dotter.set(dest, prop, dotter.get(src, prop));
+  for (const prop of props) {
+    if (dotter.has(src, prop)) dotter.set(dest, prop, dotter.get(src, prop));
+  }
   return dest
 }
 

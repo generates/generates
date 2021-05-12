@@ -1,5 +1,5 @@
 import clone from '@ianwalter/clone';
-import { del, set, get } from '@generates/dotter';
+import { del, has, set, get } from '@generates/dotter';
 
 function excluding (src, ...props) {
   const dest = clone(src);
@@ -9,7 +9,9 @@ function excluding (src, ...props) {
 
 function including (src, ...props) {
   const dest = {};
-  for (const prop of props) set(dest, prop, get(src, prop));
+  for (const prop of props) {
+    if (has(src, prop)) set(dest, prop, get(src, prop));
+  }
   return dest
 }
 

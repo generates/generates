@@ -10,7 +10,8 @@ test('including top-level properties', t => {
 test('including nested properties', t => {
   const o = including(
     { let: { me: 'go', friend: 'best' }, one: { ok: true }, hoping: true },
-    ...['let.me', 'one']
+    ...['let.me', 'one', 'doesntexist']
   )
   t.expect(o).toEqual({ let: { me: 'go' }, one: { ok: true } })
+  t.expect('doesntexist' in o).toBe(false)
 })
