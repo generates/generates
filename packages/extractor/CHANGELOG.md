@@ -1,5 +1,11 @@
 # @generates/extractor
 
+## 1.1.3
+
+### Patch Changes
+
+- e97d055: Fixing including not to include props not set in src
+
 ## 1.1.2
 
 ### Patch Changes
