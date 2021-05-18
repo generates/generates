@@ -56,9 +56,9 @@ export function has (src, path = '') {
   let current = src
   for (let i = 0; i < pathKeys.length; i++) {
     if (i === lastIndex) {
-      return pathKeys[i] in current
+      return current && pathKeys[i] in current
     } else {
-      if (!isObj(current[pathKeys[i]])) return false
+      if (!current || !isObj(current[pathKeys[i]])) return false
       current = current[pathKeys[i]]
     }
   }

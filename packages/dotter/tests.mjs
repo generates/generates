@@ -32,6 +32,7 @@ test('delete from falsy source', t => {
 test('simple has', t => {
   t.expect(dotter.has({ say: { a: 'prayer' } }, 'say.a')).toBe(true)
   t.expect(dotter.has({ say: { a: 'prayer' } }, 'say.b')).toBe(false)
+  t.expect(dotter.has(undefined, 'say.c')).toBe(false)
 })
 
 test('match', t => {
