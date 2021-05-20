@@ -7,22 +7,41 @@ import pSettle from 'p-settle'
 import { createLogger, chalk } from '@generates/logger'
 import modulize from './index.js'
 
-const logger = createLogger({ level: 'info', namespace: 'modulizeager' })
+const logger = createLogger({ level: 'info', namespace: 'modulizer' })
 
 async function run () {
   const input = cli({
     name: 'modulize',
-    opts: {
-      alias: {
-        name: 'n',
-        output: 'o',
-        cjs: 'c',
-        esm: 'e',
-        browser: 'b',
-        inline: 'i',
-        babel: 'B',
-        plugins: 'p',
-        minify: 'm'
+    options: {
+      name: {
+        aliases: ['n']
+      },
+      output: {
+        aliases: ['o']
+      },
+      cjs: {
+        aliases: ['c']
+      },
+      esm: {
+        aliases: ['e']
+      },
+      browser: {
+        aliases: ['b']
+      },
+      inline: {
+        aliases: ['i']
+      },
+      babel: {
+        aliases: ['B']
+      },
+      plugins: {
+        aliases: ['p']
+      },
+      minify: {
+        aliases: ['m']
+      },
+      cwd: {
+        default: process.cwd()
       }
     }
   })
@@ -40,11 +59,11 @@ async function run () {
         // Inform the user about what files are being written.
         const relative = filename.replace(`${process.cwd()}/`, '')
         if (moduleType === 'cjs') {
-          logger.log('💿', 'Writing CommonJS dist file:', chalk.gray(relative))
+          logger.log('💿', 'Writing CommonJS dist file:', chalk.dim(relative))
         } else if (moduleType === 'esm') {
-          logger.log('📦', 'Writing ES Module dist file:', chalk.gray(relative))
+          logger.log('📦', 'Writing ES Module dist file:', chalk.dim(relative))
         } else if (moduleType === 'browser') {
-          logger.log('🌎', 'Writing Browser dist file:', chalk.gray(relative))
+          logger.log('🌎', 'Writing Browser dist file:', chalk.dim(relative))
         }
 
         // Add the file write operation to the list of writes to be completed

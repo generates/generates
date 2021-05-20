@@ -32,6 +32,8 @@ const onwarn = warning => logger.debug(warning.message);
 // const cjsOut = { exports: 'auto' }
 
 async function modulize ({ cwd, ...options }) {
+  logger.debug('Input', { cwd, ...options });
+
   // Read modules package.json.
   const { package: pkg, path: projectPath } = await readPkgUp__default['default']({ cwd });
 
@@ -86,6 +88,7 @@ async function modulize ({ cwd, ...options }) {
   logger.debug('External dependencies', externalDeps);
 
   // Set the default babel config.
+  logger.debug('Babel config', pkg.babel);
   const babelConfig = {
     babelHelpers: 'bundled', // FIXME: use runtime instead?
     babelrc: false,
@@ -94,6 +97,8 @@ async function modulize ({ cwd, ...options }) {
 
   // Determine which Rollup plugins should be used.
   const rollupPlugins = [
+    // Allows source to be transpiled with babel:
+    ...options.babel ? [pluginBabel.babel(babelConfig)] : [],
     // Allows the hashbang, in a CLI for example, to be preserved:
     hashbang__default['default'](),
     // Allows dependencies to be bundled:
@@ -102,8 +107,6 @@ async function modulize ({ cwd, ...options }) {
     cjsPlugin__default['default'](),
     // Allows JSON to be imported:
     jsonPlugin__default['default'](),
-    // Allows source to be transpiled with babel:
-    ...options.babel ? [pluginBabel.babel(babelConfig)] : [],
     // Allow users to pass in their own rollup plugins:
     ...plugins,
     //

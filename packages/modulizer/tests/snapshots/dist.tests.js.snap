@@ -6,6 +6,8 @@ Object {
     "/fakePath/exportDefaultFunctionWithImports.js",
     "'use strict';
 
+var camelcase = {exports: {}};
+
 const preserveCamelCase = string => {
 	let isLastCharLower = false;
 	let isLastCharUpper = false;
@@ -77,14 +79,15 @@ const camelCase = (input, options) => {
 	return postProcess(input);
 };
 
-var camelcase = camelCase;
+camelcase.exports = camelCase;
 // TODO: Remove this for the next major release
-var _default = camelCase;
-camelcase.default = _default;
+camelcase.exports.default = camelCase;
+
+var camelCase$1 = camelcase.exports;
 
 function npmShortName (name = '') {
   const parts = name.split('/');
-  return parts.length ? camelcase(parts[parts.length - 1]) : ''
+  return parts.length ? camelCase$1(parts[parts.length - 1]) : ''
 }
 
 /*! MIT License © Sindre Sorhus */
@@ -415,7 +418,9 @@ module.exports = greeting;
   ],
   "esm": Array [
     "/fakePath/exportDefaultFunctionWithImports.m.js",
-    "const preserveCamelCase = string => {
+    "var camelcase = {exports: {}};
+
+const preserveCamelCase = string => {
 	let isLastCharLower = false;
 	let isLastCharUpper = false;
 	let isLastLastCharUpper = false;
@@ -486,14 +491,15 @@ const camelCase = (input, options) => {
 	return postProcess(input);
 };
 
-var camelcase = camelCase;
+camelcase.exports = camelCase;
 // TODO: Remove this for the next major release
-var _default = camelCase;
-camelcase.default = _default;
+camelcase.exports.default = camelCase;
+
+var camelCase$1 = camelcase.exports;
 
 function npmShortName (name = '') {
   const parts = name.split('/');
-  return parts.length ? camelcase(parts[parts.length - 1]) : ''
+  return parts.length ? camelCase$1(parts[parts.length - 1]) : ''
 }
 
 /*! MIT License © Sindre Sorhus */
@@ -905,6 +911,8 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var pSettle__default = /*#__PURE__*/_interopDefaultLegacy(pSettle);
 
+var camelcase = {exports: {}};
+
 const preserveCamelCase = string => {
   let isLastCharLower = false;
   let isLastCharUpper = false;
@@ -969,14 +977,15 @@ const camelCase = (input, options) => {
   return postProcess(input);
 };
 
-var camelcase = camelCase; // TODO: Remove this for the next major release
+camelcase.exports = camelCase; // TODO: Remove this for the next major release
 
-var _default = camelCase;
-camelcase.default = _default;
+camelcase.exports.default = camelCase;
+
+var camelCase$1 = camelcase.exports;
 
 function npmShortName(name = '') {
   const parts = name.split('/');
-  return parts.length ? camelcase(parts[parts.length - 1]) : '';
+  return parts.length ? camelCase$1(parts[parts.length - 1]) : '';
 }
 
 function greeting() {
