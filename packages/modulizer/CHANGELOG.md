@@ -1,5 +1,15 @@
 # @generates/modulizer
 
+## 8.0.0
+
+### Major Changes
+
+- 3a4f54b: Adding watch to modulizer
+
+### Patch Changes
+
+- 439a605: Updating rollup plugin and moving babel plugin before commonjs plugin
+
 ## 7.0.2
 
 ### Patch Changes

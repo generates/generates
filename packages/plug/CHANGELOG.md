@@ -1,5 +1,13 @@
 # @generates/plug
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [3a4f54b]
+- Updated dependencies [439a605]
+  - @generates/modulizer@8.0.0
+
 ## 0.0.2
 
 ### Patch Changes

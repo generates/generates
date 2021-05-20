@@ -1,7 +1,7 @@
 {
   "name": "@generates/plug",
   "description": "A plugin system that is easy to plug in",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
     "name": "Ian Walter",
@@ -37,7 +37,7 @@
   "homepage": "https://github.com/generates/generates/blob/main/packages/plug#readme",
   "dependencies": {
     "@generates/logger": "^1.0.0",
-    "@generates/modulizer": "^7.0.2",
+    "@generates/modulizer": "^8.0.0",
     "koa-compose": "^4.1.0"
   },
   "devDependencies": {
