@@ -1,5 +1,11 @@
 # @generates/modulizer
 
+## 8.0.1
+
+### Patch Changes
+
+- 8322759: Adding lib to npm files list
+
 ## 8.0.0
 
 ### Major Changes
