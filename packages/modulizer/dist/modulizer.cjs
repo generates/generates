@@ -12,7 +12,8 @@ var requireFromString = require('require-from-string');
 var builtinModules = require('builtin-modules/static.js');
 var hashbang = require('@ianwalter/rollup-plugin-hashbang');
 var rollupPluginTerser = require('rollup-plugin-terser');
-var logger$1 = require('@generates/logger');
+var logger$2 = require('@generates/logger');
+var fs = require('fs');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -26,13 +27,78 @@ var requireFromString__default = /*#__PURE__*/_interopDefaultLegacy(requireFromS
 var builtinModules__default = /*#__PURE__*/_interopDefaultLegacy(builtinModules);
 var hashbang__default = /*#__PURE__*/_interopDefaultLegacy(hashbang);
 
-const logger = logger$1.createLogger({ level: 'info', namespace: 'modulizer' });
-const onwarn = warning => logger.debug(warning.message);
+const logger = logger$2.createLogger({ level: 'info', namespace: 'modulizer.generate' });
+
+async function generate (bundler, config) {
+  const { name, cjs, esm, browser, dir, skipWrite } = config;
+
+  // Generate the CommonJS bundle.
+  let cjsBundle;
+  if (cjs) cjsBundle = await bundler.generate({ format: 'cjs' });
+
+  // Generate the EcmaScript Module bundle.
+  let esmBundle;
+  if (esm || browser) esmBundle = await bundler.generate({ format: 'esm' });
+
+  // Extract the source code from the bundle output.
+  const cjsCode = cjs ? cjsBundle.output[0].code : undefined;
+  const esmCode = (esm || browser) ? esmBundle.output[0].code : undefined;
+
+  // Determine the path for the bundle files.
+  const cjsPath = typeof cjs === 'string' && path__default['default'].extname(cjs)
+    ? path__default['default'].resolve(cjs)
+    : path__default['default'].join(dir, `${name}.js`);
+  const esmPath = typeof esm === 'string' && path__default['default'].extname(esm)
+    ? path__default['default'].resolve(esm)
+    : path__default['default'].join(dir, `${name}.m.js`);
+  const browserPath = typeof browser === 'string' && path__default['default'].extname(browser)
+    ? path__default['default'].resolve(browser)
+    : path__default['default'].join(dir, `${name}.browser.js`);
+
+  // Create an array of files to write.
+  const files = [
+    ...cjs ? [{ type: 'cjs', path: cjsPath, source: cjsCode }] : [],
+    ...esm ? [{ type: 'esm', path: esmPath, source: esmCode }] : [],
+    ...browser ? [{ type: 'browser', path: browserPath, source: esmCode }] : []
+  ];
+
+  if (skipWrite) return files
+
+  if (files.length) {
+    // Write the bundle files to the file system.
+    await Promise.all(files.map(async file => {
+      try {
+        // Make the file's containing directory if it doesn't exist.
+        fs.mkdirSync(path__default['default'].dirname(file.path), { recursive: true });
+
+        // Inform the user about what files are being written.
+        const relative = file.path.replace(`${process.cwd()}/`, '');
+        if (file.type === 'cjs') {
+          logger.log('💿', 'Writing CommonJS dist file:', logger$2.chalk.dim(relative));
+        } else if (file.type === 'esm') {
+          logger.log('📦', 'Writing ES Module dist file:', logger$2.chalk.dim(relative));
+        } else if (file.type === 'browser') {
+          logger.log('🌎', 'Writing Browser dist file:', logger$2.chalk.dim(relative));
+        }
+
+        // Write the bundle file.
+        await fs.promises.writeFile(file.path, file.source);
+      } catch (err) {
+        logger.error(err);
+      }
+    }));
+  } else {
+    logger.warn('No distribution files were specified');
+  }
+}
+
+const logger$1 = logger$2.createLogger({ level: 'info', namespace: 'modulizer' });
+const onwarn = warning => logger$1.debug(warning.message);
 // FIXME: This fixes warning but breaks functionality:
 // const cjsOut = { exports: 'auto' }
 
 async function modulize ({ cwd, ...options }) {
-  logger.debug('Input', { cwd, ...options });
+  logger$1.debug('Input', { cwd, ...options });
 
   // Read modules package.json.
   const { package: pkg, path: projectPath } = await readPkgUp__default['default']({ cwd });
@@ -49,7 +115,8 @@ async function modulize ({ cwd, ...options }) {
     output = options.output || path__default['default'].join(path__default['default'].dirname(projectPath), 'dist'),
     cjs = getFormat(options.cjs, pkg.main),
     esm = getFormat(options.esm, pkg.module),
-    browser = getFormat(options.browser, pkg.browser)
+    browser = getFormat(options.browser, pkg.browser),
+    skipWrite = false
   } = options;
   const inline = options.inline || options.inline === '';
 
@@ -85,10 +152,10 @@ async function modulize ({ cwd, ...options }) {
     externalDeps.includes(id) ||
     externalModules.some(external => id.includes(external + path__default['default'].sep))
   );
-  logger.debug('External dependencies', externalDeps);
+  logger$1.debug('External dependencies', externalDeps);
 
   // Set the default babel config.
-  logger.debug('Babel config', pkg.babel);
+  logger$1.debug('Babel config', pkg.babel);
   const babelConfig = {
     babelHelpers: 'bundled', // FIXME: use runtime instead?
     babelrc: false,
@@ -113,44 +180,39 @@ async function modulize ({ cwd, ...options }) {
     ...options.minify ? [rollupPluginTerser.terser(options.minify)] : []
   ];
 
-  // Create the Rollup bundler instance(s).
-  const bundler = await rollup.rollup({
-    input,
-    external,
-    plugins: rollupPlugins,
-    preserveSymlinks: true,
-    onwarn
-  });
-
-  // Generate the CommonJS bundle.
-  let cjsBundle;
-  if (cjs) cjsBundle = await bundler.generate({ format: 'cjs' });
-
-  // Generate the EcmaScript Module bundle.
-  let esmBundle;
-  if (esm || browser) esmBundle = await bundler.generate({ format: 'esm' });
-
-  const cjsCode = cjs ? cjsBundle.output[0].code : undefined;
-  const esmCode = (esm || browser) ? esmBundle.output[0].code : undefined;
-
-  // Determine the output file paths.
+  // Determine the output directory.
   const dir = path__default['default'].extname(output) ? path__default['default'].dirname(output) : output;
-  const cjsPath = typeof cjs === 'string' && path__default['default'].extname(cjs)
-    ? path__default['default'].resolve(cjs)
-    : path__default['default'].join(dir, `${name}.js`);
-  const esmPath = typeof esm === 'string' && path__default['default'].extname(esm)
-    ? path__default['default'].resolve(esm)
-    : path__default['default'].join(dir, `${name}.m.js`);
-  const browserPath = typeof browser === 'string' && path__default['default'].extname(browser)
-    ? path__default['default'].resolve(browser)
-    : path__default['default'].join(dir, `${name}.browser.js`);
 
-  // Return an object with the properties that use the file path as the key and
-  // the source code as the value.
-  return {
-    ...cjs ? { cjs: [cjsPath, cjsCode] } : {},
-    ...esm ? { esm: [esmPath, esmCode] } : {},
-    ...browser ? { browser: [browserPath, esmCode] } : {}
+  const generateConfig = { name, cjs, esm, browser, dir, skipWrite };
+  if (options.watch) {
+    return new Promise(() => {
+      // Create the Rollup watcher.
+      const watcher = rollup.watch({ input, output: { dir }, skipWrite: true });
+
+      watcher.on('event', async event => {
+        logger$1.debug('Watch event', event);
+        if (event.error) logger$1.error(event.error);
+        if (event.result) {
+          // Generate the bundles and write them to files.
+          await generate(event.result, generateConfig);
+
+          // Call close to cleanup.
+          event.result.close();
+        }
+      });
+    })
+  } else {
+    // Create the Rollup bundler.
+    const bundler = await rollup.rollup({
+      input,
+      external,
+      plugins: rollupPlugins,
+      preserveSymlinks: true,
+      onwarn
+    });
+
+    // Generate the bundles and write them to files.
+    return generate(bundler, generateConfig)
   }
 }
 

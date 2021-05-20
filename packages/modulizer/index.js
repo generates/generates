@@ -1,6 +1,6 @@
 import path from 'path'
 import readPkgUp from 'read-pkg-up'
-import { rollup } from 'rollup'
+import { watch, rollup } from 'rollup'
 import cjsPlugin from '@rollup/plugin-commonjs'
 import nodeResolvePlugin from '@rollup/plugin-node-resolve'
 import jsonPlugin from '@rollup/plugin-json'
@@ -11,6 +11,7 @@ import builtinModules from 'builtin-modules/static.js'
 import hashbang from '@ianwalter/rollup-plugin-hashbang'
 import { terser } from 'rollup-plugin-terser'
 import { createLogger } from '@generates/logger'
+import generate from './lib/generate.js'
 
 const logger = createLogger({ level: 'info', namespace: 'modulizer' })
 const onwarn = warning => logger.debug(warning.message)
@@ -35,7 +36,8 @@ export default async function modulize ({ cwd, ...options }) {
     output = options.output || path.join(path.dirname(projectPath), 'dist'),
     cjs = getFormat(options.cjs, pkg.main),
     esm = getFormat(options.esm, pkg.module),
-    browser = getFormat(options.browser, pkg.browser)
+    browser = getFormat(options.browser, pkg.browser),
+    skipWrite = false
   } = options
   const inline = options.inline || options.inline === ''
 
@@ -99,43 +101,38 @@ export default async function modulize ({ cwd, ...options }) {
     ...options.minify ? [terser(options.minify)] : []
   ]
 
-  // Create the Rollup bundler instance(s).
-  const bundler = await rollup({
-    input,
-    external,
-    plugins: rollupPlugins,
-    preserveSymlinks: true,
-    onwarn
-  })
-
-  // Generate the CommonJS bundle.
-  let cjsBundle
-  if (cjs) cjsBundle = await bundler.generate({ format: 'cjs' })
-
-  // Generate the EcmaScript Module bundle.
-  let esmBundle
-  if (esm || browser) esmBundle = await bundler.generate({ format: 'esm' })
-
-  const cjsCode = cjs ? cjsBundle.output[0].code : undefined
-  const esmCode = (esm || browser) ? esmBundle.output[0].code : undefined
-
-  // Determine the output file paths.
+  // Determine the output directory.
   const dir = path.extname(output) ? path.dirname(output) : output
-  const cjsPath = typeof cjs === 'string' && path.extname(cjs)
-    ? path.resolve(cjs)
-    : path.join(dir, `${name}.js`)
-  const esmPath = typeof esm === 'string' && path.extname(esm)
-    ? path.resolve(esm)
-    : path.join(dir, `${name}.m.js`)
-  const browserPath = typeof browser === 'string' && path.extname(browser)
-    ? path.resolve(browser)
-    : path.join(dir, `${name}.browser.js`)
 
-  // Return an object with the properties that use the file path as the key and
-  // the source code as the value.
-  return {
-    ...cjs ? { cjs: [cjsPath, cjsCode] } : {},
-    ...esm ? { esm: [esmPath, esmCode] } : {},
-    ...browser ? { browser: [browserPath, esmCode] } : {}
+  const generateConfig = { name, cjs, esm, browser, dir, skipWrite }
+  if (options.watch) {
+    return new Promise(() => {
+      // Create the Rollup watcher.
+      const watcher = watch({ input, output: { dir }, skipWrite: true })
+
+      watcher.on('event', async event => {
+        logger.debug('Watch event', event)
+        if (event.error) logger.error(event.error)
+        if (event.result) {
+          // Generate the bundles and write them to files.
+          await generate(event.result, generateConfig)
+
+          // Call close to cleanup.
+          event.result.close()
+        }
+      })
+    })
+  } else {
+    // Create the Rollup bundler.
+    const bundler = await rollup({
+      input,
+      external,
+      plugins: rollupPlugins,
+      preserveSymlinks: true,
+      onwarn
+    })
+
+    // Generate the bundles and write them to files.
+    return generate(bundler, generateConfig)
   }
 }

@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`all imports get bundled with module into dist files 1`] = `
-Object {
-  "cjs": Array [
-    "/fakePath/exportDefaultFunctionWithImports.js",
-    "'use strict';
+Array [
+  Object {
+    "path": "/fakePath/exportDefaultFunctionWithImports.js",
+    "source": "'use strict';
 
 var camelcase = {exports: {}};
 
@@ -415,10 +415,11 @@ function greeting () {
 
 module.exports = greeting;
 ",
-  ],
-  "esm": Array [
-    "/fakePath/exportDefaultFunctionWithImports.m.js",
-    "var camelcase = {exports: {}};
+    "type": "cjs",
+  },
+  Object {
+    "path": "/fakePath/exportDefaultFunctionWithImports.m.js",
+    "source": "var camelcase = {exports: {}};
 
 const preserveCamelCase = string => {
 	let isLastCharLower = false;
@@ -827,15 +828,16 @@ function greeting () {
 
 export default greeting;
 ",
-  ],
-}
+    "type": "esm",
+  },
+]
 `;
 
 exports[`export default function converted to module.exports 1`] = `
-Object {
-  "cjs": Array [
-    "/fakePath/some-function.js",
-    "'use strict';
+Array [
+  Object {
+    "path": "/fakePath/some-function.js",
+    "source": "'use strict';
 
 function greeting () {
   return 'Hello World'
@@ -843,36 +845,39 @@ function greeting () {
 
 module.exports = greeting;
 ",
-  ],
-}
+    "type": "cjs",
+  },
+]
 `;
 
 exports[`export default literal converted to module.exports 1`] = `
-Object {
-  "browser": Array [
-    "/fakePath/exportDefaultLiteral.browser.js",
-    "var exportDefaultLiteral = 'Hello World';
-
-export default exportDefaultLiteral;
-",
-  ],
-  "cjs": Array [
-    "/fakePath/exportDefaultLiteral.js",
-    "'use strict';
+Array [
+  Object {
+    "path": "/fakePath/exportDefaultLiteral.js",
+    "source": "'use strict';
 
 var exportDefaultLiteral = 'Hello World';
 
 module.exports = exportDefaultLiteral;
 ",
-  ],
-}
+    "type": "cjs",
+  },
+  Object {
+    "path": "/fakePath/exportDefaultLiteral.browser.js",
+    "source": "var exportDefaultLiteral = 'Hello World';
+
+export default exportDefaultLiteral;
+",
+    "type": "browser",
+  },
+]
 `;
 
 exports[`export default new expression converted to module.exports 1`] = `
-Object {
-  "cjs": Array [
-    "/fakePath/modulizer.js",
-    "'use strict';
+Array [
+  Object {
+    "path": "/fakePath/modulizer.js",
+    "source": "'use strict';
 
 class SomeClass {}
 
@@ -880,8 +885,9 @@ var exportDefaultNewExpression = new SomeClass();
 
 module.exports = exportDefaultNewExpression;
 ",
-  ],
-}
+    "type": "cjs",
+  },
+]
 `;
 
 exports[`hashbang is preserved 1`] = `
@@ -898,10 +904,10 @@ console.log('yo yo yo');
 `;
 
 exports[`specified import gets bundled with module into dist file 1`] = `
-Object {
-  "cjs": Array [
-    "/fakePath/exportObjectWithImports.js",
-    "'use strict';
+Array [
+  Object {
+    "path": "/fakePath/exportObjectWithImports.js",
+    "source": "'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
@@ -1001,6 +1007,7 @@ Object.defineProperty(exports, 'pSettle', {
 exports.greeting = greeting;
 exports.npmShortName = npmShortName;
 ",
-  ],
-}
+    "type": "cjs",
+  },
+]
 `;
