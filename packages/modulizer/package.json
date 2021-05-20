@@ -1,6 +1,6 @@
 {
   "name": "@generates/modulizer",
-  "version": "7.0.2",
+  "version": "8.0.0",
   "description": "Simplify the generation of distribution files for your JavaScript library",
   "type": "module",
   "module": "dist/modulizer.js",
