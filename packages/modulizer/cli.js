@@ -39,6 +39,9 @@ async function run () {
       },
       minify: {
         aliases: ['m']
+      },
+      cwd: {
+        default: process.cwd()
       }
     }
   })
@@ -56,11 +59,11 @@ async function run () {
         // Inform the user about what files are being written.
         const relative = filename.replace(`${process.cwd()}/`, '')
         if (moduleType === 'cjs') {
-          logger.log('💿', 'Writing CommonJS dist file:', chalk.gray(relative))
+          logger.log('💿', 'Writing CommonJS dist file:', chalk.dim(relative))
         } else if (moduleType === 'esm') {
-          logger.log('📦', 'Writing ES Module dist file:', chalk.gray(relative))
+          logger.log('📦', 'Writing ES Module dist file:', chalk.dim(relative))
         } else if (moduleType === 'browser') {
-          logger.log('🌎', 'Writing Browser dist file:', chalk.gray(relative))
+          logger.log('🌎', 'Writing Browser dist file:', chalk.dim(relative))
         }
 
         // Add the file write operation to the list of writes to be completed

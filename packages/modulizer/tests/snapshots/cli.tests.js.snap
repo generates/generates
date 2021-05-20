@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cjs file not generated when --esm specified 1`] = `"📦  Writing ES Module dist file: [90mtmp/one.js[39m"`;
+exports[`cjs file not generated when --esm specified 1`] = `"📦  Writing ES Module dist file: [2mtmp/one.js[22m"`;
 
 exports[`cjs file not generated when --esm specified 2`] = `
 "function greeting () {
@@ -11,7 +11,7 @@ export default greeting;
 "
 `;
 
-exports[`dist file generated using custom plugins 1`] = `"💿  Writing CommonJS dist file: [90mtmp/three.js[39m"`;
+exports[`dist file generated using custom plugins 1`] = `"💿  Writing CommonJS dist file: [2mtmp/three.js[22m"`;
 
 exports[`dist file generated using custom plugins 2`] = `
 "'use strict';
@@ -145,7 +145,7 @@ exports.Greeting = __vue_component__;
 "
 `;
 
-exports[`dist file is transpiled when --babel passed 1`] = `"💿  Writing CommonJS dist file: [90mtmp/two.js[39m"`;
+exports[`dist file is transpiled when --babel passed 1`] = `"💿  Writing CommonJS dist file: [2mtmp/two.js[22m"`;
 
 exports[`dist file is transpiled when --babel passed 2`] = `
 "'use strict';

@@ -18,6 +18,8 @@ const onwarn = warning => logger.debug(warning.message);
 // const cjsOut = { exports: 'auto' }
 
 async function modulize ({ cwd, ...options }) {
+  logger.debug('Input', { cwd, ...options });
+
   // Read modules package.json.
   const { package: pkg, path: projectPath } = await readPkgUp({ cwd });
 
@@ -72,6 +74,7 @@ async function modulize ({ cwd, ...options }) {
   logger.debug('External dependencies', externalDeps);
 
   // Set the default babel config.
+  logger.debug('Babel config', pkg.babel);
   const babelConfig = {
     babelHelpers: 'bundled', // FIXME: use runtime instead?
     babelrc: false,
