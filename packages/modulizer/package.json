@@ -40,7 +40,8 @@
   "files": [
     "cli.js",
     "index.js",
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "modulize": "./cli.js",
