@@ -7,22 +7,38 @@ import pSettle from 'p-settle'
 import { createLogger, chalk } from '@generates/logger'
 import modulize from './index.js'
 
-const logger = createLogger({ level: 'info', namespace: 'modulizeager' })
+const logger = createLogger({ level: 'info', namespace: 'modulizer' })
 
 async function run () {
   const input = cli({
     name: 'modulize',
-    opts: {
-      alias: {
-        name: 'n',
-        output: 'o',
-        cjs: 'c',
-        esm: 'e',
-        browser: 'b',
-        inline: 'i',
-        babel: 'B',
-        plugins: 'p',
-        minify: 'm'
+    options: {
+      name: {
+        aliases: ['n']
+      },
+      output: {
+        aliases: ['o']
+      },
+      cjs: {
+        aliases: ['c']
+      },
+      esm: {
+        aliases: ['e']
+      },
+      browser: {
+        aliases: ['b']
+      },
+      inline: {
+        aliases: ['i']
+      },
+      babel: {
+        aliases: ['B']
+      },
+      plugins: {
+        aliases: ['p']
+      },
+      minify: {
+        aliases: ['m']
       }
     }
   })
