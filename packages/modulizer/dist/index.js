@@ -16,7 +16,7 @@ import { mkdirSync, promises } from 'fs';
 const logger = createLogger({ level: 'info', namespace: 'modulizer.generate' });
 
 async function generate (bundler, config) {
-  const { name, cjs, esm, browser, dir, skipWrite } = config;
+  const { name, cjs, esm, browser, dir } = config;
 
   // Generate the CommonJS bundle.
   let cjsBundle;
@@ -47,8 +47,6 @@ async function generate (bundler, config) {
     ...esm ? [{ type: 'esm', path: esmPath, source: esmCode }] : [],
     ...browser ? [{ type: 'browser', path: browserPath, source: esmCode }] : []
   ];
-
-  if (skipWrite) return files
 
   if (files.length) {
     // Write the bundle files to the file system.
@@ -101,8 +99,7 @@ async function modulize ({ cwd, ...options }) {
     output = options.output || path.join(path.dirname(projectPath), 'dist'),
     cjs = getFormat(options.cjs, pkg.main),
     esm = getFormat(options.esm, pkg.module),
-    browser = getFormat(options.browser, pkg.browser),
-    skipWrite = false
+    browser = getFormat(options.browser, pkg.browser)
   } = options;
   const inline = options.inline || options.inline === '';
 
@@ -169,7 +166,7 @@ async function modulize ({ cwd, ...options }) {
   // Determine the output directory.
   const dir = path.extname(output) ? path.dirname(output) : output;
 
-  const generateConfig = { name, cjs, esm, browser, dir, skipWrite };
+  const generateConfig = { name, cjs, esm, browser, dir };
   if (options.watch) {
     return new Promise(() => {
       // Create the Rollup watcher.
@@ -198,7 +195,7 @@ async function modulize ({ cwd, ...options }) {
     });
 
     // Generate the bundles and write them to files.
-    return generate(bundler, generateConfig)
+    await generate(bundler, generateConfig);
   }
 }
 
