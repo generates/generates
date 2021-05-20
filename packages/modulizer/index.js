@@ -83,6 +83,8 @@ export default async function modulize ({ cwd, ...options }) {
 
   // Determine which Rollup plugins should be used.
   const rollupPlugins = [
+    // Allows source to be transpiled with babel:
+    ...options.babel ? [babel(babelConfig)] : [],
     // Allows the hashbang, in a CLI for example, to be preserved:
     hashbang(),
     // Allows dependencies to be bundled:
@@ -91,8 +93,6 @@ export default async function modulize ({ cwd, ...options }) {
     cjsPlugin(),
     // Allows JSON to be imported:
     jsonPlugin(),
-    // Allows source to be transpiled with babel:
-    ...options.babel ? [babel(babelConfig)] : [],
     // Allow users to pass in their own rollup plugins:
     ...plugins,
     //
