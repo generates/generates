@@ -60,7 +60,7 @@ export default async function modulize ({ cwd, ...options }) {
   let deps = Object.keys(pkg.dependencies || {})
   let inlineDeps = []
   let nodeResolve
-  deps = deps.concat(Object.keys(pkg.peerDependencies))
+  deps = deps.concat(Object.keys(pkg.peerDependencies || {}))
   if (inline === true) {
     inlineDeps = deps
     nodeResolve = nodeResolvePlugin()
