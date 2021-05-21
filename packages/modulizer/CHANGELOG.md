@@ -1,5 +1,11 @@
 # @generates/modulizer
 
+## 8.0.2
+
+### Patch Changes
+
+- d0687d9: Fixing watch options
+
 ## 8.0.1
 
 ### Patch Changes
