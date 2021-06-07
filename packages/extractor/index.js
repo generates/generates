@@ -32,3 +32,7 @@ export function remap (src, map) {
   }
   return dest
 }
+
+export function key (src, value) {
+  return Object.keys(src).find(key => src[key] === value)
+}

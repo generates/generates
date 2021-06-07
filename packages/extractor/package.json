@@ -12,7 +12,7 @@
   "scripts": {
     "pretest": "modulize",
     "build": "modulize",
-    "test": "bff tests/*.mjs"
+    "test": "bff"
   },
   "files": [
     "dist"

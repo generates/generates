@@ -41,7 +41,12 @@ function remap (src, map) {
   return dest
 }
 
+function key (src, value) {
+  return Object.keys(src).find(key => src[key] === value)
+}
+
 exports.excluding = excluding;
 exports.including = including;
+exports.key = key;
 exports.map = map;
 exports.remap = remap;

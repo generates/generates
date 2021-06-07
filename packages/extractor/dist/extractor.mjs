@@ -33,4 +33,8 @@ function remap (src, map) {
   return dest
 }
 
-export { excluding, including, map, remap };
+function key (src, value) {
+  return Object.keys(src).find(key => src[key] === value)
+}
+
+export { excluding, including, key, map, remap };
