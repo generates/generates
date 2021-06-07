@@ -1,5 +1,11 @@
 # @generates/extractor
 
+## 1.2.0
+
+### Minor Changes
+
+- cee4704: Adding key function to extractor
+
 ## 1.1.3
 
 ### Patch Changes
