@@ -9,6 +9,7 @@
   },
   "main": "dist/extractor.js",
   "module": "dist/extractor.mjs",
+  "sideEffects": "false",
   "scripts": {
     "pretest": "modulize",
     "build": "modulize",
