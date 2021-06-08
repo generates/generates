@@ -23,13 +23,16 @@ function including (src, ...props) {
   return dest
 }
 
-function map (src, map) {
+function map (src, map = 'id') {
   const dest = {};
-  const entries = Object.entries(map);
+  const isString = typeof map === 'string';
+  const keys = !isString && Object.keys(map);
+
   for (const [key, val] of Object.entries(src)) {
-    const [toKey] = entries.find(e => e[1] === key) || [];
+    const toKey = isString ? val[map] : keys.find(k => map[k] === key);
     if (toKey) dest[toKey] = val;
   }
+
   return dest
 }
 

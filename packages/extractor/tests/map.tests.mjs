@@ -43,3 +43,19 @@ test('map and remap', t => {
   output = extractor.remap(output, map)
   t.expect(output).toEqual(extractor.excluding(remapped, 'country_code'))
 })
+
+test('map array', t => {
+  const items = [
+    { id: 'abc', name: 'Gabriel' },
+    { id: 'def', name: 'Myke' },
+    { id: 'ghi', name: 'Joanna' }
+  ]
+
+  // Map to id.
+  let map = extractor.map(items)
+  t.expect(map).toEqual({ abc: items[0], def: items[1], ghi: items[2] })
+
+  // Map to name.
+  map = extractor.map(items, 'name')
+  t.expect(map).toEqual({ Gabriel: items[0], Myke: items[1], Joanna: items[2] })
+})
