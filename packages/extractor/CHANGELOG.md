@@ -1,5 +1,15 @@
 # @generates/extractor
 
+## 1.3.0
+
+### Minor Changes
+
+- 62613cc: Refctoring map to work with arrays
+
+### Patch Changes
+
+- 5f76aa0: Adding sideEffects false to extractor
+
 ## 1.2.0
 
 ### Minor Changes
