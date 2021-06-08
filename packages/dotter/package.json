@@ -9,6 +9,7 @@
   },
   "main": "dist/dotter.js",
   "module": "dist/dotter.mjs",
+  "sideEffects": false,
   "scripts": {
     "build": "modulize",
     "pretest": "modulize",
