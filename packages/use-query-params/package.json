@@ -1,0 +1,52 @@
+{
+  "name": "@generates/use-query-params",
+  "description": "A react hook for syncing state to the URL's query parameters",
+  "version": "0.0.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Ian Walter",
+    "url": "https://ianwalter.dev"
+  },
+  "main": "dist/use-query-params.js",
+  "module": "dist/use-query-params.mjs",
+  "sideEffects": false,
+  "scripts": {
+    "build": "modulize --babel",
+    "dev": "next dev --port ${PORT:-3008}",
+    "build.site": "next build",
+    "start.site": "next start"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/use-query-params"
+  },
+  "keywords": [
+    "hook",
+    "query",
+    "search",
+    "params",
+    "parameters",
+    "react",
+    "url"
+  ],
+  "bugs": {
+    "url": "https://github.com/generates/generates/issues"
+  },
+  "homepage": "https://github.com/generates/generates/blob/main/packages/use-query-params#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.14.5",
+    "@generates/modulizer": "^8.0.2",
+    "next": "^11.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
