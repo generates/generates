@@ -1,5 +1,11 @@
 # @generates/dotter
 
+## 2.0.2
+
+### Patch Changes
+
+- 6f2ffcb: Adding sideEffects false to dotter
+
 ## 2.0.1
 
 ### Patch Changes
