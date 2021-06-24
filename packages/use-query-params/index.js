@@ -40,15 +40,25 @@ export default function useQueryParams (name, dataType = String, transform) {
     value,
     value => {
       const query = new URLSearchParams(window.location.search)
+
+      let hasChanged
       if (Array.isArray(value)) {
-        query.set(name, value.shift())
-        for (const item of value) query.append(name, item)
+        const all = query.getAll(name)
+        hasChanged = value.some((v, i) => v !== all[i])
+        if (hasChanged) {
+          query.set(name, value.shift())
+          for (const item of value) query.append(name, item)
+        }
       } else {
-        query.set(name, value)
+        hasChanged = query.get(name) !== value
+        if (hasChanged) query.set(name, value)
       }
-      window.history.pushState(undefined, undefined, `?${query}`)
-      const evt = new window.PopStateEvent('popstate', { target: window })
-      window.dispatchEvent(evt)
+
+      if (hasChanged) {
+        window.history.pushState(undefined, undefined, `?${query}`)
+        const evt = new window.PopStateEvent('popstate', { target: window })
+        window.dispatchEvent(evt)
+      }
     }
   ]
 }
