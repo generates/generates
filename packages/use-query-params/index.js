@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 function toValue (query, name, dataType) {
   const value = dataType === Array ? query.getAll(name) : query.get(name)
@@ -38,37 +38,40 @@ export default function useQueryParams (name, dataType = String, transform) {
 
   return [
     value,
-    value => {
-      const query = new URLSearchParams(window.location.search)
+    useCallback(
+      value => {
+        const query = new URLSearchParams(window.location.search)
 
-      let hasChanged
-      if (Array.isArray(value)) {
-        const all = query.getAll(name)
-        const areDifferent = (v, i) => v !== all[i]
-        hasChanged = value.some(areDifferent) || value.length !== all.length
-        if (hasChanged) {
-          const item = value.shift()
-          if (item) {
-            query.set(name, item)
-          } else {
+        let hasChanged
+        if (Array.isArray(value)) {
+          const all = query.getAll(name)
+          const areDifferent = (v, i) => v !== all[i]
+          hasChanged = value.some(areDifferent) || value.length !== all.length
+          if (hasChanged) {
+            const item = value.shift()
+            if (item) {
+              query.set(name, item)
+            } else {
+              query.delete(name)
+            }
+            for (const item of value) query.append(name, item)
+          }
+        } else {
+          hasChanged = query.get(name) !== value
+          if (hasChanged && value) {
+            query.set(name, value)
+          } else if (hasChanged) {
             query.delete(name)
           }
-          for (const item of value) query.append(name, item)
         }
-      } else {
-        hasChanged = query.get(name) !== value
-        if (hasChanged && value) {
-          query.set(name, value)
-        } else if (hasChanged) {
-          query.delete(name)
-        }
-      }
 
-      if (hasChanged) {
-        window.history.pushState(undefined, undefined, `?${query}`)
-        const evt = new window.PopStateEvent('popstate', { target: window })
-        window.dispatchEvent(evt)
-      }
-    }
+        if (hasChanged) {
+          window.history.pushState(undefined, undefined, `?${query}`)
+          const evt = new window.PopStateEvent('popstate', { target: window })
+          window.dispatchEvent(evt)
+        }
+      },
+      []
+    )
   ]
 }
