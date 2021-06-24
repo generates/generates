@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-
 function toValue (query, name, dataType) {
   const value = dataType === Array ? query.getAll(name) : query.get(name)
   if (dataType === Number && value) {
