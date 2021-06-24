@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+
 function toValue (query, name, dataType) {
   const value = dataType === Array ? query.getAll(name) : query.get(name)
   if (dataType === Number && value) {
@@ -44,7 +45,8 @@ export default function useQueryParams (name, dataType = String, transform) {
       let hasChanged
       if (Array.isArray(value)) {
         const all = query.getAll(name)
-        hasChanged = value.some((v, i) => v !== all[i])
+        const areDifferent = (v, i) => v !== all[i]
+        hasChanged = value.some(areDifferent) || value.length !== all.length
         if (hasChanged) {
           query.set(name, value.shift())
           for (const item of value) query.append(name, item)
