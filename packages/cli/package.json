@@ -53,7 +53,7 @@
     "common-tags": "^1.8.0",
     "decamelize": "^4.0.0",
     "getopts": "^2.2.5",
-    "read-pkg-up": "^7.0.1"
+    "read-pkg-up": "^8.0.0"
   },
   "devDependencies": {
     "@ianwalter/bff": "^10.0.0",
