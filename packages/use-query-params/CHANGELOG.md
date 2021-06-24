@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.2
+
+### Patch Changes
+
+- 7c181ac: Adding haschanged condition before changing query params
+
 ## 1.0.1
 
 ### Patch Changes
