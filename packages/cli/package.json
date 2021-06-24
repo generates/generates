@@ -51,7 +51,7 @@
     "@generates/dotter": "^2.0.0",
     "camelcase": "^6.0.0",
     "common-tags": "^1.8.0",
-    "decamelize": "^4.0.0",
+    "decamelize": "^5.0.0",
     "getopts": "^2.2.5",
     "read-pkg-up": "^7.0.1"
   },
