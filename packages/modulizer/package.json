@@ -71,7 +71,7 @@
     "execa": "^4.0.3",
     "ky": "^0.10.0",
     "postcss": "^8.2.10",
-    "rollup-plugin-vue": "^5.1.6",
+    "rollup-plugin-vue": "^6.0.0",
     "vue-template-compiler": "^2.6.12"
   }
 }
