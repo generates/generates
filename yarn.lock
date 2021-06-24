@@ -2087,6 +2087,11 @@ ansi-regex@^5.0.0:
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.0.tgz#388539f55179bf39339c81af30a654d69f87cb75"
   integrity sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==
 
+ansi-regex@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-6.0.0.tgz#ecc7f5933cbe5ac7b33e209a5ff409ab1669c6b2"
+  integrity sha512-tAaOSrWCHF+1Ear1Z4wnJCXA9GGox4K6Ic85a5qalES2aeEwQGr7UC93mwef49536PkCYjzkp0zIxfFvexJ6zQ==
+
 ansi-split@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ansi-split/-/ansi-split-1.0.1.tgz#3cab03754ab6f1d64d4ad13cd10f22fc36db4a45"
@@ -4281,6 +4286,13 @@ has-ansi@^4.0.0:
   integrity sha512-VvDupLMvFX9yyed3h1DajPUYQZv82EL2h9I9Jy0ays9gYRJ30hbmGapTiam5cISr42ZCuC3nRgyVBM/YZbpi9A==
   dependencies:
     ansi-regex "^4.1.0"
+
+has-ansi@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-5.0.0.tgz#186d10d61e1b9428a290926a86e00ab29c203191"
+  integrity sha512-196I6rrOXWxQKuYBuNGcQrj6CSUXHM4gNFT9lApuJjkryc4SlAAzv+xhdaQW9yCG1Mvuj3wBwiaqd2Y6R7Fxgg==
+  dependencies:
+    ansi-regex "^6.0.0"
 
 has-bigints@^1.0.1:
   version "1.0.1"
