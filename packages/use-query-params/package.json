@@ -1,7 +1,7 @@
 {
   "name": "@generates/use-query-params",
   "description": "A react hook for syncing state to the URL's query parameters",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
     "name": "Ian Walter",
