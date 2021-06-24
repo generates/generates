@@ -56,7 +56,7 @@
     "read-pkg-up": "^7.0.1"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^10.0.0",
+    "@ianwalter/bff": "^11.0.0",
     "execa": "^5.0.0"
   },
   "exampleCli": {

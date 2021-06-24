@@ -40,6 +40,6 @@
   },
   "devDependencies": {
     "@generates/license": "0.0.7",
-    "@ianwalter/bff": "^10.0.0"
+    "@ianwalter/bff": "^11.0.0"
   }
 }

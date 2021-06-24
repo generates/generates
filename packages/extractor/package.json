@@ -45,7 +45,7 @@
     "@generates/dotter": "^2.0.0"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^10.0.1",
+    "@ianwalter/bff": "^11.0.0",
     "@generates/modulizer": "^8.0.0"
   }
 }

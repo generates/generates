@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.12.1",
-    "@ianwalter/bff": "^10.0.0",
+    "@ianwalter/bff": "^11.0.0",
     "execa": "^4.0.3",
     "ky": "^0.10.0",
     "postcss": "^8.2.10",
