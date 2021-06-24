@@ -47,12 +47,21 @@ export default function useQueryParams (name, dataType = String, transform) {
         const areDifferent = (v, i) => v !== all[i]
         hasChanged = value.some(areDifferent) || value.length !== all.length
         if (hasChanged) {
-          query.set(name, value.shift())
+          const item = value.shift()
+          if (item) {
+            query.set(name, item)
+          } else {
+            query.delete(name)
+          }
           for (const item of value) query.append(name, item)
         }
       } else {
         hasChanged = query.get(name) !== value
-        if (hasChanged) query.set(name, value)
+        if (hasChanged && value) {
+          query.set(name, value)
+        } else if (hasChanged) {
+          query.delete(name)
+        }
       }
 
       if (hasChanged) {

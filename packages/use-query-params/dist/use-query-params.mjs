@@ -38,20 +38,43 @@ function useQueryParams(name, dataType = String, transform) {
   }, [setValue]);
   return [value, value => {
     const query = new URLSearchParams(window.location.search);
+    let hasChanged;
 
     if (Array.isArray(value)) {
-      query.set(name, value.shift());
+      const all = query.getAll(name);
 
-      for (const item of value) query.append(name, item);
+      const areDifferent = (v, i) => v !== all[i];
+
+      hasChanged = value.some(areDifferent) || value.length !== all.length;
+
+      if (hasChanged) {
+        const item = value.shift();
+
+        if (item) {
+          query.set(name, item);
+        } else {
+          query.delete(name);
+        }
+
+        for (const item of value) query.append(name, item);
+      }
     } else {
-      query.set(name, value);
+      hasChanged = query.get(name) !== value;
+
+      if (hasChanged && value) {
+        query.set(name, value);
+      } else if (hasChanged) {
+        query.delete(name);
+      }
     }
 
-    window.history.pushState(undefined, undefined, `?${query}`);
-    const evt = new window.PopStateEvent('popstate', {
-      target: window
-    });
-    window.dispatchEvent(evt);
+    if (hasChanged) {
+      window.history.pushState(undefined, undefined, `?${query}`);
+      const evt = new window.PopStateEvent('popstate', {
+        target: window
+      });
+      window.dispatchEvent(evt);
+    }
   }];
 }
 
