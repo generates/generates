@@ -42,6 +42,8 @@ function useQueryParams(name, dataType = String, transform) {
     const query = new URLSearchParams(window.location.search);
 
     if (Array.isArray(value)) {
+      query.set(name, value.shift());
+
       for (const item of value) query.append(name, item);
     } else {
       query.set(name, value);
