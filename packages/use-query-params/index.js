@@ -14,7 +14,7 @@ function toValue (query, name, dataType) {
 
 export default function useQueryParams (name, dataType = String, transform) {
   let initial
-  if (typeof dataType === 'function') {
+  if (typeof dataType !== 'function') {
     initial = dataType
     if (dataType instanceof Array) {
       dataType = Array

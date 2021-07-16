@@ -6,7 +6,7 @@ export default function HomePage () {
   const [date, setDate] = useQueryParams('date', new Date())
   const [sort, setSort] = useQueryParams(
     'sort',
-    Array,
+    [],
     a => a.map(s => s.split(':'))
   )
 
