@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.8
+
+### Patch Changes
+
+- c3f0db5: Adding options.update logic
+
 ## 1.0.7
 
 ### Patch Changes
