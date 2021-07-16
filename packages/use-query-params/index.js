@@ -6,12 +6,39 @@ function toValue (query, name, dataType) {
     return value.includes('.') ? parseFloat(value) : parseInt(value)
   } else if (dataType === Date && value) {
     return new Date(Date.parse(value))
+  } else if (dataType === Boolean) {
+    return value === 'true'
   }
   return value
 }
 
 export default function useQueryParams (name, dataType = String, transform) {
-  const [value, setValue] = useState()
+  let initial
+  if (typeof dataType === 'function') {
+    initial = dataType
+    if (dataType instanceof Array) {
+      dataType = Array
+    } else if (dataType instanceof Number) {
+      dataType = Number
+    } else if (dataType instanceof Date) {
+      dataType = Date
+    } else if (dataType instanceof String) {
+      dataType = String
+    } else if (dataType instanceof Boolean) {
+      dataType = Boolean
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    const query = new URLSearchParams(window.location.search)
+    if (transform) {
+      initial = transform(toValue(query, name, dataType))
+    } else {
+      initial = toValue(query, name, dataType)
+    }
+  }
+
+  const [value, setValue] = useState(initial)
 
   useEffect(
     () => {
@@ -23,9 +50,6 @@ export default function useQueryParams (name, dataType = String, transform) {
           setValue(toValue(query, name, dataType))
         }
       }
-
-      // Initialize the value on mount.
-      listener({ target: { location: window.location } })
 
       // Add a listener to update the value on history / URL changes.
       window.addEventListener('popstate', listener)
