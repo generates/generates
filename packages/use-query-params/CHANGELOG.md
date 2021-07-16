@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.4
+
+### Patch Changes
+
+- a787328: Wrapping setter in useCallback
+
 ## 1.0.3
 
 ### Patch Changes
