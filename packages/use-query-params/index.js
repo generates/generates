@@ -63,7 +63,7 @@ export default function useQueryParams (name, dataType = String, transform) {
   return [
     value,
     useCallback(
-      value => {
+      (value, options) => {
         const query = new URLSearchParams(window.location.search)
 
         let hasChanged
@@ -91,8 +91,10 @@ export default function useQueryParams (name, dataType = String, transform) {
 
         if (hasChanged) {
           window.history.pushState(undefined, undefined, `?${query}`)
-          const evt = new window.PopStateEvent('popstate', { target: window })
-          window.dispatchEvent(evt)
+          if (options.update !== false) {
+            const evt = new window.PopStateEvent('popstate', { target: window })
+            window.dispatchEvent(evt)
+          }
         }
       },
       []

@@ -17,7 +17,7 @@ export default function HomePage () {
         {header}
       </h1>
 
-      <button onClick={() => setHeader('use-query-params')}>
+      <button onClick={() => setHeader('use-query-params', { update: false })}>
         Set Header
       </button>
 
