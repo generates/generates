@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.7
+
+### Patch Changes
+
+- da7586f: useLayoutEffect
+
 ## 1.0.6
 
 ### Patch Changes
