@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.5
+
+### Patch Changes
+
+- 52ae77a: Improving initial state and api
+
 ## 1.0.4
 
 ### Patch Changes
