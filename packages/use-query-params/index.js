@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useLayoutEffect, useCallback } from 'react'
 
 function toValue (query, name, dataType) {
   const value = dataType === Array ? query.getAll(name) : query.get(name)
@@ -40,7 +40,7 @@ export default function useQueryParams (name, dataType = String, transform) {
 
   const [value, setValue] = useState(initial)
 
-  useEffect(
+  useLayoutEffect(
     () => {
       function listener (evt) {
         const query = new URLSearchParams(evt.target.location.search)
