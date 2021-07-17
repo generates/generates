@@ -63,7 +63,7 @@ export default function useQueryParams (name, dataType = String, transform) {
   return [
     value,
     useCallback(
-      (value, options) => {
+      (value, options = {}) => {
         const query = new URLSearchParams(window.location.search)
 
         let hasChanged
