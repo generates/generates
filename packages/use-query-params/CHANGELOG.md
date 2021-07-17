@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.9
+
+### Patch Changes
+
+- d49ac48: Adding back accidental removal of default options object
+
 ## 1.0.8
 
 ### Patch Changes
