@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.10
+
+### Patch Changes
+
+- f8daea8: Fixing initial value logic
+
 ## 1.0.9
 
 ### Patch Changes
