@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect, useCallback } from 'react'
 
-function toValue (query, name, dataType) {
+function toValue (query, name, dataType, initial) {
   const value = dataType === Array ? query.getAll(name) : query.get(name)
   if (dataType === Number && value) {
     return value.includes('.') ? parseFloat(value) : parseInt(value)
@@ -9,7 +9,7 @@ function toValue (query, name, dataType) {
   } else if (dataType === Boolean) {
     return value === 'true'
   }
-  return value
+  return value || initial
 }
 
 export default function useQueryParams (name, dataType = String, transform) {
@@ -32,9 +32,9 @@ export default function useQueryParams (name, dataType = String, transform) {
   if (typeof window !== 'undefined') {
     const query = new URLSearchParams(window.location.search)
     if (transform) {
-      initial = transform(toValue(query, name, dataType))
+      initial = transform(toValue(query, name, dataType, initial))
     } else {
-      initial = toValue(query, name, dataType)
+      initial = toValue(query, name, dataType, initial)
     }
   }
 
