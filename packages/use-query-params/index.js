@@ -45,9 +45,9 @@ export default function useQueryParams (name, dataType = String, transform) {
       function listener (evt) {
         const query = new URLSearchParams(evt.target.location.search)
         if (transform) {
-          setValue(transform(toValue(query, name, dataType)))
+          setValue(transform(toValue(query, name, dataType, initial)))
         } else {
-          setValue(toValue(query, name, dataType))
+          setValue(toValue(query, name, dataType, initial))
         }
       }
 
