@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.11
+
+### Patch Changes
+
+- 6382b64: Adding initial to missed toValue calls
+
 ## 1.0.10
 
 ### Patch Changes
