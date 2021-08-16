@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.12
+
+### Patch Changes
+
+- 094cd53: Fixing dataType checks
+
 ## 1.0.11
 
 ### Patch Changes
