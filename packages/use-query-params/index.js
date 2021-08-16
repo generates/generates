@@ -16,15 +16,15 @@ export default function useQueryParams (name, dataType = String, transform) {
   let initial
   if (typeof dataType !== 'function') {
     initial = dataType
-    if (dataType instanceof Array) {
+    if (Array.isArray(dataType)) {
       dataType = Array
-    } else if (dataType instanceof Number) {
+    } else if (typeof dataType === 'number') {
       dataType = Number
     } else if (dataType instanceof Date) {
       dataType = Date
-    } else if (dataType instanceof String) {
+    } else if (typeof dataType === 'string') {
       dataType = String
-    } else if (dataType instanceof Boolean) {
+    } else if (typeof dataType === 'boolean') {
       dataType = Boolean
     }
   }
