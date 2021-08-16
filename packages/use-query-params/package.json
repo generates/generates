@@ -14,7 +14,8 @@
     "build": "modulize --babel",
     "dev": "next dev --port ${PORT:-3008}",
     "build.site": "next build",
-    "start.site": "next start"
+    "start.site": "next start",
+    "docs.watch": "skrt watch docs site"
   },
   "publishConfig": {
     "access": "public"
@@ -45,6 +46,7 @@
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.14.5",
     "@generates/modulizer": "^8.0.2",
+    "@generates/skrt": "^0.0.6",
     "next": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
