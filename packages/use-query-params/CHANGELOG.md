@@ -1,5 +1,47 @@
 # @generates/use-query-params
 
+## 1.0.11
+
+### Patch Changes
+
+- 6382b64: Adding initial to missed toValue calls
+
+## 1.0.10
+
+### Patch Changes
+
+- f8daea8: Fixing initial value logic
+
+## 1.0.9
+
+### Patch Changes
+
+- d49ac48: Adding back accidental removal of default options object
+
+## 1.0.8
+
+### Patch Changes
+
+- c3f0db5: Adding options.update logic
+
+## 1.0.7
+
+### Patch Changes
+
+- da7586f: useLayoutEffect
+
+## 1.0.6
+
+### Patch Changes
+
+- 0a34afa: Fixing initial value logic
+
+## 1.0.5
+
+### Patch Changes
+
+- 52ae77a: Improving initial state and api
+
 ## 1.0.4
 
 ### Patch Changes

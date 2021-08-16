@@ -1,31 +1,55 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useLayoutEffect, useCallback } from 'react'
 
-function toValue (query, name, dataType) {
+function toValue (query, name, dataType, initial) {
   const value = dataType === Array ? query.getAll(name) : query.get(name)
   if (dataType === Number && value) {
     return value.includes('.') ? parseFloat(value) : parseInt(value)
   } else if (dataType === Date && value) {
     return new Date(Date.parse(value))
+  } else if (dataType === Boolean) {
+    return value === 'true'
   }
-  return value
+  return value || initial
 }
 
 export default function useQueryParams (name, dataType = String, transform) {
-  const [value, setValue] = useState()
+  let initial
+  if (typeof dataType !== 'function') {
+    initial = dataType
+    if (dataType instanceof Array) {
+      dataType = Array
+    } else if (dataType instanceof Number) {
+      dataType = Number
+    } else if (dataType instanceof Date) {
+      dataType = Date
+    } else if (dataType instanceof String) {
+      dataType = String
+    } else if (dataType instanceof Boolean) {
+      dataType = Boolean
+    }
+  }
 
-  useEffect(
+  if (typeof window !== 'undefined') {
+    const query = new URLSearchParams(window.location.search)
+    if (transform) {
+      initial = transform(toValue(query, name, dataType, initial))
+    } else {
+      initial = toValue(query, name, dataType, initial)
+    }
+  }
+
+  const [value, setValue] = useState(initial)
+
+  useLayoutEffect(
     () => {
       function listener (evt) {
         const query = new URLSearchParams(evt.target.location.search)
         if (transform) {
-          setValue(transform(toValue(query, name, dataType)))
+          setValue(transform(toValue(query, name, dataType, initial)))
         } else {
-          setValue(toValue(query, name, dataType))
+          setValue(toValue(query, name, dataType, initial))
         }
       }
-
-      // Initialize the value on mount.
-      listener({ target: { location: window.location } })
 
       // Add a listener to update the value on history / URL changes.
       window.addEventListener('popstate', listener)
@@ -39,7 +63,7 @@ export default function useQueryParams (name, dataType = String, transform) {
   return [
     value,
     useCallback(
-      value => {
+      (value, options = {}) => {
         const query = new URLSearchParams(window.location.search)
 
         let hasChanged
@@ -67,8 +91,10 @@ export default function useQueryParams (name, dataType = String, transform) {
 
         if (hasChanged) {
           window.history.pushState(undefined, undefined, `?${query}`)
-          const evt = new window.PopStateEvent('popstate', { target: window })
-          window.dispatchEvent(evt)
+          if (options.update !== false) {
+            const evt = new window.PopStateEvent('popstate', { target: window })
+            window.dispatchEvent(evt)
+          }
         }
       },
       []

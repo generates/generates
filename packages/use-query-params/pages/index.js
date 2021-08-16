@@ -3,10 +3,10 @@ import useQueryParams from '../index.js'
 export default function HomePage () {
   const [header, setHeader] = useQueryParams('header')
   const [seconds, setSeconds] = useQueryParams('seconds', Number)
-  const [date, setDate] = useQueryParams('date', Date)
+  const [date, setDate] = useQueryParams('date', new Date())
   const [sort, setSort] = useQueryParams(
     'sort',
-    Array,
+    [],
     a => a.map(s => s.split(':'))
   )
 
@@ -17,7 +17,7 @@ export default function HomePage () {
         {header}
       </h1>
 
-      <button onClick={() => setHeader('use-query-params')}>
+      <button onClick={() => setHeader('use-query-params', { update: false })}>
         Set Header
       </button>
 
