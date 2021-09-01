@@ -47,7 +47,7 @@
     "@babel/preset-react": "^7.14.5",
     "@generates/modulizer": "^8.0.2",
     "@generates/skrt": "^0.0.7",
-    "next": "^11.0.0",
+    "next": "^11.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
