@@ -1,5 +1,5 @@
 const ansiRegex = require('ansi-regex')
-const superSplit = require('super-split')
+const superSplit = require('@generates/super-split')
 const arrayUniq = require('array-uniq')
 const stripAnsi = require('strip-ansi')
 

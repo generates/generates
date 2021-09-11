@@ -4,7 +4,7 @@ import camelCase from 'camelcase'
 import chalk from 'chalk'
 import stripAnsi from 'strip-ansi'
 import merge from 'deepmerge'
-import ansiMark from 'ansi-mark'
+import ansiMark from '@generates/ansi-mark'
 import stripIndent from 'strip-indent'
 import detectIndent from 'detect-indent'
 
@@ -24,6 +24,7 @@ const darkPalette = {
 	doctag: chalk.blue,
 	emphasis: chalk.magenta,
 	function: chalk.white,
+  titleFunction: chalk.white,
 	formula: chalk.green,
 	keyword: chalk.red,
 	lineNumbers: chalk.grey,
@@ -70,7 +71,7 @@ const filter = (node, opts) => {
 	if (node.childNodes && node.childNodes.length > 0) {
 		childText = node.childNodes.map(childNode => filter(childNode, opts)).join('')
 
-		if (typeof color === 'string') {
+		if (typeof color === 'string' && opts.colors[color]) {
 			return opts.colors[color](childText)
 		}
 
@@ -120,7 +121,7 @@ const getIndentStr = opts => {
 	return String().padEnd(opts.tabsToSpaces, ' ')
 }
 
-const syntaxHlStr = (lang, script, opts, indentStart) => {
+const syntaxHlStr = (language, script, opts, indentStart) => {
 	let output = ''
 
 	const indentStr = getIndentStr(opts)
@@ -137,7 +138,7 @@ const syntaxHlStr = (lang, script, opts, indentStart) => {
 		script = indentStr + script
 	}
 
-	const code = hljs.highlight(lang, script).value
+	const code = hljs.highlight(script, { language }).value
 	const lines = code.split('\n')
 
 	lines.forEach((line, lineNumber) => {
