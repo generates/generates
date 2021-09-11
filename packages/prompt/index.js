@@ -1,19 +1,20 @@
-const readline = require('readline')
-const { createPrint, chalk } = require('@ianwalter/print')
-const { cursor } = require('sisteransi')
+import readline from 'readline'
+import { createLogger, chalk } from '@generates/logger'
+import { cursor } from 'sisteransi'
+import { edit } from 'external-editor'
 
 const yesNoOptions = [
   { label: 'Yes', value: true },
   { label: 'No', value: false }
 ]
 
-const print = createPrint({ level: 'info' })
+const logger = createLogger({ level: 'info' })
 
 function printLabel (prefix = '💬', label, fallback) {
   const hasFallback = fallback !== undefined
-  print.write()
-  print.log(prefix, chalk.bold.white(label))
-  if (hasFallback) print.log(chalk.bold('Default:'), chalk.dim(fallback))
+  logger.write()
+  logger.log(prefix, chalk.bold.white(label))
+  if (hasFallback) logger.log(chalk.bold('Default:'), chalk.dim(fallback))
 }
 
 function createReadline (keypressHandler, isText) {
@@ -71,7 +72,7 @@ function renderSelect (label, settings) {
         label = chalk.yellow(label)
       }
 
-      print.log(prefix, label)
+      logger.log(prefix, label)
     }
   }
 
@@ -110,7 +111,7 @@ function renderSelect (label, settings) {
       } else if (key.ctrl && key.name === 'c') {
         // Reject the promise when the user hits CTRL+c so that the caller
         // can handle it.
-        print.ns('')
+        logger.ns('')
         keypressHandler.close()
         reject(new Error('SIGINT'))
       } else if (key.name === 'up') {
@@ -135,7 +136,7 @@ function renderSelect (label, settings) {
   })
 }
 
-module.exports = {
+export default {
   async text (label, settings = {}) {
     const { prefix, fallback } = settings
 
@@ -180,10 +181,9 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       try {
-        const { edit } = require('external-editor')
         const answer = edit(settings.prefill) || fallback
 
-        print.log(answer)
+        logger.log(answer)
 
         resolve(answer)
       } catch (err) {

@@ -1,8 +1,12 @@
-const { stripIndent } = require('common-tags')
-const BaseError = require('@ianwalter/base-error')
-const { createLogger, chalk, md } = require('../..')
+import { stripIndent } from 'common-tags'
+import { createLogger, chalk, md } from '../../index.js'
 
-class ExampleError extends BaseError {}
+class ExampleError extends Error {
+  constructor (message) {
+    super(message)
+    this.name = this.constructor.name
+  }
+}
 
 const logger = createLogger()
 

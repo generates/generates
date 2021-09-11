@@ -1494,11 +1494,6 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"
   integrity sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
 
-"@ianwalter/base-error@^6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@ianwalter/base-error/-/base-error-6.1.0.tgz#a25f8a57e04877f6823251c5f1e05c7c060a0130"
-  integrity sha512-a1oe3gdY7aVJotysd2hbkARZdIXd80b1xL+kcJGQ/5VzEv7bMhQ+vlamv8DLz828uz/dxMCVb4++n75RyVUs2Q==
-
 "@ianwalter/bff@^10.0.0":
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@ianwalter/bff/-/bff-10.0.0.tgz#90f0d7b5878c17416676c667cf6d393a5ea7af17"
@@ -1701,11 +1696,6 @@
   resolved "https://registry.yarnpkg.com/@ianwalter/merge/-/merge-6.0.0.tgz#7d7facccc86fb407571c78de00a0bd2adca395cb"
   integrity sha512-Ohskh/vqQFgW2Abaxd3kPYz/uNqoUmCSjU8kB8SoRieQqIOyXit1pFKYW4HmcoRcDFbktpWmS1QpIBoF74DGBg==
 
-"@ianwalter/merge@^9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@ianwalter/merge/-/merge-9.0.1.tgz#bbbf15e1daec5fef7e28633d9e8060a62018a72d"
-  integrity sha512-Wu7eAZEsfuW0FJsVsdsNaWAtlY/6Viy74HQpZ8A81KutjhNO5cyPRkiBGletuX9kDUTOdSwWJokPnu/o4yE3KA==
-
 "@ianwalter/npm-short-name@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ianwalter/npm-short-name/-/npm-short-name-1.0.0.tgz#1ff8fcf73a20841e8fa13af77957a01c6e2329e8"
@@ -1742,24 +1732,6 @@
     has-emoji "^1.1.0"
     marked "^0.8.0"
     marked-terminal "^4.0.0"
-    strip-ansi "^6.0.0"
-
-"@ianwalter/print@^8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@ianwalter/print/-/print-8.1.0.tgz#5358b9c0a93a01451bb6c18a9a241a360556eb4a"
-  integrity sha512-1C3oH2YYpfPsRELDK2GDLEyzUNqBu4RMFrkbL+IFG5QrigAKX0wC64gjcmXkgGI9wGUEQ0R3vjnR/yMzC+Yymw==
-  dependencies:
-    "@ianwalter/chromafi" "^1.0.1"
-    "@ianwalter/cli" "^4.1.0"
-    "@ianwalter/clone" "^6.0.1"
-    "@ianwalter/cloneable" "^2.0.0"
-    "@ianwalter/dot" "^1.0.4"
-    "@ianwalter/merge" "^9.0.1"
-    chalk "^4.1.0"
-    has-ansi "^4.0.0"
-    has-emoji "^1.1.0"
-    marked "^1.1.1"
-    marked-terminal "^4.1.0"
     strip-ansi "^6.0.0"
 
 "@ianwalter/renovate-config@^1.4.0":
@@ -2298,6 +2270,11 @@ ansi-regex@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.0.tgz#388539f55179bf39339c81af30a654d69f87cb75"
   integrity sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==
+
+ansi-regex@^6.0.0:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-6.0.1.tgz#3183e38fae9a65d7cb5e53945cd5897d0260a06a"
+  integrity sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==
 
 ansi-split@^1.0.1:
   version "1.0.1"
@@ -3999,6 +3976,11 @@ emoji-regex@^8.0.0:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
 
+emoji-regex@^9.2.2:
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-9.2.2.tgz#840c8803b0d8047f4ff0cf963176b32d4ef3ed72"
+  integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
+
 emojis-list@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
@@ -4965,6 +4947,13 @@ has-ansi@^4.0.0:
   dependencies:
     ansi-regex "^4.1.0"
 
+has-ansi@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-5.0.0.tgz#186d10d61e1b9428a290926a86e00ab29c203191"
+  integrity sha512-196I6rrOXWxQKuYBuNGcQrj6CSUXHM4gNFT9lApuJjkryc4SlAAzv+xhdaQW9yCG1Mvuj3wBwiaqd2Y6R7Fxgg==
+  dependencies:
+    ansi-regex "^6.0.0"
+
 has-bigints@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/has-bigints/-/has-bigints-1.0.1.tgz#64fe6acb020673e3b78db035a5af69aa9d07b113"
@@ -4988,6 +4977,13 @@ has-emoji@^1.1.0:
   integrity sha512-5V4f0i0shdp6BzSE5WLBKh0EJky6wAo+b1pRS2Azm8cyJCekNxXhhAQJopYto3iMluh5rKD9n+vjQLZb7iR6+g==
   dependencies:
     emoji-regex "^8.0.0"
+
+has-emoji@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/has-emoji/-/has-emoji-2.0.0.tgz#d20d475f98528af0dd9846acbe58521d4739dac6"
+  integrity sha512-COSqC/JZX2WXxWNSJ1JIzcp5E0/pbOv3DBKtCgswNOEVIxXD2532aWxuzGu1Qcm0izJf7NcqVMuQttpOXqDeiA==
+  dependencies:
+    emoji-regex "^9.2.2"
 
 has-flag@^1.0.0:
   version "1.0.0"
@@ -6380,6 +6376,18 @@ marked-terminal@^4.0.0, marked-terminal@^4.1.0:
     node-emoji "^1.10.0"
     supports-hyperlinks "^2.1.0"
 
+marked-terminal@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/marked-terminal/-/marked-terminal-4.1.1.tgz#34a6f063cd6cfe26bffaf5bac3724e24242168a9"
+  integrity sha512-t7Mdf6T3PvOEyN01c3tYxDzhyKZ8xnkp8Rs6Fohno63L/0pFTJ5Qtwto2AQVuDtbQiWzD+4E5AAu1Z2iLc8miQ==
+  dependencies:
+    ansi-escapes "^4.3.1"
+    cardinal "^2.1.1"
+    chalk "^4.1.0"
+    cli-table "^0.3.1"
+    node-emoji "^1.10.0"
+    supports-hyperlinks "^2.1.0"
+
 marked@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
@@ -6399,6 +6407,11 @@ marked@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/marked/-/marked-2.0.0.tgz#9662bbcb77ebbded0662a7be66ff929a8611cee5"
   integrity sha512-NqRSh2+LlN2NInpqTQnS614Y/3NkVMFFU6sJlRFEpxJ/LHuK/qJECH7/fXZjk4VZstPW/Pevjil/VtSONsLc7Q==
+
+marked@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-3.0.3.tgz#d81ff0f9e29cef0a177327fe009b460f31aa5862"
+  integrity sha512-4oIDhVSQ2s+xNCfek9OnZgCQR/WykGCom02JzIIvi4Pme+MIwPYqvGVW8CQWOXeoZu0TtVB6pTxIuoLm+dKqDA==
 
 matchit@^1.0.0:
   version "1.1.0"
@@ -8864,6 +8877,13 @@ strip-ansi@^4.0.0:
   integrity sha1-qEeQIusaw2iocTibY1JixQXuNo8=
   dependencies:
     ansi-regex "^3.0.0"
+
+strip-ansi@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-7.0.0.tgz#1dc49b980c3a4100366617adac59327eefdefcb0"
+  integrity sha512-UhDTSnGF1dc0DRbUqr1aXwNoY3RgVkSWG8BrpnuFIxhP57IqbS7IRta2Gfiavds4yCxc5+fEAVVOgBZWnYkvzg==
+  dependencies:
+    ansi-regex "^6.0.0"
 
 strip-bom@^3.0.0:
   version "3.0.0"

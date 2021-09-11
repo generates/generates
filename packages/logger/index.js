@@ -1,15 +1,15 @@
-const util = require('util')
-const chromafi = require('@ianwalter/chromafi')
-const { match, get } = require('@generates/dotter')
-const chalk = require('chalk')
-const hasAnsi = require('has-ansi')
-const hasEmoji = require('has-emoji')
-const clone = require('@ianwalter/clone')
-const marked = require('marked')
-const TerminalRenderer = require('marked-terminal')
-const stripAnsi = require('strip-ansi')
-const { merge, isPlainObject } = require('@generates/merger')
-const cloneable = require('@ianwalter/cloneable')
+import util from 'util'
+import chromafi from '@ianwalter/chromafi'
+import { match, get } from '@generates/dotter'
+import chalk from 'chalk'
+import hasAnsi from 'has-ansi'
+import hasEmoji from 'has-emoji'
+import clone from '@ianwalter/clone'
+import marked from 'marked'
+import TerminalRenderer from 'marked-terminal'
+import stripAnsi from 'strip-ansi'
+import { merge, isPlainObject } from '@generates/merger'
+import cloneable from '@ianwalter/cloneable'
 
 // Set up marked with the TerminalRenderer.
 marked.setOptions({ renderer: new TerminalRenderer({ tab: 2 }) })
@@ -23,7 +23,7 @@ const toMarkdownItems = i => md(i).split('\n').map(toPaddedString).join('\n')
 const at = chalk.gray('at')
 const byNotWhitespace = str => str && str.trim()
 const isANewLine = msg => typeof msg === 'string' && msg === '\n'
-const md = str => marked(str).trimEnd()
+export const md = str => marked(str).trimEnd()
 
 function extractLogPrefix ({ items: [first, ...rest] }) {
   let prefix = ' '
@@ -56,7 +56,7 @@ function getClone (src) {
   }
 }
 
-function createLogger (config = {}) {
+export function createLogger (config = {}) {
   function addTypes (logger) {
     for (const type of logger.options.types) {
       logger[type.type] = function (...items) {
@@ -313,4 +313,4 @@ function createLogger (config = {}) {
   return logger
 }
 
-module.exports = { createLogger, chalk, md }
+export { default as chalk } from 'chalk'
