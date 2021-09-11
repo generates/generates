@@ -7,7 +7,8 @@
     "email": "pub@ianwalter.dev",
     "url": "https://ianwalter.dev"
   },
-  "license": "Hippocratic-2.1",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "bin": {
     "prettify": "cli.js"
@@ -43,17 +44,19 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/logger#readme",
   "dependencies": {
-    "@ianwalter/chromafi": "^1.0.1",
-    "@ianwalter/clone": "^6.0.1",
-    "@ianwalter/cloneable": "^2.0.0",
     "@generates/cli": "^1.0.3",
     "@generates/dotter": "^2.0.0",
     "@generates/merger": "^0.1.0",
+    "@ianwalter/chromafi": "^1.0.1",
+    "@ianwalter/clone": "^6.0.1",
+    "@ianwalter/cloneable": "^2.0.0",
     "chalk": "^4.1.0",
+    "emphasize": "^5.0.0",
     "has-ansi": "^4.0.0",
     "has-emoji": "^1.1.0",
     "marked": "^3.0.0",
     "marked-terminal": "^4.1.0",
+    "stringify-object": "^4.0.0",
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
