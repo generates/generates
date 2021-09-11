@@ -8,6 +8,8 @@
     "url": "https://ianwalter.dev"
   },
   "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
   "scripts": {
     "build": "modulize --cjs index.cjs",
     "pretest": "modulize --cjs index.cjs",

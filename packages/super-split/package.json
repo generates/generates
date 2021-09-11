@@ -1,0 +1,38 @@
+{
+  "name": "@generates/super-split",
+  "version": "1.1.0",
+  "description": "🔪  split string by delimiter array - delimiters retained",
+  "license": "MIT",
+  "repository": "F1LT3R/super-split",
+  "author": {
+    "name": "F1LT3R",
+    "email": "al@pwn.io",
+    "url": "https://f1lt3r.io"
+  },
+	"main": "index.js",
+  "scripts": {
+    "test": "xo && yarn run cover",
+    "unit": "ava",
+    "watch": "ava --watch",
+    "cover": "nyc --reporter=lcov --reporter=html --reporter=text ava *.test.js ",
+    "precommit": "yarn test"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "split",
+    "string",
+    "array",
+    "delimiter",
+    "delimiters",
+    "separators",
+    "retain",
+    "keep"
+  ],
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "git-hooks": "^1.1.10",
+    "git-pre-commit": "^2.1.3"
+  }
+}
