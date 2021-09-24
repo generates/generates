@@ -1,5 +1,11 @@
 # @generates/plug
 
+## 0.1.0
+
+### Minor Changes
+
+- 44737e8: Adding sync api
+
 ## 0.0.3
 
 ### Patch Changes
