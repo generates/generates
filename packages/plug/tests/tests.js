@@ -48,3 +48,27 @@ test('plugin order', async t => {
   t.expect(ctx.testContext).toBeDefined()
   t.expect(ctx.testContext.browser).toBe(true)
 })
+
+test('plug.sync', t => {
+  const execute = plug.sync({
+    phases: ['plugin'],
+    plugins: [
+      function babyKeem (plug) {
+        plug.in('plugin', function baby (ctx, next) {
+          ctx.baby = true
+          return next()
+        })
+      },
+      function kendrickLamar (plug) {
+        plug.in('plugin', function kendrick (ctx, next) {
+          ctx.kendrick = true
+          return next()
+        })
+      }
+    ]
+  })
+  const ctx = {}
+  execute('plugin', ctx)
+  t.expect(ctx.baby).toBe(true)
+  t.expect(ctx.kendrick).toBe(true)
+})
