@@ -1,7 +1,7 @@
 {
   "name": "@generates/plug",
   "description": "A plugin system that is easy to plug in",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
     "name": "Ian Walter",
