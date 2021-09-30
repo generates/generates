@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const { createLogger } = require('@generates/logger')
-const cli = require('../..')
+import { createLogger } from '@generates/logger'
+import cli from '../../index.js'
 
 const logger = createLogger()
 
@@ -32,9 +32,7 @@ const input = cli({
 
 input.packageJson = { name: input.packageJson.name }
 
-if (require.main !== module) {
-  module.exports = input
-} else if (input.help) {
+if (input.help) {
   process.stdout.write('\n')
   logger.plain(input.helpText)
   process.stdout.write('\n')

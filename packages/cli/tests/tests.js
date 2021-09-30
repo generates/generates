@@ -1,6 +1,6 @@
 import { test } from '@ianwalter/bff'
 import execa from 'execa'
-import exampleCli from './fixtures/exampleCli.js'
+// import exampleCli from './fixtures/exampleCli.js'
 
 test('cli', async t => {
   const { stdout } = await execa('./tests/fixtures/exampleCli.js', ['-c', '4'])
@@ -13,9 +13,9 @@ test('dot format', async t => {
   t.expect(stdout).toMatchSnapshot()
 })
 
-test('default', async t => {
-  t.expect(exampleCli.path).toBe('/some/path')
-})
+// test('default', async t => {
+//   t.expect(exampleCli.path).toBe('/some/path')
+// })
 
 test('command', async t => {
   let args = ['save', '-p', './test.mp3']
