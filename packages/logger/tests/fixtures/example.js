@@ -33,7 +33,7 @@ logger.debug('Total tests run:', 1)
 
 const err = new Error('No bueno!')
 err.blame = 'You'
-err.test = () => 'This should not be logged'
+err.test = () => 'I am a method'
 logger.error(err)
 
 const user = {

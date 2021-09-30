@@ -1,16 +1,17 @@
-import stringifyObject from 'stringify-object'
 import { emphasize } from 'emphasize'
 import chalk from 'chalk'
+import stringify from './stringify.js'
 
 const defaultOptions = {
   highlight: true,
   lineNumbers: true,
-  indent: '  '
+  indent: '  ',
+  inlineCharacterLimit: 80
 }
 
-export default function stringify (value, options = defaultOptions) {
+export default function prettify (value, options = defaultOptions) {
   if (typeof value === 'object') {
-    value = stringifyObject(value, { indent: options.indent })
+    value = stringify(value, { indent: options.indent })
   }
   if (options.highlight) {
     const res = emphasize.highlightAuto(value)

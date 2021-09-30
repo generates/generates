@@ -9,7 +9,7 @@ import TerminalRenderer from 'marked-terminal'
 import stripAnsi from 'strip-ansi'
 import { merge, isPlainObject } from '@generates/merger'
 import cloneable from '@ianwalter/cloneable'
-import stringify from './stringify.js'
+import prettify from './lib/prettify.js'
 
 // Set up marked with the TerminalRenderer.
 marked.setOptions({ renderer: new TerminalRenderer({ tab: 2 }) })
@@ -122,11 +122,11 @@ function createLogger (config = {}) {
 
           // Add the rest of the Error properties as a new item.
           if (Object.keys(err).length) {
-            rest = rest.concat(stringify(err).split('\n'))
+            rest = rest.concat(prettify(err).split('\n'))
           }
         } else if (typeof item === 'object') {
           // If the item is an object, let chromafi format it.
-          const items = stringify(item).split('\n')
+          const items = prettify(item).split('\n')
           item = isFirst ? items.shift() : ''
           rest = rest.concat(items)
         } else {

@@ -1,9 +1,7 @@
 import { test } from '@ianwalter/bff'
 import execa from 'execa'
 import stripAnsi from 'strip-ansi'
-import logger from '../index.js'
-
-const { createLogger } = logger
+import { createLogger } from '../index.js'
 
 test('logger', async t => {
   const env = { DEBUG: 'app.*', FORCE_COLOR: '2' }
