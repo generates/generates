@@ -3,12 +3,10 @@ import { match, get } from '@generates/dotter'
 import chalk from 'chalk'
 import hasAnsi from 'has-ansi'
 import hasEmoji from 'has-emoji'
-import clone from '@ianwalter/clone'
 import marked from 'marked'
 import TerminalRenderer from 'marked-terminal'
 import stripAnsi from 'strip-ansi'
 import { merge, isPlainObject } from '@generates/merger'
-import cloneable from '@ianwalter/cloneable'
 import prettify from './lib/prettify.js'
 
 // Set up marked with the TerminalRenderer.
@@ -45,14 +43,6 @@ function toStackLines (line) {
     return line.replace(refRe, `${at} ${chalk.bold('$1')} ${chalk.gray('$2')}`)
   } else if (line.match(atRe)) {
     return line.replace(atRe, `${at} ${chalk.gray('$1')}`)
-  }
-}
-
-function getClone (src) {
-  try {
-    return clone(cloneable(src), { circulars: 0 })
-  } catch (err) {
-    return util.inspect(src)
   }
 }
 

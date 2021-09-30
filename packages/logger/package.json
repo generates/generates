@@ -48,9 +48,6 @@
     "@generates/cli": "^1.0.3",
     "@generates/dotter": "^2.0.0",
     "@generates/merger": "^0.1.0",
-    "@ianwalter/chromafi": "^1.0.1",
-    "@ianwalter/clone": "^6.0.1",
-    "@ianwalter/cloneable": "^2.0.0",
     "chalk": "^4.1.0",
     "common-tags": "^1.8.0",
     "emphasize": "^5.0.0",
@@ -61,7 +58,6 @@
     "is-regexp": "^3.0.0",
     "marked": "^3.0.0",
     "marked-terminal": "^4.1.0",
-    "stringify-object": "^4.0.0",
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {

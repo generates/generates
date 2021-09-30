@@ -8899,15 +8899,6 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-stringify-object@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/stringify-object/-/stringify-object-4.0.0.tgz#57a379dacb5355ab3dbe93693ce974f1234f7c88"
-  integrity sha512-MkMnWfxpZgZdd4z+EM7zmpPQZ6tCyC/vx+D1Mz6xbLHpzQwjHjSQCv7LEjDMArrnKCeMWn9KKeDEoifF2B6oaQ==
-  dependencies:
-    get-own-enumerable-property-symbols "^3.0.2"
-    is-obj "^3.0.0"
-    is-regexp "^3.0.0"
-
 strip-ansi@6.0.0, strip-ansi@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.0.tgz#0b1571dd7669ccd4f3e06e14ef1eed26225ae532"
