@@ -17,7 +17,8 @@
     "example": "node tests/fixtures/example.js",
     "example:json": "node tests/fixtures/ndjson.js",
     "example:pretty": "node tests/fixtures/ndjson.js | ./cli.js",
-    "test": "bff"
+    "test": "bff",
+    "build": "modulize -c cjs.cjs"
   },
   "publishConfig": {
     "access": "public"
@@ -25,6 +26,7 @@
   "files": [
     "lib",
     "index.js",
+    "cjs.cjs",
     "cli.js"
   ],
   "repository": {

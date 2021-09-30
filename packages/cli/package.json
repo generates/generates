@@ -8,6 +8,7 @@
     "url": "https://ianwalter.dev"
   },
   "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js tests",

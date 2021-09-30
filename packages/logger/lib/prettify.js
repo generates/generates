@@ -5,8 +5,7 @@ import stringify from './stringify.js'
 const defaultOptions = {
   highlight: true,
   lineNumbers: true,
-  indent: '  ',
-  inlineCharacterLimit: 80
+  indent: '  '
 }
 
 export default function prettify (value, options = defaultOptions) {
