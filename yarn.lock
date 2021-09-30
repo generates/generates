@@ -1701,11 +1701,6 @@
   resolved "https://registry.yarnpkg.com/@ianwalter/merge/-/merge-6.0.0.tgz#7d7facccc86fb407571c78de00a0bd2adca395cb"
   integrity sha512-Ohskh/vqQFgW2Abaxd3kPYz/uNqoUmCSjU8kB8SoRieQqIOyXit1pFKYW4HmcoRcDFbktpWmS1QpIBoF74DGBg==
 
-"@ianwalter/merge@^9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@ianwalter/merge/-/merge-9.0.1.tgz#bbbf15e1daec5fef7e28633d9e8060a62018a72d"
-  integrity sha512-Wu7eAZEsfuW0FJsVsdsNaWAtlY/6Viy74HQpZ8A81KutjhNO5cyPRkiBGletuX9kDUTOdSwWJokPnu/o4yE3KA==
-
 "@ianwalter/npm-short-name@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ianwalter/npm-short-name/-/npm-short-name-1.0.0.tgz#1ff8fcf73a20841e8fa13af77957a01c6e2329e8"
@@ -1742,24 +1737,6 @@
     has-emoji "^1.1.0"
     marked "^0.8.0"
     marked-terminal "^4.0.0"
-    strip-ansi "^6.0.0"
-
-"@ianwalter/print@^8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@ianwalter/print/-/print-8.1.0.tgz#5358b9c0a93a01451bb6c18a9a241a360556eb4a"
-  integrity sha512-1C3oH2YYpfPsRELDK2GDLEyzUNqBu4RMFrkbL+IFG5QrigAKX0wC64gjcmXkgGI9wGUEQ0R3vjnR/yMzC+Yymw==
-  dependencies:
-    "@ianwalter/chromafi" "^1.0.1"
-    "@ianwalter/cli" "^4.1.0"
-    "@ianwalter/clone" "^6.0.1"
-    "@ianwalter/cloneable" "^2.0.0"
-    "@ianwalter/dot" "^1.0.4"
-    "@ianwalter/merge" "^9.0.1"
-    chalk "^4.1.0"
-    has-ansi "^4.0.0"
-    has-emoji "^1.1.0"
-    marked "^1.1.1"
-    marked-terminal "^4.1.0"
     strip-ansi "^6.0.0"
 
 "@ianwalter/renovate-config@^1.4.0":

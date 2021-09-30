@@ -1,29 +1,27 @@
 #!/usr/bin/env node
 
-const prompt = require('.')
-const { print } = require('@ianwalter/print')
+import prompt from './index.js'
+import { createLogger } from '@generates/logger'
+
+const logger = createLogger()
 
 async function run () {
   let response = await prompt.text('What is your favorite dinosaur?')
-  print.log('')
-  print.success('Response:', response)
+  logger.success('Response:', response, '\n')
 
   response = await prompt.text('What is your name?', { fallback: 'Ian' })
-  print.log('')
-  print.success('Response:', `${response}`)
+  logger.success('Response:', `${response}`, '\n')
 
   response = await prompt.select('Is it really cold?')
-  print.log('')
-  print.success('Response:', `${response}`)
+  logger.success('Response:', `${response}`, '\n')
 
   const options = ['red', 'green', 'blue']
   response = await prompt.multiselect('What colors do you like?', { options })
-  print.log('')
-  print.success('Response:', response.join(', '))
+  logger.success('Response:', response.join(', '), '\n')
 
   response = await prompt.editor('Write a story!', { prefill: '[Insert Here]' })
-  print.success('Response:')
-  print.log(response)
+  logger.success('Response:')
+  logger.log(response)
 }
 
 run()
