@@ -1,4 +1,5 @@
 const util = require('util')
+const readline = require('readline')
 const chromafi = require('@ianwalter/chromafi')
 const { match, get } = require('@generates/dotter')
 const chalk = require('chalk')
@@ -24,6 +25,7 @@ const at = chalk.gray('at')
 const byNotWhitespace = str => str && str.trim()
 const isANewLine = msg => typeof msg === 'string' && msg === '\n'
 const md = str => marked(str).trimEnd()
+const clocks = ['🕛', '🕐', '🕒', '🕓', '🕕', '🕖', '🕘', '🕙']
 
 function extractLogPrefix ({ items: [first, ...rest] }) {
   let prefix = ' '
@@ -308,6 +310,27 @@ function createLogger (config = {}) {
 
   // Add the log types to the logger object.
   addTypes(logger)
+
+  logger.wait = function wait (...items) {
+    const instance = {
+      update: (...newItems) => (items = newItems),
+      end: () => clearInterval(interval)
+    }
+    process.stdout.write('\n')
+
+    let index = 1
+    const interval = setInterval(
+      () => {
+        readline.moveCursor(process.stdout, 0, -1)
+        readline.clearLine(process.stdout)
+        logger.log(clocks[index % 8], ...items)
+        index++
+      },
+      200
+    )
+
+    return instance
+  }
 
   // Return the logger object for use.
   return logger
