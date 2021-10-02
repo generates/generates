@@ -1,0 +1,39 @@
+{
+  "name": "@generates/number-lines",
+  "description": "Prepend an array of strings with padded line numbers",
+  "version": "0.0.0",
+  "author": {
+    "name": "Ian Walter",
+    "email": "pub@ianwalter.dev",
+    "url": "https://ianwalter.dev"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "bff"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/number-lines"
+  },
+  "keywords": [
+    "number",
+    "pad",
+    "lines"
+  ],
+  "bugs": {
+    "url": "https://github.com/generates/generates/issues"
+  },
+  "homepage": "https://github.com/generates/generates/blob/main/packages/number-lines#readme",
+  "devDependencies": {
+    "@ianwalter/bff": "^11.1.0"
+  }
+}

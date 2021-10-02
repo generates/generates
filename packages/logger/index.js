@@ -303,3 +303,5 @@ function createLogger (config = {}) {
 }
 
 export { createLogger, chalk, md }
+
+export default { createLogger, chalk, md }
