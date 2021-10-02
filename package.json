@@ -11,7 +11,7 @@
     "build": "ultra -r build",
     "lint": "eslit",
     "test": "ultra -r test",
-    "test:ci": "ultra --raw -r test"
+    "test.ci": "ultra --raw -r test"
   },
   "workspaces": [
     "packages/*"

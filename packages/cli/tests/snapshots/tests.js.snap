@@ -1,24 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`cli 1`] = `
-"     1. {
-     2.   level: 'debug',
-     3.   processorConcurrency: 4,
-     4.   some: {
-     5.     thing: true,
-     6.     other: {
-     7.       thing: 'a'
-     8.     }
-     9.   },
-    10.   packageJson: {
-    11.     name: '@generates/cli'
-    12.   },
-    13.   c: 4,
-    14.   path: '/some/path',
-    15.   debug: false,
-    16.   d: false,
-    17.   args: []
-    18. }"
+"     1 {
+     2   level: 'debug',
+     3   processorConcurrency: 4,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'a'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
+    12   },
+    13   c: 4,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
+    18 }"
 `;
 
 exports[`command help 1`] = `
@@ -120,22 +120,22 @@ exports[`command help 5`] = `
 `;
 
 exports[`dot format 1`] = `
-"     1. {
-     2.   level: 'debug',
-     3.   processorConcurrency: 1,
-     4.   some: {
-     5.     thing: true,
-     6.     other: {
-     7.       thing: 'b'
-     8.     }
-     9.   },
-    10.   packageJson: {
-    11.     name: '@generates/cli'
-    12.   },
-    13.   c: 1,
-    14.   path: '/some/path',
-    15.   debug: false,
-    16.   d: false,
-    17.   args: []
-    18. }"
+"     1 {
+     2   level: 'debug',
+     3   processorConcurrency: 1,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'b'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
+    12   },
+    13   c: 1,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
+    18 }"
 `;

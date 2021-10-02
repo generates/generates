@@ -8,7 +8,7 @@ const defaultOptions = {
   lineNumbers: true,
   indent: '  '
 }
-const formatLineNumber = lineNumber => chalk.dim(`${lineNumber}.`)
+const formatLineNumber = lineNumber => chalk.dim(lineNumber)
 
 export default function prettify (value, options = defaultOptions) {
   if (typeof value === 'object') {
