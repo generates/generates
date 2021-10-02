@@ -5,7 +5,7 @@ import compose from 'koa-compose'
 const logger = createLogger({ level: 'info', namespace: 'plug' })
 const noOp = () => {}
 
-export default async function plug (config = {}) {
+function setup (config = {}) {
   const phases = {}
 
   function register (phase, fn, index = phases[phase]?.items?.length) {
@@ -38,49 +38,65 @@ export default async function plug (config = {}) {
     }
   }
 
-  const context = {
-    ...config,
-    logger,
-    in (phase, fn) {
-      register(phase, fn)
-    },
-    before (name, phase, fn) {
-      // If the child plugin has already been added, go ahead and add this
-      // incoming plugin before it, otherwise the plugin will just be added to
-      // end of the array and the child plugin will be added after it anyway
-      // (there is an edge case that breaks this but the workaround is fine).
-      const child = phases[phase]?.items?.findIndex(i => i.name === name)
-      register(phase, fn, child !== undefined ? Math.max(child - 1, 0) : child)
-    },
-    after (name, phase, fn) {
-      const parent = phases[phase]?.items?.findIndex(i => i.name === name)
-      if (parent) {
-        // If the parent plugin has already been added, go ahead and add this
-        // incoming plugin after it.
-        register(phase, fn, parent + 1)
-      } else {
-        // If the parent plugin hasn't been added yet, add this incoming plugin
-        // to a list of plugins that will come after the parent plugin when it's
-        // added.
-        if (phases[phase]?.after) {
-          if (phase[phase].after[name]) {
-            phase[phase].after[name].push(fn)
-          } else {
-            phase[phase].after[name] = [fn]
-          }
-        } else if (phases[phase]) {
-          phases[phase].after = { [name]: [fn] }
+  return {
+    phases,
+    context: {
+      ...config,
+      logger,
+      in (phase, fn) {
+        register(phase, fn)
+      },
+      before (name, phase, fn) {
+        // If the child plugin has already been added, go ahead and add this
+        // incoming plugin before it, otherwise the plugin will just be added to
+        // end of the array and the child plugin will be added after it anyway
+        // (there is an edge case that breaks this but the workaround is fine).
+        const child = phases[phase]?.items?.findIndex(i => i.name === name)
+        register(
+          phase,
+          fn,
+          child !== undefined ? Math.max(child - 1, 0) : child
+        )
+      },
+      after (name, phase, fn) {
+        const parent = phases[phase]?.items?.findIndex(i => i.name === name)
+        if (parent) {
+          // If the parent plugin has already been added, go ahead and add this
+          // incoming plugin after it.
+          register(phase, fn, parent + 1)
         } else {
-          phases[phase] = { after: { [name]: [fn] } }
+          // If the parent plugin hasn't been added yet, add this incoming
+          // plugin to a list of plugins that will come after the parent plugin
+          // when it's added.
+          if (phases[phase]?.after) {
+            if (phase[phase].after[name]) {
+              phase[phase].after[name].push(fn)
+            } else {
+              phase[phase].after[name] = [fn]
+            }
+          } else if (phases[phase]) {
+            phases[phase].after = { [name]: [fn] }
+          } else {
+            phases[phase] = { after: { [name]: [fn] } }
+          }
         }
       }
     }
   }
+}
 
-  // Initialize the array of plugins with any plugins passed in config.
-  let plugins = config.plugins || []
+function executeWithPhases (phases) {
+  return function execute (phase, ctx, next = noOp) {
+    if (phases[phase]) return phases[phase].entry(ctx, next)
+  }
+}
+
+export default async function plug (config = {}) {
+  // Set up the plugin context and runtime phases.
+  const { context, phases } = setup(config)
 
   // Load any plugins specified from JS files.
+  let plugins = config.plugins || []
   if (config.files) {
     plugins = plugins.concat(await Promise.all(config.files.map(async file => {
       let plugin
@@ -104,7 +120,16 @@ export default async function plug (config = {}) {
   await Promise.all(plugins.map(plugin => plugin(context)))
 
   // Return a function to execute a phase.
-  return function execute (phase, ctx, next = noOp) {
-    if (phases[phase]) return phases[phase].entry(ctx, next)
-  }
+  return executeWithPhases(phases)
+}
+
+plug.sync = function plugSync (config) {
+  // Set up the plugin context and runtime phases.
+  const { context, phases } = setup(config)
+
+  // Allow plugins to register themselves.
+  for (const plugin of config.plugins || []) plugin(context)
+
+  // Return a function to execute a phase.
+  return executeWithPhases(phases)
 }

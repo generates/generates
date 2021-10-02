@@ -1,13 +1,15 @@
 {
   "name": "@generates/plug",
   "description": "A plugin system that is easy to plug in",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
     "name": "Ian Walter",
     "url": "https://ianwalter.dev"
   },
   "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
   "scripts": {
     "build": "modulize --cjs index.cjs",
     "pretest": "modulize --cjs index.cjs",
