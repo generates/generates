@@ -16,6 +16,7 @@ var isRegexp = require('is-regexp');
 var isObject = require('is-obj');
 var getOwnEnumPropSymbols = require('get-own-enumerable-property-symbols');
 var commonTags = require('common-tags');
+var numberLines = require('@generates/number-lines');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -184,6 +185,7 @@ const defaultOptions = {
   lineNumbers: true,
   indent: '  '
 };
+const formatLineNumber = lineNumber => chalk__default['default'].dim(lineNumber);
 
 function prettify (value, options = defaultOptions) {
   if (typeof value === 'object') {
@@ -194,11 +196,7 @@ function prettify (value, options = defaultOptions) {
     value = res.value;
 
     if (options.lineNumbers) {
-      // TODO: padStart based on line length.
-      value = value.split('\n').map((line, i) => {
-        const lineNumber = i + 1;
-        return `${chalk__default['default'].dim(lineNumber)} ${line}`
-      }).join('\n');
+      value = numberLines.numberLines(value.split('\n'), formatLineNumber).join('\n');
     }
   }
   return value
@@ -497,6 +495,8 @@ function createLogger (config = {}) {
   return logger
 }
 
+var index = { createLogger, chalk: chalk__default['default'], md };
+
 Object.defineProperty(exports, 'chalk', {
   enumerable: true,
   get: function () {
@@ -504,4 +504,5 @@ Object.defineProperty(exports, 'chalk', {
   }
 });
 exports.createLogger = createLogger;
+exports.default = index;
 exports.md = md;
