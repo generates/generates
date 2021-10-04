@@ -19,7 +19,5 @@ jobs:
         run: yarn build
       - name: Lint
         run: yarn lint
-      - name: Test cli
-        run: yarn --cwd packages/cli test
       - name: Test
-        run: yarn test.ci
+        run: yarn test
