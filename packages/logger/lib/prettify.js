@@ -15,7 +15,7 @@ export default function prettify (value, options = defaultOptions) {
     value = stringify(value, { indent: options.indent })
   }
   if (options.highlight) {
-    const res = emphasize.highlightAuto(value)
+    const res = emphasize.highlight('javascript', value)
     value = res.value
 
     if (options.lineNumbers) {

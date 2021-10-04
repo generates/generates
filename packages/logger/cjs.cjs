@@ -56,32 +56,7 @@ function stringify (input, options, pad) {
       };
     }
 
-    const expandWhiteSpace = string => {
-      if (options.inlineCharacterLimit === undefined) {
-        return string
-      }
-
-      const oneLined = string
-        .replace(new RegExp(tokens.newline, 'g'), '')
-        .replace(new RegExp(tokens.newlineOrSpace, 'g'), ' ')
-        .replace(new RegExp(tokens.pad + '|' + tokens.indent, 'g'), '');
-
-      if (oneLined.length <= options.inlineCharacterLimit) {
-        return oneLined
-      }
-
-      return string
-        .replace(
-          new RegExp(tokens.newline + '|' + tokens.newlineOrSpace, 'g'),
-          '\n'
-        )
-        .replace(new RegExp(tokens.pad, 'g'), pad)
-        .replace(new RegExp(tokens.indent, 'g'), pad + indent)
-    };
-
-    if (seen.includes(input)) {
-      return '"[Circular]"'
-    }
+    if (seen.includes(input)) return '"[Circular]"'
 
     if (
       input === null ||
@@ -119,19 +94,17 @@ function stringify (input, options, pad) {
       const returnValue = '[' + tokens.newline + input.map((element, i) => {
         const eol = input.length - 1 === i
           ? tokens.newline
-          : ',' + tokens.newlineOrSpace;
+          : ',' + tokens.newline;
 
         let value = stringify(element, options, pad + indent);
-        if (options.transform) {
-          value = options.transform(input, i, value);
-        }
+        if (options.transform) value = options.transform(input, i, value);
 
         return tokens.indent + value + eol
       }).join('') + tokens.pad + ']';
 
       seen.pop();
 
-      return expandWhiteSpace(returnValue)
+      return returnValue
     }
 
     if (isObject__default['default'](input)) {
@@ -165,7 +138,7 @@ function stringify (input, options, pad) {
 
       seen.pop();
 
-      return expandWhiteSpace(returnValue)
+      return returnValue
     }
 
     input = String(input).replace(/[\r\n]/g, x => x === '\n' ? '\\n' : '\\r');

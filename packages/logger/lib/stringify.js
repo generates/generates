@@ -11,49 +11,12 @@ export default function stringify (input, options, pad) {
   return (function stringify (input, options = {}, pad = '') {
     const indent = options.indent || '  '
 
-    let tokens
-    if (options.inlineCharacterLimit === undefined) {
-      tokens = {
-        newline: '\n',
-        newlineOrSpace: '\n',
-        pad,
-        indent: pad + indent
-      }
-    } else {
-      tokens = {
-        newline: '@@__STRINGIFY_OBJECT_NEW_LINE__@@',
-        newlineOrSpace: '@@__STRINGIFY_OBJECT_NEW_LINE_OR_SPACE__@@',
-        pad: '@@__STRINGIFY_OBJECT_PAD__@@',
-        indent: '@@__STRINGIFY_OBJECT_INDENT__@@'
-      }
+    const tokens = {
+      pad,
+      indent: pad + indent
     }
 
-    const expandWhiteSpace = string => {
-      if (options.inlineCharacterLimit === undefined) {
-        return string
-      }
-
-      const oneLined = string
-        .replace(new RegExp(tokens.newline, 'g'), '')
-        .replace(new RegExp(tokens.newlineOrSpace, 'g'), ' ')
-        .replace(new RegExp(tokens.pad + '|' + tokens.indent, 'g'), '')
-
-      if (oneLined.length <= options.inlineCharacterLimit) {
-        return oneLined
-      }
-
-      return string
-        .replace(
-          new RegExp(tokens.newline + '|' + tokens.newlineOrSpace, 'g'),
-          '\n'
-        )
-        .replace(new RegExp(tokens.pad, 'g'), pad)
-        .replace(new RegExp(tokens.indent, 'g'), pad + indent)
-    }
-
-    if (seen.includes(input)) {
-      return '"[Circular]"'
-    }
+    if (seen.includes(input)) return '"[Circular]"'
 
     if (
       input === null ||
@@ -88,22 +51,18 @@ export default function stringify (input, options, pad) {
 
       seen.push(input)
 
-      const returnValue = '[' + tokens.newline + input.map((element, i) => {
-        const eol = input.length - 1 === i
-          ? tokens.newline
-          : ',' + tokens.newlineOrSpace
+      const returnValue = '[\n' + input.map((element, i) => {
+        const eol = input.length - 1 === i ? '\n' : ',\n'
 
         let value = stringify(element, options, pad + indent)
-        if (options.transform) {
-          value = options.transform(input, i, value)
-        }
+        if (options.transform) value = options.transform(input, i, value)
 
         return tokens.indent + value + eol
       }).join('') + tokens.pad + ']'
 
       seen.pop()
 
-      return expandWhiteSpace(returnValue)
+      return returnValue
     }
 
     if (isObject(input)) {
@@ -121,10 +80,8 @@ export default function stringify (input, options, pad) {
 
       seen.push(input)
 
-      const returnValue = '{' + tokens.newline + objectKeys.map((el, i) => {
-        const eol = objectKeys.length - 1 === i
-          ? tokens.newline
-          : ',' + tokens.newlineOrSpace
+      const returnValue = '{\n' + objectKeys.map((el, i) => {
+        const eol = objectKeys.length - 1 === i ? '\n' : ',\n'
         const isSymbol = typeof element === 'symbol'
         const isClassic = !isSymbol && /^[a-z$_][$\w]*$/i.test(el)
         const key = isSymbol || isClassic ? el : stringify(el, options)
@@ -137,7 +94,7 @@ export default function stringify (input, options, pad) {
 
       seen.pop()
 
-      return expandWhiteSpace(returnValue)
+      return returnValue
     }
 
     input = String(input).replace(/[\r\n]/g, x => x === '\n' ? '\\n' : '\\r')

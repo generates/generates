@@ -80,3 +80,4 @@ json.info(
   { statusCode: 200, body: 'Lando!' },
   { params: { q: 'one' } }
 )
+logger.log('Array', user.details.address.phoneNumbers)
