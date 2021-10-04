@@ -41,7 +41,9 @@ export default async function run (config = {}) {
     if (pkg?.scripts && pkg.scripts[command]) {
       const relativePath = path.relative(process.cwd(), cwd)
       await logger.info(`Running in ${relativePath}: ${command}\n`)
-      await execa('npm', ['run', '-s', command], { cwd, stdio: 'inherit' })
+
+      const args = ['run', '-s', ...config.args]
+      await execa('npm', args, { cwd, stdio: 'inherit' })
       await logger.write('\n')
     } else {
       logger.debug(`Skipping ${cwd}`)
