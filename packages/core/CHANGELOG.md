@@ -1,5 +1,14 @@
 # @generates/core
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies [6f5be2c]
+- Updated dependencies [60fe6d7]
+  - @generates/prompt@0.0.4
+  - @generates/logger@2.0.0
+
 ## 0.0.7
 
 ### Patch Changes

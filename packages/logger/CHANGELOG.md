@@ -1,5 +1,18 @@
 # @generates/logger
 
+## 2.0.0
+
+### Major Changes
+
+- 60fe6d7: Replacing chromafi with stringify-object and emphasize
+
+### Patch Changes
+
+- Updated dependencies [1b6fb36]
+- Updated dependencies [cca8ba2]
+  - @generates/number-lines@0.0.1
+  - @generates/cli@2.0.0
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,5 +1,16 @@
 # @generates/cli
 
+## 2.0.0
+
+### Major Changes
+
+- cca8ba2: Converting to ESM
+
+### Patch Changes
+
+- Updated dependencies [60fe6d7]
+  - @generates/logger@2.0.0
+
 ## 1.0.3
 
 ### Patch Changes
