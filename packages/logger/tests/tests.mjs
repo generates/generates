@@ -8,7 +8,7 @@ test('logger', async t => {
   const { stdout } = await execa('yarn', ['-s', 'example'], { env })
   stdout.split('\n').forEach(line => {
     // Don't assert stacktrace lines.
-    if (!stripAnsi(line).match(/ {4}at /)) {
+    if (!stripAnsi(line).match(/ at /)) {
       t.expect(line).toMatchSnapshot()
     }
   })
