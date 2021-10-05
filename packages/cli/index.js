@@ -1,18 +1,18 @@
-const util = require('util')
-const readPkgUp = require('read-pkg-up')
-const getopts = require('getopts')
-const dotter = require('@generates/dotter')
-const { merge } = require('@generates/merger')
-const { oneLine } = require('common-tags')
-const { md, chalk } = require('@generates/logger')
-const decamelize = require('decamelize')
-const camelcase = require('camelcase')
+import util from 'util'
+import readPkgUp from 'read-pkg-up'
+import getopts from 'getopts'
+import dotter from '@generates/dotter'
+import { merge } from '@generates/merger'
+import { oneLine } from 'common-tags'
+import { md, chalk } from '@generates/logger'
+import decamelize from 'decamelize'
+import camelcase from 'camelcase'
 
 const args = process.argv.slice(2)
 const separator = chalk.dim('–')
 const toAliasFlag = (acc, alias) => (acc += `, -${alias}`)
 
-module.exports = function cli (config, input) {
+export default function cli (config, input) {
   if (!input) {
     input = {}
 

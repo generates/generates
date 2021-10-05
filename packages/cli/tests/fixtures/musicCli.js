@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const { createLogger } = require('@generates/logger')
-const cli = require('../..')
+import { createLogger } from '@generates/logger'
+import cli from '../../index.js'
 
 const logger = createLogger()
 

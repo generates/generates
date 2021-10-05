@@ -1,13 +1,14 @@
-const readline = require('readline')
-const { createPrint, chalk } = require('@ianwalter/print')
-const { cursor } = require('sisteransi')
+import readline from 'readline'
+import { createLogger, chalk } from '@generates/logger'
+import { cursor } from 'sisteransi'
+import { edit } from 'external-editor'
 
 const yesNoOptions = [
   { label: 'Yes', value: true },
   { label: 'No', value: false }
 ]
 
-const print = createPrint({ level: 'info' })
+const print = createLogger({ level: 'info' })
 
 function printLabel (prefix = '💬', label, fallback) {
   const hasFallback = fallback !== undefined
@@ -135,7 +136,7 @@ function renderSelect (label, settings) {
   })
 }
 
-module.exports = {
+export default {
   async text (label, settings = {}) {
     const { prefix, fallback } = settings
 
@@ -180,7 +181,6 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       try {
-        const { edit } = require('external-editor')
         const answer = edit(settings.prefill) || fallback
 
         print.log(answer)

@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cli 1`] = `
+"     1 {
+     2   level: 'debug',
+     3   processorConcurrency: 4,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'a'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
+    12   },
+    13   c: 4,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
+    18 }"
+`;
+
+exports[`command help 1`] = `
+"
+💁  [35m[4m[1m# music[22m[24m[39m
+
+    [0mCompose music from the command line![0m
+
+    [32m[1m## Usage[22m[39m
+
+    [0mmusic [commands] [args] [options][0m
+
+    [32m[1m## Commands[22m[39m
+
+      * [0m[33mstart, play[39m – Start playing instruments[0m
+      * [0m[33msave[39m – Save the music to a file[0m
+
+    [32m[1m## Options[22m[39m
+
+      * [0m[33m--style, -s[39m – The style of music to use as a base (default: [33m'pop'[39m)[0m
+"
+`;
+
+exports[`command help 2`] = `
+"
+💁  [35m[4m[1m# music ❯ start[22m[24m[39m
+
+    [0mStart playing instruments[0m
+
+    [32m[1m## Usage[22m[39m
+
+    [0mmusic start [instrument] [args][0m
+
+    [32m[1m## Commands[22m[39m
+
+      * [0m[33mdrum[39m – Start playing the drum at a certain tempo[0m
+      * [0m[33mguitar[39m – Start playing the guitar[0m
+
+    [32m[1m## Options[22m[39m
+
+      * [0m[33m--style, -s[39m – The style of music to use as a base (default: [33m'pop'[39m)[0m
+"
+`;
+
+exports[`command help 3`] = `
+"
+💁  [35m[4m[1m# Save. The. Music.[22m[24m[39m
+
+    [0mSave the music to a file[0m
+
+    [32m[1m## Usage[22m[39m
+
+    [0mmusic save [options][0m
+
+    [32m[1m## Options[22m[39m
+
+      * [0m[33m--style, -s[39m – The style of music to use as a base (default: [33m'pop'[39m)[0m
+      * [0m[33m--path, -p[39m – The path of the saved music file (default: [33m'./music.mp3'[39m)[0m
+"
+`;
+
+exports[`command help 4`] = `
+"
+💁  [35m[4m[1m# music ❯ start ❯ drum[22m[24m[39m
+
+    [0mStart playing the drum at a certain tempo[0m
+
+    [32m[1m## Usage[22m[39m
+
+    [0mmusic start drum [tempo][0m
+
+    [32m[1m## Options[22m[39m
+
+      * [0m[33m--style, -s[39m – The style of music to use as a base (default: [33m'pop'[39m)[0m
+"
+`;
+
+exports[`command help 5`] = `
+"
+⚠️   [33m[1mCommand \\"begin\\" not found[22m[39m
+
+💁  [35m[4m[1m# music[22m[24m[39m
+
+    [0mCompose music from the command line![0m
+
+    [32m[1m## Usage[22m[39m
+
+    [0mmusic [commands] [args] [options][0m
+
+    [32m[1m## Commands[22m[39m
+
+      * [0m[33mstart, play[39m – Start playing instruments[0m
+      * [0m[33msave[39m – Save the music to a file[0m
+
+    [32m[1m## Options[22m[39m
+
+      * [0m[33m--style, -s[39m – The style of music to use as a base (default: [33m'pop'[39m)[0m
+"
+`;
+
+exports[`dot format 1`] = `
+"     1 {
+     2   level: 'debug',
+     3   processorConcurrency: 1,
+     4   some: {
+     5     thing: true,
+     6     other: {
+     7       thing: 'b'
+     8     }
+     9   },
+    10   packageJson: {
+    11     name: '@generates/cli'
+    12   },
+    13   c: 1,
+    14   path: '/some/path',
+    15   debug: false,
+    16   d: false,
+    17   args: []
+    18 }"
+`;

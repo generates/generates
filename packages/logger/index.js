@@ -1,15 +1,13 @@
-const util = require('util')
-const chromafi = require('@ianwalter/chromafi')
-const { match, get } = require('@generates/dotter')
-const chalk = require('chalk')
-const hasAnsi = require('has-ansi')
-const hasEmoji = require('has-emoji')
-const clone = require('@ianwalter/clone')
-const marked = require('marked')
-const TerminalRenderer = require('marked-terminal')
-const stripAnsi = require('strip-ansi')
-const { merge, isPlainObject } = require('@generates/merger')
-const cloneable = require('@ianwalter/cloneable')
+import util from 'util'
+import { match, get } from '@generates/dotter'
+import chalk from 'chalk'
+import hasAnsi from 'has-ansi'
+import hasEmoji from 'has-emoji'
+import marked from 'marked'
+import TerminalRenderer from 'marked-terminal'
+import stripAnsi from 'strip-ansi'
+import { merge, isPlainObject } from '@generates/merger'
+import prettify from './lib/prettify.js'
 
 // Set up marked with the TerminalRenderer.
 marked.setOptions({ renderer: new TerminalRenderer({ tab: 2 }) })
@@ -45,14 +43,6 @@ function toStackLines (line) {
     return line.replace(refRe, `${at} ${chalk.bold('$1')} ${chalk.gray('$2')}`)
   } else if (line.match(atRe)) {
     return line.replace(atRe, `${at} ${chalk.gray('$1')}`)
-  }
-}
-
-function getClone (src) {
-  try {
-    return clone(cloneable(src), { circulars: 0 })
-  } catch (err) {
-    return util.inspect(src)
   }
 }
 
@@ -122,14 +112,13 @@ function createLogger (config = {}) {
 
           // Add the rest of the Error properties as a new item.
           if (Object.keys(err).length) {
-            const items = chromafi(getClone(err), options.chromafi).split('\n')
-            rest = rest.concat(items.slice(0, items.length - 1))
+            rest = rest.concat(prettify(err).split('\n'))
           }
         } else if (typeof item === 'object') {
           // If the item is an object, let chromafi format it.
-          const items = chromafi(getClone(item), options.chromafi).split('\n')
+          const items = prettify(item).split('\n')
           item = isFirst ? items.shift() : ''
-          rest = rest.concat(items.slice(0, items.length - 1))
+          rest = rest.concat(items)
         } else {
           // If the item is not a string, turn it into one using util.inspect.
           if (!isString) item = util.inspect(item)
@@ -313,4 +302,6 @@ function createLogger (config = {}) {
   return logger
 }
 
-module.exports = { createLogger, chalk, md }
+export { createLogger, chalk, md }
+
+export default { createLogger, chalk, md }

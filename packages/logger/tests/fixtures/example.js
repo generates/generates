@@ -1,8 +1,12 @@
-const { stripIndent } = require('common-tags')
-const BaseError = require('@ianwalter/base-error')
-const { createLogger, chalk, md } = require('../..')
+import { stripIndent } from 'common-tags'
+import { createLogger, chalk, md } from '../../index.js'
 
-class ExampleError extends BaseError {}
+class ExampleError extends Error {
+  constructor (message) {
+    super(message)
+    this.name = this.constructor.name
+  }
+}
 
 const logger = createLogger()
 
@@ -29,7 +33,7 @@ logger.debug('Total tests run:', 1)
 
 const err = new Error('No bueno!')
 err.blame = 'You'
-err.test = () => 'This should not be logged'
+err.test = () => 'I am a method'
 logger.error(err)
 
 const user = {
@@ -76,3 +80,4 @@ json.info(
   { statusCode: 200, body: 'Lando!' },
   { params: { q: 'one' } }
 )
+logger.log('Array', user.details.address.phoneNumbers)

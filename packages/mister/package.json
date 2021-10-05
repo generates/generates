@@ -1,0 +1,37 @@
+{
+  "name": "@generates/mister",
+  "description": "",
+  "version": "0.0.0",
+  "author": {
+    "name": "Ian Walter",
+    "email": "pub@ianwalter.dev",
+    "url": "https://ianwalter.dev"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "mr": "cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generates/generates.git",
+    "directory": "packages/mister"
+  },
+  "bugs": {
+    "url": "https://github.com/generates/generates/issues"
+  },
+  "homepage": "https://github.com/generates/generates/blob/main/packages/number-lines#readme",
+  "dependencies": {
+    "@generates/cli": "^1.0.3"
+  },
+  "devDependencies": {
+    "@ianwalter/bff": "^11.1.0"
+  }
+}

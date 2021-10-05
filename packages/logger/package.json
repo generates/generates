@@ -7,7 +7,8 @@
     "email": "pub@ianwalter.dev",
     "url": "https://ianwalter.dev"
   },
-  "license": "Hippocratic-2.1",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
   "main": "index.js",
   "bin": {
     "prettify": "cli.js"
@@ -16,13 +17,16 @@
     "example": "node tests/fixtures/example.js",
     "example:json": "node tests/fixtures/ndjson.js",
     "example:pretty": "node tests/fixtures/ndjson.js | ./cli.js",
-    "test": "bff"
+    "test": "bff",
+    "build": "modulize -c cjs.cjs"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
+    "lib",
     "index.js",
+    "cjs.cjs",
     "cli.js"
   ],
   "repository": {
@@ -43,15 +47,18 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/logger#readme",
   "dependencies": {
-    "@ianwalter/chromafi": "^1.0.1",
-    "@ianwalter/clone": "^6.0.1",
-    "@ianwalter/cloneable": "^2.0.0",
     "@generates/cli": "^1.0.3",
     "@generates/dotter": "^2.0.0",
     "@generates/merger": "^0.1.0",
+    "@generates/number-lines": "^0.0.0",
     "chalk": "^4.1.0",
+    "common-tags": "^1.8.0",
+    "emphasize": "^5.0.0",
+    "get-own-enumerable-property-symbols": "^3.0.2",
     "has-ansi": "^4.0.0",
     "has-emoji": "^1.1.0",
+    "is-obj": "^3.0.0",
+    "is-regexp": "^3.0.0",
     "marked": "^3.0.0",
     "marked-terminal": "^4.1.0",
     "strip-ansi": "^6.0.0"

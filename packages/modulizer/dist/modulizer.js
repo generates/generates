@@ -122,9 +122,10 @@ async function modulize ({ cwd, ...options }) {
 
   // Determine which dependencies should be external (Node.js core modules
   // should always be external).
-  const deps = Object.keys(pkg.dependencies || {});
+  let deps = Object.keys(pkg.dependencies || {});
   let inlineDeps = [];
   let nodeResolve;
+  deps = deps.concat(Object.keys(pkg.peerDependencies || {}));
   if (inline === true) {
     inlineDeps = deps;
     nodeResolve = nodeResolvePlugin();
@@ -173,10 +174,17 @@ async function modulize ({ cwd, ...options }) {
   if (options.watch) {
     return new Promise(() => {
       // Create the Rollup watcher.
-      const watcher = watch({ input, output: { dir }, skipWrite: true });
+      const watcher = watch({
+        input,
+        output: { dir },
+        external,
+        plugins: rollupPlugins,
+        watch: { skipWrite: true }
+      });
 
       watcher.on('event', async event => {
         logger$1.debug('Watch event', event);
+        if (event.code === 'BUNDLE_START') logger$1.info('Bundling...');
         if (event.error) logger$1.error(event.error);
         if (event.result) {
           // Generate the bundles and write them to files.

@@ -1,42 +1,66 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect, useCallback } from 'react';
 
-function toValue(query, name, dataType) {
+function toValue(query, name, dataType, initial) {
   const value = dataType === Array ? query.getAll(name) : query.get(name);
 
   if (dataType === Number && value) {
     return value.includes('.') ? parseFloat(value) : parseInt(value);
   } else if (dataType === Date && value) {
     return new Date(Date.parse(value));
+  } else if (dataType === Boolean) {
+    return value === 'true';
   }
 
-  return value;
+  return value || initial;
 }
 
 function useQueryParams(name, dataType = String, transform) {
-  const [value, setValue] = useState();
-  useEffect(() => {
+  let initial;
+
+  if (typeof dataType !== 'function') {
+    initial = dataType;
+
+    if (Array.isArray(dataType)) {
+      dataType = Array;
+    } else if (typeof dataType === 'number') {
+      dataType = Number;
+    } else if (dataType instanceof Date) {
+      dataType = Date;
+    } else if (typeof dataType === 'string') {
+      dataType = String;
+    } else if (typeof dataType === 'boolean') {
+      dataType = Boolean;
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    const query = new URLSearchParams(window.location.search);
+
+    if (transform) {
+      initial = transform(toValue(query, name, dataType, initial));
+    } else {
+      initial = toValue(query, name, dataType, initial);
+    }
+  }
+
+  const [value, setValue] = useState(initial);
+  useLayoutEffect(() => {
     function listener(evt) {
       const query = new URLSearchParams(evt.target.location.search);
 
       if (transform) {
-        setValue(transform(toValue(query, name, dataType)));
+        setValue(transform(toValue(query, name, dataType, initial)));
       } else {
-        setValue(toValue(query, name, dataType));
+        setValue(toValue(query, name, dataType, initial));
       }
-    } // Initialize the value on mount.
+    } // Add a listener to update the value on history / URL changes.
 
-
-    listener({
-      target: {
-        location: window.location
-      }
-    }); // Add a listener to update the value on history / URL changes.
 
     window.addEventListener('popstate', listener); // Clean up the event listener on unmount.
 
     return () => window.removeEventListener('popstate', listener);
   }, [setValue]);
-  return [value, value => {
+  return [value, useCallback((value, options = {}) => {
     const query = new URLSearchParams(window.location.search);
     let hasChanged;
 
@@ -70,12 +94,15 @@ function useQueryParams(name, dataType = String, transform) {
 
     if (hasChanged) {
       window.history.pushState(undefined, undefined, `?${query}`);
-      const evt = new window.PopStateEvent('popstate', {
-        target: window
-      });
-      window.dispatchEvent(evt);
+
+      if (options.update !== false) {
+        const evt = new window.PopStateEvent('popstate', {
+          target: window
+        });
+        window.dispatchEvent(evt);
+      }
     }
-  }];
+  }, [])];
 }
 
 export default useQueryParams;
