@@ -1,5 +1,13 @@
 # @generates/plug
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [60fe6d7]
+  - @generates/logger@2.0.0
+  - @generates/modulizer@8.0.3
+
 ## 0.1.0
 
 ### Minor Changes

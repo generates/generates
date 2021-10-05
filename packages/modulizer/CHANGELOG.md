@@ -1,5 +1,14 @@
 # @generates/modulizer
 
+## 8.0.3
+
+### Patch Changes
+
+- Updated dependencies [60fe6d7]
+- Updated dependencies [cca8ba2]
+  - @generates/logger@2.0.0
+  - @generates/cli@2.0.0
+
 ## 8.0.2
 
 ### Patch Changes

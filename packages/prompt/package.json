@@ -1,11 +1,11 @@
 {
   "name": "@generates/prompt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "type": "module",
   "main": "index.js",
   "dependencies": {
-    "@generates/logger": "^1.0.0",
+    "@generates/logger": "^2.0.0",
     "external-editor": "^3.1.0",
     "sisteransi": "^1.0.5"
   },
