@@ -1,4 +1,4 @@
-const { createLogger } = require('../..')
+const { createLogger } = require('../../cjs.cjs')
 
 const logger = createLogger({ ndjson: true })
 

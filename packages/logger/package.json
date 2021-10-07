@@ -15,10 +15,11 @@
   },
   "scripts": {
     "example": "node tests/fixtures/example.js",
-    "example:json": "node tests/fixtures/ndjson.js",
-    "example:pretty": "node tests/fixtures/ndjson.js | ./cli.js",
-    "test": "bff",
-    "build": "modulize -c cjs.cjs"
+    "example.json": "node tests/fixtures/ndjson.cjs",
+    "example.pretty": "node tests/fixtures/ndjson.js | ./cli.js",
+    "build": "modulize -c cjs.cjs --inline",
+    "pretest": "yarn build",
+    "test": "bff"
   },
   "publishConfig": {
     "access": "public"
