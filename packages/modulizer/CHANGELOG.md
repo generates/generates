@@ -1,5 +1,15 @@
 # @generates/modulizer
 
+## 8.0.4
+
+### Patch Changes
+
+- 31651f9: Update dependency @rollup/plugin-commonjs to v21
+- Updated dependencies [3140e7c]
+- Updated dependencies [1ae60d4]
+- Updated dependencies [af728c2]
+  - @generates/logger@2.0.1
+
 ## 8.0.3
 
 ### Patch Changes

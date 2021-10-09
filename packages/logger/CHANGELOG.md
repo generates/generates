@@ -1,5 +1,13 @@
 # @generates/logger
 
+## 2.0.1
+
+### Patch Changes
+
+- 3140e7c: Update dependency strip-ansi to v7
+- 1ae60d4: Inline modules for logger/cjs.cjs so ESM modules can be used
+- af728c2: Update dependency has-ansi to v5
+
 ## 2.0.0
 
 ### Major Changes
