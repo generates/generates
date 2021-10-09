@@ -1,12 +1,12 @@
 name: Changeset
 on:
   pull_request:
-    types: [labeled]
+    types: [labeled, synchronize]
 jobs:
   changeset:
     runs-on: ubuntu-latest
     container:
-      image: node:15.4-buster
+      image: node:16-buster
     timeout-minutes: 5
     steps:
       - name: Checkout
@@ -16,6 +16,8 @@ jobs:
           persist-credentials: false
       - name: Add Changeset
         uses: generates/changeset-action@v3.0.0
+        with:
+          token: ${{ secrets.GH_PAT }}
       - name: Commit Changes
         uses: generates/commit-action@v1.0.2
         with:
