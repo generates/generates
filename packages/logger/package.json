@@ -62,7 +62,7 @@
     "is-regexp": "^3.0.0",
     "marked": "^3.0.0",
     "marked-terminal": "^4.1.0",
-    "strip-ansi": "^6.0.0"
+    "strip-ansi": "^7.0.0"
   },
   "devDependencies": {
     "@ianwalter/base-error": "^6.1.0",
