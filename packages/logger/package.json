@@ -56,7 +56,7 @@
     "common-tags": "^1.8.0",
     "emphasize": "^5.0.0",
     "get-own-enumerable-property-symbols": "^3.0.2",
-    "has-ansi": "^4.0.0",
+    "has-ansi": "^5.0.0",
     "has-emoji": "^1.1.0",
     "is-obj": "^3.0.0",
     "is-regexp": "^3.0.0",
