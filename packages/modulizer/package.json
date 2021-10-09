@@ -59,7 +59,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "builtin-modules": "^3.1.0",
-    "p-settle": "^4.0.0",
+    "p-settle": "^5.0.0",
     "read-pkg-up": "^6.0.0",
     "require-from-string": "^2.0.2",
     "rollup": "^2.39.0",
