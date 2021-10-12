@@ -1,17 +1,16 @@
 import { test } from '@ianwalter/bff'
 import execa from 'execa'
-import stripAnsi from 'strip-ansi'
+// import stripAnsi from 'strip-ansi'
 import { createLogger } from '../index.js'
+
+// Don't assert stacktrace file path lines.
+const outPath = line => !line.includes('file:')
 
 test('logger', async t => {
   const env = { DEBUG: 'app.*', FORCE_COLOR: '2' }
   const { stdout } = await execa('yarn', ['-s', 'example'], { env })
-  stdout.split('\n').forEach(line => {
-    // Don't assert stacktrace lines.
-    if (!stripAnsi(line).match(/ at /)) {
-      t.expect(line).toMatchSnapshot()
-    }
-  })
+  await t.logger.log('Example', stdout)
+  t.expect(stdout.split('\n').filter(outPath).join('\n')).toMatchSnapshot()
 })
 
 test('return', t => {

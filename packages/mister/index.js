@@ -1,6 +1,6 @@
 import path from 'path'
 import util from 'util'
-import { createLogger } from '@generates/logger'
+import { createLogger, chalk } from '@generates/logger'
 import glob from 'glob'
 import readPkg from 'read-pkg'
 import execa from 'execa'
@@ -40,7 +40,8 @@ export default async function run (config = {}) {
 
     if (pkg?.scripts && pkg.scripts[command]) {
       const relativePath = path.relative(process.cwd(), cwd)
-      await logger.info(`Running in ${relativePath}: ${command}\n`)
+      const loggedCommand = `${chalk.bold.white(command)}\n`
+      await logger.info(`Running in ${relativePath}:`, loggedCommand)
 
       const args = ['run', '-s', ...config.args]
       await execa('npm', args, { cwd, stdio: 'inherit' })
