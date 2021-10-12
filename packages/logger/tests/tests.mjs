@@ -4,7 +4,7 @@ import execa from 'execa'
 import { createLogger } from '../index.js'
 
 // Don't assert stacktrace file path lines.
-const outPath = line => !line.includes('file:')
+const outPath = line => !line.includes('file:') && !line.includes('internal/')
 
 test('logger', async t => {
   const env = { DEBUG: 'app.*', FORCE_COLOR: '2' }
