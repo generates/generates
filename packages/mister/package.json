@@ -1,7 +1,7 @@
 {
   "name": "@generates/mister",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/number-lines#readme",
   "dependencies": {
-    "@generates/cli": "^2.0.0"
+    "@generates/cli": "^2.0.1"
   },
   "devDependencies": {
     "@ianwalter/bff": "^11.1.0"
