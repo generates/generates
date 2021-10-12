@@ -8,16 +8,16 @@
     "url": "https://ianwalter.dev"
   },
   "type": "module",
-  "main": "index.cjs",
+  "main": "index.js",
   "module": "index.js",
   "scripts": {
-    "build": "modulize --cjs index.cjs --inline",
+    "build": "modulize --cjs cjs.cjs --inline",
     "pretest": "yarn build",
     "test": "bff"
   },
   "files": [
     "index.js",
-    "index.cjs"
+    "cjs.cjs"
   ],
   "keywords": [
     "plugin",
