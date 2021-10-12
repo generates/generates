@@ -1,16 +1,12 @@
 import { test } from '@ianwalter/bff'
 import execa from 'execa'
-// import stripAnsi from 'strip-ansi'
 import { createLogger } from '../index.js'
-
-// Don't assert stacktrace file path lines.
-const outPath = line => !line.includes('file:') && !line.includes('internal/')
 
 test('logger', async t => {
   const env = { DEBUG: 'app.*', FORCE_COLOR: '2' }
   const { stdout } = await execa('yarn', ['-s', 'example'], { env })
   await t.logger.log('Example', stdout)
-  t.expect(stdout.split('\n').filter(outPath).join('\n')).toMatchSnapshot()
+  t.expect(stdout).toMatchSnapshot()
 })
 
 test('return', t => {

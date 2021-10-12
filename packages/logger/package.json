@@ -14,7 +14,7 @@
     "prettify": "cli.js"
   },
   "scripts": {
-    "example": "node tests/fixtures/example.js",
+    "example": "node tests/fixtures/example.js -e",
     "example.json": "node tests/fixtures/ndjson.cjs",
     "example.pretty": "node tests/fixtures/ndjson.js | ./cli.js",
     "build": "modulize -c cjs.cjs --inline",

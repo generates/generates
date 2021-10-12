@@ -9,12 +9,15 @@ class ExampleError extends Error {
 }
 
 const logger = createLogger()
+const logErrors = process.argv.includes('-e')
 
 logger.write('No formatting on this one.\n')
 logger.error('Environment variables not set!')
-logger.error(new Error('No assertions were executed on that test.'))
-logger.error(new ExampleError(chalk.bold('Expected something else.')))
-logger.error('Timeout reached:', new ExampleError('promise cancelled'))
+if (logErrors) {
+  logger.error(new Error('No assertions were executed on that test.'))
+  logger.error(new ExampleError(chalk.bold('Expected something else.')))
+  logger.error('Timeout reached:', new ExampleError('promise cancelled'))
+}
 logger.warn('File was overwritten:', '\n', '/tmp/fakeFile.json')
 logger.info('Done in 0.91s.', '')
 logger.debug('Flaky test started.\n', stripIndent`
@@ -31,10 +34,13 @@ logger.log('⏱️', 'Timing you!')
 logger.success('You did it!', 'Great job.')
 logger.debug('Total tests run:', 1)
 
-const err = new Error('No bueno!')
-err.blame = 'You'
-err.test = () => 'I am a method'
-logger.error(err)
+let err
+if (logErrors) {
+  err = new Error('No bueno!')
+  err.blame = 'You'
+  err.test = () => 'I am a method'
+  logger.error(err)
+}
 
 const user = {
   id: 321,
@@ -54,14 +60,14 @@ const user = {
         '860-555-5555'
       ]
     },
-    result: err
+    ...err && { result: err }
   },
   fullName () {
     return `${this.details.firstName} ${this.details.lastName}`
   }
 }
 user.boss = user
-logger.warn(new Error('User not found'), user)
+if (logErrors) logger.warn(new Error('User not found'), user)
 logger.debug('Calling...', { phoneNumbers: user.details.address.phoneNumbers })
 logger.md(stripIndent`
   A new version is available **v1.1.0**!
