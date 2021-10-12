@@ -69,7 +69,6 @@
     "@ianwalter/bff": "^10.0.0",
     "execa": "^4.0.3",
     "ky": "^0.10.0",
-    "p-settle": "^4.0.0",
     "postcss": "^8.2.10",
     "rollup-plugin-vue": "^5.1.6",
     "vue-template-compiler": "^2.6.12"

@@ -911,12 +911,6 @@ Array [
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var pSettle = require('p-settle');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var pSettle__default = /*#__PURE__*/_interopDefaultLegacy(pSettle);
-
 var camelcase = {exports: {}};
 
 const preserveCamelCase = string => {
@@ -998,12 +992,6 @@ function greeting() {
   return 'Hello World';
 }
 
-Object.defineProperty(exports, 'pSettle', {
-	enumerable: true,
-	get: function () {
-		return pSettle__default['default'];
-	}
-});
 exports.greeting = greeting;
 exports.npmShortName = npmShortName;
 ",
