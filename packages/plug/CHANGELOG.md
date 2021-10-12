@@ -1,5 +1,11 @@
 # @generates/plug
 
+## 1.0.0
+
+### Major Changes
+
+- a564356: Change plug main to esm
+
 ## 0.1.1
 
 ### Patch Changes
