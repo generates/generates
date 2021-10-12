@@ -1,7 +1,7 @@
 {
   "name": "@generates/logger",
   "description": "A readable Node.js logging utility",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": {
     "name": "Ian Walter",
     "email": "pub@ianwalter.dev",
@@ -48,7 +48,7 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/logger#readme",
   "dependencies": {
-    "@generates/cli": "^2.0.0",
+    "@generates/cli": "^2.0.1",
     "@generates/dotter": "^2.0.0",
     "@generates/merger": "^0.1.0",
     "@generates/number-lines": "^0.0.1",

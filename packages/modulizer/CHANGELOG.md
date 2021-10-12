@@ -1,5 +1,15 @@
 # @generates/modulizer
 
+## 8.0.5
+
+### Patch Changes
+
+- a6e14a0: Moving p-settle to dev deps
+- Updated dependencies [95eea81]
+- Updated dependencies [f6e2967]
+  - @generates/cli@2.0.1
+  - @generates/logger@2.0.2
+
 ## 8.0.4
 
 ### Patch Changes

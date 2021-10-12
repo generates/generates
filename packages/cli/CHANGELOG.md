@@ -1,5 +1,13 @@
 # @generates/cli
 
+## 2.0.1
+
+### Patch Changes
+
+- 95eea81: Update dependency decamelize to v6
+- Updated dependencies [f6e2967]
+  - @generates/logger@2.0.2
+
 ## 2.0.0
 
 ### Major Changes

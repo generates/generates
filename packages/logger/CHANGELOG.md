@@ -1,5 +1,13 @@
 # @generates/logger
 
+## 2.0.2
+
+### Patch Changes
+
+- f6e2967: Update dependency has-emoji to v2
+- Updated dependencies [95eea81]
+  - @generates/cli@2.0.1
+
 ## 2.0.1
 
 ### Patch Changes

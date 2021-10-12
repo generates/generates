@@ -1,6 +1,15 @@
 # @generates/mister
 
+## 0.0.2
+
+### Patch Changes
+
+- 5eea51b: Improving command log
+- Updated dependencies [95eea81]
+  - @generates/cli@2.0.1
+
 ## 0.0.1
+
 ### Patch Changes
 
 - ad4e43e: Initial release
