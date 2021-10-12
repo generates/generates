@@ -4,7 +4,7 @@ import { createLogger } from '../index.js'
 
 test('logger', async t => {
   const env = { DEBUG: 'app.*', FORCE_COLOR: '2' }
-  const { stdout } = await execa('yarn', ['-s', 'example'], { env })
+  const { stdout } = await execa('node', ['tests/fixtures/example.js'], { env })
   await t.logger.log('Example', stdout)
   t.expect(stdout).toMatchSnapshot()
 })
