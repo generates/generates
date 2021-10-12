@@ -1931,25 +1931,20 @@ chalk.stderr.supportsColor = stderrColor;
 
 var source = chalk;
 
-var ansiRegex = options => {
-	options = Object.assign({
-		onlyFirst: false
-	}, options);
-
+function ansiRegex({onlyFirst = false} = {}) {
 	const pattern = [
-		'[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
+	    '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
 		'(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))'
 	].join('|');
 
-	return new RegExp(pattern, options.onlyFirst ? undefined : 'g');
-};
+	return new RegExp(pattern, onlyFirst ? undefined : 'g');
+}
 
-const ansiRegex$1 = ansiRegex;
+const regex = ansiRegex({onlyFirst: true});
 
-// Removes the `g` flag
-const regex = new RegExp(ansiRegex$1().source);
-
-var hasAnsi = string => regex.test(string);
+function hasAnsi(string) {
+	return regex.test(string);
+}
 
 var es2015 = () => {
   // https://mths.be/emoji
@@ -6585,7 +6580,7 @@ var utils = {};
 
 var stringWidth = {exports: {}};
 
-var ansiRegex$2 = ({onlyFirst = false} = {}) => {
+var ansiRegex$1 = ({onlyFirst = false} = {}) => {
 	const pattern = [
 		'[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
 		'(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))'
@@ -6594,9 +6589,9 @@ var ansiRegex$2 = ({onlyFirst = false} = {}) => {
 	return new RegExp(pattern, onlyFirst ? undefined : 'g');
 };
 
-const ansiRegex$3 = ansiRegex$2;
+const ansiRegex$2 = ansiRegex$1;
 
-var stripAnsi = string => typeof string === 'string' ? string.replace(ansiRegex$3(), '') : string;
+var stripAnsi = string => typeof string === 'string' ? string.replace(ansiRegex$2(), '') : string;
 
 var isFullwidthCodePoint = {exports: {}};
 
@@ -19260,6 +19255,14 @@ function sanitizeTab(tab, fallbackTab) {
   } else {
     return new Array(fallbackTab + 1).join(' ');
   }
+}
+
+function stripAnsi$2(string) {
+	if (typeof string !== 'string') {
+		throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
+	}
+
+	return string.replace(ansiRegex(), '');
 }
 
 function isObject$1 (i) {
@@ -35585,7 +35588,7 @@ function createLogger (config = {}) {
 
   function formatPlain (log) {
     format(log);
-    log.items = log.items?.map(stripAnsi);
+    log.items = log.items?.map(stripAnsi$2);
   }
 
   const defaults = {
