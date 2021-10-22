@@ -32,6 +32,6 @@
     "@generates/cli": "^2.0.1"
   },
   "devDependencies": {
-    "@ianwalter/bff": "^11.1.0"
+    "@ianwalter/bff": "^11.2.0"
   }
 }

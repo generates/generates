@@ -43,6 +43,6 @@
   },
   "devDependencies": {
     "@generates/modulizer": "^8.0.5",
-    "@ianwalter/bff": "^10.2.0"
+    "@ianwalter/bff": "^11.2.0"
   }
 }

@@ -34,6 +34,6 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/number-lines#readme",
   "devDependencies": {
-    "@ianwalter/bff": "^11.1.0"
+    "@ianwalter/bff": "^11.2.0"
   }
 }
