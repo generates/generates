@@ -45,7 +45,7 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.14.5",
-    "@generates/modulizer": "^8.0.2",
+    "@generates/modulizer": "^8.0.5",
     "@generates/skrt": "^0.0.7",
     "next": "^11.1.1",
     "react": "^17.0.2",

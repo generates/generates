@@ -38,6 +38,6 @@
   "homepage": "https://github.com/generates/generates/blob/main/packages/dotter#readme",
   "devDependencies": {
     "@ianwalter/bff": "^10.0.1",
-    "@generates/modulizer": "^8.0.0"
+    "@generates/modulizer": "^8.0.5"
   }
 }
