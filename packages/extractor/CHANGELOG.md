@@ -1,5 +1,13 @@
 # @generates/extractor
 
+## 1.3.1
+
+### Patch Changes
+
+- 0157d52: Updating @generates/modulizer to 8.0.5
+- Updated dependencies [0157d52]
+  - @generates/dotter@2.0.3
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @generates/use-query-params
 
+## 1.0.13
+
+### Patch Changes
+
+- 0157d52: Updating @generates/modulizer to 8.0.5
+
 ## 1.0.12
 
 ### Patch Changes
