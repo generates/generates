@@ -1,5 +1,11 @@
 # @generates/plug
 
+## 1.0.1
+
+### Patch Changes
+
+- 92cf39d: Moving modulizer to dev dep
+
 ## 1.0.0
 
 ### Major Changes

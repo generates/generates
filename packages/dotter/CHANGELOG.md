@@ -1,5 +1,11 @@
 # @generates/dotter
 
+## 2.0.3
+
+### Patch Changes
+
+- 0157d52: Updating @generates/modulizer to 8.0.5
+
 ## 2.0.2
 
 ### Patch Changes
