@@ -4,13 +4,14 @@ import getopts from 'getopts'
 import dotter from '@generates/dotter'
 import { merge } from '@generates/merger'
 import { oneLine } from 'common-tags'
-import { md, chalk } from '@generates/logger'
+import { createLogger, md, chalk } from '@generates/logger'
 import decamelize from 'decamelize'
 import camelcase from 'camelcase'
 
 const args = process.argv.slice(2)
 const separator = chalk.dim('–')
 const toAliasFlag = (acc, alias) => (acc += `, -${alias}`)
+const logger = createLogger({ namespace: 'cli', level: 'info' })
 
 export default function cli (config, input) {
   if (!input) {
@@ -45,6 +46,8 @@ export default function cli (config, input) {
       } else if (['string', 'boolean'].includes(option.type)) {
         opts[option.type] = [key]
       }
+
+      logger.debug('Option', { option, opts })
     }
   }
 

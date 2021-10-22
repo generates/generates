@@ -1682,6 +1682,15 @@
     "@generates/modulizer" "^8.0.0"
     koa-compose "^4.1.0"
 
+"@generates/plug@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@generates/plug/-/plug-0.1.1.tgz#77f91f612d02c75c32bc40dbaaca5af53c24a13b"
+  integrity sha512-cUUg8U5cPyKCpNeX1gcER5LeBfq5kaKIKRlw9kG+9xIY1BxCCVzybPAnWxYG+DGgcBF5vMCZ7MYAGtsauEg3PA==
+  dependencies:
+    "@generates/logger" "^2.0.0"
+    "@generates/modulizer" "^8.0.3"
+    koa-compose "^4.1.0"
+
 "@generates/skrt@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@generates/skrt/-/skrt-0.0.7.tgz#43db254d7b51b723c5a27aa23bb829c0e446c63a"
