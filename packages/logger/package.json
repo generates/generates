@@ -60,7 +60,7 @@
     "has-emoji": "^2.0.0",
     "is-obj": "^3.0.0",
     "is-regexp": "^3.0.0",
-    "marked": "^3.0.0",
+    "marked": "^4.0.0",
     "marked-terminal": "^4.1.0",
     "strip-ansi": "^7.0.0"
   },
