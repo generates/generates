@@ -1,5 +1,11 @@
 # @generates/mister
 
+## 0.0.3
+
+### Patch Changes
+
+- d006f71: Fix #204
+
 ## 0.0.2
 
 ### Patch Changes
