@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 import cli from '@generates/cli'
+import { createLogger } from '@generates/logger'
 import run from './index.js'
 
+const logger = createLogger({ namespace: 'mister', level: 'info' })
 const config = cli({
   name: 'mister',
   packageJson: true,
@@ -19,4 +21,9 @@ const config = cli({
   }
 })
 
-run(config)
+run(config).catch(async err => {
+  await logger.write('\n')
+  await logger.error(err.message)
+  await logger.write('\n')
+  process.exit(err.exitCode || 1)
+})

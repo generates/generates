@@ -30,7 +30,7 @@ export default async function run (config = {}) {
   logger.debug('Paths:', paths)
 
   //
-  async function run (cwd) {
+  async function runScript (cwd) {
     let pkg
     try {
       pkg = await readPkg({ cwd })
@@ -52,8 +52,8 @@ export default async function run (config = {}) {
   }
 
   if (config.serial) {
-    for (const cwd of paths) await run(cwd)
+    for (const cwd of paths) await runScript(cwd)
   } else {
-    await Promise.all(paths.map(run))
+    await Promise.all(paths.map(runScript))
   }
 }
