@@ -1,5 +1,11 @@
 # @generates/logger
 
+## 2.0.3
+
+### Patch Changes
+
+- 2a62a1d: Fix logger default import issue
+
 ## 2.0.2
 
 ### Patch Changes
