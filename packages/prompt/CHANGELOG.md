@@ -1,5 +1,11 @@
 # @generates/prompt
 
+## 0.0.5
+
+### Patch Changes
+
+- 25c94ad: Update logger to 2.0.4
+
 ## 0.0.4
 
 ### Patch Changes

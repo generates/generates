@@ -1,5 +1,12 @@
 # @generates/commit
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies [25c94ad]
+  - @generates/core@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes

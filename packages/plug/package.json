@@ -1,7 +1,7 @@
 {
   "name": "@generates/plug",
   "description": "A plugin system that is easy to plug in",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
     "name": "Ian Walter",
@@ -42,7 +42,7 @@
     "koa-compose": "^4.1.0"
   },
   "devDependencies": {
-    "@generates/modulizer": "^8.0.5",
+    "@generates/modulizer": "^8.0.6",
     "@ianwalter/bff": "^11.2.0"
   }
 }
