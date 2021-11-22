@@ -2,8 +2,14 @@
 
 import isRegexp from 'is-regexp'
 import isObject from 'is-obj'
-import getOwnEnumPropSymbols from 'get-own-enumerable-property-symbols'
 import { stripIndent } from 'common-tags'
+
+// Modified from: https://github.com/mightyiam/get-own-enumerable-property-symbols
+function getOwnEnumPropSymbols (obj) {
+  return Object
+    .getOwnPropertySymbols(obj)
+    .filter(key => Object.prototype.propertyIsEnumerable.call(obj, key))
+}
 
 export default function stringify (input, options, pad) {
   const seen = []
@@ -68,7 +74,7 @@ export default function stringify (input, options, pad) {
     if (isObject(input)) {
       let objectKeys = [
         ...Object.keys(input),
-        ...getOwnEnumPropSymbols.default(input)
+        ...getOwnEnumPropSymbols(input)
       ]
 
       if (options.filter) {
