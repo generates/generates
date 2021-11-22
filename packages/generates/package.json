@@ -1,6 +1,6 @@
 {
   "name": "generates",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The generates command-line interface application",
   "keywords": [
     "generates",
@@ -35,11 +35,11 @@
     "url": "https://github.com/ianwalter/generates/issues"
   },
   "dependencies": {
-    "@generates/cli": "^2.0.0",
+    "@generates/cli": "^2.0.3",
     "@generates/logger": "^2.0.4"
   },
   "devDependencies": {
-    "@generates/license": "0.0.8",
+    "@generates/license": "0.0.9",
     "@ianwalter/bff": "^11.2.0"
   }
 }

@@ -1,5 +1,13 @@
 # @generates/modulizer
 
+## 8.0.6
+
+### Patch Changes
+
+- 25c94ad: Update logger to 2.0.4
+- Updated dependencies [25c94ad]
+  - @generates/cli@2.0.3
+
 ## 8.0.5
 
 ### Patch Changes

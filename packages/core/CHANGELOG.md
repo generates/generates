@@ -1,5 +1,13 @@
 # @generates/core
 
+## 0.0.9
+
+### Patch Changes
+
+- 25c94ad: Update logger to 2.0.4
+- Updated dependencies [25c94ad]
+  - @generates/prompt@0.0.5
+
 ## 0.0.8
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @generates/plug
 
+## 1.0.2
+
+### Patch Changes
+
+- 25c94ad: Update logger to 2.0.4
+
 ## 1.0.1
 
 ### Patch Changes
