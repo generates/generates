@@ -1,5 +1,11 @@
 # @generates/logger
 
+## 2.0.4
+
+### Patch Changes
+
+- 154af20: Adding exports config to package.json
+
 ## 2.0.3
 
 ### Patch Changes
