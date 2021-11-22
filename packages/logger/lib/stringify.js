@@ -68,7 +68,7 @@ export default function stringify (input, options, pad) {
     if (isObject(input)) {
       let objectKeys = [
         ...Object.keys(input),
-        ...getOwnEnumPropSymbols.default(input)
+        ...getOwnEnumPropSymbols(input)
       ]
 
       if (options.filter) {
