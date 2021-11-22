@@ -10,6 +10,10 @@
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
   "main": "index.js",
+  "exports": {
+    "import": "./index.js",
+    "require": "./cjs.cjs"
+  },
   "bin": {
     "prettify": "cli.js"
   },
