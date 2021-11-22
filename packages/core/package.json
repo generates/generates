@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@generates/prompt": "^0.0.4",
-    "@generates/logger": "^2.0.0",
+    "@generates/logger": "^2.0.4",
     "@generates/merger": "^0.1.0",
     "@generates/dotter": "^2.0.0",
     "common-tags": "^1.8.0"
