@@ -2,8 +2,8 @@ import path from 'path'
 import util from 'util'
 import { createLogger, chalk } from '@generates/logger'
 import glob from 'glob'
-import readPkg from 'read-pkg'
-import execa from 'execa'
+import { readPackage } from 'read-pkg'
+import { execa } from 'execa'
 
 const globa = util.promisify(glob)
 const globOptions = { nosort: true, absolute: true }
@@ -33,7 +33,7 @@ export default async function run (config = {}) {
   async function runScript (cwd) {
     let pkg
     try {
-      pkg = await readPkg({ cwd })
+      pkg = await readPackage({ cwd })
     } catch (err) {
       logger.debug(err)
     }
