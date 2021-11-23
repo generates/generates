@@ -29,7 +29,11 @@
   },
   "homepage": "https://github.com/generates/generates/blob/main/packages/number-lines#readme",
   "dependencies": {
-    "@generates/cli": "^2.0.1"
+    "@generates/cli": "^2.0.3",
+    "@generates/logger": "^2.0.4",
+    "execa": "^6.0.0",
+    "glob": "^7.2.0",
+    "read-pkg": "^7.0.0"
   },
   "devDependencies": {
     "@ianwalter/bff": "^11.2.0"
