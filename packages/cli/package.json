@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@ianwalter/bff": "^11.2.0",
-    "execa": "^5.0.0"
+    "execa": "^6.0.0"
   },
   "exampleCli": {
     "level": "debug",

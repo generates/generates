@@ -67,7 +67,7 @@
   "devDependencies": {
     "@babel/runtime": "^7.12.1",
     "@ianwalter/bff": "^11.2.0",
-    "execa": "^4.0.3",
+    "execa": "^6.0.0",
     "ky": "^0.10.0",
     "postcss": "^8.2.10",
     "rollup-plugin-vue": "^5.1.6",
