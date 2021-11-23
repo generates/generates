@@ -1,5 +1,11 @@
 # @generates/mister
 
+## 0.0.4
+
+### Patch Changes
+
+- 3f0447e: Fixing missing deps
+
 ## 0.0.3
 
 ### Patch Changes
