@@ -1,4 +1,4 @@
-# @ianwalter/requester
+# @generates/requester
 
 ## 2.5.0
 

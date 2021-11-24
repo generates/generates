@@ -1,9 +1,9 @@
 import querystring from 'querystring'
 import { test } from '@ianwalter/bff'
 import nrg from '@ianwalter/nrg'
-import rqr from '../index.js'
+import { Requester } from '../index.js'
 
-const { requester, Requester } = rqr
+const requester = new Requester()
 
 test('GET request for empty response', async t => {
   const app = nrg.createApp({ log: false })

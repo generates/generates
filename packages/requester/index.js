@@ -1,11 +1,10 @@
-const http = require('http')
-const https = require('https')
-const { URL } = require('url')
-const zlib = require('zlib')
-const querystring = require('querystring')
-const { createLogger } = require('@generates/logger')
-const { version } = require('./package.json')
-const { merge } = require('@generates/merger')
+import http from 'http'
+import https from 'https'
+import { URL } from 'url'
+import zlib from 'zlib'
+import querystring from 'querystring'
+import { createLogger } from '@generates/logger'
+import { merge } from '@generates/merger'
 
 const methods = [
   'get',
@@ -14,7 +13,7 @@ const methods = [
   'delete'
 ]
 const headers = {
-  'user-agent': `@ianwalter/requester/${version}`
+  'user-agent': '@ianwalter/requester/v3'
 }
 const urlencoded = 'application/x-www-form-urlencoded'
 const defaults = {
@@ -25,7 +24,7 @@ const defaults = {
 }
 const logger = createLogger({ level: 'info', namespace: 'requester' })
 
-class HttpError extends Error {
+export class HttpError extends Error {
   constructor (response) {
     super(response?.statusText || 'Request failed')
     this.name = this.constructor.name
@@ -36,7 +35,7 @@ class HttpError extends Error {
   }
 }
 
-class Requester {
+export class Requester {
   constructor (options) {
     // Set the base options for the requester instance.
     this.options = merge({}, defaults, options)
@@ -188,5 +187,3 @@ class Requester {
     })
   }
 }
-
-module.exports = { Requester, requester: new Requester(), HttpError }
