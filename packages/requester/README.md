@@ -15,26 +15,27 @@ yarn add @generates/requester
 Simple example GET request:
 
 ```js
-const { requester } = require('@generates/requester')
+import { Requester } from '@generates/requester'
 
+const requester = new Requester()
 const response = await requester.get('http://example.com/api/v1/cats')
 ```
 
 Example POST request with custom base options:
 
 ```js
-const { Requester } = require('@generates/requester')
+import { Requester } from '@generates/requester'
 
 const requester = new Requester({ baseUrl: 'http://example.com/api' })
-
 const response = await requester.post('/v1/cats', { name: 'Nibblet' })
 ```
 
 Example GET request with a custom request header:
 
 ```js
-const { requester } = require('@generates/requester')
+import { requester } from '@generates/requester'
 
+const requester = new Requester()
 const options = { headers: { authorization: 'Bearer abc123' } }
 const response = await requester.get('http://example.com/api/v1/cats', options)
 ```
