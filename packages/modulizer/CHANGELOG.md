@@ -1,5 +1,11 @@
 # @generates/modulizer
 
+## 8.0.7
+
+### Patch Changes
+
+- 2acd9fb: Inlining logger
+
 ## 8.0.6
 
 ### Patch Changes
