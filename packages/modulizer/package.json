@@ -44,7 +44,7 @@
     "lib"
   ],
   "scripts": {
-    "modulize": "./cli.js",
+    "modulize": "./cli.js --inline @generates/logger",
     "pretest": "yarn modulize",
     "test": "bff"
   },
