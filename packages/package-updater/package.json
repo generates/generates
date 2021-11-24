@@ -36,7 +36,7 @@
   "dependencies": {
     "@generates/merger": "^0.1.2",
     "read-pkg-up": "^6.0.0",
-    "write-pkg": "^4.0.0"
+    "write-pkg": "^5.0.0"
   },
   "devDependencies": {
     "@ianwalter/bff": "^11.2.0",
