@@ -13,7 +13,7 @@ const methods = [
   'delete'
 ]
 const headers = {
-  'user-agent': '@ianwalter/requester/v3'
+  'user-agent': '@generates/requester/v3'
 }
 const urlencoded = 'application/x-www-form-urlencoded'
 const defaults = {
