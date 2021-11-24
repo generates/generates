@@ -1,5 +1,11 @@
 # @generates/requester
 
+## 3.0.0
+
+### Major Changes
+
+- c85bda9: Converting requester to ESM
+
 ## 2.5.0
 
 ### Minor Changes
