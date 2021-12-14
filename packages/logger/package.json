@@ -63,7 +63,7 @@
     "is-obj": "^3.0.0",
     "is-regexp": "^3.0.0",
     "marked": "^3.0.0",
-    "marked-terminal": "^4.1.0",
+    "marked-terminal": "^5.0.0",
     "strip-ansi": "^7.0.0"
   },
   "devDependencies": {
