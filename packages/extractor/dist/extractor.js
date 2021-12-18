@@ -2,15 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var clone = require('@ianwalter/clone');
+var merger = require('@generates/merger');
 var dotter = require('@generates/dotter');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var clone__default = /*#__PURE__*/_interopDefaultLegacy(clone);
-
 function excluding (src, ...props) {
-  const dest = clone__default['default'](src);
+  const dest = merger.merge({}, src);
   for (const prop of props) dotter.del(dest, prop);
   return dest
 }

@@ -1,8 +1,8 @@
-import clone from '@ianwalter/clone';
+import { merge } from '@generates/merger';
 import { del, has, set, get } from '@generates/dotter';
 
 function excluding (src, ...props) {
-  const dest = clone(src);
+  const dest = merge({}, src);
   for (const prop of props) del(dest, prop);
   return dest
 }

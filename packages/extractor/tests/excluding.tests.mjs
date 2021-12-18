@@ -18,7 +18,7 @@ test('excluding multiple', t => {
 })
 
 test('excluding falsy source', t => {
-  t.expect(excluding(undefined, 'password')).toEqual(undefined)
-  t.expect(excluding(null, 'phone')).toEqual(null)
-  t.expect(excluding(false, 'address')).toEqual(false)
+  t.expect(excluding(undefined, 'password')).toEqual({})
+  t.expect(excluding(null, 'phone')).toEqual({})
+  t.expect(excluding(false, 'address')).toEqual({})
 })
