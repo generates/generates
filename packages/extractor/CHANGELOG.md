@@ -1,5 +1,13 @@
 # @generates/extractor
 
+## 1.3.2
+
+### Patch Changes
+
+- 22fd1e3: Swap clone for merger
+- Updated dependencies [22fd1e3]
+  - @generates/extractor@1.3.2
+
 ## 1.3.1
 
 ### Patch Changes
