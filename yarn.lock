@@ -7046,10 +7046,10 @@ koa@^2.13.4:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-ky@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/ky/-/ky-0.10.0.tgz#b736665a484962f02d8e2498ab27cfb316cfb7d7"
-  integrity sha512-2OiL0TJiex7tGTUvYOrijLbXKV9rb9IJcLvDh+m5+v87ZhBThIlXwEjaC8/H0e8zMW+hq4HCznVBIdbNMsSQKg==
+ky@^0.33.0:
+  version "0.33.3"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-0.33.3.tgz#bf1ad322a3f2c3428c13cfa4b3af95e6c4a2f543"
+  integrity sha512-CasD9OCEQSFIam2U8efFK81Yeg8vNMTBUqtMOHlrcWQHqUX3HeCl9Dr31u4toV7emlH8Mymk5+9p0lL6mKb/Xw==
 
 lazy-cache@^1.0.3:
   version "1.0.4"
