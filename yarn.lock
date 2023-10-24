@@ -1699,32 +1699,7 @@
   resolved "https://registry.yarnpkg.com/@ianwalter/base-error/-/base-error-6.1.0.tgz#a25f8a57e04877f6823251c5f1e05c7c060a0130"
   integrity sha512-a1oe3gdY7aVJotysd2hbkARZdIXd80b1xL+kcJGQ/5VzEv7bMhQ+vlamv8DLz828uz/dxMCVb4++n75RyVUs2Q==
 
-"@ianwalter/bff@^11.2.0":
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/@ianwalter/bff/-/bff-11.2.0.tgz#125c082c9fa3ded01135ee9a083b156d1dbe77f3"
-  integrity sha512-sguPbl6WuN/FOa4g2W5c258muqakNH1Po+B6NDGuvJs6SZUZBKLEiSsYHcenN3lAmYsA3ooxoJ9MPzLV1LEseA==
-  dependencies:
-    "@generates/cli" "^2.0.0"
-    "@generates/logger" "^2.0.2"
-    "@generates/merger" "^0.1.3"
-    "@generates/plug" "^1.0.0"
-    "@ianwalter/clone" "^6.0.1"
-    "@ianwalter/cloneable" "^2.0.0"
-    "@ianwalter/sleep" "^0.0.1"
-    "@ianwalter/subpub" "^3.0.0"
-    "@ianwalter/timer" "^2.0.2"
-    array-shuffle "^3.0.0"
-    callsites "^4.0.0"
-    camaro "^6.1.0"
-    common-tags "^1.8.0"
-    esm-to-cjs "^1.2.0"
-    expect "^27.2.5"
-    glob "^7.2.0"
-    jest-snapshot "^27.3.1"
-    junit-report-builder "^3.0.0"
-    workerpool "^6.1.5"
-
-"@ianwalter/bff@^11.2.2":
+"@ianwalter/bff@^11.2.0", "@ianwalter/bff@^11.2.2":
   version "11.2.2"
   resolved "https://registry.yarnpkg.com/@ianwalter/bff/-/bff-11.2.2.tgz#93729cfc5bbf96dd72aabec4f7fa4efbb2c4a1ef"
   integrity sha512-wW5P1tlZwJXT5EpPwc4Msy3IshafyZL9KcmuK6/X6Zgzw9cHdxfjcO90R706/nNUx7JP+UO7CpS1pNCNZGFoZQ==
